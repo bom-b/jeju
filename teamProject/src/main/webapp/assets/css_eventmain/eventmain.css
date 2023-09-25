@@ -1,0 +1,112 @@
+
+/*** 이벤트 css 헤더  ***/
+.event-header{
+    background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/bg_event.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.event-header img {
+    animation: imgRotate 50s linear infinite;
+}
+/*.col-lg-3{
+	margin-right: 20px;
+}*/
+
+
+.contest-waiting h4 {
+	height: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  word-break:break-all;
+text-align:justify;
+
+}
+.contest-waiting .waiting-item{
+height: 400px;
+}
+.contest-waiting .waiting-item img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+    object-fit: cover;
+    height: 250px;
+}
+
+.contest-waiting .waiting-item .down-content {
+  background-color: #f7f7f7;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height:160px;
+  padding: 20px;
+}
+
+.contest-waiting .waiting-item .down-content h4 {
+  font-size: 20px;
+  color: #84c0a0;
+  font-weight: 900;
+  margin-bottom: 22px;
+  width: 100%;
+}
+
+.contest-waiting .waiting-item .down-content p {
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.contest-waiting .waiting-item .down-content span.price,
+.contest-waiting .waiting-item .down-content span.deadline {
+  font-size: 15px;
+  font-weight: 500;
+  color: #afafaf;
+}
+
+.contest-waiting .waiting-item .down-content ul.info,
+.contest-waiting .waiting-item .down-content span.deadline {
+  font-size: 15px;
+  font-weight: 500;
+  color: #afafaf;
+}
+
+.contest-waiting .waiting-item .down-content span.deadline {
+  float: right;
+}
+
+.contest-waiting .waiting-item .down-content span.price em,
+.contest-waiting .waiting-item .down-content span.deadline em {
+  font-style: normal;
+  color: #00bdfe;
+}
+
+.contest-waiting ul.pagination {
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.contest-waiting ul.pagination li {
+  margin: 0px 7px;
+}
+
+.contest-waiting ul.pagination li a {
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+  text-align: center;
+  line-height: 44px;
+  border: 1px solid #00bdfe;
+  border-radius: 50%;
+  color: #00bdfe;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contest-waiting ul.pagination li.active a {
+  background-color: #00bdfe;
+  color: #fff;
+}
+
+.contest-waiting ul.pagination li:last-child a,
+.contest-waiting ul.pagination li:first-child a {
+  border-color: transparent;
+}
