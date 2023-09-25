@@ -162,6 +162,7 @@ object-fit: cover;
 
 </head>
 <body>
+메모
 <!-- 메인사진과 메인설명 -->
 	<div class="main container-xxl py-5">
 		<div class="text-left container my-5 py-5">
