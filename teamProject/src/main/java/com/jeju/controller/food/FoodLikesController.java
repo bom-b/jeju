@@ -20,10 +20,11 @@ public class FoodLikesController extends SuperClass{
 		String id = String.valueOf(request.getParameter("id"));
 		
 		// 만약 로그인을 하지 않았을 경우
-		if (id == null) {
+		if (id == null || id == "") {
 			String message = "추천을 하시려면 로그인이 필요합니다.";
 			this.setAlertMessage(message);
 			new FoodDetailController().doGet(request, response);
+			return;
 		}
 		
 		FoodDao dao = new FoodDao();
