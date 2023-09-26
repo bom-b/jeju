@@ -364,6 +364,43 @@ public class FoodDao extends SuperDao {
 			
 			return cnt;
 		}
+
+		// Bean 객체 정보를 이용하여 데이터 베이스에 추가합니다.
+		public int InsertData(Food bean) throws Exception {
+			System.out.println(bean); 
+			
+			int cnt = -1 ;
+			
+			String sql = " insert into foodiespot (no, id, CATEGORY, TITLE, TIME, BREAKTIME, PHONENO, MENU, PLACE, MAP, IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5) " ;
+			sql += " values('fd'||seqfood.nextval, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?) " ; 
+			
+			PreparedStatement pstmt = null ;		
+			conn = super.getConnection() ;
+			conn.setAutoCommit(false);		
+			pstmt = conn.prepareStatement(sql) ; 
+			
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getCategory());
+			pstmt.setString(3, bean.getTitle());
+			pstmt.setString(4, bean.getTime());
+			pstmt.setString(5, bean.getBreaktime());
+			pstmt.setString(6, bean.getPhoneno());
+			pstmt.setString(7, bean.getMenu());
+			pstmt.setString(8, bean.getPlace());
+			pstmt.setString(9, bean.getImage1());
+			pstmt.setString(10, bean.getImage2());
+			pstmt.setString(11, bean.getImage3());
+			pstmt.setString(12, bean.getImage4());
+			pstmt.setString(13, bean.getImage5());
+			
+			cnt = pstmt.executeUpdate() ; 
+			conn.commit();
+			
+			if(pstmt != null) {pstmt.close();}
+			if(conn != null) {conn.close();}
+			
+			return cnt ;
+		}
 	
 	
 }
