@@ -183,7 +183,7 @@ body{	font-family: 'Jua', sans-serif;}
 	                    <div class="row g-2">
 	                        <div class="col-lg-12">
 	                            <div class="freeBoard d-flex align-items-center">
-	                            <a href="<%= appName %>/free/freeBoardDetailController?ono=${bean.ono}">
+	                            <a href="<%= appName %>/free/freeDetail&ono=${bean.ono}">
 	                            <img src="<%= appName  %>+ '/' + ${bean.oimage1}" alt="게시물 이미지"
 									width="65px;" class="post-image">
 	                            </a>
