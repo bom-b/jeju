@@ -9,7 +9,7 @@ import com.jeju.model.bean.Tour;
 import com.jeju.utility.Paging;
 
 public class TourDao extends SuperDao{
-	public int UpdateEmoticon(int no, String columnName) throws Exception {
+	public int UpdateEmoticon(int tno, String columnName) throws Exception {
 		String sql = " update tourists set " + columnName + "=" + columnName + " + 1  " ;
 		sql += " where no = ? " ;
 		PreparedStatement pstmt = null ;
@@ -18,7 +18,7 @@ public class TourDao extends SuperDao{
 		conn = super.getConnection() ;
 		conn.setAutoCommit(false);  
 		pstmt = conn.prepareStatement(sql) ;
-		pstmt.setInt(1, no);
+		pstmt.setInt(1, tno);
 		
 		cnt = pstmt.executeUpdate() ;
 		
@@ -64,7 +64,7 @@ public class TourDao extends SuperDao{
 		
 		int cnt = -1 ;
 		
-		String sql = " update tourist set id = ?, tname = ?, ttime = ?, tphoneno = ?, tprice = ?, tplace = ?, tmap = ?, tlikes = ?, timage1 = ?, timage2 = ?, timage3 = ?, timage4 = ?, timage5 = ?, regdate = ? " ;
+		String sql = " update tourist set id = ?, tname = ?, ttime = ?, tphoneno = ?, tprice = ?, tplace = ?, tmap = ?, tlikes = ?, timage1 = ?, timage2 = ?, timage3 = ?, timage4 = ?, timage5 = ?, regdate = ?, tcategory = ? " ;
 		sql += " where tno = ? " ; 
 		
 		PreparedStatement pstmt = null ;		
@@ -87,6 +87,7 @@ public class TourDao extends SuperDao{
 		pstmt.setString(13, bean.getTimage4());
 		pstmt.setString(14, bean.getTimage5());
 		pstmt.setString(15, bean.getRegdate());
+		pstmt.setString(16, bean.getTcategory());
 		
 		cnt = pstmt.executeUpdate() ; 
 		conn.commit();
@@ -153,16 +154,16 @@ public class TourDao extends SuperDao{
 		return cnt;
 	}	
 	
-	public Tour getDataByPrimaryKey(Integer no) throws Exception{
+	public Tour getDataByPrimaryKey(Integer tno) throws Exception{
 		String sql = " select * from tourist " ;
-		sql += " where no = ?" ;
+		sql += " where tno = ?" ;
 		
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
 		conn = super.getConnection() ;
 		pstmt = conn.prepareStatement(sql) ;
-		pstmt.setInt(1, no);
+		pstmt.setInt(1, tno);
 		
 		rs = pstmt.executeQuery() ; 
 		
@@ -184,12 +185,12 @@ public class TourDao extends SuperDao{
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " select tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate " ;
+		String sql = " select tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate, tcategory " ;
 		
 		// 답글 이전 코딩 방식
 		// sql += " from (select no, id, password, subject, content, readhit, regdate, remark, groupno, orderno, depth, rank() over(order by no desc) as ranking " ;
 		
-		sql += " from (select tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate, rank() over(order by groupno desc, orderno asc) as ranking " ;		
+		sql += " from (select tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate, tcategory rank() over(order by groupno desc, orderno asc) as ranking " ;		
 		sql += " from tourist " ;
 		
 		String mode = pageInfo.getMode() ;
@@ -229,7 +230,7 @@ public class TourDao extends SuperDao{
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " select * from tourist order by no desc";
+		String sql = " select * from tourist order by tno desc";
 		
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql) ;
@@ -268,6 +269,7 @@ public class TourDao extends SuperDao{
 		bean.setTimage1(rs.getString("timage4"));
 		bean.setTimage1(rs.getString("timage5"));
 		bean.setRegdate(String.valueOf(rs.getDate("regdate")));
+		bean.setTcategory(rs.getString("tcategory"));
 		
 		return bean;
 	}
@@ -277,8 +279,8 @@ public class TourDao extends SuperDao{
 		// Bean 객체 정보를 이용하여 데이터 베이스에 추가합니다.
 		int cnt = -1 ;
 		
-		String sql = " insert into tourist(tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate) " ;
-		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ; 
+		String sql = " insert into tourist(tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate, tcategory) " ;
+		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ; 
 		
 		PreparedStatement pstmt = null ;		
 		conn = super.getConnection() ;
@@ -300,6 +302,7 @@ public class TourDao extends SuperDao{
 		pstmt.setString(13, bean.getTimage4());
 		pstmt.setString(14, bean.getTimage5());
 		pstmt.setString(15, bean.getRegdate());	
+		pstmt.setString(16, bean.getTcategory());
 		
 		cnt = pstmt.executeUpdate() ; 
 		conn.commit();
@@ -318,17 +321,6 @@ public class TourDao extends SuperDao{
 		
 		conn = super.getConnection() ;
 		conn.setAutoCommit(false);		
-		
-		/*
-		 * // step1 : 동일한 그룹 번호에 대하여 orderno 컬럼의 숫자를 1씩 증가 시켜야 합니다. String sql1 =
-		 * " update tourist set orderno = orderno + 1 " ; sql1 +=
-		 * " where groupno = ? and orderno > ? " ;
-		 */
-		
-		/*
-		 * pstmt = conn.prepareStatement(sql1) ; pstmt.setInt(1, bean.getTno());
-		 * pstmt.setInt(2, orderno); cnt = pstmt.executeUpdate() ;
-		 */
 		
 		pstmt = null ; 
 		// step2 : Bean 객체 정보를 이용하여 답글을 작성합니다.
@@ -354,43 +346,26 @@ public class TourDao extends SuperDao{
 		
 		return cnt ;
 	}		
-	
-	/*
-	 * public Tour getDataByPk(int no) { Tour bean = new Tour(no, "hong", "abc123",
-	 * "jsp 프로그래밍", "잼있어요", 10,"2023/08/20", 0);
-	 * 
-	 * return bean; }
-	 * 
-	 * public List<Tour> getDataList(){ List<Tour> datalist = new ArrayList<Tour>();
-	 * 
-	 * datalist.add(new Tour(10, "hong", "abc123", "jsp 프로그래밍", "잼있어요",
-	 * 10,"2023/08/20", 0)); datalist.add(new Tour(20, "hong", "abc123", "파이썬 프로그램",
-	 * "잼있어요", 20,"2023/08/20", 0)); datalist.add(new Tour(30, "hong", "abc123",
-	 * "database", "잼있어요", 30,"2023/08/20", 1)); datalist.add(new Tour(40, "park",
-	 * "abc123", "R 프로그래밍", "잼있어요", 40,"2023/08/20", 2)); datalist.add(new Tour(50,
-	 * "park", "abc123", "확률과 통계", "잼있어요", 50,"2023/08/20", 2));
-	 * 
-	 * return datalist ; }
-	 */
 
-	public Tour GetDataByPk(Integer no) throws Exception {
-		PreparedStatement pstmt = null ;
-		ResultSet rs = null ;		
-		String sql = " select * from tourist ";
-		sql += " where no = ? " ;
+	public Tour GetDataByPk(String tno) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
-		conn = super.getConnection();		
-		pstmt = conn.prepareStatement(sql) ;
-		pstmt.setInt(1, no); 
+		String sql = " select * from tourist where tno=?";
 		
-		rs = pstmt.executeQuery() ;
+		conn = super.getConnection();
+		pstmt = conn.prepareStatement(sql);
 		
-		Tour bean = null ;
+		pstmt.setString(1, tno);
 		
-		if(rs.next()) {
-			bean = this.getBeanData(rs);
+		rs = pstmt.executeQuery();
+		
+		Tour bean = null;
+		
+		if (rs.next()) {
+			bean = getBeanData(rs);
+		}	
 			
-		}		
 		if(rs != null) {rs.close();}
 		if(pstmt != null) {pstmt.close();}
 		if(conn != null) {conn.close();}
@@ -402,4 +377,121 @@ public class TourDao extends SuperDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+
+	public List<Tour> selectAll(Paging pageInfo, String category) throws Exception{
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		
+		String sql = " select tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate, tcategory " ;
+		
+		sql += " from (select tno, id, tname, ttime, tphoneno, tprice, tplace, tmap, tlikes, timage1, timage2, timage3, timage4, timage5, regdate, tcategory, rank() over(order by tno desc) as ranking " ;
+		sql += " from tourist " ;
+		
+		// 카테고리에 따라 분기
+		if (category == "ac") {
+			sql += " where tcategory = '액티비티 체험' " ;
+			
+		} else if (category == "or") {
+			sql += " where tcategory = '오름 명소' " ;
+			
+		} else if (category == "sea") {
+			sql += " where tcategory = '해수욕장' " ;
+			
+		} else if (category == "te") {
+			sql += " where tcategory = '테마파크' " ;
+			
+		}
+		
+		// 검색 조건에 따라 분기
+		String mode = pageInfo.getMode();
+		String keyword = pageInfo.getKeyword();
+		if (mode == null || mode.equals("all")) {
+			// 전체 모드, 또는 입력값이 안들어왔을경우
+				
+		} else {
+			// 전체 모드가 아니라면,
+			sql += " and " + mode + " like '%" + keyword + "%' " ;
+		}
+		
+		sql += " ) " ;
+		sql += " where ranking between ? and ? " ;
+		
+		conn = super.getConnection();
+		
+		pstmt = conn.prepareStatement(sql) ;
+		pstmt.setInt(1, pageInfo.getBeginRow());
+		pstmt.setInt(2, pageInfo.getEndRow());
+		
+		rs = pstmt.executeQuery() ;
+		
+		List<Tour> lists = new ArrayList<Tour>();
+		
+		while(rs.next()) {
+			lists.add(getBeanData(rs)) ;
+		}
+		
+		if(rs != null) {rs.close();}
+		if(pstmt != null) {pstmt.close();}
+		if(conn != null) {conn.close();}
+		
+		return lists;
+	}
+
+	public int GetTotalRecordCount(String mode, String keyword, String category) throws Exception{
+		System.out.print("검색할 필드명 (칼럼명) : " + mode);
+		System.out.println(" / 검색할 키워드 : " + keyword);
+		
+		
+		String sql = " select count(*) as cnt from tourist " ;
+		
+		// 카테고리에 따라 분기
+		if (category == "ac") {
+			sql += " where tcategory = '액티비티 체험' " ;
+			
+		} else if (category == "or") {
+			sql += " where tcategory = '오름 명소' " ;
+			
+		} else if (category == "sea") {
+			sql += " where tcategory = '해수욕장' " ;
+			
+		} else if (category == "te") {
+			sql += " where tcategory = '테마파크' " ;
+			
+		}
+		
+		// 검색 조건에 따라 분기
+		if (mode == null || mode.equals("all")) {
+			// 전체 모드, 또는 입력값이 안들어왔을경우
+			
+		} else {
+			// 전체 모드가 아니라면,
+			sql += " and " + mode + " like '%" + keyword + "%' " ;
+		}
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		
+		conn = super.getConnection() ;
+		pstmt = conn.prepareStatement(sql) ;
+		
+		rs = pstmt.executeQuery() ; 
+		
+		int cnt = -1 ;
+		
+		if(rs.next()) {
+			cnt = rs.getInt("cnt") ;
+		}
+		
+		if(rs!=null) {rs.close();}
+		if(pstmt!=null) {pstmt.close();}
+		if(conn!=null) {conn.close();}
+		
+		System.out.println("입력된 sql 문장 : " + sql);
+		System.out.println("표시할 게시물의 개수 : " + cnt);
+		return cnt;
+	}
+
 }
