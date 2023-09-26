@@ -25,8 +25,8 @@ trList=com.jeju.controller.product.TourListController
 trInsert=com.jeju.controller.tour.TourInsertController
 #prUpdate=com.jeju.controller.product.ProductUpdateController
 trDetail=com.jeju.controller.tour.TourDetailController
-trDelete=com.jeju.controller.tour.TourDeleteController
-#trEmoticon=com.jeju.controller.tour.TourEmoticonController
+#trDelete=com.jeju.controller.tour.TourDeleteController
+trLikes=com.jeju.controller.tour.TourLikesController
 
 
 # event section

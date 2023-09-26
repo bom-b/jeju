@@ -105,7 +105,7 @@ public class TourDao extends SuperDao{
 		String sql = " select count(*) as cnt from tourist " ;
 		if(mode == null || mode.equals("all") ) {			
 		}else { // 전체 모드가 아니면
-			sql += " where " + mode + " like '%" + keyword + "%'" ;
+			sql += " where " + mode + " tlikes '%" + keyword + "%'" ;
 		}
 		
 		PreparedStatement pstmt = null ;
@@ -198,7 +198,7 @@ public class TourDao extends SuperDao{
 		
 		if(mode == null || mode.equals("all") ) {			
 		}else { // 전체 모드가 아니면
-			sql += " where " + mode + " like '%" + keyword + "%'" ;
+			sql += " where " + mode + " tlikes '%" + keyword + "%'" ;
 		}
 		
 		sql += " ) " ;
@@ -413,7 +413,7 @@ public class TourDao extends SuperDao{
 				
 		} else {
 			// 전체 모드가 아니라면,
-			sql += " and " + mode + " like '%" + keyword + "%' " ;
+			sql += " and " + mode + " tlikes '%" + keyword + "%' " ;
 		}
 		
 		sql += " ) " ;
@@ -468,7 +468,7 @@ public class TourDao extends SuperDao{
 			
 		} else {
 			// 전체 모드가 아니라면,
-			sql += " and " + mode + " like '%" + keyword + "%' " ;
+			sql += " and " + mode + " tlikes '%" + keyword + "%' " ;
 		}
 		
 		PreparedStatement pstmt = null ;
@@ -491,6 +491,80 @@ public class TourDao extends SuperDao{
 		
 		System.out.println("입력된 sql 문장 : " + sql);
 		System.out.println("표시할 게시물의 개수 : " + cnt);
+		return cnt;
+	}
+
+	public int CheckLikes(String tno, String id) throws Exception{
+		int cnt = -1;
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		conn = super.getConnection();
+		conn.setAutoCommit(false);
+		
+		// 추천기록 테이블에서 해당 유저의 추천기록 확인하기
+		String sql = " select count(*) as cnt from tlikes ";
+		sql += " where tno = ? and id = ?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, tno);
+		pstmt.setString(2, id);
+
+		rs = pstmt.executeQuery();
+		if (rs.next()) {
+			count = rs.getInt("cnt");
+	    }
+		
+		
+		if (count == 1) {
+			// 이미 추천을 했을 경우
+			cnt = -1;
+			
+		} else {
+			// 추천 안했을 경우
+			cnt = 1;
+		}
+		
+		if(rs != null) {rs.close();}
+		if(pstmt != null) {pstmt.close();}
+		if(conn != null) {conn.close();}
+		
+		return cnt;
+	}
+
+	public int UpdateLikes(String tno, String id) throws Exception{
+		int cnt = -1;
+		PreparedStatement pstmt = null;
+		
+		conn = super.getConnection();
+		conn.setAutoCommit(false);
+		
+		// step1. 추천수 업데이트
+		String sql = " update tourist set tlikes = tlikes +1 ";
+		sql += " where tno = ? ";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, tno);
+		
+		cnt = pstmt.executeUpdate();
+		pstmt = null;
+		
+		// step2. 추천 테이블에 추천기록 입력
+		sql = " insert into tlikes(tno, id) ";
+		sql += " values(?, ?) ";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, tno);
+		pstmt.setString(2, id);
+		
+		cnt = pstmt.executeUpdate();
+		
+		conn.commit();
+		
+		if(pstmt != null) {pstmt.close();}
+		if(conn != null) {conn.close();}
+		
 		return cnt;
 	}
 

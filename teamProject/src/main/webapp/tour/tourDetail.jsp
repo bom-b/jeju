@@ -117,6 +117,24 @@
     width: 250px;
 }
 
+/* 이미지 사이즈 맞추기 */
+.main-image {
+width: 350px;
+height: 350px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+object-fit: cover; /* 이미지 비율 유지하며 크기 조절 */
+}
+
+.sub-image {
+width: 250px;
+height: 250px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+object-fit: cover;
+}
 </style>
 
 </head>
@@ -172,13 +190,15 @@
 	<!-- 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
-			<button type="submit" class="btn btn-warning follower" onclick="">
+			<a href="<%=notWithFormTag%>trLikes&tno=${requestScope.bean.tno}&id=${sessionScope.loginfo.id}">
+			<button type="submit" class="btn btn-warning follower">
 				<span>
 					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
 					<span class=""> 추천 </span>
-					<span class="">5</span>
+					<span class="">${requestScope.bean.tlikes}</span>
 				</span>
 			</button>
+			</a>
 		</div>
 	</div>
 <!-- 추천버튼 -->
@@ -188,16 +208,16 @@
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
 				</div>
 			</div>
 		</div>
