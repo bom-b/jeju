@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_boardmain/memainstyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_memenucss/memainstyle.css" rel="stylesheet">
 <style>
 	.memenu-container {
     	display: flex;
