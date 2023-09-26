@@ -175,7 +175,7 @@
 			<button type="submit" class="btn btn-warning follower" onclick="">
 				<span>
 					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
-					<span class=""> 추천하기 </span>
+					<span class=""> 추천 </span>
 					<span class="">5</span>
 				</span>
 			</button>
