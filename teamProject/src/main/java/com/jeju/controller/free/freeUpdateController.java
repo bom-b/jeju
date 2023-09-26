@@ -22,21 +22,27 @@ private final String PREFIX = "free/" ;
 		freeBoard bean = dao.GetDataByPk(ono) ;
 		request.setAttribute("bean", bean); 
 		
-		super.gotoPage(PREFIX + "boUpdateForm.jsp");	
+		super.gotoPage(PREFIX + "frUpdate.jsp");	
 	}
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
 		
 		freeBoard bean = new freeBoard() ;
-		/*
-		 * bean.setNo(Integer.parseInt(request.getParameter("no")));
-		 * bean.setId(request.getParameter("id"));
-		 * bean.setPassword(request.getParameter("password"));
-		 * bean.setSubject(request.getParameter("subject"));
-		 * bean.setContent(request.getParameter("content"));
-		 * bean.setRegdate(request.getParameter("regdate"));
-		 */
+		
+		 bean.setOno(Integer.parseInt(request.getParameter("ono")));
+		 bean.setId(request.getParameter("id"));
+		 bean.setOname(request.getParameter("password"));
+		 bean.setOcontent(request.getParameter("subject"));
+		 bean.setOcontent(request.getParameter("content"));
+		 bean.setoregdate(request.getParameter("oregdate"));
+		 bean.setOimage1(request.getParameter("oimage1"));
+		 bean.setOimage2(request.getParameter("oimage2"));
+		 bean.setOimage3(request.getParameter("oimage3"));
+		 bean.setOimage4(request.getParameter("oimage4"));
+		 bean.setOimage5(request.getParameter("oimage5"));
+		 
+		
 //		bean.setGroupno(Integer.parseInt(request.getParameter("groupno")));
 //		bean.setOrderno(Integer.parseInt(request.getParameter("orderno")));
 //		bean.setDepth(Integer.parseInt(request.getParameter("depth")));

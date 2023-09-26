@@ -75,7 +75,7 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select * from openForum order by no desc";
+		String sql = " select * from openForum order by ono desc";
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -197,8 +197,8 @@ public class freeBoardDao extends SuperDao {
 		// bean 객체 정보를 이용하여 데이터 베이스에 추가합니다.
 		int cnt = -1;
 
-		String sql = " insert into openforum(select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth) ";
-		sql += " values(seqboard.nextval, ?, ?, ?, default, default, ?, ?, ?, ?, ?, ?)";
+		String sql = " insert into openforum(select ono, id, oname, ocontent , oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth) ";
+		sql += " values(seqopen.nextval, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, seqopen.currval,  default, default)";
 		// 수정할 내용
 
 		PreparedStatement pstmt = null;
@@ -229,7 +229,7 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = " select * from openforum ";
-		sql += " where no = ? ";
+		sql += " where ono = ? ";
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -262,7 +262,7 @@ public class freeBoardDao extends SuperDao {
 		int cnt = -1;
 
 		String sql = " update openforum set id = ?, password = ?, subject = ?, content = ?, regdate = ?, groupno = ?, orderno = ?, depth = ? ";
-		sql += " where no = ? ";
+		sql += " where ono = ? ";
 
 		PreparedStatement pstmt = null;
 		conn = super.getConnection();
@@ -290,16 +290,16 @@ public class freeBoardDao extends SuperDao {
 		return cnt;
 	}
 
-	public int UpdateEmoticon(int no, String columnName) throws Exception {
+	public int UpdateEmoticon(int ono, String columnName) throws Exception {
 		String sql = " update openforum set " + columnName + "=" + columnName + " + 1  ";
-		sql += " where no = ? ";
+		sql += " where ono = ? ";
 		PreparedStatement pstmt = null;
 
 		int cnt = -1;
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, no);
+		pstmt.setInt(1, ono);
 
 		cnt = pstmt.executeUpdate();
 
