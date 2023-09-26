@@ -5,6 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.jeju.controller.SuperClass;
+import com.jeju.controller.tour.TourListController;
+import com.jeju.model.bean.Food;
+import com.jeju.model.dao.FoodDao;
 import com.oreilly.servlet.MultipartRequest;
 
 public class FoodInsertController extends SuperClass {
@@ -15,14 +18,16 @@ public class FoodInsertController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
 		
-		/*
-		 * // Categories 테이블에서 상품 카테고리 목록을 읽어서 request에 바인딩합니다. CategoryDao dao = new
-		 * CategoryDao(); List<Category> lists = null;
-		 * 
-		 * try { lists = dao.GetCategoryList("product", "select");
-		 * request.setAttribute("categories", lists); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 */
+		// 로그인한 유저 id 받아오기
+		String id = String.valueOf(request.getParameter("id"));
+		
+		// 만약 로그인을 하지 않았을 경우
+		if (id == null || id == "") {
+			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
+			this.setAlertMessage(message);
+			super.gotoPage(PREFIX + "foodMain.jsp");
+			return;
+		}
 		
 		
 		super.gotoPage(PREFIX + "foodInsertForm.jsp");
@@ -32,38 +37,70 @@ public class FoodInsertController extends SuperClass {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
 		
-		/*
-		 * // 오브젝트로 가져온 mr을 강등해야됨 MultipartRequest mr =
-		 * (MultipartRequest)request.getAttribute("mr");
-		 * 
-		 * Product bean = new Product(); //bean.setPnum(null); //상품번호는 시퀀스가 처리해줌
-		 * bean.setName(mr.getParameter("name"));
-		 * bean.setCompany(mr.getParameter("company"));
-		 * 
-		 * bean.setImage01(mr.getFilesystemName("image01"));
-		 * bean.setImage02(mr.getFilesystemName("image02"));
-		 * bean.setImage03(mr.getFilesystemName("image03"));
-		 * 
-		 * bean.setStock(super.getNumberData(mr.getParameter("stock")));
-		 * bean.setPrice(super.getNumberData(mr.getParameter("price")));
-		 * bean.setCategory(mr.getParameter("category"));
-		 * bean.setContents(mr.getParameter("contents"));
-		 * bean.setPoint(super.getNumberData(mr.getParameter("point")));
-		 * bean.setInputdate(mr.getParameter("inputdate"));
-		 * 
-		 * ProductDao dao = new ProductDao();
-		 * 
-		 * int cnt = -1; try { cnt = dao.InsertData(bean);
-		 * 
-		 * if(cnt == -1) { // 등록 실패 super.gotoPage(PREFIX + "prInsertForm.jsp");
-		 * 
-		 * } else { // 등록 성공 String message = "성공적으로 상품이 등록되었습니다.";
-		 * super.setPostiveAlertMessage(message);
-		 * 
-		 * new ProductListController().doGet(request, response); }
-		 * 
-		 * } catch (Exception e) { e.printStackTrace(); }
-		 */
+		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr") ;
+		
+		// 만약 로그인을 하지 않았을 경우
+		String id = mr.getParameter("id");
+		
+		if (id == null || id == "") {
+			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
+			this.setAlertMessage(message);
+			super.gotoPage(PREFIX + "foodMain.jsp");
+			return;
+		}
+		
+		Food bean = new Food();
+		
+		// 카테고리 한국어로 다시 변환
+		String koname = "";
+		String enname = mr.getParameter("category"); 
+
+		if (enname.equals("ko")) {
+		    koname = "한식";
+		} else if (enname.equals("fo")) {
+		    koname = "세계음식";
+		} else if (enname.equals("ca")) {
+		    koname = "카페";
+		} else if (enname.equals("be")) {
+		    koname = "술집";
+		}
+		
+		bean.setId(mr.getParameter("id"));
+		bean.setCategory(koname);
+		bean.setTitle(mr.getParameter("title"));
+		bean.setTime(mr.getParameter("time"));
+		bean.setBreaktime(mr.getParameter("breaktime"));
+		bean.setPhoneno(mr.getParameter("phoneno"));
+		bean.setMenu(mr.getParameter("menu"));
+		bean.setPlace(mr.getParameter("place"));
+		bean.setImage1(mr.getParameter("image1"));
+		bean.setImage2(mr.getParameter("image2"));
+		bean.setImage3(mr.getParameter("image3"));
+		bean.setImage4(mr.getParameter("image4"));
+		bean.setImage5(mr.getParameter("image5"));
+		
+		FoodDao dao = new FoodDao();
+		int cnt = -1 ;
+		
+		try {
+			cnt = dao.InsertData(bean) ; 
+			
+			if(cnt == -1) {
+				
+				String message = "서버 오류로 게시물이 등록되지 않았습니다.";
+				super.setAlertMessage(message);
+				super.gotoPage("/food/fdInsertForm.jsp");
+				
+			}else {
+				
+				new FoodMainController().doGet(request, response); 
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 				
 	}
 }

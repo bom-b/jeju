@@ -13,45 +13,87 @@
 <link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
 
 <script>
-	$(document).ready(function(){
-		$('#inputdate').datepicker({dateFormat: "yy/mm/dd"});		
-		
-		/* $("#category").prepend('<option value="aaa">bbb</option>'); */
-		/* $('option').eq(2).attr('selected', true); */
-	});
-	
+
 	/* form validation check */
 	function validCheck(){
 		
-		/* 상품명은 4글자 이상 10글자 이하이어야 합니다. */
-		var name = $('#name').val();
-		if(name.length < 4 || name.length > 10){
-			swal('상품명은 4글자 이상 10글자 이하이어야 합니다.');
-			$('#name').focus();
+		/* 맛집 이름을 작성하셔야 합니다. */
+		var name = $('#title').val();
+		if(name.length < 1){
+			swal('맛집 이름을 작성해주세요.');
+			$('#title').focus();
 			return false; 
 		}
 		
-		/* 제조 회사는 4글자 이상 10글자 이하이어야 합니다. */
-		var company = $('#company').val();
-		if(company.length < 4 || company.length > 10){
-			swal('제조 회사는 4글자 이상 10글자 이하이어야 합니다.');
-			$('#company').focus();
+		/* 카테고리를  선택해 주세요. */
+		var category = $('#category').val();
+		if(category == '-') {
+			swal('카테고리를 선택해 주세요.');
+			$('#category').focus();
+			return false;
+		}
+		
+		/* 영업시간을 작성해주세요. */
+		var name = $('#time').val();
+		if(name.length < 1){
+			swal('영업시간을 작성해주세요.');
+			$('#time').focus();
 			return false; 
 		}
 		
-		/* 상품에 대한 코멘트는 10글자 이상 30글자 이하이어야 합니다. */
-		var contents = $('#contents').val();
-		if(contents.length < 10 || contents.length > 30){
-			swal('상품에 대한 코멘트는 10글자 이상 30글자 이하이어야 합니다.');
-			$('#contents').focus();
+		/* 브레이크타임을 작성해주세요. */
+		var name = $('#breaktime').val();
+		if(name.length < 1){
+			swal('브레이크타임을 작성해주세요.');
+			$('#breaktime').focus();
+			return false; 
+		}
+		
+		/* 전화번호를 작성해주세요. */
+		var name = $('#phoneno').val();
+		if(name.length < 1){
+			swal('전화번호를 작성해주세요.');
+			$('#phoneno').focus();
+			return false; 
+		}
+		
+		/* 메뉴를 작성해주세요. */
+		var name = $('#menu').val();
+		if(name.length < 1){
+			swal('메뉴를 작성해주세요.');
+			$('#menu').focus();
+			return false; 
+		}
+		
+		/* 주소를 작성해주세요. */
+		var name = $('#place').val();
+		if(name.length < 1){
+			swal('주소를 작성해주세요.');
+			$('#place').focus();
 			return false; 
 		}
 		
 		/* 이미지는 필수 입력 사항입니다. */
-		var selectedFile = $('#image01').prop('files')[0];
+		var selectedFile = $('#image1').prop('files')[0];
 		if(!selectedFile){
-			swal('이미지 파일을 업로드 해주세요.');
-			$('#image01').focus();
+			swal('대표이미지 파일을 업로드 해주세요.');
+			$('#image1').focus();
+			return false; 
+		}
+		
+		/* 이미지는 필수 입력 사항입니다. */
+		var selectedFile = $('#image2').prop('files')[0];
+		if(!selectedFile){
+			swal('이미지는 대표이미지 포함 최소 3장 이상 업로드 해주세요.');
+			$('#image2').focus();
+			return false; 
+		}
+		
+		/* 이미지는 필수 입력 사항입니다. */
+		var selectedFile = $('#image3').prop('files')[0];
+		if(!selectedFile){
+			swal('이미지는 대표이미지 포함 최소 3장 이상 업로드 해주세요.');
+			$('#image3').focus();
 			return false; 
 		}
 		
@@ -63,112 +105,10 @@
 			$('#image01').focus();
 			return false; 
 		}
-		
-		/* 재고는(은) 숫자 형식이어야 합니다. */
-		var regex = /^[0-9]+$/;
-		var stock = $('#stock').val();
-		var result = regex.test(stock);
-		if(result == false){
-			swal('재고는(은) 숫자 형식이어야 합니다.');
-			$('#stock').focus();
-			return false;
-		}
-		
-		/* 재고는 최대 5개까지입니다. */
-		if(stock > 5){
-			swal('재고는 최대 5개까지입니다.');
-			$('#stock').focus();
-			return false; 
-		}
-		
-		/* 단가는(은) 숫자 형식이어야 합니다. */
-		var regex = /^[0-9]+$/;
-		var price = $('#price').val();
-		var result = regex.test(price);
-		if(result == false){
-			swal('재고는(은) 숫자 형식이어야 합니다.');
-			$('#price').focus();
-			return false;
-		}
-		
-		/* 단가는(은) 100이상 10000이하의 값이어야 합니다. */
-		if(price > 10000 || price < 100){
-			swal('단가는(은) 100이상 10000이하의 값이어야 합니다.');
-			$('#price').focus();
-			return false; 
-		}
-		
-		/* 포인트는(은) 숫자 형식이어야 합니다. */
-		var regex = /^[0-9]+$/;
-		var point = $('#point').val();
-		var result = regex.test(point);
-		if(result == false){
-			swal('포인트는(은) 숫자 형식이어야 합니다.');
-			$('#point').focus();
-			return false;
-		}
-		
-		/* 포인트는(은) 3이상 10이하의 값이어야 합니다. */
-		if(point > 10 || point < 3){
-			swal('포인트는(은) 3이상 10이하의 값이어야 합니다.');
-			$('#point').focus();
-			return false; 
-		}
-		
-		/* 카테고리를 반드시 선택해 주세요. */
-		var category = $('#category').val();
-		if(category == '-') {
-			swal('카테고리를 반드시 선택해 주세요.');
-			$('#category').focus();
-			return false;
-		}
-		
-		
-		
-		/* 날짜 형식은 반드시 yyyy/mm/dd 형식 또는 yyyy-mm-dd으로 작성해 주세요. */
-		var regdate = $('#inputdate').val();
-		var regex1 = /^\d{4}\/[01]\d{1}\/[0123]\d{1}$/;
-		var regex2 = /^\d{4}\-[01]\d{1}\-[0123]\d{1}$/;
-		var result1 = regex1.test(regdate);
-		var result2 = regex2.test(regdate);
-		
-		if(result1 == false && result2 == false){
-			swal('날짜 형식은 반드시 yyyy/mm/dd 형식 또는 yyyy-mm-dd으로 작성해 주세요.');
-			$('#inputdate').focus();
-			return false;
-		}
-		
 	}
 </script>
 
 <style type="text/css">
-h2, p {
-	margin: 15px;
-}
-
-.input-group {
-	margin: 15px;
-}
-
-.input-group-text {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#buttonset {
-	margin-top: 25px;
-}
-
-.radio_gender, .checkbox_hobby {
-	font-size: 0.9rem; /* 주위 글꼴의 1.1배 */
-
-}
-
-#productPnum{ /* 상품번호 안보이게 지정 */
-	display: none;
-	visibility: hidden;
-}
 
 </style>
 </head>
@@ -176,55 +116,64 @@ h2, p {
 
 	<div class="main container-xxl py-5">
 	<div class="container my-5 py-5">
-		<div class="insert-title text-left">
+		<div class="insert-title text-left wow fadeInUp" data-wow-delay="0.1s">
 			<h2>알고계신 맛집을 공유해주세요.</h2>
 		</div>
 		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
 		<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="command" value="prInsert">
+			<input type="hidden" name="command" value="fdInsert">
 			<span><span class="caution">* </span> 필수 입력사항 입니다.</span><br><br>
 			<div class="form-group my-5 py-5">
 			  <label for="title"><span class="caution">* </span>작성자명 : </label>
-			  <input type="text" class="form-control short-input" id="title" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
+			  <input type="text" class="form-control short-input" id="fakeid" name="fakeid" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
+			  <input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
 			</div>
 			<div class="form-group my-5 py-5">
 			  <label for="title"><span class="caution">* </span>맛집 이름 : </label>
-			  <input type="text" class="form-control short-input" id="title">
+			  <input type="text" class="form-control short-input" id="title" name="title">
+			</div>
+			<div class="form-group">
+			  <label for="category">카테고리 : </label>
+			  <select class="form-control short-input" id="category" name="category">
+			    <option value="ko">한식</option>
+			    <option value="fo">세계음식</option>
+			    <option value="ca">카페</option>
+			    <option value="be">술집</option>
+			  </select>
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>카테고리 : </label>
-			  <input type="text" class="form-control short-input" id="title">
+			  <label for="time"><span class="caution">* </span>영업시간 : </label>
+			  <input type="text" class="form-control short-input" id="time" name="time">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>영업시간 : </label>
-			  <input type="text" class="form-control short-input" id="title">
+			  <label for="breaktime"><span class="caution">* </span>브레이크타임 : </label>
+			  <input type="text" class="form-control short-input" id="breaktime" name="breaktime">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>브레이크타임 : </label>
-			  <input type="text" class="form-control short-input" id="title">
+			  <label for="phoneno"><span class="caution">* </span>전화번호 : </label>
+			  <input type="text" class="form-control short-input" id="phoneno" name="phoneno">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>전화번호 : </label>
-			  <input type="text" class="form-control short-input" id="title">
+			  <label for="menu"><span class="caution">* </span>메뉴(메뉴1 / 메뉴2 / ... 형식으로 입력해주세요.) : </label>
+			  <input type="text" class="form-control long-input" id="menu" name="menu">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>메뉴(메뉴1 / 메뉴2 / ... 형식으로 입력해주세요.) : </label>
-			  <input type="text" class="form-control long-input" id="title">
+			  <label for="place"><span class="caution">* </span>주소 : </label>
+			  <input type="text" class="form-control long-input" id="place" name="place">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>주소 : </label>
-			  <input type="text" class="form-control long-input" id="title">
+			  <label for="image1"><span class="caution">* </span>대표이미지 파일 : </label>
+			  <input type="file" class="form-control-file border" id="image1" name="image1">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title"><span class="caution">* </span>대표이미지 파일 : </label>
-			  <input type="file" class="form-control-file border">
+			  <label for="image2"><span class="caution">* </span>필수 추가이미지 파일 : </label>
+			  <input type="file" class="form-control-file border" id="image2" name="image2">
+			  <input type="file" class="form-control-file border" id="image3" name="image3">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="title">추가이미지 파일 : </label>
-			  <input type="file" class="form-control-file border">
-			  <input type="file" class="form-control-file border">
-			  <input type="file" class="form-control-file border">
-			  <input type="file" class="form-control-file border">
+			  <label for="image4">선택 추가이미지 파일 : </label>
+			  <input type="file" class="form-control-file border" id="image4" name="image4">
+			  <input type="file" class="form-control-file border" id="image5" name="image5">
 			</div>
 			
 			

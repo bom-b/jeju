@@ -16,7 +16,7 @@
 
 	//메뉴 데이터 한줄씩 출력하기
 	function splitString(inputString) {
-	    var menuArray = inputString.split(" / "); // "/"를 기준으로 문자열을 분할하여 배열로 반환
+	    var menuArray = inputString.split("/"); // "/"를 기준으로 문자열을 분할하여 배열로 반환
 	    var resultElement = document.getElementById("result");
 	    
 	    // 분할된 메뉴 항목들을 출력
@@ -123,16 +123,24 @@
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}">
+					<c:if test="${requestScope.bean.image2 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}">
+					<c:if test="${requestScope.bean.image3 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}">
+					<c:if test="${requestScope.bean.image4 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}">
+					<c:if test="${requestScope.bean.image5 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}">
+					</c:if>
 				</div>
 			</div>
 		</div>
