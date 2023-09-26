@@ -183,7 +183,11 @@ body{	font-family: 'Jua', sans-serif;}
 	                    <div class="row g-2">
 	                        <div class="col-lg-12">
 	                            <div class="freeBoard d-flex align-items-center">
+<<<<<<< HEAD
 	                        <a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+=======
+	                            <a href="<%= appName %>/free/freeDetail&ono=${bean.ono}">
+>>>>>>> branch 'Ilsang' of https://github.com/bom-b/jeju
 	                            <img src="<%= appName  %>+ '/' + ${bean.oimage1}" alt="게시물 이미지"
 									width="65px;" class="post-image">
 	                            </a>
