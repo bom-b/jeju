@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- 맛집 전용 style.css -->
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
+
 <script>
 	$(document).ready(function(){
 		$('#inputdate').datepicker({dateFormat: "yy/mm/dd"});		
@@ -170,71 +173,70 @@ h2, p {
 </style>
 </head>
 <body>
-	<div class="container">
-		<br />
-		<h2>상품등록</h2>
-		<p>상품등록 페이지</p>
-		<br />
-		<form action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+
+	<div class="main container-xxl py-5">
+	<div class="container my-5 py-5">
+		<div class="insert-title text-left">
+			<h2>알고계신 맛집을 공유해주세요.</h2>
+		</div>
+		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
+		<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="prInsert">
-			<div id="productPnum" class="input-group">
-				<span class="input-group-text">상품번호</span> <input
-					class="form-control" type="number" id="pnum" name="pnum">
+			<span><span class="caution">* </span> 필수 입력사항 입니다.</span><br><br>
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>작성자명 : </label>
+			  <input type="text" class="form-control short-input" id="title" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">상품이름</span> <input
-					class="form-control" type="text" id="name" name="name">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>맛집 이름 : </label>
+			  <input type="text" class="form-control short-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">제조회사</span> <input
-					class="form-control" type="text" id="company" name="company">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>카테고리 : </label>
+			  <input type="text" class="form-control short-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">이미지01</span> <input
-					class="form-control" type="file" id="image01" name="image01">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>영업시간 : </label>
+			  <input type="text" class="form-control short-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">이미지02</span> <input
-					class="form-control" type="file" id="image02" name="image02">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>브레이크타임 : </label>
+			  <input type="text" class="form-control short-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">이미지03</span> <input
-					class="form-control" type="file" id="image03" name="image03">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>전화번호 : </label>
+			  <input type="text" class="form-control short-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">재고</span> <input class="form-control"
-					type="number" id="stock" name="stock">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>메뉴(메뉴1 / 메뉴2 / ... 형식으로 입력해주세요.) : </label>
+			  <input type="text" class="form-control long-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">가격</span> <input class="form-control"
-					type="number" id="price" name="price">
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>주소 : </label>
+			  <input type="text" class="form-control long-input" id="title">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">카테고리</span> 
-				<select id="category" name="category" class="form-select">
-					<c:forEach var="category" items="${requestScope.categories}">
-						<option value="${category.engname}">${category.korname}</option>
-					</c:forEach>
-				</select>
+			<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>대표이미지 파일 : </label>
+			  <input type="file" class="form-control-file border">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">내용</span> <input class="form-control"
-					type="text" id="contents" name="contents">
+			<div class="form-group my-5 py-5">
+			  <label for="title">추가이미지 파일 : </label>
+			  <input type="file" class="form-control-file border">
+			  <input type="file" class="form-control-file border">
+			  <input type="file" class="form-control-file border">
+			  <input type="file" class="form-control-file border">
 			</div>
-			<div class="input-group">
-				<span class="input-group-text">적립 포인트</span> <input
-					class="form-control" type="number" id="point" name="point">
-			</div>
-			<div class="input-group">
-				<span class="input-group-text">입고일자</span> <input
-					class="form-control" type="date" id="inputdate" name="inputdate">
-			</div>
-			<div id="buttonset" class="input-group">
+			
+			
+			<div id="buttonset" class="input-group my-5 py-5">
 				<button type="submit" class="btn btn-primary" onclick="return validCheck();">등록</button>
 				&nbsp;&nbsp;&nbsp;
 				<button type="reset" class="btn btn-primary">초기화</button>
 			</div>
 		</form>
+		</div>
 	</div>
+	</div>
+				
 </body>
 </html>
