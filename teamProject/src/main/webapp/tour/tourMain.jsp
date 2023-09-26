@@ -260,8 +260,8 @@
 	                                        <span class="thumbnail-title text-primary  thum_title">${bean.tname}</span>
 	                                    	</a>
 	                                    </h5>
-	                                    <small class="thumbnail-content  thum_contents">${bean.place }</small>
-	                                    <small class="thumbnail-content  thum_contents">${bean.menu }</small>
+	                                    <small class="thumbnail-content  thum_contents">${bean.tplace}</small>
+	                                    <small class="thumbnail-contents">${bean.ttime}</small>
 	                                </div>
 	                            </div>
 	                        </div>
