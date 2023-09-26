@@ -13,11 +13,9 @@ meMenu=com.jeju.controller.member.MemberMenuController
 fdMain=com.jeju.controller.food.FoodMainController
 fdDetail=com.jeju.controller.food.FoodDetailController
 fdLikes=com.jeju.controller.food.FoodLikesController
-#boInsert=com.jeju.controller.board.BoardInsertController
-#boList=com.jeju.controller.board.BoardListController
+fdInsert=com.jeju.controller.food.FoodInsertController
 #boUpdate=com.jeju.controller.board.BoardUpdateController
 #boReply=com.jeju.controller.board.BoardReplyController
-
 
 # tour section
 trMain=com.jeju.controller.tour.TourMainController
