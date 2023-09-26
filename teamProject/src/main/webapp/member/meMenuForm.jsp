@@ -12,14 +12,42 @@
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_boardmain/style.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_memenucss/memainstyle.css" rel="stylesheet">
+<style>
+	.memenu-container {
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	align-items: center;
+    	height: 100vh;
+    	/* Set the background image and adjust its size */
+    	background-image: url('assets/img/loginbackground.jpeg');
+    	background-size: cover;
+    	background-repeat: no-repeat;
+    	background-position: center center;
+		}
+        .bottom_button { margin-top: 20px; } /* Increase the margin-top for spacing */
+        @font-face{
+		font-family:'SDMiSaeng'; /*글꼴*/
+		src: local('SDMiSaeng'),
+			url('SDMiSaeng.eot'),
+			url('SDMiSaeng.woff') format('woff'),
+			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
+		}
+
+		.sdms-font{
+			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
+			color: orange;
+		}
+</style>
 </head>
 <body>
-	<div class="container-xxl py-5">
+	<div class="memenu-container py-5">
 	    <div class="container">
+	    <h2 class="sdms-font" style="font-size: 100px">회원메뉴</h2>
 	        <div class="row g-4">	            
 	            <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-	                <div class="bn-yansik banner-item rounded pt-3">
+	                <div class="bn-melogout banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
 	                        <h1 class="banner-text text-white">로그아웃</h1>
@@ -27,7 +55,7 @@
 	                </div>
 	            </div>
 	            <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-	                <div class="bn-cafe banner-item rounded pt-3">
+	                <div class="bn-meinfo banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
 	                        <h1 class="banner-text text-white">회원정보</h1>
@@ -35,7 +63,7 @@
 	                </div>
 	            </div>
 	            <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-	                <div class="bn-beer banner-item rounded pt-3">
+	                <div class="bn-meupdate banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
 	                        <h1 class="banner-text text-white">정보수정</h1>
@@ -43,7 +71,7 @@
 	                </div>
 	            </div>
 	            <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-	                <div class="bn-beer banner-item rounded pt-3">
+	                <div class="bn-medelete banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
 	                        <h1 class="banner-text text-white">회원탈퇴</h1>
