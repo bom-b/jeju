@@ -250,4 +250,37 @@ public class MemberDao extends SuperDao{
 	    return cnt;
 	}
 
+
+	public int DeleteData(String id) {
+	    conn = null;
+	    PreparedStatement pstmt = null;
+	    
+	    try {
+	        conn = super.getConnection();
+	        
+	        String sql = "DELETE FROM members WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        
+	        int cnt = pstmt.executeUpdate();
+	        
+	        return cnt;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1; // 실패 시 -1 반환
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
+
 }
