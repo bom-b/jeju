@@ -46,6 +46,7 @@ public class TourInsertController extends SuperClass{
 		bean.setTimage4(mr.getFilesystemName("timage4"));
 		bean.setTimage5(mr.getFilesystemName("timage5"));
 		bean.setRegdate(mr.getParameter("regdate"));
+		bean.setTcategory(mr.getParameter("tcategory"));
 		
 		TourDao dao = new TourDao() ;
 		int cnt = -1 ;
