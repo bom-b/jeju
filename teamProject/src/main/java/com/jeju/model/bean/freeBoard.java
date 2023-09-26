@@ -2,6 +2,7 @@ package com.jeju.model.bean;
 
 public class freeBoard {
 		private int ono ; //글번호
+		private int no ; //참조하는번호
 		private String id ; //작성자 아이디
 		private String oname ; // 글 제목
 		private String ocontent ; //글 내용
@@ -29,6 +30,30 @@ public class freeBoard {
 		}
 
 	
+
+		public int getNo() {
+			return no;
+		}
+
+
+
+		public void setNo(int no) {
+			this.no = no;
+		}
+
+
+
+		public String getOregdate() {
+			return oregdate;
+		}
+
+
+
+		public void setOregdate(String oregdate) {
+			this.oregdate = oregdate;
+		}
+
+
 
 		@Override
 		public String toString() {

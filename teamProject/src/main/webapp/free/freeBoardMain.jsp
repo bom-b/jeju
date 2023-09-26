@@ -37,12 +37,12 @@
 		});
 	});
 
-	function searchAll() { /* 전체 검색 */
+	function searchevery() { /* 전체 검색 */
 		location.href = '
 <%=notWithFormTag%>frMain';
 		}
 		
-	/*	function writeForm(){ /* 글쓰기 */
+		function gotofrInsert(){ /* 글쓰기 */
 			location.href = '<%=notWithFormTag%>frInsert';
 	}
 	</script>
@@ -133,8 +133,8 @@ body{	font-family: 'Jua', sans-serif;}
 						<input class="form-control-sm" type="text" 
 							name="keyword" id="keyword" placeholder="키워드 입력">
 						<button type="submit" class="btn btn-warning form-control-sm" onclick="">검색</button>
-						<button type="button" class="btn btn-warning form-control-sm" onclick="searchAll();">전체 검색</button>
-						<button type="button" class="btn btn-secondary form-control-sm"  onclick="writeForm();">글 쓰기</button>
+						<button type="button" class="btn btn-warning form-control-sm" onclick="searchevery();">전체 검색</button>
+						<button type="button" class="btn btn-secondary form-control-sm"  onclick="gotofrInsert();">글 쓰기</button>
 				</div>
 			</form>	
 			</div>					
@@ -183,7 +183,7 @@ body{	font-family: 'Jua', sans-serif;}
 	                    <div class="row g-2">
 	                        <div class="col-lg-12">
 	                            <div class="freeBoard d-flex align-items-center">
-	                            <a href="<%= appName %>/free/freeBoardDetailController?ono=${bean.ono}">
+	                        <a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
 	                            <img src="<%= appName  %>+ '/' + ${bean.oimage1}" alt="게시물 이미지"
 									width="65px;" class="post-image">
 	                            </a>
