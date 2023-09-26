@@ -20,7 +20,7 @@ public class freeBoardDao extends SuperDao {
 		bean.setPcategory(rs.getString("pcategory"));
 
 		bean.setReadhit(rs.getInt("readhit"));
-		bean.setoregdate(rs.getString("oregdate"));
+		bean.setOregdate(rs.getString("oregdate"));
 
 		bean.setOimage1(rs.getString("oimage1"));
 		bean.setOimage2(rs.getString("oimage2"));
@@ -206,11 +206,16 @@ public class freeBoardDao extends SuperDao {
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement(sql);
 
-		/*
-		 * pstmt.setString(1, bean.getId()); pstmt.setString(2, bean.getPassword());
-		 * pstmt.setString(3, bean.getSubject()); pstmt.setString(4, bean.getContent());
-		 * pstmt.setString(5, bean.getRegdate()); 이느낌으로 코딩하기
-		 */
+		pstmt.setString(1, bean.getId());
+		pstmt.setString(2, bean.getOname());
+		pstmt.setString(3, bean.getOcontent());
+		pstmt.setString(4, bean.getOregdate());
+		pstmt.setString(5, bean.getPcategory());
+		pstmt.setString(6, bean.getOimage1());
+		pstmt.setString(7, bean.getOimage2());
+		pstmt.setString(8, bean.getOimage3());
+		pstmt.setString(9, bean.getOimage4());
+		pstmt.setString(10, bean.getOimage5());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();
@@ -261,7 +266,7 @@ public class freeBoardDao extends SuperDao {
 
 		int cnt = -1;
 
-		String sql = " update openforum set id = ?, password = ?, subject = ?, content = ?, regdate = ?, groupno = ?, orderno = ?, depth = ? ";
+		String sql = " update openforum set id = ?, oname = ?, ocontent = ?, oregdate = ?, pcategory = ?,oimage1 = ?,oimage2 = ?,oimage3 = ?,oimage4 = ?,oimage5 = ?, groupno = ?, orderno = ?, depth = ? ";
 		sql += " where ono = ? ";
 
 		PreparedStatement pstmt = null;
@@ -269,13 +274,19 @@ public class freeBoardDao extends SuperDao {
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement(sql);
 
-		/*
-		 * pstmt.setString(1, bean.getId()); pstmt.setString(2, bean.getPassword());
-		 * pstmt.setString(3, bean.getSubject()); pstmt.setString(4, bean.getContent());
-		 * pstmt.setString(5, bean.getRegdate()); pstmt.setInt(6, bean.getGroupno());
-		 * pstmt.setInt(7, bean.getOrderno()); pstmt.setInt(8, bean.getDepth());
-		 * pstmt.setInt(9, bean.getNo());
-		 */
+		pstmt.setString(1, bean.getId());
+		pstmt.setString(2, bean.getOname());
+		pstmt.setString(3, bean.getOcontent());
+		pstmt.setString(4, bean.getOregdate());
+		pstmt.setString(5, bean.getPcategory());
+		pstmt.setString(6, bean.getOimage1());
+		pstmt.setString(7, bean.getOimage2());
+		pstmt.setString(8, bean.getOimage3());
+		pstmt.setString(9, bean.getOimage4());
+		pstmt.setString(9, bean.getOimage5());
+		pstmt.setInt(10, bean.getGroupno());
+		pstmt.setInt(11, bean.getOrderno());
+		pstmt.setInt(12, bean.getDepth());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();

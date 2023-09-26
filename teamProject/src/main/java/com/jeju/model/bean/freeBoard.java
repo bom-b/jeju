@@ -55,15 +55,19 @@ public class freeBoard {
 
 
 
+	
+
+
+
+
 		@Override
 		public String toString() {
-			return "freeBoard [ono=" + ono + ", id=" + id + ", oname=" + oname + ", ocontent=" + ocontent + ", readhit="
-					+ readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1=" + oimage1
-					+ ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5=" + oimage5
-					+ ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes=" + likes
-					+ ", hates=" + hates + "]";
+			return "freeBoard [ono=" + ono + ", no=" + no + ", id=" + id + ", oname=" + oname + ", ocontent=" + ocontent
+					+ ", readhit=" + readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1="
+					+ oimage1 + ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5="
+					+ oimage5 + ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes="
+					+ likes + ", hates=" + hates + "]";
 		}
-
 
 
 
@@ -127,15 +131,10 @@ public class freeBoard {
 
 
 
-		public String getoregdate() {
-			return oregdate;
-		}
+		
 
 
 
-		public void setoregdate(String oregdate) {
-			this.oregdate = oregdate;
-		}
 
 
 
