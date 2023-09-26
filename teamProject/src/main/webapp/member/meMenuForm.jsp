@@ -58,7 +58,7 @@
 	                <div class="bn-meinfo banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
-	                        <h1 class="banner-text text-white">회원정보</h1>
+	                        <a class="banner-text text-white" href="<%=notWithFormTag%>meDetail">회원정보</a>
 	                    </div>
 	                </div>
 	            </div>
@@ -66,7 +66,7 @@
 	                <div class="bn-meupdate banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
-	                        <h1 class="banner-text text-white">정보수정</h1>
+	                        <a class="banner-text text-white" href="<%=notWithFormTag%>meUpdate">정보수정</a>
 	                    </div>
 	                </div>
 	            </div>

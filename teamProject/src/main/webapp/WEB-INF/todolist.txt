@@ -6,8 +6,9 @@ meLogin=com.jeju.controller.member.MemberLoginController
 #meLogout=com.jeju.controller.member.MemberLogoutController
 meInsert=com.jeju.controller.member.MemberInsertController
 #meList=com.jeju.controller.member.MemberListController
-#meDetail=com.jeju.controller.member.MemberDetailController
+meDetail=com.jeju.controller.member.MemberDetailController
 meMenu=com.jeju.controller.member.MemberMenuController
+meUpdate=com.jeju.controller.member.MemberUpdateController
 
 # food section
 fdMain=com.jeju.controller.food.FoodMainController
