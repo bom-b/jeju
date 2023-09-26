@@ -41,7 +41,7 @@ public class freeInsertController extends SuperClass{
 			if(cnt == -1 ) { //등록 실패
 				new freeInsertController().doGet(request, response);
 			}else {//성공
-				//
+				super.gotoPage( PREFIX+"freeBoardMain.jsp");
 			}
 		} catch (Exception e) { 
 			e.printStackTrace();

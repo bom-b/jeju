@@ -92,12 +92,12 @@ h2 {
 				type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
 			<input type="hidden" name="keyword"
 				value="<%=request.getParameter("keyword")%>"> <input
-				type="hidden" name="command" value="frUpdate">
+				type="hidden" name="command" value="frInsert">
 			<div class="col-md-6">
 				<div class="input-group">
 					<span class="input-group-text col-md-2">작성자</span>
 					<c:set var="userInfo"
-						value="${sessionScope.loginfo.oname}(${sessionScope.loginfo.id})" />
+						value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})" />
 					<input id="fakeid" name="fakeid" disabled="disabled" type="text"
 						class="form-control" placeholder="" value="${userInfo}"> <input
 						id="id" name="id" type="hidden" value="${sessionScope.loginfo.id}">

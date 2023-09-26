@@ -197,8 +197,8 @@ public class freeBoardDao extends SuperDao {
 		// bean 객체 정보를 이용하여 데이터 베이스에 추가합니다.
 		int cnt = -1;
 
-		String sql = " insert into openforum(select ono, id, oname, ocontent , oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth) ";
-		sql += " values(seqopen.nextval, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, seqopen.currval,  default, default)";
+		String sql = "INSERT INTO openforum (ono, id, oname, ocontent, oregdate, pcategory, oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth) ";
+	    sql += "VALUES (seqopen.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, seqopen.currval, default, default)";
 		// 수정할 내용
 
 		PreparedStatement pstmt = null;
@@ -283,10 +283,11 @@ public class freeBoardDao extends SuperDao {
 		pstmt.setString(7, bean.getOimage2());
 		pstmt.setString(8, bean.getOimage3());
 		pstmt.setString(9, bean.getOimage4());
-		pstmt.setString(9, bean.getOimage5());
-		pstmt.setInt(10, bean.getGroupno());
-		pstmt.setInt(11, bean.getOrderno());
-		pstmt.setInt(12, bean.getDepth());
+		pstmt.setString(10, bean.getOimage5());
+		pstmt.setInt(11, bean.getGroupno());
+		pstmt.setInt(12, bean.getOrderno());
+		pstmt.setInt(13, bean.getDepth());
+		  pstmt.setInt(14, bean.getOno());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();
