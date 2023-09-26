@@ -3,12 +3,15 @@ home=com.jeju.controller.HomeController
 
 # member section
 meLogin=com.jeju.controller.member.MemberLoginController
-#meLogout=com.jeju.controller.member.MemberLogoutController
+meLogout=com.jeju.controller.member.MemberLogoutController
 meInsert=com.jeju.controller.member.MemberInsertController
 #meList=com.jeju.controller.member.MemberListController
 meDetail=com.jeju.controller.member.MemberDetailController
 meMenu=com.jeju.controller.member.MemberMenuController
 meUpdate=com.jeju.controller.member.MemberUpdateController
+meDelete=com.jeju.controller.member.MemberDeleteController
+meDeleteProcess=com.jeju.controller.member.MemberDeleteProcessServlet
+
 
 # food section
 fdMain=com.jeju.controller.food.FoodMainController

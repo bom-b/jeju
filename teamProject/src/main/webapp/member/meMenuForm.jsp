@@ -49,8 +49,7 @@
 	            <div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
 	                <div class="bn-melogout banner-item rounded pt-3">
 	                    <div class="p-5">
-	                        <i class="text-primary mb-4"></i>
-	                        <h1 class="banner-text text-white">로그아웃</h1>
+	                        <a class="banner-text text-white" href="<%=notWithFormTag%>meLogout">로그아웃</a>                        
 	                    </div>
 	                </div>
 	            </div>
@@ -74,7 +73,7 @@
 	                <div class="bn-medelete banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        <i class="text-primary mb-4"></i>
-	                        <h1 class="banner-text text-white">회원탈퇴</h1>
+	                        <a class="banner-text text-white" href="<%=notWithFormTag%>meDelete">회원탈퇴</a>
 	                    </div>
 	                </div>
 	            </div>
