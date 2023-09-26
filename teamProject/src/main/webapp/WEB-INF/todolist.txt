@@ -17,11 +17,9 @@ meDeleteProcess=com.jeju.controller.member.MemberDeleteProcessServlet
 fdMain=com.jeju.controller.food.FoodMainController
 fdDetail=com.jeju.controller.food.FoodDetailController
 fdLikes=com.jeju.controller.food.FoodLikesController
-#boInsert=com.jeju.controller.board.BoardInsertController
-#boList=com.jeju.controller.board.BoardListController
+fdInsert=com.jeju.controller.food.FoodInsertController
 #boUpdate=com.jeju.controller.board.BoardUpdateController
 #boReply=com.jeju.controller.board.BoardReplyController
-
 
 # tour section
 trMain=com.jeju.controller.tour.TourMainController
@@ -29,7 +27,9 @@ trList=com.jeju.controller.product.TourListController
 trInsert=com.jeju.controller.tour.TourInsertController
 #prUpdate=com.jeju.controller.product.ProductUpdateController
 trDetail=com.jeju.controller.tour.TourDetailController
-#trEmoticon=com.jeju.controller.tour.TourEmoticonController
+#trDelete=com.jeju.controller.tour.TourDeleteController
+trLikes=com.jeju.controller.tour.TourLikesController
+
 
 # event section
 evMain=com.jeju.controller.event.EventMainController

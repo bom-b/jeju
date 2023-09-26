@@ -14,7 +14,7 @@ public class freeEmoticonController extends SuperClass{
 		super.doGet(request, response);
 		
 		String mode = request.getParameter("mode"); // 좋아요, 싫어요 등의 mode 값
-		int no = Integer.parseInt(request.getParameter("no")); // 글 번호
+		int no = Integer.parseInt(request.getParameter("ono")); // 글 번호
 		freeBoardDao dao = new freeBoardDao() ;
 		int cnt = -1 ;
 		

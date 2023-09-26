@@ -37,14 +37,16 @@
 		});
 	});
 
-	function searchAll() { /* 전체 검색 */
-		location.href = '
-<%=notWithFormTag%>frMain';
+	function searchevery() { /* 전체 검색 */
+		location.href = '<%=notWithFormTag%>frMain';
 		}
 		
-	/*	function writeForm(){ /* 글쓰기 */
-			location.href = '<%=notWithFormTag%>frInsert';
+	function gotofrInsert() {
+	    // 여기에 writeForm 함수의 내용을 작성
+	    // 글 쓰기 동작 구현
+	    location.href = "<%=notWithFormTag%>frInsert";
 	}
+	
 	</script>
 <style type="text/css">
 body{	font-family: 'Jua', sans-serif;}
@@ -133,8 +135,9 @@ body{	font-family: 'Jua', sans-serif;}
 						<input class="form-control-sm" type="text" 
 							name="keyword" id="keyword" placeholder="키워드 입력">
 						<button type="submit" class="btn btn-warning form-control-sm" onclick="">검색</button>
-						<button type="button" class="btn btn-warning form-control-sm" onclick="searchAll();">전체 검색</button>
-						<button type="button" class="btn btn-secondary form-control-sm"  onclick="writeForm();">글 쓰기</button>
+						<button type="button" class="btn btn-warning form-control-sm" onclick="searchevery();">전체 검색</button>
+						<button type="button" class="btn btn-secondary form-control-sm"  onclick="gotofrInsert();">글 쓰기</button>
+						
 				</div>
 			</form>	
 			</div>					
@@ -183,7 +186,7 @@ body{	font-family: 'Jua', sans-serif;}
 	                    <div class="row g-2">
 	                        <div class="col-lg-12">
 	                            <div class="freeBoard d-flex align-items-center">
-	                            <a href="<%= appName %>/free/freeBoardDetailController?ono=${bean.ono}">
+	                            	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
 	                            <img src="<%= appName  %>+ '/' + ${bean.oimage1}" alt="게시물 이미지"
 									width="65px;" class="post-image">
 	                            </a>
@@ -199,6 +202,12 @@ body{	font-family: 'Jua', sans-serif;}
 											</span>
 	                                    </h5>
 	                                    <small class="thumbnail-content">${bean.ocontent}</small>
+	                                <div class="text-end">
+	                                    <!-- 수정 버튼 표시 조건문 -->
+                            	<c:if test="${sessionScope.loginfo.id==bean.id}">
+                                     <a href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}" class="btn btn-primary btn-sm">수정</a>
+                                </c:if>
+ </div>
 	                                </div>
 	                                
 	                            </div>
@@ -218,4 +227,4 @@ body{	font-family: 'Jua', sans-serif;}
     
 	
 </body>
-</html>
+</html> 

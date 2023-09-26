@@ -7,39 +7,134 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관광지 페이지</title>
 
-<!-- 맛집 전용 style.css -->
-<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
 
 <script type="text/javascript">
 
-	//메뉴 데이터 한줄씩 출력하기
-	function splitString(inputString) {
-	    var menuArray = inputString.split("/"); // "/"를 기준으로 문자열을 분할하여 배열로 반환
-	    var resultElement = document.getElementById("result");
-	    
-	    // 분할된 메뉴 항목들을 출력
-	    for (var i = 0; i < menuArray.length; i++) {
-	    	var menuItem = document.createElement("span");
-	    	menuItem.textContent = menuArray[i];
-	    	resultElement.appendChild(menuItem);
-	    	
-	    	// 줄바꿈을 추가
-	        var lineBreak = document.createElement("br"); // <br> 요소 생성
-	        resultElement.appendChild(lineBreak); // 결과 요소에 추가
-	    }
-	}
-
-	$(document).ready(function(){
-
-	});
-	
-	
 </script>
 
 <style type="text/css">
+/* 메인사진과 메인설명 */
+.main{
+	margin-top: 100px;
+	margin-bottom: 20px;
+	
+}
 
+.mainBox {
+	/* border: 2px solid rgb(255, 232, 221); /* 테두리 두께와 색상 설정 */
+	border: 2px solid #f2f2f2;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+	padding: 50px; /* 테두리와 내용 사이의 간격 설정 */
+
+}
+
+.writerBox {
+	/* border: 2px solid rgb(255, 232, 221);
+	border: 2px solid #f2f2f2;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+	padding-left: 15px; 
+	padding-right: 50px; */
+	
+	display: inline-block; /* 내용물 크기에 따라 동적으로 조절 */
+	margin-bottom: 10px;
+
+}
+
+.menubox {
+	margin-top: 20px;
+	border: 2px solid  #e6e6e6; 
+    border-radius: 5px;
+    background-color: white;
+	padding-top: 10px; 
+	padding-bottom: 10px;
+	display: inline-block; /* 내용물 크기에 따라 동적으로 조절 */
+}
+
+.menubox-sub {
+	display: block;
+    align-items: center; /* 수직 정렬 */
+    white-space: nowrap; /* 텍스트 한 줄로 표시 */
+}
+
+.commentBox {
+	margin-top: 100px;
+}
+
+.content{
+	align: left;
+	text-align: left;
+	padding-left: 50px;
+	
+}
+
+.mainimage{
+	padding: 1px;
+}
+
+.title {
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.sub-title.writer {
+    font-weight: bold !important;
+}
+
+.contents {
+	margin-bottom: 10px;
+}
+
+/* 추천버튼 */
+.thumb {
+	margin-bottom: 15px
+}
+
+/* 댓글창 */
+.table-hover {
+	border-spacing: 30px; /* 행과 열 사이의 여백 설정 */
+
+}
+
+.comment {
+	padding-top: 20px !important;
+	padding-bottom: 30px !important;
+}
+
+.regdate{
+	font-size: 12px;
+}
+
+#insertComment {
+	margin-top: 100px;
+}
+
+#fakeid {
+    width: 250px;
+}
+
+/* 이미지 사이즈 맞추기 */
+.main-image {
+width: 350px;
+height: 350px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+object-fit: cover; /* 이미지 비율 유지하며 크기 조절 */
+}
+
+.sub-image {
+width: 250px;
+height: 250px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+object-fit: cover;
+}
 </style>
 
 </head>
@@ -48,7 +143,7 @@
 	<div class="main container-xxl py-5">
 		<div class="text-left container my-5 py-5">
 		
-			<!-- 작성자와 장성일자 -->
+			<!-- 작성자와 작성일자 -->
 			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
 				<div class="contents" >
 					<span class="sub-title"><strong>작성자: </strong></span>
@@ -60,57 +155,47 @@
 					<span class="">${requestScope.bean.regdate}</span>
 				</div>
 			</div>
-			<!-- 작성자와 장성일자 -->
+			<!-- 작성자와 작성일자 -->
 			
 		</div>
 		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
 			<div class="col-sm-5">
-				<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.image1}">
+				<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.timage1}">
 			</div>
 			<div class="content col-sm-7">
 				<div class="title">
-					<span class="title text-primary">${requestScope.bean.title}</span>
+					<span class="title text-primary">${requestScope.bean.tname}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title"><strong>주소: </strong></span> 
-					<span class="">${requestScope.bean.place}</span>
+					<span class="sub-title"><strong>주소 : </strong></span> 
+					<span class="">${requestScope.bean.tplace}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title"><strong>영업시간: </strong></span> 
-					<span class="">${requestScope.bean.time}</span>
-				</div>
-				<div class="contents">
-					<span class="sub-title"><strong>브레이크타임: </strong></span> 
-					<span class="">${requestScope.bean.breaktime}</span>
+					<span class="sub-title"><strong>개장 시간 : </strong></span> 
+					<span class="">${requestScope.bean.ttime}</span>
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>연락처: </strong></span> 
-					<span class="">${requestScope.bean.phoneno}</span>
+					<span class="">${requestScope.bean.tphoneno}</span>
 				</div>
-				<div class="menubox wow fadeInUp" data-wow-delay="0.4s">
-					<div class="menubox-sub col-sm-3">
-						<span class="menubox-sub sub-title"><strong>대표 메뉴: </strong></span> 
-					</div>
-					<div id="result" class="col-sm-9 text-left " style="padding-left: 30px;">
-						<script type="text/javascript">
-							splitString("${requestScope.bean.menu}");
-						</script>
-					</div>
+				<div class="contents">
+					<span class="sub-title"><strong>입장료: </strong></span> 
+					<span class="">${requestScope.bean.tprice}</span>
+				</div>	
 				</div>
 			</div>
 		</div>
-	</div>
 <!-- 메인사진과 메인설명 -->	
 
-<!-- 추천버튼 -->
+	<!-- 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
-			<a href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}">
+			<a href="<%=notWithFormTag%>trLikes&tno=${requestScope.bean.tno}&id=${sessionScope.loginfo.id}">
 			<button type="submit" class="btn btn-warning follower">
 				<span>
 					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
-					<span class=""> 추천하기 </span>
-					<span class="">${requestScope.bean.likes}</span>
+					<span class=""> 추천 </span>
+					<span class="">${requestScope.bean.tlikes}</span>
 				</span>
 			</button>
 			</a>
@@ -123,24 +208,16 @@
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<c:if test="${requestScope.bean.image2 ne null}">
-						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}">
-					</c:if>
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
 				</div>
 				<div class="col-sm-3">
-					<c:if test="${requestScope.bean.image3 ne null}">
-						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}">
-					</c:if>
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
 				</div>
 				<div class="col-sm-3">
-					<c:if test="${requestScope.bean.image4 ne null}">
-						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}">
-					</c:if>
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
 				</div>
 				<div class="col-sm-3">
-					<c:if test="${requestScope.bean.image5 ne null}">
-						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}">
-					</c:if>
+					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
 				</div>
 			</div>
 		</div>
@@ -165,9 +242,9 @@
                         <tr class="text-left">
                             <td colspan="2" class="comment">
 	                            <strong>kim9</strong><br/>
-	                            <span class="regdate">2023.09.19</span>
+	                            <span class="regdate">2023.09.23</span>
                             </td>
-                            <td colspan="8" class="comment">정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.</td>
+                            <td colspan="8" class="comment">정말 좋은곳이네요~!</td>
                             <td colspan="2" class="comment">
 	                            <button type="submit" class="btn btn-outline-dark form-control-sm" onclick="">
 									삭제
@@ -177,9 +254,9 @@
                         <tr class="text-left">
                            <td colspan="2" class="comment">
 	                            <strong>kim9</strong><br/>
-	                            <span class="regdate">2023.09.19</span>
+	                            <span class="regdate">2023.09.24</span>
                             </td>
-                            <td colspan="8" class="comment">맛있어보이네요.</td>
+                            <td colspan="8" class="comment">여기 사진 갬성 뒤지네여</td>
                             <td colspan="2" class="comment">
 	                            <button type="submit" class="btn btn-outline-dark form-control-sm" onclick="">
 									삭제
@@ -214,7 +291,7 @@
 				              <label for="content" class="menubox-sub">작성자</label>              
 				           </td>
 				           <td>
-				            <input type="hidden" name="no" value="${bean.no}" />
+				            <input type="hidden" name="tno" value="${bean.tno}" />
 				            <input type="text" name="fakeid" id="fakeid" class="form-control" size="5" 
 				               disabled="disabled" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">                           
 				            <input type="hidden" name="id" id="id" value="${sessionScope.loginfo.id}">
