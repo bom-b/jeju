@@ -142,7 +142,7 @@
 		</div>
 		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
 			<div class="col-sm-5">
-				<img class="mainimage" src="<%=appName%>/upload/${requestScope.bean.timage1}">
+				<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.timage1}">
 			</div>
 			<div class="content col-sm-7">
 				<div class="title">
@@ -188,16 +188,16 @@
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<img alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
+					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
 				</div>
 				<div class="col-sm-3">
-					<img alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
+					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
 				</div>
 				<div class="col-sm-3">
-					<img alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
+					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
 				</div>
 				<div class="col-sm-3">
-					<img alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
+					<img class="sub-title" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
 				</div>
 			</div>
 		</div>
