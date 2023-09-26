@@ -40,7 +40,7 @@ public class freeBoardDao extends SuperDao {
 
 	public freeBoard getDataByPrimaryKey(Integer ono) throws Exception {
 		String sql = " select * from openforum ";
-		sql += " where no = ?";
+		sql += " where ono = ?";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
