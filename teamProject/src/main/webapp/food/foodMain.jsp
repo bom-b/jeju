@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_boardmain/foodStyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_food/foodStyle.css" rel="stylesheet">
 
 <style type="text/css">
 	@font-face{
@@ -93,7 +93,7 @@
 	
 	// 글쓰기
 	function writeForm() {
-		location.href = '<%=notWithFormTag%>boInsert';
+		location.href = '<%=notWithFormTag%>fdInsert';
 	}
 </script>
 
