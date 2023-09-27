@@ -427,6 +427,76 @@ public class FoodDao extends SuperDao {
 			
 			return cnt;
 		}
+		
+		// 게시물 번호를 입력하여 해당 게시물에 대한 bean 객체를 반환해줍니다.
+		public Food GetDataByPK(String no) throws Exception {
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = " select * from foodiespot where no = ? ";
+			
+			conn = super.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			// 치환
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			Food bean = null;
+			
+			// 존재할때만 객체 생성을 하는게 좋다. 처음엔 null로 지정하는게 좋음
+			if(rs.next()) {
+				bean = getBeanData(rs);
+			}
+			
+			if(rs != null) {rs.close();}
+			if(pstmt != null) {pstmt.close();}
+			if(conn != null) {conn.close();}
+			
+			return bean;
+		}
+
+		// 업데이트
+		public int UpdateData(Food bean) throws Exception{
+			System.out.println("게시물 수정 빈 :\n" + bean);
+			
+			PreparedStatement pstmt = null;
+		    String sql = " update foodiespot set CATEGORY = ?, TITLE = ?, TIME = ?, BREAKTIME = ?, PHONENO = ?, MENU = ?, PLACE = ?, IMAGE1 = ?, IMAGE2 = ?, IMAGE3 = ?, IMAGE4 = ?, IMAGE5 = ? " ;
+		    sql += " where no = ? " ; 
+		
+			int cnt = -1;
+			
+			conn = super.getConnection();
+			conn.setAutoCommit(false);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			// 물음표 치환
+			pstmt.setString(1, bean.getCategory());
+			pstmt.setString(2, bean.getTitle());
+			pstmt.setString(3, bean.getTime());
+			pstmt.setString(4, bean.getBreaktime());
+			pstmt.setString(5, bean.getPhoneno());
+			pstmt.setString(6, bean.getMenu());
+			pstmt.setString(7, bean.getPlace());
+			pstmt.setString(8, bean.getImage1());
+			pstmt.setString(9, bean.getImage2());
+			pstmt.setString(10, bean.getImage3());
+			pstmt.setString(11, bean.getImage4());
+			pstmt.setString(12, bean.getImage5());
+			pstmt.setString(13, bean.getNo());
+			
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			
+			if(pstmt != null) {pstmt.close();}
+			if(conn != null) {conn.close();}
+			
+			return cnt;
+			
+		}
 	
 	
 }
