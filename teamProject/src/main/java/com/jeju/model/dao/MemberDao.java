@@ -14,9 +14,9 @@ public class MemberDao extends SuperDao{
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " select id, password, name, gender, mquestion, manswer, mphoneno, mrating, ratingimg";
+		String sql = " select id, password, name, gender, mquestion, manswer, mphoneno, mrating, birth, ratingimg";
 		sql += " from ";
-		sql += " (select id, password, name, gender, mquestion, manswer, mphoneno, mrating, ratingimg, rank() over(order by name asc) as ranking";
+		sql += " (select id, password, name, gender, mquestion, manswer, mphoneno, mrating, birth, ratingimg, rank() over(order by name asc) as ranking";
 		sql += " from members)";
 		sql += " where ranking between ? and ?";
 		
