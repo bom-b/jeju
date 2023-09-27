@@ -20,9 +20,8 @@ public class freeDeleteController extends SuperClass{
 			request.setAttribute("message", "게시물이 삭제 실패하였습니다..");
 		}
 		
-		super.gotoPage("free/freeBoardMain.jsp");
-		
-		super.doGet(request, response);
+		   // 삭제성공
+		new freeBoardMainController().doGet(request, response);
 	}
 
 

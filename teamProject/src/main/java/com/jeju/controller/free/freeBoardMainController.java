@@ -48,14 +48,20 @@ public class freeBoardMainController extends SuperClass {
             boolean isGrid_infor = false;
             Paging pageInfo_infor = new Paging(pageNumber, pageSize, totalCount, url_infor, mode, keyword, isGrid_infor);
        
+         // pcategory 데이터 가져오기
+            List<freeBoard> pcategorylists = dao.selectAll(pageInfo_pcategory, "pcategory");
 
-            List<freeBoard> pcategorylists = dao.selectAll(pageInfo_pcategory,"pcategory");
-            
-            List<freeBoard> talists = dao.selectAll(pageInfo_ta,"ta");
-            
-            List<freeBoard> qulists = dao.selectAll(pageInfo_qu,"qu");
-            
-            List<freeBoard> inforlists = dao.selectAll(pageInfo_infor,"infor");
+            // ta 데이터 가져오기
+            List<freeBoard> talists = dao.selectAll(pageInfo_ta, "ta");
+
+            // qu 데이터 가져오기
+            List<freeBoard> qulists = dao.selectAll(pageInfo_qu, "qu");
+
+            // infor 데이터 가져오기
+            List<freeBoard> inforlists = dao.selectAll(pageInfo_infor, "infor");
+
+
+
 
             request.setAttribute("pcategory_datalist", pcategorylists);
             request.setAttribute("ta_datalist",talists);
