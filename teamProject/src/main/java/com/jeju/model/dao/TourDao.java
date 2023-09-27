@@ -9,26 +9,63 @@ import com.jeju.model.bean.Tour;
 import com.jeju.utility.Paging;
 
 public class TourDao extends SuperDao{
-	public int UpdateEmoticon(int tno, String columnName) throws Exception {
-		String sql = " update tourists set " + columnName + "=" + columnName + " + 1  " ;
-		sql += " where no = ? " ;
-		PreparedStatement pstmt = null ;
+		// 검색어를 받아서 테이블의 총 행 개수를 구합니다. (전체)
+		public int GetTotalRecordCount(String mode, String keyword) throws Exception {
+			System.out.print("검색할 필드명 : " + mode);
+			System.out.println(", 검색할 키워드 : " + keyword);
+			
+			
+			String sql = " select count(*) as cnt from tourist " ;
+			
+			if(mode == null || mode.equals("all") ) {
+				// 전체 모드, 또는 입력값이 안들어왔을 경우
+			
+			}else { // 전체 모드가 아니면
+				sql += " where " + mode + " tlikes '%" + keyword + "%'" ;
+			}
+			
+			PreparedStatement pstmt = null ;
+			ResultSet rs = null ;
+			
+			conn = super.getConnection() ;
+			pstmt = conn.prepareStatement(sql) ;
+			
+			rs = pstmt.executeQuery() ; 
+			
+			int cnt = -1 ;
+			
+			if(rs.next()) {
+				cnt = rs.getInt("cnt") ;
+			}
+			
+			if(rs!=null) {rs.close();}
+			if(pstmt!=null) {pstmt.close();}
+			if(conn!=null) {conn.close();}
+			
+			return cnt;
+		}
+	
+		// GetTotalRecordCount 오버라이딩 (category를 변수로 받음)
+		public int UpdateEmoticon(int tno, String columnName) throws Exception {
+			String sql = " update tourists set " + columnName + "=" + columnName + " + 1  " ;
+			sql += " where no = ? " ;
+			PreparedStatement pstmt = null ;
 		
-		int cnt = -1 ;
-		conn = super.getConnection() ;
-		conn.setAutoCommit(false);  
-		pstmt = conn.prepareStatement(sql) ;
-		pstmt.setInt(1, tno);
+			int cnt = -1 ;
+			conn = super.getConnection() ;
+			conn.setAutoCommit(false);  
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setInt(1, tno);
 		
-		cnt = pstmt.executeUpdate() ;
+			cnt = pstmt.executeUpdate() ;
+			
+			conn.commit(); 
 		
-		conn.commit(); 
+			if(pstmt!=null) {pstmt.close();}
+			if(conn!=null) {conn.close();}
 		
-		if(pstmt!=null) {pstmt.close();}
-		if(conn!=null) {conn.close();}
-		
-		return cnt ;
-	}	
+			return cnt ;
+		}	
 	
 	public Integer GetReplyCount(int groupno) throws Exception {
 		System.out.println("검색할 그룹 번호 : " + groupno);
@@ -97,37 +134,7 @@ public class TourDao extends SuperDao{
 		
 		return cnt ;
 	}	
-	public int GetTotalRecordCount(String mode, String keyword) throws Exception {
-		System.out.print("검색할 필드명 : " + mode);
-		System.out.println(", 검색할 키워드 : " + keyword);
-		
-		// 테이블의 총 행개수를 구합니다.
-		String sql = " select count(*) as cnt from tourist " ;
-		if(mode == null || mode.equals("all") ) {			
-		}else { // 전체 모드가 아니면
-			sql += " where " + mode + " tlikes '%" + keyword + "%'" ;
-		}
-		
-		PreparedStatement pstmt = null ;
-		ResultSet rs = null ;
-		
-		conn = super.getConnection() ;
-		pstmt = conn.prepareStatement(sql) ;
-		
-		rs = pstmt.executeQuery() ; 
-		
-		int cnt = -1 ;
-		
-		if(rs.next()) {
-			cnt = rs.getInt("cnt") ;
-		}
-		
-		if(rs!=null) {rs.close();}
-		if(pstmt!=null) {pstmt.close();}
-		if(conn!=null) {conn.close();}
-		
-		return cnt;
-	}		
+			
 
 	public int GetTotalRecordCount() throws Exception {
 		// 테이블의 총 행개수를 구합니다.
@@ -249,9 +256,8 @@ public class TourDao extends SuperDao{
 		
 		return lists;
 	}	
-	
+	// ResultSet 정보를 Bean으로 만들어서 반환해 줍니다.
 	private Tour getBeanData(ResultSet rs) throws Exception {
-		// ResultSet 정보를 Bean으로 만들어서 반환해 줍니다.
 		Tour bean = new Tour() ;
 		
 		bean.setTno(rs.getString("tno"));		
