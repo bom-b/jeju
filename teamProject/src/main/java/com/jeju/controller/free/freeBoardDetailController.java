@@ -26,7 +26,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			super.gotoPage("common/home.jsp"); 
 		}else {
 			request.setAttribute("bean", bean) ;
-			super.gotoPage("free/freeDetail.jsp"); 
+			super.gotoPage("/free/freeDetail.jsp"); 
 		}
 	} catch (Exception e) {
 		e.printStackTrace();

@@ -33,6 +33,8 @@ public class freeInsertController extends SuperClass{
 		bean.setOimage4(request.getParameter("oimage4"));
 		bean.setOimage5(request.getParameter("oimage5"));
 		
+		
+		
 		freeBoardDao dao = new freeBoardDao();
 		int cnt = 1 ;
 		try {
@@ -41,7 +43,7 @@ public class freeInsertController extends SuperClass{
 			if(cnt == -1 ) { //등록 실패
 				new freeInsertController().doGet(request, response);
 			}else {//성공
-				super.gotoPage( PREFIX+"freeBoardMain.jsp");
+				new freeBoardMainController().doGet(request, response);
 			}
 		} catch (Exception e) { 
 			e.printStackTrace();

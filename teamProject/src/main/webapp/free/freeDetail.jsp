@@ -354,35 +354,35 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 		<!-- openForum 이미지 시작 -->
 		<div id="backButton" style="text-align: left;">
 			<!-- 이미지 1 -->
-			<a href="<%=appName%>/assets/img/자유게시판.jpg"
+			<a href="<%=appName%>/upload/${requestScope.bean.oimage1}"
 				data-lightbox="my-gallery"> <img
-				src="<%=appName%>/assets/img/자유게시판.jpg" width="100px" height="100px"
+				src="<%=appName%>/upload/${requestScope.bean.oimage1}" width="100px" height="100px"
 				alt="이미지 1">
 			</a>
 
 			<!-- 이미지 2 -->
-			<a href="<%=appName%>/assets/img/자유게시판.jpg"
+			<a href="<%=appName%>/upload/${requestScope.bean.oimage2}"
 				data-lightbox="my-gallery"> <img
-				src="<%=appName%>/assets/img/자유게시판.jpg" width="100px" height="100px"
+				src="<%=appName%>/upload/${requestScope.bean.oimage2}" width="100px" height="100px"
 				alt="이미지 2">
 			</a>
 
 			<!-- 이미지 3 -->
-			<a href="<%=appName%>/assets/img/싫어요.png" data-lightbox="my-gallery">
-				<img src="<%=appName%>/assets/img/싫어요.png" width="100px"
+			<a href="<%=appName%>/upload/${requestScope.bean.oimage3}" data-lightbox="my-gallery">
+				<img src="<%=appName%>/upload/${requestScope.bean.oimage3}" width="100px"
 				height="100px" alt="이미지 3">
 			</a>
 
 			<!-- 이미지 4 -->
-			<a href="<%=appName%>/assets/img/좋아요.png" data-lightbox="my-gallery">
-				<img src="<%=appName%>/assets/img/좋아요.png" width="100px"
+			<a href="<%=appName%>/upload/${requestScope.bean.oimage4}" data-lightbox="my-gallery">
+				<img src="<%=appName%>/upload/${requestScope.bean.oimage4}" width="100px"
 				height="100px" alt="이미지 4">
 			</a>
 
 			<!-- 이미지 5 -->
-			<a href="<%=appName%>/assets/img/자유게시판.jpg"
+			<a href="<%=appName%>/upload/${requestScope.bean.oimage5}"
 				data-lightbox="my-gallery"> <img
-				src="<%=appName%>/assets/img/자유게시판.jpg" width="100px" height="100px"
+				src="<%=appName%>/upload/${requestScope.bean.oimage5}" width="100px" height="100px"
 				alt="이미지 5">
 			</a>
 		</div>

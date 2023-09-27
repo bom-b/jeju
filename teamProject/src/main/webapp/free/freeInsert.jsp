@@ -56,12 +56,10 @@ h2 {
 	font-size: 70px;
 }
 </style>
+
 <script type="text/javascript">
-  		$(document).ready(function(){
-  	  		/* $('#regdate').datepicker(); */
-  	  		$('#regdate').datepicker({dateFormat: "yy/mm/dd"});  	  	 
-  		});
-  		
+$(document).ready(function(){
+ 
   		function validCheck(){/* 폼 유효성 검사 */  			
   			var subject = $('#oname').val();
   			if(subject.length < 3 || subject.length > 20){
@@ -153,6 +151,23 @@ h2 {
 						id="oimage5" name="oimage5" type="file" class="form-control"
 						accept="image/*">
 				</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">작성일</span> <input
+						id="oregdate" name="oregdate" type="text" class="form-control" readonly>
+				</div>
+				<script type="text/javascript">
+    // 현재 날짜를 가져오는 함수
+    function getCurrentDate() {
+        var currentDate = new Date();
+        var year = currentDate.getFullYear();
+        var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 포맷팅
+        var day = String(currentDate.getDate()).padStart(2, '0'); // 날짜를 2자리로 포맷팅
+        return year + '/' + month + '/' + day;
+    }
+
+    // 작성일 입력란에 현재 날짜 채우기
+    document.getElementById("oregdate").value = getCurrentDate();
+</script>
 
 				<div id="buttonset" class="input-group">
 					<button type="submit" class="btn btn-primary btn-lg"

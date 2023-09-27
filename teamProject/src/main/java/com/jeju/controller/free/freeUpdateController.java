@@ -34,6 +34,7 @@ public class freeUpdateController extends SuperClass {
 		  bean.setId(request.getParameter("id"));
 		  bean.setOname(request.getParameter("oname"));
 		  bean.setOcontent(request.getParameter("ocontent"));
+		  bean.setPcategory(request.getParameter("pcategory"));
 		  bean.setOregdate(request.getParameter("oregdate"));
 		  bean.setOimage1(request.getParameter("oimage1"));
 		  bean.setOimage2(request.getParameter("oimage2"));
@@ -54,14 +55,7 @@ public class freeUpdateController extends SuperClass {
 				new freeUpdateController().doGet(request, response);
 
 			} else { // 성공
-				// 게시물 목록 보기 페이지로 이동합니다.
-				// 현재 진행 중인 페이지로 이동하기 위하여 페이징 관련 파라미터도 넘겨 주어야 합니다.
-				String gotopage = super.getUrlInfomation("frMain");
-				gotopage += "&pageNumber=" + request.getParameter("pageNumber");
-				gotopage += "&pageSize=" + request.getParameter("pageSize");
-				gotopage += "&mode=" + request.getParameter("mode");
-				gotopage += "&keyword=" + request.getParameter("keyword");
-				response.sendRedirect(gotopage);
+				   response.sendRedirect(request.getContextPath() + "/frMain");
 
 				// 이전 코딩 방식
 
