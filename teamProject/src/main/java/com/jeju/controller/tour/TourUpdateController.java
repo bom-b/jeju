@@ -15,7 +15,7 @@ import com.jeju.model.dao.CategoryDao;
 import com.jeju.model.dao.TourDao;
 
 public class TourUpdateController extends SuperClass{
-	private final String PREFIX = "product/" ;
+	private final String PREFIX = "tour/" ;
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -28,8 +28,8 @@ public class TourUpdateController extends SuperClass{
 		// 상품 수정시 넘어 오는 상품 번호를 우선 챙깁니다. 
 		Integer pnum = Integer.parseInt(request.getParameter("tno")) ;
 		
-		TourDao pdao = new TourDao() ;
-		Tour bean = pdao.GetDataByPk(tno) ;
+		TourDao tdao = new TourDao() ;
+		Tour bean = tdao.GetDataByPk(tno) ;
 		
 		try {
 			lists = cdao.GetCategoryList("tour", "select") ;
