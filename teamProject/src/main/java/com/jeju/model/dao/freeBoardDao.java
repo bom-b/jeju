@@ -170,7 +170,7 @@ public class freeBoardDao extends SuperDao {
 		// 카테고리에 따라 분기
 		if (pcategory == "pcategory") {
 			
-		} else if (pcategory == "talk") {
+		} else if (pcategory == "ta") {
 			sql += " where pcategory = '잡담' " ;
 			
 		} else if (pcategory == "infor") {

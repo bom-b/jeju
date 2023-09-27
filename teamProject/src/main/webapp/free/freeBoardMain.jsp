@@ -39,14 +39,17 @@
       });
    });
 
-   function searchevery() { /* 전체 검색 */
-      location.href = '<%=notWithFormTag%>frMain';
-      }
-      
-   function gotofrInsert() {
-	    location.href = "<%=notWithFormTag%>
-	frInsert";
-	}
+  	// 전체 검색
+  	function searchAll() {
+  	location.href = '<%=notWithFormTag%>frMain';
+  	}
+  	
+ // 글쓰기
+  	function writeForm() {
+  	        window.location.href = "<%=notWithFormTag%>frInsert";
+  	 
+  	}
+
 </script>
 <style type="text/css">
 body {
@@ -126,203 +129,184 @@ body {
 	<!-- 헤더 End -->
 
 	<!-- 검색창 start -->
-	<div class="container-xxl py-5 text-center">
-		<div class="container">
-			<div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-				<form class="search-box" name="myform" action="<%=withFormTag%>"
-					method="get">
-					<input type="hidden" name="command" value="frMain">
-					<div class="row">
-						<div class="search-box col-sm-12">
-							<select class="form-control-sm" id="mode" name="mode">
-								<option value="all" selected="selected">--- 검색옵션 ---
-								<option value="name">글제목
-								<option value="company">글내용
-								<option value="category">작성자
-							</select> <input class="form-control-sm" type="text" name="keyword"
-								id="keyword" placeholder="키워드 입력">
-							<button type="submit" class="btn btn-warning form-control-sm"
-								onclick="">검색</button>
-							<button type="button" class="btn btn-warning form-control-sm"
-								onclick="searchevery();">전체 검색</button>
-							<button type="button" class="btn btn-secondary form-control-sm"
-								onclick="gotofrInsert();">글 쓰기</button>
-
-						</div>
-				</form>
-			</div>
+	<div class="container-xxl py-5 text-center">	
+		<div class="container">		
+			<div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">	
+			<form class="search-box" name="myform" action="<%=withFormTag%>" method="get">
+				<div class="row">
+					<div class="search-box col-sm-12" >
+						<select class="form-control-sm " id="mode" name="mode">
+							<option value="all" selected="selected">--- 검색옵션 ---
+							<option value="oname">글 제목
+							<option value="ID">작성자
+						</select>
+						<input class="form-control-sm" type="text" 
+							name="keyword" id="keyword" placeholder="키워드 입력">
+						<button type="submit" class="btn btn-warning form-control-sm " onclick="">검색</button>
+						<button type="button" class="btn btn-warning form-control-sm "  onclick="searchAll();">초기화</button>
+						<button type="button" class="btn btn-secondary form-control-sm "  onclick="writeForm();">글 쓰기</button>
+						<span id="pagingStatus">${requestScope.pageInfo.pagingStatus} </span>
+				</div>
+			</form>	
+			</div>					
 		</div>
 	</div>
 	<!-- 검색창 End -->
 
 	<!-- 게시물 목록 Start -->
-	<div class="container-xxl py-5"
-		style="margin-left: 100px; margin-right: 100px;">
-		<div class="container">
-			<div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-				<ul
-					class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-					<li class="nav-item"><a
-						class="category d-flex align-items-center text-start mx-3 ms-0 pb-3 active"
-						data-bs-toggle="pill" href="#tab-1">
-							<div class="ps-3">
-								<h2 class="category-text">전체</h2>
-							</div>
-					</a></li>
-					<li class="nav-item"><a
-						class="category d-flex align-items-center text-start mx-3 pb-3"
-						data-bs-toggle="pill" href="#tab-2">
-							<div class="ps-3">
-								<h2 class="category-text">정보공유</h2>
-							</div>
-					</a></li>
-					<li class="nav-item"><a
-						class="category d-flex align-items-center text-start mx-3 me-0 pb-3"
-						data-bs-toggle="pill" href="#tab-3">
-							<div class="ps-3">
-								<h2 class="category-text">질문</h2>
-							</div>
-					</a></li>
-					<li class="nav-item"><a
-						class="category d-flex align-items-center text-start mx-3 me-0 pb-3"
-						data-bs-toggle="pill" href="#tab-4">
-							<div class="ps-3">
-								<h2 class="category-text">잡담</h2>
-							</div>
-					</a></li>
-				</ul>
-				<!-- 전체의 게시물 목록을 출력하는 부분 -->
-				<div id="tab-1" class="tab-pane p-0 active">
-					<div class="row g-2">
-						<c:forEach var="bean" items="${requestScope.pcategory_datalist}">
-							<div class="col-lg-12">
-								<div class="freeBoard d-flex align-items-center">
-								<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
-									<div class="thumnail_img flex-shrink-0 img-fluid rounded"
-										style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
-									<div class="w-100 d-flex flex-column text-start ps-4">
-										<h5 class="d-flex justify-content-between border-bottom pb-2">
-											<div>
-												<span class="badge bg-secondary">${bean.pcategory}</span> <span
-													class="thumbnail-title text-primary">${bean.oname}</span>
-											</div>
-										</h5>
-										<small class="thumbnail-content">${bean.ocontent}</small>
-										<div class="text-end">
-											<!-- 수정 버튼 표시 조건문 -->
-											<c:if test="${sessionScope.loginfo.id==bean.id}">
-												<a
-													href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-													class="btn btn-primary btn-sm">수정</a>
-											</c:if>
-										</div>
-										</a>
-
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-
-						<!-- 정보공유의 게시물 목록을 출력하는 부분 -->
-						<div id="tab-2" class="tab-pane p-0">
-							<div class="row g-2">
-								<c:forEach var="bean" items="${requestScope.infor_datalist}">
-									<div class="col-lg-12">
-										<div class="freeBoard d-flex align-items-center">
-										<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
-											<div class="thumnail_img flex-shrink-0 img-fluid rounded"
-												style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
-											<div class="w-100 d-flex flex-column text-start ps-4">
-												<h5
-													class="d-flex justify-content-between border-bottom pb-2">
-													<div>
-														<span class="badge bg-secondary">${bean.pcategory}</span>
-														<span class="thumbnail-title text-primary">${bean.oname}</span>
-													</div>
-												</h5>
-												<small class="thumbnail-content">${bean.ocontent}</small>
-												<div class="text-end">
-													<!-- 수정 버튼 표시 조건문 -->
-													<c:if test="${sessionScope.loginfo.id==bean.id}">
-														<a
-															href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-															class="btn btn-primary btn-sm">수정</a>
-													</c:if>
-												</div>
-												</a>
-
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-
-								<!--질문의 게시물 목록을 출력하는 부분 -->
-								<div id="tab-3" class="tab-pane p-0 ">
-									<div class="row g-2">
-										<c:forEach var="bean" items="${requestScope.qu_datalist}">
-											<div class="col-lg-12">
-												<div class="freeBoard d-flex align-items-center">
-												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
-													<div class="thumnail_img flex-shrink-0 img-fluid rounded"
-														style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
-													<div class="w-100 d-flex flex-column text-start ps-4">
-														<h5
-															class="d-flex justify-content-between border-bottom pb-2">
-															<div>
-																<span class="badge bg-secondary">${bean.pcategory}</span>
-																<span class="thumbnail-title text-primary">${bean.oname}</span>
-															</div>
-														</h5>
-														<small class="thumbnail-content">${bean.ocontent}</small>
-														<div class="text-end">
-															<!-- 수정 버튼 표시 조건문 -->
-															<c:if test="${sessionScope.loginfo.id==bean.id}">
-																<a
-																	href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-																	class="btn btn-primary btn-sm">수정</a>
-															</c:if>
-														</div>
-														</a>
-
-													</div>
-												</div>
-											</div>
-										</c:forEach>
-										<!--잡담의 게시물 목록을 출력하는 부분 -->
-										<div id="tab-4" class="tab-pane p-0 ">
-											<div class="row g-2">
-												<c:forEach var="bean" items="${requestScope.ta_datalist}">
-													<div class="col-lg-12">
-														<div class="freeBoard d-flex align-items-center">
-														<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
-															<div class="thumnail_img flex-shrink-0 img-fluid rounded"
-																style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
-															<div class="w-100 d-flex flex-column text-start ps-4">
-																<h5
-																	class="d-flex justify-content-between border-bottom pb-2">
-																	<div>
-																		<span class="badge bg-secondary">${bean.pcategory}</span>
-																		<span class="thumbnail-title text-primary">${bean.oname}</span>
-																	</div>
-																</h5>
-																<small class="thumbnail-content">${bean.ocontent}</small>
-																<div class="text-end">
-																	<!-- 수정 버튼 표시 조건문 -->
-																	<c:if test="${sessionScope.loginfo.id==bean.id}">
-																		<a
-																			href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-																			class="btn btn-primary btn-sm">수정</a>
-																	</c:if>
-																</div>
-																</a>
-
-															</div>
-														</div>
-													</div>
-												</c:forEach>
-												<!-- 게시물 목록 End -->
-												<div class="pagination">${requestScope.pageInfo.pagingHtml}</div>
-												<script
-													src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<div class="container-xxl py-5">
+	    <div class="container">
+	        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+	            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+	            	
+	            	<!-- 카테고리 목록 Start -->
+	                <li class="nav-item">
+	                    <a class="select-1 category d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+	                       <!--  <i class="fa fa-utensils fa-2x text-primary"></i> -->
+	                        <div class="ps-3">
+	                            <h2 class="category-text "><strong>전체</strong></h2>
+	                        </div>
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="select-2 category d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+	                        <!-- <i class="fa fa-hamburger fa-2x text-primary"></i> -->
+	                        <div class="ps-3">
+	                            <h2 class="category-text "><strong>잡담</strong></h2>
+	                        </div>
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="select-3 category d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+	                        <!-- <i class="fa fa-coffee fa-2x text-primary"></i> -->
+	                        <div class="ps-3">
+	                            <h2 class="category-text "><strong>질문</strong></h2>
+	                        </div>
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="select-4 category d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
+	                        <!-- <i class="fa fa-beer fa-2x text-primary"></i> -->
+	                        <div class="ps-3">
+	                            <h2 class="category-text "><strong>정보공유</strong></h2>
+	                        </div>
+	                    </a>
+	                </li>
+	            </ul>
+	            <!-- 카테고리 목록 End -->
+	            
+	            <div class="tab-content">
+	            
+	            	<!-- 전체게시물 동적으로 표시하기 -->
+	                <div id="tab-1" class="tab-pane p-0 active">
+	                    <div class="row g-4">
+	                    
+							<c:forEach var="bean" items="${requestScope.pcategory_datalist }">
+	                        <div class="col-lg-12">
+	                            <div class="d-flex align-items-center">
+	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+	                                <div class="w-100 d-flex flex-column text-start ps-4">
+	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+	                                    	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+	                                        <span class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
+	                                        </a>
+	                                         <span class="badge badge-secondary">${bean.pcategory }</span>
+	                                    </h5>
+	                                    <small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
+	                                    
+	                                </div>
+	                            </div>
+	                        </div>
+	                       </c:forEach>
+	                       
+	                    </div>
+	                    ${requestScope.pageInfo_pcategory.pagingHtml} 
+	                </div>
+	             
+	                <!-- 잡담 게시물 동적으로 표시하기 -->
+	                <div id="tab-2" class="tab-pane p-0">
+	                    <div class="row g-4">
+	                    
+							<c:forEach var="bean" items="${requestScope.ta_datalist }">
+	                        <div class="col-lg-12">
+	                            <div class="d-flex align-items-center">
+	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+	                                <div class="w-100 d-flex flex-column text-start ps-4">
+	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+	                                    	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+	                                        <span class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
+	                                        </a>
+	                                    </h5>
+	                                    <small class="thumbnail-content  thum_contents">${bean.ocontent}</small>
+	                               
+	                                </div>
+	                            </div>
+	                        </div>
+	                       </c:forEach>
+	                       
+	                    </div>
+	                    ${requestScope.pageInfo_ta.pagingHtml} 
+	                </div>
+	                
+	                <!-- 질문 게시물 동적으로 표시하기 -->
+	                <div id="tab-3" class="tab-pane p-0">
+	                    <div class="row g-4">
+	                    
+							<c:forEach var="bean" items="${requestScope.qu_datalist }">
+	                        <div class="col-lg-12">
+	                            <div class="d-flex align-items-center">
+	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+	                                <div class="w-100 d-flex flex-column text-start ps-4">
+	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+	                                    	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+	                                        <span class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
+	                                        </a>
+	                                    </h5>
+	                                    <small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
+	                        
+	                                </div>
+	                            </div>
+	                        </div>
+	                       </c:forEach>
+	                       
+	                    </div>
+	                    ${requestScope.pageInfo_qu.pagingHtml} 
+	                </div>
+	                
+	                <!-- 정보게시물 동적으로 표시하기 -->
+	                <div id="tab-4" class="tab-pane p-0">
+	                    <div class="row g-4">
+	                    
+							<c:forEach var="bean" items="${requestScope.infor_datalist }">
+	                        <div class="col-lg-12">
+	                            <div class="d-flex align-items-center">
+	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+	                                <div class="w-100 d-flex flex-column text-start ps-4">
+	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+	                                    	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+	                                        <span class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
+	                                        </a>
+	                                    </h5>
+	                                    <small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
+	                                  
+	                                </div>
+	                            </div>
+	                        </div>
+	                       </c:forEach>
+	                       
+	                    </div>
+	                    ${requestScope.pageInfo_infor.pagingHtml} 
+	                </div>
+	                
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- 게시물 목록 End -->
+	
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+	
 </body>
 </html>
