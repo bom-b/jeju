@@ -44,11 +44,9 @@
       }
       
    function gotofrInsert() {
-       // 여기에 writeForm 함수의 내용을 작성
-       // 글 쓰기 동작 구현
-       location.href = "<%=notWithFormTag%>
-   frInsert";
-   }
+	    location.href = "<%=notWithFormTag%>
+	frInsert";
+	}
 </script>
 <style type="text/css">
 body {
@@ -95,10 +93,21 @@ body {
 .search-box button {
 	margin-left: 10px; /* 왼쪽 여백 설정 */
 }
+
+.freeBoard:hover {
+	/* 호버 시 적용될 스타일을 여기에 추가합니다. */
+	background-color: #ff9800; /* 예시: 배경색을 바꿉니다. */
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+	transition: background-color 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
+}
+
+.freeboardform {
+	position: relative;
+	min-height: 1px;
+}
 </style>
 </head>
 <body>
-
 	<!-- 헤더 Start -->
 	<div class="container-xxl py-5 bg-dark  mb-5"
 		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
@@ -116,14 +125,13 @@ body {
 	</div>
 	<!-- 헤더 End -->
 
-
-
 	<!-- 검색창 start -->
 	<div class="container-xxl py-5 text-center">
 		<div class="container">
 			<div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
 				<form class="search-box" name="myform" action="<%=withFormTag%>"
 					method="get">
+					<input type="hidden" name="command" value="frMain">
 					<div class="row">
 						<div class="search-box col-sm-12">
 							<select class="form-control-sm" id="mode" name="mode">
@@ -183,17 +191,47 @@ body {
 							</div>
 					</a></li>
 				</ul>
-				<!--전체의 게시물 목록을 출력하는 부분 -->
-				<c:forEach var="bean" items="${requestScope.datalist}">
-					<div class="tab-content">
-						<div id="tab-1" class="tab-pane p-0 active">
-							<div class="row g-2">
-								<div class="col-lg-12">
-									<div class="freeBoard d-flex align-items-center">
-										<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}"> <img
-											src="<%= appName  %>+ '/' + ${bean.oimage1}" alt="게시물 이미지"
-											width="65px;" class="post-image">
+				<!-- 전체의 게시물 목록을 출력하는 부분 -->
+				<div id="tab-1" class="tab-pane p-0 active">
+					<div class="row g-2">
+						<c:forEach var="bean" items="${requestScope.pcategory_datalist}">
+							<div class="col-lg-12">
+								<div class="freeBoard d-flex align-items-center">
+								<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+									<div class="thumnail_img flex-shrink-0 img-fluid rounded"
+										style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+									<div class="w-100 d-flex flex-column text-start ps-4">
+										<h5 class="d-flex justify-content-between border-bottom pb-2">
+											<div>
+												<span class="badge bg-secondary">${bean.pcategory}</span> <span
+													class="thumbnail-title text-primary">${bean.oname}</span>
+											</div>
+										</h5>
+										<small class="thumbnail-content">${bean.ocontent}</small>
+										<div class="text-end">
+											<!-- 수정 버튼 표시 조건문 -->
+											<c:if test="${sessionScope.loginfo.id==bean.id}">
+												<a
+													href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+													class="btn btn-primary btn-sm">수정</a>
+											</c:if>
+										</div>
+										</a>
 
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+
+						<!-- 정보공유의 게시물 목록을 출력하는 부분 -->
+						<div id="tab-2" class="tab-pane p-0">
+							<div class="row g-2">
+								<c:forEach var="bean" items="${requestScope.infor_datalist}">
+									<div class="col-lg-12">
+										<div class="freeBoard d-flex align-items-center">
+										<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+											<div class="thumnail_img flex-shrink-0 img-fluid rounded"
+												style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
 											<div class="w-100 d-flex flex-column text-start ps-4">
 												<h5
 													class="d-flex justify-content-between border-bottom pb-2">
@@ -201,11 +239,6 @@ body {
 														<span class="badge bg-secondary">${bean.pcategory}</span>
 														<span class="thumbnail-title text-primary">${bean.oname}</span>
 													</div>
-													<span> <img class="thumbnail-content"
-														src="<%=appName%>/assets/img/thumb.png" alt="recommand"
-														style="width: 20px;"> <small
-														class="thumbnail-content">5</small>
-													</span>
 												</h5>
 												<small class="thumbnail-content">${bean.ocontent}</small>
 												<div class="text-end">
@@ -215,23 +248,81 @@ body {
 															href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
 															class="btn btn-primary btn-sm">수정</a>
 													</c:if>
-												</div></a> </a>
+												</div>
+												</a>
+
+											</div>
+										</div>
 									</div>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	<!-- 게시물 목록 End -->
-	<div class="pagination">${requestScope.pageInfo.pagingHtml}</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+								</c:forEach>
 
+								<!--질문의 게시물 목록을 출력하는 부분 -->
+								<div id="tab-3" class="tab-pane p-0 ">
+									<div class="row g-2">
+										<c:forEach var="bean" items="${requestScope.qu_datalist}">
+											<div class="col-lg-12">
+												<div class="freeBoard d-flex align-items-center">
+												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+													<div class="thumnail_img flex-shrink-0 img-fluid rounded"
+														style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+													<div class="w-100 d-flex flex-column text-start ps-4">
+														<h5
+															class="d-flex justify-content-between border-bottom pb-2">
+															<div>
+																<span class="badge bg-secondary">${bean.pcategory}</span>
+																<span class="thumbnail-title text-primary">${bean.oname}</span>
+															</div>
+														</h5>
+														<small class="thumbnail-content">${bean.ocontent}</small>
+														<div class="text-end">
+															<!-- 수정 버튼 표시 조건문 -->
+															<c:if test="${sessionScope.loginfo.id==bean.id}">
+																<a
+																	href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+																	class="btn btn-primary btn-sm">수정</a>
+															</c:if>
+														</div>
+														</a>
 
+													</div>
+												</div>
+											</div>
+										</c:forEach>
+										<!--잡담의 게시물 목록을 출력하는 부분 -->
+										<div id="tab-4" class="tab-pane p-0 ">
+											<div class="row g-2">
+												<c:forEach var="bean" items="${requestScope.ta_datalist}">
+													<div class="col-lg-12">
+														<div class="freeBoard d-flex align-items-center">
+														<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+															<div class="thumnail_img flex-shrink-0 img-fluid rounded"
+																style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+															<div class="w-100 d-flex flex-column text-start ps-4">
+																<h5
+																	class="d-flex justify-content-between border-bottom pb-2">
+																	<div>
+																		<span class="badge bg-secondary">${bean.pcategory}</span>
+																		<span class="thumbnail-title text-primary">${bean.oname}</span>
+																	</div>
+																</h5>
+																<small class="thumbnail-content">${bean.ocontent}</small>
+																<div class="text-end">
+																	<!-- 수정 버튼 표시 조건문 -->
+																	<c:if test="${sessionScope.loginfo.id==bean.id}">
+																		<a
+																			href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+																			class="btn btn-primary btn-sm">수정</a>
+																	</c:if>
+																</div>
+																</a>
+
+															</div>
+														</div>
+													</div>
+												</c:forEach>
+												<!-- 게시물 목록 End -->
+												<div class="pagination">${requestScope.pageInfo.pagingHtml}</div>
+												<script
+													src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
