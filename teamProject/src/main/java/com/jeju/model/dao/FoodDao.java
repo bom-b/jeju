@@ -301,7 +301,7 @@ public class FoodDao extends SuperDao {
 			
 			// 추천기록 테이블에서 해당 유저의 추천기록 확인하기
 			String sql = " select count(*) as cnt from likes ";
-			sql += " where no = ? and id = ?";
+			sql += " where no = ? and category = 'food' and id = ? "; // 여기에 'food' 대신 event, tour, free 입력
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, no);
@@ -339,7 +339,7 @@ public class FoodDao extends SuperDao {
 			conn.setAutoCommit(false);
 			
 			// step1. 추천수 업데이트
-			String sql = " update foodiespot set likes = likes +1 ";
+			String sql = " update foodiespot set likes = likes +1 "; 
 			sql += " where no = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -349,8 +349,8 @@ public class FoodDao extends SuperDao {
 			pstmt = null;
 			
 			// step2. 추천 테이블에 추천기록 입력
-			sql = " insert into likes(no, id) ";
-			sql += " values(?, ?) ";
+			sql = " insert into likes(no, category, id) "; 
+			sql += " values(?, 'food' ,?) "; // 여기에 'food' 대신 event, tour, free 입력
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, no);

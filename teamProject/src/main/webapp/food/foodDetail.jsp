@@ -121,7 +121,7 @@
 				</button>
 				</a>
 			</c:if>
-			<a href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}">
+			<a href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
 			<button type="submit" class="btn btn-warning follower">
 				<span>
 					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
