@@ -25,7 +25,7 @@ public class FoodInsertController extends SuperClass {
 		if (id == null || id == "") {
 			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
 			this.setAlertMessage(message);
-			super.gotoPage(PREFIX + "foodMain.jsp");
+			new FoodMainController().doGet(request, response);
 			return;
 		}
 		

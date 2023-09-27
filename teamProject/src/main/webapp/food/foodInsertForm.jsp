@@ -154,7 +154,7 @@
 			  <input type="text" class="form-control short-input" id="phoneno" name="phoneno">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="menu"><span class="caution">* </span>메뉴(메뉴1 / 메뉴2 / ... 형식으로 입력해주세요.) : </label>
+			  <label for="menu"><span class="caution">* </span>메뉴(메뉴1 : 20000원 / 메뉴2 : 15000원 / ... 형식으로 입력해주세요.) : </label>
 			  <input type="text" class="form-control long-input" id="menu" name="menu">
 			</div>
 			<div class="form-group my-5 py-5">
