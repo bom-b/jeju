@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>${requestScope.bean.name}님의 회원 정보</title>
 	<style type="text/css">
 		.container{margin: 10px;}
 		#backButton{margin: auto;}
@@ -41,7 +41,7 @@
 				</tr>
 				<tr>
 					<td align="center">비밀번호 찾기 질문</td>
-					<td>${requestScope.bean.mquestion}</td>
+					<td>${requestScope.bean.question}</td>
 				</tr>
 				<tr>
 					<td align="center">비밀번호 찾기 질문 답</td>
@@ -64,7 +64,7 @@
 		</table>
 		<div id="backButton">
 			<button type="button" class="btn btn-primary" onclick="history.back();">
-				돌아 가기 
+				돌아가기 
 			</button>
 		</div>
 	</div>
