@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./../common/bootstrap5.jsp" %>
-<%@ include file="./../common/common.jsp" %>    
+<%@ include file="/common/bootstrap5.jsp" %>
+<%@ include file="/common/common.jsp" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +41,7 @@
 				</tr>
 				<tr>
 					<td align="center">비밀번호 찾기 질문</td>
-					<td>${requestScope.bean.question}</td>
+					<td>${requestScope.bean.mquestion}</td>
 				</tr>
 				<tr>
 					<td align="center">비밀번호 찾기 질문 답</td>

@@ -17,11 +17,11 @@ public class MemberUpdateController extends SuperClass {
         super.doGet(request, response);
         
      // Pquestion 테이블에서 상품 카테고리 목록을 읽어서 request에 바인딩합니다.
-     		PquestionDao dao = new PquestionDao() ;
+     		PquestionDao pdao = new PquestionDao() ;
      		List<Pquestion> lists = null ;
      				
      		try {
-     			lists = dao.GetPquestionList("members", "select") ;
+     			lists = pdao.GetPquestionList("members", "select") ;
      			request.setAttribute("pquestion", lists); 
      			
      		} catch (Exception e) {
@@ -35,8 +35,8 @@ public class MemberUpdateController extends SuperClass {
             // 기존 회원 정보를 가져옵니다.
             String id = loginfo.getId();
             String password = loginfo.getPassword();
-            MemberDao dao2 = new MemberDao();
-            Member bean = dao2.getDataByPk(id, password);
+            MemberDao dao = new MemberDao();
+            Member bean = dao.getDataByPk(id, password);
 
             // 회원 정보를 JSP 페이지로 전달합니다.
             request.setAttribute("bean", bean);
