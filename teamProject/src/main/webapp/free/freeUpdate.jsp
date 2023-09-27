@@ -57,33 +57,40 @@ h2 {
 }
 </style>
 <script type="text/javascript">
-  		$(document).ready(function(){
-  	  		/* $('#regdate').datepicker(); */
-  	  		$('#regdate').datepicker({dateFormat: "yy/mm/dd"});  	  	 
-  		});
-  		
-  		function validCheck(){/* 폼 유효성 검사 */  			
-  			var subject = $('#oname').val();
-  			if(subject.length < 3 || subject.length > 20){
-  				alert('글 제목은 3글자 이상 20글자 이하이어야 합니다.');
-  				$('#oname').focus() ;
-  				return false ;
-  			}
-  			
-  			var content = $('#ocontent').val();
-  			if(content.length < 5 || content.length > 30){
-  				alert('글 내용은 5글자 이상 30글자 이하이어야 합니다.');
-  				$('#ocontent').focus() ;
-  				return false ;
-  			}
-  		    alert('수정이 완료되었습니다.');
+    $(document).ready(function(){
+        /* $('#regdate').datepicker(); */
+        $('#regdate').datepicker({dateFormat: "yy/mm/dd"});  	  	 
+    });
+    
 
-  		    // 일정 시간 후 메시지 자동으로 사라지도록 설정
-  		    setTimeout(function () {
-  		        $('.alert').fadeOut('slow');
-  		    }, 3000); // 3초 후에 메시지 사라짐
-  		}
-  	</script>
+
+    // 폼 유효성 검사
+    function validCheck() {
+        var subject = $('#oname').val();
+        if(subject.length < 3 || subject.length > 20){
+            alert('글 제목은 3글자 이상 20글자 이하이어야 합니다.');
+            $('#oname').focus() ;
+            return false ;
+        }
+
+        var content = $('#ocontent').val();
+        if(content.length < 5 || content.length > 30){
+            alert('글 내용은 5글자 이상 30글자 이하이어야 합니다.');
+            $('#ocontent').focus() ;
+            return false ;
+        }
+
+        alert('수정이 완료되었습니다.');
+
+        // 일정 시간 후 메시지 자동으로 사라지도록 설정
+        setTimeout(function () {
+            $('.alert').fadeOut('slow');
+        }, 3000); // 3초 후에 메시지 사라짐
+    }
+    
+    // 페이지 로드 시 현재 날짜를 입력란에 채워 넣음
+    $('#oregdate').val(getCurrentDate());
+</script>
 </head>
 <body>
 	<div class="container">
@@ -169,7 +176,7 @@ h2 {
 				<div class="input-group">
 					<span class="input-group-text col-md-2">수정되는 날짜</span> <input
 						id="oregdate" name="oregdate" type="text" class="form-control"
-						placeholder="" value="${bean.oregdate}" readonly>
+						placeholder="" value="${bean.oregdate}" >
 				</div>
 
 

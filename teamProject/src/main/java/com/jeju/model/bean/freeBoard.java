@@ -23,7 +23,7 @@ public class freeBoard {
 		private int orderno ; // 순서 번호
 		
 		private int likes ; // 좋아요
-		private int hates ; // 싫어요	
+	
 		
 		public freeBoard() {
 			
@@ -66,7 +66,7 @@ public class freeBoard {
 					+ ", readhit=" + readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1="
 					+ oimage1 + ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5="
 					+ oimage5 + ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes="
-					+ likes + ", hates=" + hates + "]";
+					+ likes + " ]";
 		}
 
 
@@ -258,15 +258,7 @@ public class freeBoard {
 
 
 
-		public int getHates() {
-			return hates;
-		}
-
-
-
-		public void setHates(int hates) {
-			this.hates = hates;
-		}
+	
 
 
 

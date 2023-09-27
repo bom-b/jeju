@@ -395,11 +395,7 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 				href="<%=notWithFormTag%>frEmoticon&mode=likes&ono=${bean.ono}">
 				<img src="<%=appName%>/image/likes.png" width="30px" height="30px"
 				alt=""> ${bean.likes}
-			</a> &nbsp;&nbsp; <a class="emoticon"
-				href="<%=notWithFormTag%>frEmoticon&mode=hates&ono=${bean.ono}">
-				<img src="<%=appName%>/image/hates.png" width="30px" height="30px"
-				alt=""> ${bean.hates}
-			</a>
+			
 		</div>
 
 	</div>
@@ -423,7 +419,7 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 						<td><input type="hidden" name="no" value="${bean.no}" /> <input
 							type="text" name="fakeid" id="fakeid" size="10"
 							disabled="disabled"
-							value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
+							value="${sessionScope.loginfo.name}님">
 							<input type="hidden" name="id" id="id"
 							value="${sessionScope.loginfo.id}"></td>
 					</tr>
