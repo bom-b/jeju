@@ -21,7 +21,7 @@ public class freeUpdateController extends SuperClass {
 		freeBoard bean = dao.GetDataByPk(ono);
 		request.setAttribute("bean", bean);
 
-		super.gotoPage(PREFIX + "frUpdate.jsp");
+		super.gotoPage(PREFIX + "freeUpdate.jsp");
 	}
 
 	@Override

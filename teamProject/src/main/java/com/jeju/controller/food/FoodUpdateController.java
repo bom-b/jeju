@@ -4,50 +4,42 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.jeju.controller.SuperClass;
-import com.jeju.controller.tour.TourListController;
 import com.jeju.model.bean.Food;
 import com.jeju.model.dao.FoodDao;
 import com.oreilly.servlet.MultipartRequest;
 
-public class FoodInsertController extends SuperClass {
-	
+public class FoodUpdateController extends SuperClass{
 	private final String PREFIX = "food/";
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
+	
+		// 상품 수정시 넘어 오는 상품 번호를 챙긴다.
+		String no = request.getParameter("no");
 		
-		// 로그인한 유저 id 받아오기
-		String id = String.valueOf(request.getParameter("id"));
+		// 다오에서 no에 해당하는 데이터를 가져오고 그 가져온 데이터를 빈으로 만든다.
+		FoodDao dao = new FoodDao();
+		Food bean = dao.GetDataByPK(no);
 		
-		// 만약 로그인을 하지 않았을 경우
-		if (id == null || id == "") {
-			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
-			this.setAlertMessage(message);
-			super.gotoPage(PREFIX + "foodMain.jsp");
-			return;
+		try {
+			request.setAttribute("bean", bean);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		
-		super.gotoPage(PREFIX + "foodInsertForm.jsp");
+		super.gotoPage(PREFIX + "foodUpdateForm.jsp");
 	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
 		
-		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr") ;
-		
-		// 만약 로그인을 하지 않았을 경우
-		String id = mr.getParameter("id");
-		
-		if (id == null || id == "") {
-			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
-			this.setAlertMessage(message);
-			super.gotoPage(PREFIX + "foodMain.jsp");
-			return;
-		}
+		// 오브젝트로 가져온 mr을 강등해야됨
+		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr");
 		
 		Food bean = new Food();
 		
@@ -65,7 +57,7 @@ public class FoodInsertController extends SuperClass {
 		    koname = "술집";
 		}
 		
-		bean.setId(mr.getParameter("id"));
+		bean.setNo(mr.getParameter("no")); // 게시글 수정 시엔 게시글 번호를 반드시 챙겨야함
 		bean.setCategory(koname);
 		bean.setTitle(mr.getParameter("title"));
 		bean.setTime(mr.getParameter("time"));
@@ -80,27 +72,28 @@ public class FoodInsertController extends SuperClass {
 		bean.setImage5(mr.getFilesystemName("image5"));
 		
 		FoodDao dao = new FoodDao();
-		int cnt = -1 ;
 		
+		int cnt = -1;
 		try {
-			cnt = dao.InsertData(bean) ; 
+			cnt = dao.UpdateData(bean);
 			
 			if(cnt == -1) {
+				// 등록 실패
+				super.gotoPage(PREFIX + "prUpdateForm.jsp");
 				
-				String message = "서버 오류로 게시물이 등록되지 않았습니다.";
-				super.setAlertMessage(message);
-				super.gotoPage("/food/fdInsertForm.jsp");
+			} else {
+				/*
+				 * // 등록 성공 String message = "성공적으로 상품이 수정되었습니다.";
+				 * super.setPostiveAlertMessage(message);
+				 */
 				
-			}else {
-				
-				new FoodMainController().doGet(request, response); 
+				super.gotoPage(PREFIX + "foodMain.jsp");
 				
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 				
 	}
 }

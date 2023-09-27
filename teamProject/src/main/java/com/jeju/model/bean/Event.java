@@ -7,8 +7,9 @@ private int eno;
 private String id;
 private String ename;
 private String ephoneno;
-private String eduration;
-private Clob econtent;
+private String startdate;
+private String enddate;
+private String econtent;
 private String eplace;
 private String emap;
 private String eimage1;
@@ -20,6 +21,22 @@ private String regdate;
 
 public Event() {
 	// TODO Auto-generated constructor stub
+}
+
+public String getStartdate() {
+	return startdate;
+}
+
+public void setStartdate(String startdate) {
+	this.startdate = startdate;
+}
+
+public String getEnddate() {
+	return enddate;
+}
+
+public void setEnddate(String enddate) {
+	this.enddate = enddate;
 }
 
 public int getEno() {
@@ -46,16 +63,10 @@ public String getEphoneno() {
 public void setEphoneno(String ephoneno) {
 	this.ephoneno = ephoneno;
 }
-public String getEduration() {
-	return eduration;
-}
-public void setEduration(String eduration) {
-	this.eduration = eduration;
-}
-public Clob getEcontent() {
+public String getEcontent() {
 	return econtent;
 }
-public void setEcontent(Clob econtent) {
+public void setEcontent(String econtent) {
 	this.econtent = econtent;
 }
 public String getEplace() {
@@ -106,13 +117,15 @@ public String getRegdate() {
 public void setRegdate(String regdate) {
 	this.regdate = regdate;
 }
+
 @Override
 public String toString() {
-	return "Event [eno=" + eno + ", id=" + id + ", ename=" + ename + ", ephoneno=" + ephoneno + ", eduration="
-			+ eduration + ", econtent=" + econtent + ", eplace=" + eplace + ", emap=" + emap + ", eimage1=" + eimage1
-			+ ", eimage2=" + eimage2 + ", eimage3=" + eimage3 + ", eimage4=" + eimage4 + ", eimage5=" + eimage5
-			+ ", regdate=" + regdate + "]";
+	return "Event [eno=" + eno + ", id=" + id + ", ename=" + ename + ", ephoneno=" + ephoneno + ", startdate="
+			+ startdate + ", enddate=" + enddate + ", econtent=" + econtent + ", eplace=" + eplace + ", emap=" + emap
+			+ ", eimage1=" + eimage1 + ", eimage2=" + eimage2 + ", eimage3=" + eimage3 + ", eimage4=" + eimage4
+			+ ", eimage5=" + eimage5 + ", regdate=" + regdate + "]";
 }
+
 
 
 }

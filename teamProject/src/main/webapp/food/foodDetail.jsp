@@ -102,9 +102,25 @@
 	</div>
 <!-- 메인사진과 메인설명 -->	
 
-<!-- 추천버튼 -->
+<!-- 삭제, 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
+			<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
+				<a href="<%=notWithFormTag%>fdDelete&no=${requestScope.bean.no}">
+				<button type="submit" class="btn btn-danger follower">
+					<span>
+						<span class=""> 삭제하기 </span>
+					</span>
+				</button>
+				</a>
+				<a href="<%=notWithFormTag%>fdUpdate&no=${requestScope.bean.no}">
+				<button type="submit" class="btn btn-info follower">
+					<span>
+						<span class=""> 수정하기 </span>
+					</span>
+				</button>
+				</a>
+			</c:if>
 			<a href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}">
 			<button type="submit" class="btn btn-warning follower">
 				<span>
@@ -116,7 +132,7 @@
 			</a>
 		</div>
 	</div>
-<!-- 추천버튼 -->
+<!-- 삭제, 추천버튼 -->
 
 <!-- 서브사진들 -->
 	<div class="container-xxl py-5">
