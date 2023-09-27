@@ -83,10 +83,7 @@ public class TourMainController extends SuperClass{
 			request.setAttribute("PageInfo_te", PageInfo_te);
 			
 			// 바인딩한 것을 페이지로 보냅니다.
-		
-		
-		
-		super.gotoPage("/tour/tourMain.jsp");
+			super.gotoPage("/tour/tourMain.jsp");
 		
 		}  catch (Exception e) {
 			e.printStackTrace();

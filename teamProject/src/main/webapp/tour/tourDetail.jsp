@@ -12,28 +12,6 @@
 
 <script type="text/javascript">
 
-	//메뉴 데이터 한줄씩 출력하기
-	function splitString(inputString) {
-	    var menuArray = inputString.split(" / "); // "/"를 기준으로 문자열을 분할하여 배열로 반환
-	    var resultElement = document.getElementById("result");
-	    
-	    // 분할된 메뉴 항목들을 출력
-	    for (var i = 0; i < menuArray.length; i++) {
-	    	var menuItem = document.createElement("span");
-	    	menuItem.textContent = menuArray[i];
-	    	resultElement.appendChild(menuItem);
-	    	
-	    	// 줄바꿈을 추가
-	        var lineBreak = document.createElement("br"); // <br> 요소 생성
-	        resultElement.appendChild(lineBreak); // 결과 요소에 추가
-	    }
-	}
-
-	$(document).ready(function(){
-
-	});
-	
-	
 </script>
 
 <style type="text/css">
@@ -212,11 +190,27 @@ object-fit: cover;
 	<!-- 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
+		<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
+				<a href="<%=notWithFormTag%>trDelete&tno=${requestScope.bean.tno}">
+				<button type="submit" class="btn btn-danger follower">
+					<span>
+						<span class=""> 삭제하기 </span>
+					</span>
+				</button>
+				</a>
+				<a href="<%=notWithFormTag%>trUpdate&tno=${requestScope.bean.tno}">
+				<button type="submit" class="btn btn-info follower">
+					<span>
+						<span class=""> 수정하기 </span>
+					</span>
+				</button>
+				</a>
+			</c:if>
 			<a href="<%=notWithFormTag%>trLikes&tno=${requestScope.bean.tno}&id=${sessionScope.loginfo.id}">
 			<button type="submit" class="btn btn-warning follower">
 				<span>
 					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
-					<span class=""> 추천 </span>
+					<span class=""> 추천하기 </span>
 					<span class="">${requestScope.bean.tlikes}</span>
 				</span>
 			</button>
@@ -230,16 +224,24 @@ object-fit: cover;
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
+					<c:if test="${requestScope.bean.timage2 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
+					<c:if test="${requestScope.bean.timage3 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
+					<c:if test="${requestScope.bean.timage4 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
+					<c:if test="${requestScope.bean.timage5 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -345,11 +347,7 @@ object-fit: cover;
 			       		 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" frameborder="0" style="border:0" allowfullscreen></iframe>
 			      	</div>
 				</div> -->
-			</div>
-		</div>
-	</div>
-<!-- 댓글창과 지도 -->	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoHXS6bdXJxmAi4oxnKq8H_gcGbb9h5js"></script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoHXS6bdXJxmAi4oxnKq8H_gcGbb9h5js"></script>
 				<div id="map" style="width: 100%; height: 300px;"></div>
 				<script>
 				function initMap() {
@@ -370,5 +368,10 @@ object-fit: cover;
   				});
 				}
 				</script>
+			</div>
+		</div>
+	</div>
+<!-- 댓글창과 지도 -->	
+	
 </body>
 </html>
