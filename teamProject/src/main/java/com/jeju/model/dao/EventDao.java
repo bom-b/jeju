@@ -1,11 +1,13 @@
 package com.jeju.model.dao;
 
+import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.jeju.model.bean.Event;
+import com.jeju.utility.MyUtility;
 
 public class EventDao extends SuperDao {
 
@@ -36,13 +38,15 @@ public class EventDao extends SuperDao {
 
 	private Event getEventBeanData(ResultSet rs) throws Exception {
 		Event bean = new Event();
+		Clob clob = rs.getClob("econtent");
 
 		bean.setEno(rs.getInt("eno"));
 		bean.setId(rs.getString("id"));
 		bean.setEname(rs.getString("ename"));
 		bean.setEphoneno(rs.getString("ephoneno"));
-		bean.setEduration(rs.getString("eduration"));
-		bean.setEcontent(rs.getClob("econtent"));
+		bean.setStartdate(String.valueOf(rs.getDate("startdate")));
+		bean.setEnddate(String.valueOf(rs.getDate("enddate")));
+		bean.setEcontent(clob.getSubString(1, (int)clob.length()));
 		bean.setEplace(rs.getString("eplace"));
 		bean.setEmap(rs.getString("emap"));
 		bean.setEimage1(rs.getString("eimage1"));
@@ -51,7 +55,6 @@ public class EventDao extends SuperDao {
 		bean.setEimage4(rs.getString("eimage4"));
 		bean.setEimage5(rs.getString("eimage5"));
 		bean.setRegdate(String.valueOf(rs.getDate("regdate")));
-
 		return bean;
 	}
 
@@ -59,15 +62,15 @@ public class EventDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from event where eno=? ";
-		
+
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, eno);
-		
-		rs=pstmt.executeQuery();
+
+		rs = pstmt.executeQuery();
 		Event bean = null;
-		
-		if(rs.next()) {
+
+		if (rs.next()) {
 			bean = this.getEventBeanData(rs);
 		}
 		if (rs != null) {
