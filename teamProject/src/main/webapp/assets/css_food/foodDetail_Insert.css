@@ -1,0 +1,150 @@
+/********** Template CSS **********/
+
+/* 상위 스타일 상속 방지 */
+html {
+    font-size: inherit; 
+}
+
+/* 메인사진과 메인설명 */
+.main{
+	margin-top: 100px;
+	margin-bottom: 20px;
+	
+}
+
+.mainBox {
+	/* border: 2px solid rgb(255, 232, 221); /* 테두리 두께와 색상 설정 */
+	border: 2px solid #f2f2f2;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+	padding: 50px; /* 테두리와 내용 사이의 간격 설정 */
+
+}
+
+.writerBox {
+	/* border: 2px solid rgb(255, 232, 221);
+	border: 2px solid #f2f2f2;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+	padding-left: 15px; 
+	padding-right: 50px; */
+	
+	display: inline-block; /* 내용물 크기에 따라 동적으로 조절 */
+	margin-bottom: 10px;
+
+}
+
+.menubox {
+	margin-top: 20px;
+	border: 2px solid  #e6e6e6; 
+    border-radius: 5px;
+    background-color: white;
+	padding-top: 10px; 
+	padding-bottom: 10px;
+	display: inline-block; /* 내용물 크기에 따라 동적으로 조절 */
+}
+
+.menubox-sub {
+	display: block;
+    align-items: center; /* 수직 정렬 */
+    white-space: nowrap; /* 텍스트 한 줄로 표시 */
+}
+
+.commentBox {
+	margin-top: 100px;
+}
+
+.content{
+	align: left;
+	text-align: left;
+	padding-left: 50px;
+	
+}
+
+.mainimage{
+	padding: 1px;
+}
+
+.title {
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.sub-title.writer {
+    font-weight: bold !important;
+}
+
+.contents {
+	margin-bottom: 10px;
+}
+
+/* 추천버튼 */
+.thumb {
+	margin-bottom: 15px
+}
+
+/* 댓글창 */
+.table-hover {
+	border-spacing: 30px; /* 행과 열 사이의 여백 설정 */
+
+}
+
+.comment {
+	padding-top: 20px !important;
+	padding-bottom: 30px !important;
+}
+
+.regdate{
+	font-size: 12px;
+}
+
+#insertComment {
+	margin-top: 100px;
+}
+
+#fakeid {
+    width: 250px;
+}
+
+/* 이미지 사이즈 맞추기 */
+.main-image {
+width: 350px;
+height: 350px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+object-fit: cover; /* 이미지 비율 유지하며 크기 조절 */
+}
+
+.sub-image {
+width: 250px;
+height: 250px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+object-fit: cover;
+}
+
+/********** 인서트폼 **********/
+
+.short-input {
+	width: 300px;
+}
+
+.long-input {
+	width: 600px;
+}
+
+.caution {
+	color: red;
+}
+
+.insert-title {
+	margin-bottom: 50px;
+}
+
+#buttonset {
+	margin-top: 50px !important;
+    margin-left: 0px;
+}

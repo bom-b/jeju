@@ -49,6 +49,7 @@
 	<script src="assets/js/sweetalert.js"></script>
 	<link rel="shortcut icon" href="/assets/ico/icon.png">
 	<style type="text/css">
+		#alert_box{margin-top: 80px;}
 		.alert-dismissible{margin: 10px;}
 		.alert-danger{
 			margin: 20px;
@@ -190,7 +191,7 @@
 	
 	<c:if test="${not empty sessionScope.alertMessage}">
 		<%-- 사용자에게 주의/경고/오류 등을 알려 주기 위한 Alert Box --%>
-		<div class="alert alert-danger alert-dismissible">
+		<div id="alert_box" class="alert alert-danger alert-dismissible">
 	    	<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 	    	<strong>경고 메시지</strong> ${sessionScope.alertMessage}
 	  	</div>

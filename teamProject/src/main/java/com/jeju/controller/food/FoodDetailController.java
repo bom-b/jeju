@@ -24,7 +24,7 @@ public class FoodDetailController extends SuperClass{
 			
 			if(bean == null) {
 				super.setAlertMessage("잘못된 게시글 정보 입니다.");
-				super.gotoPage("common/foodMain.jsp");
+				super.gotoPage("/food/foodMain.jsp");
 			} else {
 				request.setAttribute("bean", bean);
 				super.gotoPage("/food/foodDetail.jsp");

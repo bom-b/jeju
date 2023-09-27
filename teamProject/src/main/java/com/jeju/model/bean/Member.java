@@ -96,7 +96,7 @@ public class Member {
 		this.ratingimg = ratingimg;
 	}
 	public Member() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
