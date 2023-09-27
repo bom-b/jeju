@@ -334,22 +334,21 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 	<!-- 헤더 End -->
 
 	<div class="container" id="postSection">
-		<h2 align="center" style="margin-bottom: 5px;">${requestScope.bean.oname}글
-			제목</h2>
-		<h5 align="center" style="margin-bottom: 25px;">카테고리
-			${requestScope.bean.category}</h5>
-		<br> <span class="td-length" style="margin-left: 20px;">no.${requestScope.bean.ono}글번호</span>
+		<h2 align="center" style="margin-bottom: 5px;">${requestScope.bean.oname}</h2>
+		<h5 align="center" style="margin-bottom: 25px;">
+			${requestScope.bean.pcategory}</h5>
+		<br> <span class="td-length" style="margin-left: 20px;">no.${requestScope.bean.ono}</span>
 		&nbsp;&nbsp; <span class="td-length" style="text-align: right;">작성자
 			: ${requestScope.bean.id}</span> &nbsp;&nbsp; &nbsp;&nbsp; <span
-			align="center" class="td-length">${requestScope.bean.readhit}조회수
-			: </span> &nbsp;&nbsp; &nbsp;&nbsp; <span align="center" class="td-length">${requestScope.bean.regdate}작성일자
-			 </span>
+			align="center" class="td-length">조회수 : ${requestScope.bean.readhit}
+			</span> &nbsp;&nbsp; &nbsp;&nbsp; <span align="center" class="td-length">작성 일자  : ${requestScope.bean.oregdate}
+		</span>
 
 
 
 
 		<textarea rows="10" cols="50" readonly
-			style="margin-top: 5px; width: 95%; border: none; background-color: #f2f2f2; margin: auto; display: flex;">${requestScope.bean.content}글 내용들어가요</textarea>
+			style="margin-top: 5px; width: 95%; border: none; background-color: #f2f2f2; margin: auto; display: flex;">${requestScope.bean.ocontent}</textarea>
 
 
 		<!-- openForum 이미지 시작 -->
@@ -393,13 +392,13 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 			<button type="button" class="btn btn-primary"
 				onclick="history.back();">돌아 가기</button>
 			&nbsp;&nbsp;&nbsp; <a class="emoticon"
-				href="<%=notWithFormTag%>boEmoticon&mode=likes&no=${bean.no}"> <img
-				src="<%=appName%>/image/likes.png" width="30px" height="30px" alt="">
-				${bean.likes}
+				href="<%=notWithFormTag%>frEmoticon&mode=likes&ono=${bean.ono}">
+				<img src="<%=appName%>/image/likes.png" width="30px" height="30px"
+				alt=""> ${bean.likes}
 			</a> &nbsp;&nbsp; <a class="emoticon"
-				href="<%=notWithFormTag%>boEmoticon&mode=hates&no=${bean.no}"> <img
-				src="<%=appName%>/image/hates.png" width="30px" height="30px" alt="">
-				${bean.hates}
+				href="<%=notWithFormTag%>frEmoticon&mode=hates&ono=${bean.ono}">
+				<img src="<%=appName%>/image/hates.png" width="30px" height="30px"
+				alt=""> ${bean.hates}
 			</a>
 		</div>
 

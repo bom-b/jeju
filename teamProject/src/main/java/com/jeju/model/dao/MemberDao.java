@@ -94,27 +94,6 @@ public class MemberDao extends SuperDao{
 		
 		return bean;
 	}	
-	
-	
-	public Member getDataByPk(String id) {
-		Member bean = new Member(id, "김호철", "abc123", "female", "2023/08/20", "미혼", 
-				100, "역삼", "kim9", "탁구,축구,");
-		
-		return bean;
-	}
-	
-	// 회원 목록 보기 기능) 회원 전체 목록을 반환해 줍니다.
-	public List<Member> getDataList(){
-		List<Member> datalist = new ArrayList<Member>() ;
-		
-		datalist.add(new Member("kimho", "김호철", "abc123", "female", "2023/08/20", "미혼", 100, "마포", "kim9", "탁구,축구,"));
-		datalist.add(new Member("park", "박혁신", "abc123", "male", "2002/06/24", "미혼", 200, "용산", "kim9", "농구,배구,"));		
-		datalist.add(new Member("choi", "최만위", "abc123", "female", "2020/12/12", "이혼", 300, "강남", "soon", "농구,배구,"));		
-		datalist.add(new Member("kim", "김동섭", "abc123", "male", "2023/08/20", "결혼", 400, "마포", "soon", "탁구,축구,"));
-		datalist.add(new Member("lee", "이수돌", "abc123", "male", "2023/08/20", "이혼", 500, "서대문", "kim9", "탁구,축구,"));
-		
-		return datalist ;
-	}
 
 	public Member getDataByPk(String id, String password) throws Exception {		
 		PreparedStatement pstmt = null ;
@@ -225,6 +204,82 @@ public class MemberDao extends SuperDao{
 		if(conn != null) {conn.close();}
 		
 		return lists;
+	}
+	
+	public int UpdateData(Member bean) throws Exception {
+	    int cnt = -1;
+	   
+	    String sql = "UPDATE members SET " +
+	            "password = ?, " +
+	            "name = ?, " +
+	            "gender = ?, " +
+	            "mquestion = ?, " +
+	            "manswer = ?, " +
+	            "mphoneno = ?, " +
+	            "birth = ? " +
+	            "WHERE id = ?";
+
+	    PreparedStatement pstmt = null;
+
+	    conn = super.getConnection();
+	    conn.setAutoCommit(false);
+
+	    pstmt = conn.prepareStatement(sql);
+
+	    pstmt.setString(1, bean.getPassword());
+	    pstmt.setString(2, bean.getName());
+	    pstmt.setString(3, bean.getGender());
+	    pstmt.setString(4, bean.getMquestion());
+	    pstmt.setString(5, bean.getManswer());
+	    pstmt.setInt(6, bean.getMphoneno());
+	    pstmt.setString(7, bean.getBirth());
+
+	    // WHERE 절에 현재 로그인한 사용자의 ID 설정
+	    pstmt.setString(8, bean.getId());
+
+	    cnt = pstmt.executeUpdate();
+	    conn.commit();
+
+	    if (pstmt != null) {
+	        pstmt.close();
+	    }
+	    if (conn != null) {
+	        conn.close();
+	    }
+
+	    return cnt;
+	}
+
+
+	public int DeleteData(String id) {
+	    conn = null;
+	    PreparedStatement pstmt = null;
+	    
+	    try {
+	        conn = super.getConnection();
+	        
+	        String sql = "DELETE FROM members WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        
+	        int cnt = pstmt.executeUpdate();
+	        
+	        return cnt;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1; // 실패 시 -1 반환
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
 
 

@@ -158,7 +158,22 @@
 				<span class="input-group-text">작성 일자</span>
 				<input class="form-control" type="datetime" id="regdate" name="regdate">				
 			</div>
-
+			<span class="input-group-text sdms-font" style="font-size: 30px">관광지 카테고리</span>
+                <div class="form-control">
+                    <label class="radio-inline radio_gender sdms-font" style="font-size: 20px">
+                        &nbsp;<input type="radio" id="tcategory1" name="tcategory" value="액티비티 체험">액티비티 체험
+                    </label>
+                    <label class="radio-inline radio_gender sdms-font" style="font-size: 20px">
+                        &nbsp;<input type="radio" id="tcategory2" name="tcategory" value="오름 명소">오름 명소
+                    </label>
+                    <label class="radio-inline radio_gender sdms-font" style="font-size: 20px">
+                        &nbsp;<input type="radio" id="tcategory3" name="tcategory" value="해수욕장">해수욕장
+                    </label>
+                    <label class="radio-inline radio_gender sdms-font" style="font-size: 20px">
+                        &nbsp;<input type="radio" id="tcategory4" name="tcategory" value="테마파크">테마파크
+                    </label>
+                    
+                </div>
 			
 			<%-- <div class="input-group">
 				<span class="input-group-text">카테고리</span>

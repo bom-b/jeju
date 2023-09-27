@@ -9,12 +9,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- 맛집 전용 style.css -->
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
 
 <script type="text/javascript">
 
 	//메뉴 데이터 한줄씩 출력하기
 	function splitString(inputString) {
-	    var menuArray = inputString.split(" / "); // "/"를 기준으로 문자열을 분할하여 배열로 반환
+	    var menuArray = inputString.split("/"); // "/"를 기준으로 문자열을 분할하여 배열로 반환
 	    var resultElement = document.getElementById("result");
 	    
 	    // 분할된 메뉴 항목들을 출력
@@ -37,132 +39,11 @@
 </script>
 
 <style type="text/css">
-/* 메인사진과 메인설명 */
-.main{
-	margin-top: 100px;
-	margin-bottom: 20px;
-	
-}
-
-.mainBox {
-	/* border: 2px solid rgb(255, 232, 221); /* 테두리 두께와 색상 설정 */
-	border: 2px solid #f2f2f2;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-	padding: 50px; /* 테두리와 내용 사이의 간격 설정 */
-
-}
-
-.writerBox {
-	/* border: 2px solid rgb(255, 232, 221);
-	border: 2px solid #f2f2f2;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-	padding-left: 15px; 
-	padding-right: 50px; */
-	
-	display: inline-block; /* 내용물 크기에 따라 동적으로 조절 */
-	margin-bottom: 10px;
-
-}
-
-.menubox {
-	margin-top: 20px;
-	border: 2px solid  #e6e6e6; 
-    border-radius: 5px;
-    background-color: white;
-	padding-top: 10px; 
-	padding-bottom: 10px;
-	display: inline-block; /* 내용물 크기에 따라 동적으로 조절 */
-}
-
-.menubox-sub {
-	display: block;
-    align-items: center; /* 수직 정렬 */
-    white-space: nowrap; /* 텍스트 한 줄로 표시 */
-}
-
-.commentBox {
-	margin-top: 100px;
-}
-
-.content{
-	align: left;
-	text-align: left;
-	padding-left: 50px;
-	
-}
-
-.mainimage{
-	padding: 1px;
-}
-
-.title {
-	font-size: 25px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-
-.sub-title.writer {
-    font-weight: bold !important;
-}
-
-.contents {
-	margin-bottom: 10px;
-}
-
-/* 추천버튼 */
-.thumb {
-	margin-bottom: 15px
-}
-
-/* 댓글창 */
-.table-hover {
-	border-spacing: 30px; /* 행과 열 사이의 여백 설정 */
-
-}
-
-.comment {
-	padding-top: 20px !important;
-	padding-bottom: 30px !important;
-}
-
-.regdate{
-	font-size: 12px;
-}
-
-#insertComment {
-	margin-top: 100px;
-}
-
-#fakeid {
-    width: 250px;
-}
-
-/* 이미지 사이즈 맞추기 */
-.main-image {
-width: 350px;
-height: 350px;
-overflow: hidden;
-background-size: cover;
-background-position: center;
-object-fit: cover; /* 이미지 비율 유지하며 크기 조절 */
-}
-
-.sub-image {
-width: 250px;
-height: 250px;
-overflow: hidden;
-background-size: cover;
-background-position: center;
-object-fit: cover;
-}
 
 </style>
 
 </head>
 <body>
-메모
 <!-- 메인사진과 메인설명 -->
 	<div class="main container-xxl py-5">
 		<div class="text-left container my-5 py-5">
@@ -221,9 +102,25 @@ object-fit: cover;
 	</div>
 <!-- 메인사진과 메인설명 -->	
 
-<!-- 추천버튼 -->
+<!-- 삭제, 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
+			<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
+				<a href="<%=notWithFormTag%>fdDelete&no=${requestScope.bean.no}">
+				<button type="submit" class="btn btn-danger follower">
+					<span>
+						<span class=""> 삭제하기 </span>
+					</span>
+				</button>
+				</a>
+				<a href="<%=notWithFormTag%>fdUpdate&no=${requestScope.bean.no}">
+				<button type="submit" class="btn btn-info follower">
+					<span>
+						<span class=""> 수정하기 </span>
+					</span>
+				</button>
+				</a>
+			</c:if>
 			<a href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}">
 			<button type="submit" class="btn btn-warning follower">
 				<span>
@@ -235,23 +132,31 @@ object-fit: cover;
 			</a>
 		</div>
 	</div>
-<!-- 추천버튼 -->
+<!-- 삭제, 추천버튼 -->
 
 <!-- 서브사진들 -->
 	<div class="container-xxl py-5">
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}">
+					<c:if test="${requestScope.bean.image2 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}">
+					<c:if test="${requestScope.bean.image3 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}">
+					<c:if test="${requestScope.bean.image4 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}">
+					<c:if test="${requestScope.bean.image5 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}">
+					</c:if>
 				</div>
 			</div>
 		</div>

@@ -26,7 +26,7 @@ public class freeInsertController extends SuperClass{
 		bean.setPcategory(request.getParameter("pcategory"));
 		bean.setOcontent(request.getParameter("ocontent"));
 		bean.setOname(request.getParameter("oname"));
-		bean.setoregdate(request.getParameter("oregdate"));
+		bean.setOregdate(request.getParameter("oregdate"));
 		bean.setOimage1(request.getParameter("oimage1"));
 		bean.setOimage2(request.getParameter("oimage2"));
 		bean.setOimage3(request.getParameter("oimage3"));
@@ -41,7 +41,7 @@ public class freeInsertController extends SuperClass{
 			if(cnt == -1 ) { //등록 실패
 				new freeInsertController().doGet(request, response);
 			}else {//성공
-				//
+				super.gotoPage( PREFIX+"freeBoardMain.jsp");
 			}
 		} catch (Exception e) { 
 			e.printStackTrace();

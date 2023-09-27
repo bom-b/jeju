@@ -19,8 +19,7 @@ fdDetail=com.jeju.controller.food.FoodDetailController
 fdLikes=com.jeju.controller.food.FoodLikesController
 fdInsert=com.jeju.controller.food.FoodInsertController
 fdDelete=com.jeju.controller.food.FoodDeleteController
-#boUpdate=com.jeju.controller.board.BoardUpdateController
-#boReply=com.jeju.controller.board.BoardReplyController
+fdUpdate=com.jeju.controller.food.FoodUpdateController
 
 # tour section
 trMain=com.jeju.controller.tour.TourMainController

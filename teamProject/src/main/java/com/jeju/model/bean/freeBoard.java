@@ -2,6 +2,7 @@ package com.jeju.model.bean;
 
 public class freeBoard {
 		private int ono ; //글번호
+		private int no ; //참조하는번호
 		private String id ; //작성자 아이디
 		private String oname ; // 글 제목
 		private String ocontent ; //글 내용
@@ -30,15 +31,43 @@ public class freeBoard {
 
 	
 
-		@Override
-		public String toString() {
-			return "freeBoard [ono=" + ono + ", id=" + id + ", oname=" + oname + ", ocontent=" + ocontent + ", readhit="
-					+ readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1=" + oimage1
-					+ ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5=" + oimage5
-					+ ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes=" + likes
-					+ ", hates=" + hates + "]";
+		public int getNo() {
+			return no;
 		}
 
+
+
+		public void setNo(int no) {
+			this.no = no;
+		}
+
+
+
+		public String getOregdate() {
+			return oregdate;
+		}
+
+
+
+		public void setOregdate(String oregdate) {
+			this.oregdate = oregdate;
+		}
+
+
+
+	
+
+
+
+
+		@Override
+		public String toString() {
+			return "freeBoard [ono=" + ono + ", no=" + no + ", id=" + id + ", oname=" + oname + ", ocontent=" + ocontent
+					+ ", readhit=" + readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1="
+					+ oimage1 + ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5="
+					+ oimage5 + ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes="
+					+ likes + ", hates=" + hates + "]";
+		}
 
 
 
@@ -102,15 +131,10 @@ public class freeBoard {
 
 
 
-		public String getoregdate() {
-			return oregdate;
-		}
+		
 
 
 
-		public void setoregdate(String oregdate) {
-			this.oregdate = oregdate;
-		}
 
 
 

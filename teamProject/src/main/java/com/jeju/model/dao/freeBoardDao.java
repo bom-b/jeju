@@ -20,7 +20,7 @@ public class freeBoardDao extends SuperDao {
 		bean.setPcategory(rs.getString("pcategory"));
 
 		bean.setReadhit(rs.getInt("readhit"));
-		bean.setoregdate(rs.getString("oregdate"));
+		bean.setOregdate(rs.getString("oregdate"));
 
 		bean.setOimage1(rs.getString("oimage1"));
 		bean.setOimage2(rs.getString("oimage2"));
@@ -40,7 +40,7 @@ public class freeBoardDao extends SuperDao {
 
 	public freeBoard getDataByPrimaryKey(Integer ono) throws Exception {
 		String sql = " select * from openforum ";
-		sql += " where no = ?";
+		sql += " where ono = ?";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -75,7 +75,7 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select * from openForum order by no desc";
+		String sql = " select * from openForum order by ono desc";
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -197,8 +197,8 @@ public class freeBoardDao extends SuperDao {
 		// bean 객체 정보를 이용하여 데이터 베이스에 추가합니다.
 		int cnt = -1;
 
-		String sql = " insert into openforum(select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth) ";
-		sql += " values(seqboard.nextval, ?, ?, ?, default, default, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO openforum (ono, id, oname, ocontent, oregdate, pcategory, oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth) ";
+	    sql += "VALUES (seqopen.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, seqopen.currval, default, default)";
 		// 수정할 내용
 
 		PreparedStatement pstmt = null;
@@ -206,11 +206,16 @@ public class freeBoardDao extends SuperDao {
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement(sql);
 
-		/*
-		 * pstmt.setString(1, bean.getId()); pstmt.setString(2, bean.getPassword());
-		 * pstmt.setString(3, bean.getSubject()); pstmt.setString(4, bean.getContent());
-		 * pstmt.setString(5, bean.getRegdate()); 이느낌으로 코딩하기
-		 */
+		pstmt.setString(1, bean.getId());
+		pstmt.setString(2, bean.getOname());
+		pstmt.setString(3, bean.getOcontent());
+		pstmt.setString(4, bean.getOregdate());
+		pstmt.setString(5, bean.getPcategory());
+		pstmt.setString(6, bean.getOimage1());
+		pstmt.setString(7, bean.getOimage2());
+		pstmt.setString(8, bean.getOimage3());
+		pstmt.setString(9, bean.getOimage4());
+		pstmt.setString(10, bean.getOimage5());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();
@@ -229,7 +234,7 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = " select * from openforum ";
-		sql += " where no = ? ";
+		sql += " where ono = ? ";
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -261,21 +266,28 @@ public class freeBoardDao extends SuperDao {
 
 		int cnt = -1;
 
-		String sql = " update openforum set id = ?, password = ?, subject = ?, content = ?, regdate = ?, groupno = ?, orderno = ?, depth = ? ";
-		sql += " where no = ? ";
+		String sql = " update openforum set id = ?, oname = ?, ocontent = ?, oregdate = ?, pcategory = ?,oimage1 = ?,oimage2 = ?,oimage3 = ?,oimage4 = ?,oimage5 = ?, groupno = ?, orderno = ?, depth = ? ";
+		sql += " where ono = ? ";
 
 		PreparedStatement pstmt = null;
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement(sql);
 
-		/*
-		 * pstmt.setString(1, bean.getId()); pstmt.setString(2, bean.getPassword());
-		 * pstmt.setString(3, bean.getSubject()); pstmt.setString(4, bean.getContent());
-		 * pstmt.setString(5, bean.getRegdate()); pstmt.setInt(6, bean.getGroupno());
-		 * pstmt.setInt(7, bean.getOrderno()); pstmt.setInt(8, bean.getDepth());
-		 * pstmt.setInt(9, bean.getNo());
-		 */
+		pstmt.setString(1, bean.getId());
+		pstmt.setString(2, bean.getOname());
+		pstmt.setString(3, bean.getOcontent());
+		pstmt.setString(4, bean.getOregdate());
+		pstmt.setString(5, bean.getPcategory());
+		pstmt.setString(6, bean.getOimage1());
+		pstmt.setString(7, bean.getOimage2());
+		pstmt.setString(8, bean.getOimage3());
+		pstmt.setString(9, bean.getOimage4());
+		pstmt.setString(10, bean.getOimage5());
+		pstmt.setInt(11, bean.getGroupno());
+		pstmt.setInt(12, bean.getOrderno());
+		pstmt.setInt(13, bean.getDepth());
+		  pstmt.setInt(14, bean.getOno());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();
@@ -290,16 +302,16 @@ public class freeBoardDao extends SuperDao {
 		return cnt;
 	}
 
-	public int UpdateEmoticon(int no, String columnName) throws Exception {
+	public int UpdateEmoticon(int ono, String columnName) throws Exception {
 		String sql = " update openforum set " + columnName + "=" + columnName + " + 1  ";
-		sql += " where no = ? ";
+		sql += " where ono = ? ";
 		PreparedStatement pstmt = null;
 
 		int cnt = -1;
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, no);
+		pstmt.setInt(1, ono);
 
 		cnt = pstmt.executeUpdate();
 
