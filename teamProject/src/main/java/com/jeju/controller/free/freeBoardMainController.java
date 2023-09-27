@@ -68,7 +68,7 @@ public class freeBoardMainController extends SuperClass {
             request.setAttribute("pageInfo_qu", pageInfo_qu);
             request.setAttribute("pageInfo_infor", pageInfo_infor);
 
-            super.gotoPage("/free/freeBoardMain.jsp");
+            super.gotoPage("/free/freeMain.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();

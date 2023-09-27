@@ -355,4 +355,28 @@ public class freeBoardDao extends SuperDao {
 
 		return cnt;
 	}
+
+	public int deleteFree(int ono) throws Exception{
+		String sql = " delete from openforum where ono = ? ";
+		PreparedStatement pstmt = null;
+
+		int cnt = -1;
+		conn = super.getConnection();
+		conn.setAutoCommit(false);
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, ono);
+
+		cnt = pstmt.executeUpdate();
+
+		conn.commit();
+
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
+
+		return cnt;
+	}
 }
