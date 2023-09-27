@@ -23,11 +23,11 @@ fdUpdate=com.jeju.controller.food.FoodUpdateController
 
 # tour section
 trMain=com.jeju.controller.tour.TourMainController
-trList=com.jeju.controller.product.TourListController
+trList=com.jeju.controller.tour.TourListController
 trInsert=com.jeju.controller.tour.TourInsertController
 trUpdate=com.jeju.controller.tour.TourUpdateController
 trDetail=com.jeju.controller.tour.TourDetailController
-#trDelete=com.jeju.controller.tour.TourDeleteController
+trDelete=com.jeju.controller.tour.TourDeleteController
 trLikes=com.jeju.controller.tour.TourLikesController
 
 

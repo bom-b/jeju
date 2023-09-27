@@ -82,7 +82,7 @@
 	
 	// 글쓰기
 	function writeForm() {
-		location.href = '<%=notWithFormTag%>trInsert';
+		location.href = '<%=notWithFormTag%>trInsert&id=${sessionScope.loginfo.id}';
 	}
 </script>
 
@@ -170,6 +170,7 @@
 						<button type="submit" class="btn btn-warning form-control-sm" onclick="">검색</button>
 						<button type="button" class="btn btn-warning form-control-sm" onclick="searchAll();">전체 검색</button>
 						<button type="button" class="btn btn-secondary form-control-sm"  onclick="writeForm();">글 쓰기</button>
+						<span id="pagingStatus">${requestScope.pageInfo.pagingStatus} </span>
 				</div>
 				</div>
 			</form>	

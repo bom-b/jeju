@@ -190,11 +190,27 @@ object-fit: cover;
 	<!-- 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
+		<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
+				<a href="<%=notWithFormTag%>trDelete&tno=${requestScope.bean.tno}">
+				<button type="submit" class="btn btn-danger follower">
+					<span>
+						<span class=""> 삭제하기 </span>
+					</span>
+				</button>
+				</a>
+				<a href="<%=notWithFormTag%>trUpdate&tno=${requestScope.bean.tno}">
+				<button type="submit" class="btn btn-info follower">
+					<span>
+						<span class=""> 수정하기 </span>
+					</span>
+				</button>
+				</a>
+			</c:if>
 			<a href="<%=notWithFormTag%>trLikes&tno=${requestScope.bean.tno}&id=${sessionScope.loginfo.id}">
 			<button type="submit" class="btn btn-warning follower">
 				<span>
 					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
-					<span class=""> 추천 </span>
+					<span class=""> 추천하기 </span>
 					<span class="">${requestScope.bean.tlikes}</span>
 				</span>
 			</button>
@@ -208,16 +224,24 @@ object-fit: cover;
 		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
+					<c:if test="${requestScope.bean.timage2 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
+					<c:if test="${requestScope.bean.timage3 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
+					<c:if test="${requestScope.bean.timage4 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}">
+					</c:if>
 				</div>
 				<div class="col-sm-3">
-					<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
+					<c:if test="${requestScope.bean.timage5 ne null}">
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}">
+					</c:if>
 				</div>
 			</div>
 		</div>
