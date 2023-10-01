@@ -539,6 +539,10 @@ a {
 	padding-right: 16px;
 }
 
+.serchbox {
+	border-color: orange;
+}
+
 /* 썸네일 이미지 사이즈 맞추기 */
 .thumnail_img {
 width: 150px;
@@ -547,3 +551,4 @@ overflow: hidden;
 background-size: cover;
 background-position: center;
 }
+

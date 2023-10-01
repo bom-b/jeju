@@ -78,16 +78,12 @@ public class FoodUpdateController extends SuperClass{
 			cnt = dao.UpdateData(bean);
 			
 			if(cnt == -1) {
-				// 등록 실패
-				super.gotoPage(PREFIX + "prUpdateForm.jsp");
+				// 수정 실패
+				super.gotoPage(PREFIX + "foodUpdateForm.jsp");
 				
 			} else {
-				/*
-				 * // 등록 성공 String message = "성공적으로 상품이 수정되었습니다.";
-				 * super.setPostiveAlertMessage(message);
-				 */
-				
-				super.gotoPage(PREFIX + "foodMain.jsp");
+				// 수정 성공
+				new FoodMainController().doGet(request, response); 
 				
 			}
 			

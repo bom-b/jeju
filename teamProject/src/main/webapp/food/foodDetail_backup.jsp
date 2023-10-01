@@ -9,43 +9,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<%-- 맛집 전용 style.css --%>
+<!-- 맛집 전용 style.css -->
 <link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
 
-<%-- 사진 크게보기 --%>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-
-<%-- sweetalert 버전 2 --%>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script type="text/javascript">
-
-	//댓글리스트 가져오기
-	function getListComment(){
-		$('#comment_list').empty();			
-		/* $.ajax() 함수를 이용하여 데이터 보여 주기 */
-		$.ajax({
-			url:'<%=notWithFormTag%>fdcmList', 
-			data:'boardno=' + '${requestScope.bean.no}',
-			type:'get', 
-			dataType:'json',
-			success:function(result, status){
-				console.log(result) ;
-				
-				$.each(result, function(idx){ /* idx는 색인 번호 */
-					var cno = result[idx].cno ;
-					var id = result[idx].id ;
-					var content = result[idx].content ;
-					var regdate = result[idx].regdate ;
-					addNewItem(cno, id, content, regdate);
-				})
-			},
-			error:function(result, status){
-				console.log(result) ;
-				console.log(status) ;
-			}
-		});
-	}
 
 	//메뉴 데이터 한줄씩 출력하기
 	function splitString(inputString) {
@@ -64,6 +32,10 @@
 	    }
 	}
 
+	$(document).ready(function(){
+
+	});
+	
 	//삭제 경고
 	document.addEventListener("DOMContentLoaded", function() {
 	  var deleteLink = document.getElementById("deleteLink");
@@ -87,52 +59,22 @@
 	  });
 	});
 	
-	
-	
-	// 댓글을 동적으로 추가하기
-	function addNewItem(cno, id, content, regdate){
-		var litag = $('<li>') ; /* 댓글의 외곽 li 태그  */
-		litag.addClass('commentItem') ;
+	// 이미지 크게 보기
+	Swal.fire({
+		  imageUrl: 'https://unsplash.it/400/200',
+		  imageWidth: 400,
+		  imageHeight: 200,
+		  imageAlt: 'Custom image',
+		})
 		
-		var ptag = $('<p>') ; /* 작성자 정보가 들어갈 태그  */
-		ptag.addClass('id') ;
-
-		var spantag = $('<span>') ; /* 작성자 이름이 들어갈 태그  */
-		spantag.addClass('name') ;
-		spantag.html(id + "님") ;
-		
-		var spandate = $('<span>') ;  /* 작성 일자가 들어갈 태그  */
-		spandate.html("&nbsp;&nbsp;/&nbsp;&nbsp;" + regdate + '&nbsp;&nbsp;&nbsp;') ;
-		
-		/* 로그인한 사람이 작성한 댓글이면 삭제 가능 */
-		if(id == '${sessionScope.loginfo.id}'){ 
-			var inputtag = $('<input>') ; /* 삭제 버튼 */
-			var attrlist = {'id':id, 'type':'button', 'value':'삭제', 'class':'btn btn-xs btn-outline-primary', 'cno':cno};
-			inputtag.attr(attrlist);
-			inputtag.addClass('delete_btn');
-		}else{
-			var inputtag = '' ;
-		}
-		
-		var content_p = $('<p>') ; /* 작성한 댓글 내용 */
-		content_p.html(content) ; 
-		
-		/* 조립하기(compose up) */
-		ptag.append(spantag).append(spandate).append(inputtag);
-		litag.append(ptag).append(content_p) ; 
-		
-		$('#comment_list').append(litag) ;
-	}
-	
 </script>
 
 <style type="text/css">
-	
+
 </style>
 
 </head>
 <body>
-	
 <!-- 메인사진과 메인설명 -->
 	<div class="main container-xxl py-5">
 		<div class="text-left container my-5 py-5">
@@ -152,11 +94,9 @@
 			<!-- 작성자와 장성일자 -->
 			
 		</div>
-		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
 			<div class="col-sm-5">
-				<a href="<%=appName%>/upload/${requestScope.bean.image1}" data-fancybox="gallery"  data-caption="${requestScope.bean.title}">
-					<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.image1}" alt="main-image">
-				</a>
+				<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.image1}" alt="main-image">
 			</div>
 			<div class="content col-sm-7">
 				<div class="title">
@@ -178,7 +118,7 @@
 					<span class="sub-title"><strong>연락처: </strong></span> 
 					<span class="">${requestScope.bean.phoneno}</span>
 				</div>
-				<div class="menubox wow fadeInUp" data-wow-delay="0.1s">
+				<div class="menubox wow fadeInUp" data-wow-delay="0.4s">
 					<div class="menubox-sub col-sm-3">
 						<span class="menubox-sub sub-title"><strong>대표 메뉴: </strong></span> 
 					</div>
@@ -194,7 +134,7 @@
 <!-- 메인사진과 메인설명 -->	
 
 <!-- 삭제, 추천버튼 -->
-	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container my-5 py-5 text-right">
 			<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
 				<a href="<%=notWithFormTag%>fdDelete&no=${requestScope.bean.no}" id="deleteLink">
@@ -227,34 +167,26 @@
 
 <!-- 서브사진들 -->
 	<div class="container-xxl py-5">
-		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.2s">
+		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.6s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image2 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image2}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}" alt="sub-image">
-						</a>
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}" alt="sub-image">
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image3 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image3}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}" alt="sub-image">
-						</a>
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}" alt="sub-image">
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image4 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image4}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}" alt="sub-image">
-						</a>
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}" alt="sub-image">
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image5 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image5}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}" alt="sub-image">
-						</a>
+						<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}" alt="sub-image">
 					</c:if>
 				</div>
 			</div>
@@ -266,7 +198,7 @@
 	<div class="commentBox container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
-				<div class="col-sm-8  wow fadeInUp" data-wow-delay="0.3s">
+				<div class="col-sm-8  wow fadeInUp" data-wow-delay="0.8s">
 					<p class="text-left"><strong>댓글 (3)</strong></p>
 	                <table class="table table-hover">
 	                <thead>
@@ -276,8 +208,43 @@
                             <th colspan="2" style="display: none;">추천 및 삭제</th>
                         </tr>
                     </thead>
-                    <tbody id="comment_list">
-						<%-- 여기에 동적으로 요소들을 추가합니다. --%>
+                    <tbody>
+                        <tr class="text-left">
+                            <td colspan="2" class="comment">
+	                            <strong>kim9</strong><br/>
+	                            <span class="regdate">2023.09.19</span>
+                            </td>
+                            <td colspan="8" class="comment">정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.정말 맛있어 보이네요.</td>
+                            <td colspan="2" class="comment">
+	                            <button type="submit" class="btn btn-outline-dark form-control-sm" onclick="">
+									삭제
+								</button>
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                           <td colspan="2" class="comment">
+	                            <strong>kim9</strong><br/>
+	                            <span class="regdate">2023.09.19</span>
+                            </td>
+                            <td colspan="8" class="comment">맛있어보이네요.</td>
+                            <td colspan="2" class="comment">
+	                            <button type="submit" class="btn btn-outline-dark form-control-sm" onclick="">
+									삭제
+								</button>
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                           <td colspan="2" class="comment">
+	                            <strong>kim9</strong><br/>
+	                            <span class="regdate">2023.09.19</span>
+                            </td>
+                            <td colspan="8" class="comment">굿굿</td>
+                            <td colspan="2" class="comment">
+	                            <button type="submit" class="btn btn-outline-dark form-control-sm" onclick="">
+									삭제
+								</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 
@@ -321,7 +288,7 @@
             </div>            
             <!-- 댓글작성폼 -->	       	
 				
-				<div class="col-sm-4 wow fadeInUp" data-wow-delay="0.3s">
+				<div class="col-sm-4 wow fadeInUp" data-wow-delay="0.8s">
 					<p class="text-left"><strong>위치</strong></p>
 					<div class="col-md-6 maps" >
 			       		 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -331,14 +298,6 @@
 		</div>
 	</div>
 <!-- 댓글창과 지도 -->	
-
-<!-- 사진 크게보기 -->
-	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-	<script>
-	      Fancybox.bind('[data-fancybox="gallery"]', {
-	      });    
-	</script>
-<!-- 사진 크게보기 -->
 	
 </body>
 </html>

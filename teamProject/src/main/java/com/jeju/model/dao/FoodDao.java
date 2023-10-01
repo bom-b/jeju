@@ -373,7 +373,7 @@ public class FoodDao extends SuperDao {
 			int cnt = -1 ;
 			
 			String sql = " insert into foodiespot (no, id, CATEGORY, TITLE, TIME, BREAKTIME, PHONENO, MENU, PLACE, MAP, IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5) " ;
-			sql += " values('fd'||seqfood.nextval, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?) " ; 
+			sql += " values(seqfood.nextval, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?) " ; 
 			
 			PreparedStatement pstmt = null ;		
 			conn = super.getConnection() ;
@@ -403,7 +403,7 @@ public class FoodDao extends SuperDao {
 			return cnt ;
 		}
 
-		// 게시물 번호를 이용하여 해당 상품을 삭제합니다.
+		// 게시물 번호를 이용하여 해당 게시물을 삭제합니다.
 		public int DeleteDate(String no) throws Exception {
 			String sql = "";
 			int cnt = 0;

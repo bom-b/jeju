@@ -119,7 +119,7 @@
 		<div class="insert-title text-left wow fadeInUp" data-wow-delay="0.1s">
 			<h2>알고계신 맛집을 공유해주세요.</h2>
 		</div>
-		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
+		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
 		<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="fdInsert">
 			<span><span class="caution">* </span> 필수 입력사항 입니다.</span><br><br>
