@@ -142,23 +142,27 @@
 </script>
 </head>
 <body>
-
+<!-- 헤더 Start -->
+   <div class="container-xxl py-5 bg-dark  mb-5" 	data-wow-delay="0.3s"
+      style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
+      <div class="container my-5  wow fadeInUp">
+         <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-center text-lg-start">
+               <h1 class="display-3 text-white" style="margin-bottom: 20px; ">
+                  자유게시판</h1>
+               <h5 style="color: white; text-align: center;">제주도의 관한 궁금한점!
+                  하고싶은 이야기! 모두해보세요!</h5>
+               <p class="medium-paragraph"></p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- 헤더 End -->
 
 	<div class="main container-xxl ">
 		<div class="text-left container my-5 ">
-			<!-- 작성자와 작성일자 -->
-			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
-				<div class="contents">
-					<span class="sub-title"><strong>작성자: </strong></span> <img class=""
-						src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png"
-						height="25px;" width="25px;"> <span class="">${requestScope.bean.id}</span>
-				</div>
-				<div class="">
-					<span class="sub-title"><strong>작성일자: </strong></span> <span
-						class="">${requestScope.bean.oregdate}</span>
-				</div>
-			</div>
-			<!-- 작성자와 장성일자 -->
+			
+			
 
 		</div>
 		<div class="mainBox container my-5  wow fadeInUp"
@@ -167,6 +171,11 @@
 			<div class="content col-sm-7">
 				<div class="title">
 					<span class="title " style="margin-left: 5px; display: block;"> ${requestScope.bean.oname}</span>
+				</div>
+				<div class="contents">
+					<span class="sub-title"><strong>작성자: </strong></span> <img class=""
+						src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png"
+						height="25px;" width="25px;"> <span class="">${requestScope.bean.id}</span>
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>카테고리: </strong></span> <span
