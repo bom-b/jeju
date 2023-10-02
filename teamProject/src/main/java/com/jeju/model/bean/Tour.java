@@ -5,7 +5,7 @@ public class Tour {
 	private String id ;
 	private String tname ;
 	private String ttime ;
-	private int tphoneno ;
+	private String tphoneno ;
 	private String tprice ;
 	private String tplace ;
 	private String tmap ;
@@ -18,7 +18,7 @@ public class Tour {
 	private String regdate ;
 	private String tcategory;
 	
-	public Tour(String tno, String id, String tname, String ttime, int tphoneno, String tprice, String tplace,
+	public Tour(String tno, String id, String tname, String ttime, String tphoneno, String tprice, String tplace,
 			String tmap, String tlikes, String timage1, String timage2, String timage3, String timage4, String timage5,
 			String regdate, String tcategory) {
 		super();
@@ -90,12 +90,12 @@ public class Tour {
 	}
 
 
-	public int getTphoneno() {
+	public String getTphoneno() {
 		return tphoneno;
 	}
 
 
-	public void setTphoneno(int tphoneno) {
+	public void setTphoneno(String tphoneno) {
 		this.tphoneno = tphoneno;
 	}
 

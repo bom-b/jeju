@@ -339,38 +339,44 @@ object-fit: cover;
 				   </table>
 				</form>
 		      </div>
-            </div>            
-            <!-- 댓글작성폼 -->	       	
-				<!-- <div class="col-sm-4 wow fadeInUp" data-wow-delay="0.8s">
-					<p class="text-left"><strong>위치</strong></p>
-					<div class="col-md-6 maps" >
-			       		 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" frameborder="0" style="border:0" allowfullscreen></iframe>
-			      	</div>
-				</div> -->
-				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoHXS6bdXJxmAi4oxnKq8H_gcGbb9h5js"></script>
-				<div id="map" style="width: 100%; height: 300px;"></div>
-				<script>
-				function initMap() {
-  				// Coordinates for Jeju Island
-  				var jeju = { lat: 33.489011, lng: 126.498302 };
+            </div>
+				<div class="col-sm-4 wow fadeInUp" data-wow-delay="0.8s">
+					<div class="col-md-6 maps">
+						<p class="text-left"><strong>위치</strong></p>
+						<div id="map" style="width: 200%; height: 500px;"></div>
 
-  				// Create a map centered at Jeju Island
-  				var map = new google.maps.Map(document.getElementById('map'), {
-    			zoom: 10,
-    			center: jeju
-  				});
+						<!-- JavaScript 코드를 추가하여 지도를 초기화 -->
+						<script>
+							function initMap() {
+								var mapOptions = {
+									center : {
+										lat : 33.3617,
+										lng : 126.5292
+									}, // 제주도의 위도와 경도를 설정
+									zoom : 10, // 지도 확대 레벨 설정
+									mapTypeId : google.maps.MapTypeId.ROADMAP
+								// 지도 타입 설정
+								};
 
-  				// Create a marker on the map
-  				var marker = new google.maps.Marker({
-    			position: jeju,
-   				 map: map,
-    			title: 'Jeju Island'
-  				});
-				}
-				</script>
+								var map = new google.maps.Map(document
+										.getElementById('map'), mapOptions);
+
+								// 마커 추가 예제 (제주도 중심에 마커 추가)
+								var marker = new google.maps.Marker({
+									position : {
+										lat : 33.3617,
+										lng : 126.5292
+									},
+									map : map,
+									title : '제주도'
+								});
+							}
+						</script>
+						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoHXS6bdXJxmAi4oxnKq8H_gcGbb9h5js&callback=initMap" async defer></script>
+						
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 <!-- 댓글창과 지도 -->	
 	
 </body>
