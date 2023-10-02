@@ -366,6 +366,7 @@ object-fit: cover;
 									position : {
 										lat : 33.3617,
 										lng : 126.5292
+										
 									},
 									map : map,
 									title : '제주도'
