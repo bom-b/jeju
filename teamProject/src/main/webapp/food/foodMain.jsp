@@ -45,16 +45,24 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		// mode 값 유지하기
-		var optionList = $('#mode option'); // mode 안에 있는 옵션 태그들을 옵션리스트 변수에 대입
-		for(var i=0; i < optionList.length; i++) {
-			if (optionList[i].value == '${requestScope.pageInfo.mode}') {
-				optionList[i].selected = true;
-			}
+		
+		var optionList = $('#mode option');
+		for(var i=0 ; i<optionList.length ; i++){
+			if(optionList[i].value == '${requestScope.PageInfo_ko.mode}'){
+				optionList[i].selected = true ;
+			}	
 		}
 		
-		// keyword 값 유지하기
-		$('#keyword').val('${requestScope.pageInfo.keyword}')
+		$('#keyword').val('${requestScope.PageInfo_ko.keyword}');
+		
+		$("#mode").change(function(){				 
+			  if($(this).val() != 'all'){
+				  $('#keyword').attr('disabled', false);
+			  }else{
+				  $('#keyword').val('');
+				  $('#keyword').attr('disabled', true);
+			  }
+		});	
 		
 		// 각 배너에 이벤트 리스너 추가
 		$(".tab-link").click(function () {
@@ -81,8 +89,8 @@
             
             // 해당하는 탭 내용을 표시
             $(i).addClass("active");
+            
         });
-		
 		
 	});
 	
@@ -187,7 +195,21 @@
 					</div>	
 				</div>
 			</form>	
-			</div>					
+			</div>
+			<div class=" wow fadeInUp" data-wow-delay="0.3s">
+				<c:if test="${not empty requestScope.PageInfo_ko.keyword}">
+				    <p class="serch-resault">
+				    	<c:if test="${requestScope.PageInfo_ko.mode eq 'title'}">
+						    맛집이름
+						</c:if>
+						<c:if test="${requestScope.PageInfo_ko.mode eq 'ID'}">
+						    작성자
+						</c:if>
+				    	<strong>'${requestScope.PageInfo_ko.keyword}'</strong>
+				    	에 대한 검색결과입니다.
+				    </p>
+				</c:if>
+			</div>				
 		</div>
 	</div>
 	<!-- 검색창 End -->

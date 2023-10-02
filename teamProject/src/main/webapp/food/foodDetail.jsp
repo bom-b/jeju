@@ -463,19 +463,8 @@
 <%-- 사진 크게보기 --%>
 	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 	<script>
-	      Fancybox.bind('[data-fancybox="gallery"]', {
-	      });    
+	      Fancybox.bind('[data-fancybox="gallery"]', {});    
 	</script>
 <%-- 사진 크게보기 --%>
-
-<%-- 페이지 로드 시 자동으로 함수 호출 --%>
-<!-- 	<script type="text/javascript">
-	    document.addEventListener("DOMContentLoaded", function() {
-	        getListComment(); 
-	        
-	    });
-	    
-	</script> -->
-<%-- 페이지 로드 시 자동으로 함수 호출 --%>
 </body>
 </html>

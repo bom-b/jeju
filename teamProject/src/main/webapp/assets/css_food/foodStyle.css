@@ -557,3 +557,8 @@ background-size: cover;
 background-position: center;
 }
 
+/* 검색결과 안내문 */
+.serch-resault {
+	margin-top: 20px;
+}
+
