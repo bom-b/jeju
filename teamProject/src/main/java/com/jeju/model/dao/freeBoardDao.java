@@ -396,6 +396,8 @@ public class freeBoardDao extends SuperDao {
 		
 		String sql = " delete from openforum where ono = ? ";
 		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, ono); // ono 값을 바인딩
 
 		cnt = pstmt.executeUpdate();
 

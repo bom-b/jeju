@@ -142,35 +142,32 @@
 </script>
 </head>
 <body>
-<!-- 헤더 Start -->
-   <div class="container-xxl py-5 bg-dark  mb-5" 	data-wow-delay="0.3s"
-      style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
-      <div class="container my-5  wow fadeInUp">
-         <div class="row align-items-center g-5">
-            <div class="col-lg-6 text-center text-lg-start">
-               <h1 class="display-3 text-white" style="margin-bottom: 20px; ">
-                  자유게시판</h1>
-               <h5 style="color: white; text-align: center;">제주도의 관한 궁금한점!
-                  하고싶은 이야기! 모두해보세요!</h5>
-               <p class="medium-paragraph"></p>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- 헤더 End -->
+	<!-- 헤더 Start -->
+	<div class="container-xxl py-5 bg-dark  mb-5" data-wow-delay="0.3s"
+		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
+		<div class="container my-5  wow fadeInUp">
+			<div class="row align-items-center g-5">
+				<div class="col-lg-6 text-center text-lg-start">
+					<h1 class="display-3 text-white" style="margin-bottom: 20px;">
+						자유게시판</h1>
+					<h5 style="color: white; text-align: center;">제주도의 관한 궁금한점!
+						하고싶은 이야기! 모두해보세요!</h5>
+					<p class="medium-paragraph"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 헤더 End -->
 
 	<div class="main container-xxl ">
-		<div class="text-left container my-5 ">
-			
-			
-
-		</div>
+		<div class="text-left container my-5 "></div>
 		<div class="mainBox container my-5  wow fadeInUp"
 			data-wow-delay="0.3s">
 
 			<div class="content col-sm-7">
 				<div class="title">
-					<span class="title " style="margin-left: 5px; display: block;"> ${requestScope.bean.oname}</span>
+					<span class="title " style="margin-left: 5px; display: block;">
+						${requestScope.bean.oname}</span>
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>작성자: </strong></span> <img class=""
@@ -194,7 +191,8 @@
 				<!-- openForum 이미지 시작 -->
 				<div id="backButton" style="text-align: left;">
 					<!-- 이미지 1 -->
-					<a  data-wow-delay="0.3s" href="<%=appName%>/upload/${requestScope.bean.oimage1}"
+					<a data-wow-delay="0.3s"
+						href="<%=appName%>/upload/${requestScope.bean.oimage1}"
 						data-lightbox="my-gallery"> <img
 						src="<%=appName%>/upload/${requestScope.bean.oimage1}"
 						width="100px" height="100px" alt="이미지 1">
@@ -230,11 +228,10 @@
 				</div>
 			</div>
 		</div>
-		</div>
-		
 	</div>
-	<div class="thumb container-xxl wow fadeInUp"
-		data-wow-delay="0.5s">
+
+	</div>
+	<div class="thumb container-xxl wow fadeInUp" data-wow-delay="0.5s">
 		<div class="container   text-right">
 			<a style="text-decoration: none;"
 				href="<%=notWithFormTag%>frEmoticon&ono=${requestScope.bean.ono}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
@@ -245,8 +242,21 @@
 						class="">${requestScope.bean.olikes}</span>
 					</span>
 				</button>
+				<div class="text-end">
+					<!-- 수정 버튼 표시 조건문 -->
+					<c:if test="${sessionScope.loginfo.id==bean.id}">
+						<a
+							href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+							class="btn btn-primary btn-sm">수정</a>
+						<!-- 삭제 버튼 -->
+						<a
+							href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+							class="btn btn-danger btn-sm">삭제</a>
+					</c:if>
+
+				</div>
 			</a>
-	</div>
+		</div>
 
 
 
@@ -254,49 +264,50 @@
 
 
 
-	<%-- 댓글 영역(Comment Zone) --%>
-	<!--  <ul id="comment_list">
+		<%-- 댓글 영역(Comment Zone) --%>
+		<!--  <ul id="comment_list">
 		<%-- 여기에 동적으로 댓글들을 추가합니다. --%>
 	</ul>-->
 
-	<!-- 댓글작성폼 -->
-	<div id="insertComment">
-		<p class="text-left">
-			<strong>댓글작성</strong>
-		</p>
-		<form id="comment_form" method="post" role="form"
-			class="form-horizontal">
-			<table class="table">
-				<thead>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="text-left"><label for="content"
-							class="menubox-sub">작성자</label></td>
-						<td><input type="hidden" name="ono" value="${bean.ono}" /> <input
-							type="text" name="fakeid" id="fakeid" class="form-control"
-							size="5" disabled="disabled"
-							value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
-							<input type="hidden" name="id" id="id"
-							value="${sessionScope.loginfo.id}"> <input type="hidden"
-							name="comment_Type" id="comment_Type" value=""></td>
-					</tr>
-					<tr>
-						<td class="text-left"><label for="content"
-							class="menubox-sub">댓글내용</label></td>
-						<td class="text-left">
-							<div>
-								<textarea name="content" rows="3" cols="50" id="content"></textarea>
-							</div>
-							<div>
-								<button type="button" id="submitComment" class="btn btn-warning">등록</button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-	</div>
+		<!-- 댓글작성폼 -->
+		<div id="insertComment">
+			<p class="text-left">
+				<strong>댓글작성</strong>
+			</p>
+			<form id="comment_form" method="post" role="form"
+				class="form-horizontal">
+				<table class="table">
+					<thead>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-left"><label for="content"
+								class="menubox-sub">작성자</label></td>
+							<td><input type="hidden" name="ono" value="${bean.ono}" />
+								<input type="text" name="fakeid" id="fakeid"
+								class="form-control" size="5" disabled="disabled"
+								value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
+								<input type="hidden" name="id" id="id"
+								value="${sessionScope.loginfo.id}"> <input type="hidden"
+								name="comment_Type" id="comment_Type" value=""></td>
+						</tr>
+						<tr>
+							<td class="text-left"><label for="content"
+								class="menubox-sub">댓글내용</label></td>
+							<td class="text-left">
+								<div>
+									<textarea name="content" rows="3" cols="50" id="content"></textarea>
+								</div>
+								<div>
+									<button type="button" id="submitComment"
+										class="btn btn-warning">등록</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
 	</div>
 	<!-- 댓글작성폼 -->
 	</div>
