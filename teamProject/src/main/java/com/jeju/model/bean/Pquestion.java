@@ -1,12 +1,14 @@
+
 package com.jeju.model.bean;
 
 public class Pquestion {
-	private String module ;
-	private String type ;
+	private String module;
+	private String type;
 	private Integer qnum;
 	private String question;
-	
-	public Pquestion() {}
+
+	public Pquestion() {
+	}
 
 	public String getModule() {
 		return module;
@@ -52,7 +54,5 @@ public class Pquestion {
 		this.qnum = qnum;
 		this.question = question;
 	}
-	
-	
-}
 
+}

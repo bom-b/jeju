@@ -70,7 +70,8 @@ public class MemberDao extends SuperDao{
 	
 	public Member getDataByPrimaryKey(String id) throws Exception{
 		// 기본 키 정보를 이용하여 Bean 객체를 구합니다.
-		String sql = " SELECT * FROM members WHERE id = ?";
+		String sql = " select * from members " ;
+		sql += " where id = ?" ;
 		
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;

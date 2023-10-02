@@ -152,7 +152,7 @@
             </div>
             <div class="col-md-6">
                 <!-- 오른쪽 컨테이너 -->
-                <div class="input-group">
+				<div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문</span>
                     <select id="mquestion" name="mquestion" class="form-select">
                         <c:forEach var="mquestion" items="${requestScope.pquestion}"> 

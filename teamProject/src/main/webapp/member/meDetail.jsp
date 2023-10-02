@@ -55,7 +55,6 @@
 					<td align="center">회원등급</td>
 					<td>${requestScope.bean.mrating}</td>
 					<td>${requestScope.bean.ratingimg}</td>
-				</tr>
 				<tr>
 					<td align="center">생일</td>
 					<td>${requestScope.bean.birth}</td>

@@ -229,13 +229,6 @@ html {
     background-size: cover;
 }
 
-.bn-melist {
-	background: linear-gradient(rgb(230 232 237 / 30%), rgb(251 251 251 / 30%)), url(../img/meupdate.png);
-	background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .banner-item {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
     transition: .5s;
