@@ -9,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 등록</title>
+
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
 <style type="text/css">
 .insert-container {
 	display: flex;
@@ -93,18 +95,15 @@ h2 {
 </script>
 </head>
 <body>
-	<div class="container">
-		<h2>게시물 수정</h2>
+	<div class="main container-xxl py-5">
+	<div class="container py-5">
+			<div class="insert-title text-left wow fadeInUp" data-wow-delay="0.1s">
+			<h2>게시물 수정</h2>
+		</div>
 
-		<form action="<%=withFormTag%>" method="post">
+		<form action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
 
-			<input type="hidden" name="pageNumber"
-				value="<%=request.getParameter("pageNumber")%>"> <input
-				type="hidden" name="pageSize"
-				value="<%=request.getParameter("pageSize")%>"> <input
-				type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
-			<input type="hidden" name="keyword"
-				value="<%=request.getParameter("keyword")%>">
+	
 
 			<div id="freeno" class="input-group">
 				<span class="input-group-text col-md-2">게시물 번호</span> <input

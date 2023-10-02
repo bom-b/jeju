@@ -220,17 +220,7 @@ body {
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
 											<div class="text-end">
-												<!-- 수정 버튼 표시 조건문 -->
-												<c:if test="${sessionScope.loginfo.id==bean.id}">
-													<a
-														href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-primary btn-sm">수정</a>
-													<!-- 삭제 버튼 -->
-													<a
-														href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-danger btn-sm">삭제</a>
-												</c:if>
-
+			
 											</div>
 										</div>
 									</div>
@@ -258,16 +248,7 @@ body {
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent}</small>
 											<div class="text-end">
-												<!-- 수정 버튼 표시 조건문 -->
-												<c:if test="${sessionScope.loginfo.id==bean.id}">
-													<a
-														href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-primary btn-sm">수정</a>
-													<!-- 삭제 버튼 -->
-													<a
-														href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-danger btn-sm">삭제</a>
-												</c:if>
+
 
 											</div>
 										</div>
@@ -296,16 +277,7 @@ body {
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
 											<div class="text-end">
-												<!-- 수정 버튼 표시 조건문 -->
-												<c:if test="${sessionScope.loginfo.id==bean.id}">
-													<a
-														href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-primary btn-sm">수정</a>
-													<!-- 삭제 버튼 -->
-													<a
-														href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-danger btn-sm">삭제</a>
-												</c:if>
+
 
 											</div>
 										</div>
@@ -334,17 +306,7 @@ body {
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
 											<div class="text-end">
-												<!-- 수정 버튼 표시 조건문 -->
-												<c:if test="${sessionScope.loginfo.id==bean.id}">
-													<a
-														href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-primary btn-sm">수정</a>
-													<!-- 삭제 버튼 -->
-													<a
-														href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-														class="btn btn-danger btn-sm">삭제</a>
-												</c:if>
-
+										
 											</div>
 										</div>
 									</div>

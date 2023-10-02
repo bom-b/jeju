@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.freeBoard;
 import com.jeju.model.dao.freeBoardDao;
+import com.oreilly.servlet.MultipartRequest;
 
 public class freeUpdateController extends SuperClass {
 	private final String PREFIX = "free/";
@@ -27,24 +28,23 @@ public class freeUpdateController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
-
+		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr");
+		
 		freeBoard bean = new freeBoard();
 		
-		  bean.setOno(Integer.parseInt(request.getParameter("ono")));
-		  bean.setId(request.getParameter("id"));
-		  bean.setOname(request.getParameter("oname"));
-		  bean.setOcontent(request.getParameter("ocontent"));
-		  bean.setPcategory(request.getParameter("pcategory"));
-		  bean.setOregdate(request.getParameter("oregdate"));
-		  bean.setOimage1(request.getParameter("oimage1"));
-		  bean.setOimage2(request.getParameter("oimage2"));
-		  bean.setOimage3(request.getParameter("oimage3"));
-		  bean.setOimage4(request.getParameter("oimage4"));
-		  bean.setOimage5(request.getParameter("oimage5"));
+		  bean.setOno(Integer.parseInt(mr.getParameter("ono")));
+		  bean.setId(mr.getParameter("id"));
+		  bean.setOname(mr.getParameter("oname"));
+		  bean.setOcontent(mr.getParameter("ocontent"));
+		  bean.setPcategory(mr.getParameter("pcategory"));
+		  bean.setOregdate(mr.getParameter("oregdate"));
+		  bean.setOimage1(mr.getParameter("oimage1"));
+		  bean.setOimage2(mr.getParameter("oimage2"));
+		  bean.setOimage3(mr.getParameter("oimage3"));
+		  bean.setOimage4(mr.getParameter("oimage4"));
+		  bean.setOimage5(mr.getParameter("oimage5"));
 		  
-		//  bean.setGroupno(Integer.parseInt(request.getParameter("groupno"))); 
-		// bean.setOrderno(Integer.parseInt(request.getParameter("orderno"))); 
-		//  bean.setDepth(Integer.parseInt(request.getParameter("depth")));
+	
 		
 		freeBoardDao dao = new freeBoardDao();
 		int cnt = -1;
@@ -52,10 +52,12 @@ public class freeUpdateController extends SuperClass {
 			cnt = dao.UpdateData(bean);
 
 			if (cnt == -1) { // 등록 실패
+				String message = "서버 오류로 게시물이 수정되지 않았습니다.";
+				super.setAlertMessage(message);
 				new freeUpdateController().doGet(request, response);
 
 			} else { // 성공
-				   response.sendRedirect(request.getContextPath() + "/frMain");
+				new freeBoardMainController().doGet(request, response);
 
 				// 이전 코딩 방식
 
