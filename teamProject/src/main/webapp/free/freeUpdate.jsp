@@ -174,11 +174,22 @@ h2 {
 						accept="image/*">
 				</div>
 				<div class="input-group">
-					<span class="input-group-text col-md-2">수정되는 날짜</span> <input
-						id="oregdate" name="oregdate" type="text" class="form-control"
-						placeholder="" value="${bean.oregdate}" >
+					<span class="input-group-text col-md-2">작성일</span> <input
+						id="oregdate" name="oregdate" type="text" class="form-control" readonly>
 				</div>
+				<script type="text/javascript">
+    // 현재 날짜를 가져오는 함수
+    function getCurrentDate() {
+        var currentDate = new Date();
+        var year = currentDate.getFullYear();
+        var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 포맷팅
+        var day = String(currentDate.getDate()).padStart(2, '0'); // 날짜를 2자리로 포맷팅
+        return year + '/' + month + '/' + day;
+    }
 
+    // 작성일 입력란에 현재 날짜 채우기
+    document.getElementById("oregdate").value = getCurrentDate();
+</script>
 
 				<div id="buttonset" class="input-group">
 					<button type="submit" class="btn btn-primary btn-lg"

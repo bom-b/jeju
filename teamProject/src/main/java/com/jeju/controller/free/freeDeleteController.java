@@ -4,22 +4,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jeju.controller.SuperClass;
+import com.jeju.controller.food.FoodMainController;
 import com.jeju.model.dao.freeBoardDao;
 
 public class freeDeleteController extends SuperClass{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		super.doGet(request, response);
+		
 		int ono = Integer.parseInt(request.getParameter("ono"));
 		
 		freeBoardDao dao = new freeBoardDao();
-		int result = dao.deleteFree(ono);
+		int cnt = -1;
 		
-		if(result == 1 ) {
-			request.setAttribute("message", "게시물이 삭제되었습니다.");
-		}else {
-			request.setAttribute("message", "게시물이 삭제 실패하였습니다..");
+		try {
+			cnt = dao.DeleteDate(ono);
+			new FoodMainController().doGet(request, response); 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
 		}
-		
 		   // 삭제성공
 		new freeBoardMainController().doGet(request, response);
 	}

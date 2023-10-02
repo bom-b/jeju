@@ -33,7 +33,7 @@ public class freeBoardDao extends SuperDao {
 		bean.setOrderno(rs.getInt("orderno"));
 
 		bean.setLikes(rs.getInt("likes")); // 좋아요
-		
+		bean.setOlikes(rs.getInt("olikes")); // 좋아요
 
 		return bean;
 	}
@@ -108,23 +108,11 @@ public class freeBoardDao extends SuperDao {
 		// 테이블의 총 행개수를 구합니다.
 		String sql = " select count(*) as cnt from openforum ";
 		
-		// 카테고리에 따라 분기
-					if (pcategory == "pcategory") {
-					
-					} else if (pcategory == "ta") {
-						sql += " where pcategory = '잡담' " ;
-						
-					} else if (pcategory == "infor") {
-						sql += " where pcategory = '정보공유' " ;
-						
-					} else if (pcategory == "qu") {
-						sql += " where pcategory = '질문' " ;
-						
-					}
 		if (mode == null || mode.equals("all")) {
 		} else { // 전체 모드가 아니면
 			sql += " where " + mode + " like '%" + keyword + "%'";
 		}
+		
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -158,28 +146,25 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes";
+		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes";
 
 		// 답글 이전 코딩 방식
 		// sql += " from (select no, id, password, subject, content, readhit, oregdate,
 		// remark, groupno, orderno, depth, rank() over(order by no desc) as ranking " ;
 
-		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, rank() over(order by groupno desc, orderno asc) as ranking ";
+		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes, rank() over(order by groupno desc, orderno asc) as ranking ";
 		sql += " from openforum ";
 
 		// 카테고리에 따라 분기
-		if (pcategory == "pcategory") {
-			
-		} else if (pcategory == "ta") {
-			sql += " where pcategory = '잡담' " ;
-			
-		} else if (pcategory == "infor") {
-			sql += " where pcategory = '정보공유' " ;
-			
-		} else if (pcategory == "qu") {
-			sql += " where pcategory = '질문' " ;
-			
-		}
+		  if (pcategory.equals("ta")) {
+		        sql += "WHERE pcategory = '잡담' ";
+		    } else if (pcategory.equals("infor")) {
+		        sql += "WHERE pcategory = '정보공유' ";
+		    } else if (pcategory.equals("qu")) {
+		        sql += "WHERE pcategory = '질문' ";
+		    } else {
+		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
+		    }
 		
 		
 		String mode = pageInfo.getMode();
@@ -327,41 +312,90 @@ public class freeBoardDao extends SuperDao {
 
 		return cnt;
 	}
+	// 추천을 했는지 체크하기
+			public int	CheckLikes(int no, String id) throws Exception {
+				int cnt = -1;
+				int count = 0;
+				
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				conn = super.getConnection();
+				conn.setAutoCommit(false);
+				
+				// 추천기록 테이블에서 해당 유저의 추천기록 확인하기
+				String sql = " select count(*) as cnt from likes ";
+				sql += " where no = ? and category = 'free' and id = ? "; // 여기에 'food' 대신 event, tour, free 입력
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				pstmt.setString(2, id);
 
-	public int UpdateEmoticon(int ono, String columnName) throws Exception {
-		String sql = " update openforum set " + columnName + "=" + columnName + " + 1  ";
-		sql += " where ono = ? ";
-		PreparedStatement pstmt = null;
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					count = rs.getInt("cnt");
+			    }
+				
+				if (count == 1) {
+					// 이미 추천을 했을 경우
+					cnt = -1;
+					
+				} else {
+					// 추천 안했을 경우
+					cnt = 1;
+				}
+				
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+				if(conn != null) {conn.close();}
+				
+				return cnt;
+			}
+	public int UpdateEmoticon(int ono, String id) throws Exception {
+		
 
 		int cnt = -1;
+		PreparedStatement pstmt = null;
+		
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
+		
+		// step1. 추천수 업데이트
+		String sql = " update openforum set olikes = olikes +1 "; 
+		sql += " where ono = ? ";
+		
+		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, ono);
 
 		cnt = pstmt.executeUpdate();
-
+		pstmt = null;
+		// step2. 추천 테이블에 추천기록 입력
+		sql = " insert into likes(no, category, id) "; 
+		sql += " values(?, 'free' ,?) "; // 여기에 'food' 대신 event, tour, free 입력
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, ono); // no는 int 타입
+		pstmt.setString(2, id); // id는 String 타입
+		
+		cnt = pstmt.executeUpdate();
+		
 		conn.commit();
-
-		if (pstmt != null) {
-			pstmt.close();
-		}
-		if (conn != null) {
-			conn.close();
-		}
-
+		
+		if(pstmt != null) {pstmt.close();}
+		if(conn != null) {conn.close();}
+		
 		return cnt;
 	}
 
-	public int deleteFree(int ono) throws Exception{
-		String sql = " delete from openforum where ono = ? ";
-		PreparedStatement pstmt = null;
+	public int DeleteDate(int ono) throws Exception{
 
-		int cnt = -1;
+		int cnt = 0;
+		PreparedStatement pstmt = null;
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
+		
+		String sql = " delete from openforum where ono = ? ";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, ono);
 
 		cnt = pstmt.executeUpdate();
 

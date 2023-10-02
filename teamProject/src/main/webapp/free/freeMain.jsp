@@ -207,8 +207,7 @@ body {
 					<!-- 전체게시물 동적으로 표시하기 -->
 					<div id="tab-1" class="tab-pane p-0 active">
 						<div class="row g-4">
-
-							<c:forEach var="bean" items="${requestScope.pcategory_datalist }">
+							<c:forEach var="bean" items="${requestScope.pcategory_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
@@ -246,7 +245,7 @@ body {
 					<div id="tab-2" class="tab-pane p-0">
 						<div class="row g-4">
 
-							<c:forEach var="bean" items="${requestScope.ta_datalist }">
+							<c:forEach var="bean" items="${requestScope.ta_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
@@ -255,7 +254,7 @@ body {
 											<h5 class="d-flex justify-content-between border-bottom pb-2">
 												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}"> <span
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
-												</a>
+												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent}</small>
 											<div class="text-end">
@@ -293,7 +292,7 @@ body {
 											<h5 class="d-flex justify-content-between border-bottom pb-2">
 												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}"> <span
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
-												</a>
+												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
 											<div class="text-end">
@@ -331,7 +330,7 @@ body {
 											<h5 class="d-flex justify-content-between border-bottom pb-2">
 												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}"> <span
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
-												</a>
+												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
 											<div class="text-end">
