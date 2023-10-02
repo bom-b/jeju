@@ -135,6 +135,10 @@ object-fit: cover;
 	padding-left: 20px;
 }
 
+.swal2-confirm {
+    background-color: orange !important; /* 원하는 배경색으로 변경 */
+}
+
 /********** 인서트폼 **********/
 
 .short-input {

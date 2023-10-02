@@ -21,8 +21,8 @@ fdInsert=com.jeju.controller.food.FoodInsertController
 fdDelete=com.jeju.controller.food.FoodDeleteController
 fdUpdate=com.jeju.controller.food.FoodUpdateController
 fdcmList=com.jeju.controller.food.FoodCommentListController
-#fdcmInsert=com.jeju.controller.food.FoodCommentInsertController
-#fdcmDelete=com.jeju.controller.food.FoodCommentDeleteController
+fdcmInsert=com.jeju.controller.food.FoodCommentInsertController
+fdcmDelete=com.jeju.controller.food.FoodCommentDeleteController
 
 # tour section
 trMain=com.jeju.controller.tour.TourMainController

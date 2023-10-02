@@ -20,7 +20,37 @@
 
 <script type="text/javascript">
 
-	$(document).ready(function(){});
+	$(document).ready(function(){
+		
+		getListComment();
+		
+		/* 사용자가 댓글을 입력하고, 전송 버튼을 눌렀습니다. */
+		$('#comment_form').submit(function(){
+			
+			// 댓글 입력 없이 전송 버튼을 누른 경우
+			if(!$('#comment_content').val()){
+				Swal.fire('댓글 내용을 입력해주세요.');
+				$('#comment_content').focus() ;
+				return false ;
+			}
+			
+			// post 방식으로 데이터를 전송합니다.
+			var URL = '<%=notWithFormTag%>fdcmInsert' ;
+			var parameters = $('#comment_form').serialize() ;
+
+			$.post(URL, parameters, function(data){
+				getListComment(); // 목록 갱신하기
+				$('#comment_content').val('');		
+				return true ;
+				
+			}).fail(function(){
+				Swal.fire('댓글 작성에 실패하였습니다.');
+				return false ;
+			});
+			return false ;
+		});
+		
+	});
 
 	//메뉴 데이터 한줄씩 출력하기
 	function splitString(inputString) {
@@ -48,7 +78,7 @@
 	      event.preventDefault();
 	
 	      Swal.fire({
-	        title: "게시글을 삭제 하시겠습니까?",
+	        title: "게시글을 삭제하시겠습니까?",
 	        icon: "warning",
 	        showCancelButton: true,
 	        confirmButtonText: "확인",
@@ -147,9 +177,13 @@
 	    if ('${sessionScope.loginfo.id}' === id) { // 로그인 정보와 댓글 작성자가 같을 경우
 	    	// 삭제 버튼 생성
 		    var deleteButton = document.createElement('button');
-		    deleteButton.type = 'submit';
+		    deleteButton.id = 'delete-comment';
+		    deleteButton.type = 'button';
 		    deleteButton.className = 'btn btn-outline-dark form-control-sm';
 		    deleteButton.textContent = '삭제';
+		    
+			 // 댓글 번호를 data-cno 속성으로 버튼에 할당
+		    deleteButton.setAttribute('cno', cno);
 		    
 		 	// 삭제 버튼을 세 번째 셀에 추가
 		    td3.appendChild(deleteButton);
@@ -186,6 +220,32 @@
 	    var commentList = document.getElementById('comment_list');
 	    commentList.appendChild(tr);
 	}
+	
+	/* 댓글 삭제 버튼 클릭 */
+	$(document).on('click', '#delete-comment', function(){
+	    Swal.fire({
+	    	title: "댓글을 삭제하시겠습니까?",
+	        icon: "warning",
+	        showCancelButton: true,
+	        confirmButtonText: "확인",
+	        cancelButtonText: "취소"
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            // 확인 버튼을 눌렀을 때의 동작
+	            $.ajax({
+	                url: '<%=notWithFormTag%>fdcmDelete',
+	                data: 'cno=' + $(this).attr('cno'),
+	                type: 'get',
+	                dataType: 'text',
+	                success: function(result, status) {
+	                    console.log(result);
+	                    console.log(status);
+	                    getListComment(); // 목록 갱신하기
+	                }
+	            });
+	        }
+	    });
+	});
 	
 </script>
 
@@ -331,65 +391,63 @@
 			<div class="row align-items-center g-5">
 				<div class="col-sm-8  wow fadeInUp" data-wow-delay="0.3s">
 					<p class="text-left comment-count" style="font-weight: bold;"></p>
-	                <table class="table table-hover">
-	                <thead>
-                        <tr>
-                            <th colspan="2" style="display: none;">작성자</th>
-                            <th colspan="8" style="display: none;">내용</th>
-                            <th colspan="2" style="display: none;">추천 및 삭제</th>
-                        </tr>
-                    </thead>
-                    <tbody id="comment_list">
-						<%-- 여기에 동적으로 요소들을 추가합니다. --%>
-                    </tbody>
-                </table>
-                
-                <!-- 댓글작성폼 -->
-	                <div id="insertComment">
-	                <p class="text-left" style="font-weight: bold;">댓글작성</p>
-			           <form id="comment_form" method="post" role="form" class="form-horizontal" >
-					   <table class="table">
-					       <thead>
-					       </thead>
-					       <tbody>
-					         <tr>
-					           <td class="text-left">
-					              <label for="content" class="menubox-sub">작성자</label>              
-					           </td>
-					           <td>
-					            <input type="hidden" name="no" value="${bean.no}" />
-					            <input type="text" name="fakeid" id="fakeid" class="form-control" size="5" 
-					               disabled="disabled" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">                           
-					            <input type="hidden" name="id" id="id" value="${sessionScope.loginfo.id}">
-					            <input type="hidden" name="comment_Type" id="comment_Type" value="">
-					           </td>
-					         </tr>
-					         <tr>
-					           <td class="text-left">
-					              <label for="content" class="menubox-sub">댓글내용</label>
-					           </td>
-					           <td class="text-left">
-						           <div>
-						           <c:if test="${whologin ne 0}">	
-						           		<textarea name="content" rows="3" cols="50" id="content" ></textarea>
-						           </c:if>
-						           <c:if test="${whologin eq 0}">
-						           		<textarea name="content" rows="3" cols="50" id="content" disabled="disabled">댓글을 작성하시려면 로그인이 필요합니다.</textarea>
-						           </c:if>
-						           </div>
-						           <div>
-						           <c:if test="${whologin ne 0}">	
-						           		<button type="button" id="submitComment" class="btn btn-warning">등록</button>
-						           </c:if> 
-						           </div>   
-					           </td>
-					         </tr>
-					       </tbody>
-					   </table>
-					</form>
-			      </div>
-	            </div>     
-            <!-- 댓글작성폼 -->	       	
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th colspan="2" style="display: none;">작성자</th>
+								<th colspan="8" style="display: none;">내용</th>
+								<th colspan="2" style="display: none;">추천 및 삭제</th>
+							</tr>
+						</thead>
+						<tbody id="comment_list">
+							<%-- 여기에 동적으로 요소들을 추가합니다. --%>
+						</tbody>
+					</table>
+
+					<!-- 댓글작성폼 -->
+					<div id="insertComment">
+						<p class="text-left" style="font-weight: bold;">댓글작성</p>
+						<form id="comment_form" method="post" role="form" class="form-horizontal">
+							<input type="hidden" name="no" id="no" value="${requestScope.bean.no}" > 
+							<input type="hidden" name="id" id="id" value="${sessionScope.loginfo.id}" >
+							<table class="table">
+								<thead>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="text-left">
+											<label for="content" class="menubox-sub">작성자</label>
+										</td>
+										<td>
+											<input type="text" name="fakeid" id="fakeid" class="form-control" size="5" disabled="disabled" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
+										</td>
+									</tr>
+									<tr>
+										<td class="text-left">
+											<label for="content" class="menubox-sub">댓글내용</label>
+										</td>
+										<td class="text-left">
+											<div>
+												<c:if test="${whologin ne 0}">
+													<textarea name="content" rows="3" cols="50" id="comment_content"></textarea>
+												</c:if>
+												<c:if test="${whologin eq 0}">
+													<textarea name="content" rows="3" cols="50" id="comment_content" disabled="disabled">댓글을 작성하시려면 로그인이 필요합니다.</textarea>
+												</c:if>
+											</div>
+											<div>
+												<c:if test="${whologin ne 0}">
+													<button type="submit" id="submit" class="btn btn-warning">등록</button>
+												</c:if>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<!-- 댓글작성폼 -->	       	
 				
 				<div class="col-sm-4 wow fadeInUp" data-wow-delay="0.3s">
 					<p class="text-left" style="font-weight: bold;">위치</p>
@@ -411,13 +469,13 @@
 <%-- 사진 크게보기 --%>
 
 <%-- 페이지 로드 시 자동으로 함수 호출 --%>
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 	    document.addEventListener("DOMContentLoaded", function() {
 	        getListComment(); 
 	        
 	    });
 	    
-	</script>
+	</script> -->
 <%-- 페이지 로드 시 자동으로 함수 호출 --%>
 </body>
 </html>
