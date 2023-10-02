@@ -17,8 +17,6 @@ public class FoodCommentListController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
 		
-		System.out.println("댓글리스트 컨트롤러 호출됨");
-		
 		int boardno = Integer.parseInt(request.getParameter("boardno")) ;
 		
 		FoodCommentDao dao = new FoodCommentDao();
@@ -26,7 +24,7 @@ public class FoodCommentListController extends SuperClass{
 		
 		try {
 			comments = dao.GetDataByPk(boardno) ;
-			System.out.println(boardno + "번글에 대한 댓글 갯수 : " + comments.size());
+			System.out.println("맛집 " + boardno + "번글에 대한 댓글 갯수 : " + comments.size());
 			
 			JSONArray jsArr = new JSONArray() ;
 			
@@ -46,7 +44,7 @@ public class FoodCommentListController extends SuperClass{
 			
 			request.setAttribute("jsArr", jsArr);
 			
-			super.gotoPage("comment/cmList.jsp");
+			super.gotoPage("food/fdcmList.jsp");
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}

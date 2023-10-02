@@ -12,7 +12,7 @@ public class FoodCommentDao extends SuperDao {
 	// 해당 게시물 번호에 달려 있는 댓글 목록을 정렬 시켜 반환해 줍니다.
 	public List<FoodComment> GetDataByPk(int boardno) throws Exception {
 		String sql = " select * from comments " ;
-		sql += " where BOARDNO = ? and CATEGORY = 'fd' order by cnum asc " ;
+		sql += " where BOARDNO = ? and CATEGORY = 'fd' order by cno asc " ;
 		
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
@@ -48,6 +48,56 @@ public class FoodCommentDao extends SuperDao {
 
 		
 		return bean;
+	}
+
+	// 넘겨진 댓글 정보를 데이터 베이스에 추가합니다.
+	public int InsertData(FoodComment bean) throws Exception {
+		
+		int cnt = -1 ;
+		
+		String sql = " insert into comments (cno, id, boardno, category, content, regdate) " ;
+		sql += " values(seqcomment.nextval, ?, ?, 'fd', ?, sysdate) " ; // 'fd' 대신 게시판별로 카테고리 입력
+		
+		PreparedStatement pstmt = null ;
+		
+		conn = super.getConnection() ;
+		conn.setAutoCommit(false);
+		
+		pstmt = conn.prepareStatement(sql) ;
+		
+		pstmt.setString(1, bean.getId());
+		pstmt.setInt(2, bean.getBoardno());
+		pstmt.setString(3, bean.getContent());		
+		
+		cnt = pstmt.executeUpdate() ; 
+		conn.commit();
+		
+		if(pstmt != null) {pstmt.close();}
+		if(conn != null) {conn.close();}
+		
+		return cnt ;
+	}
+
+	// 댓글 번호 cno을 삭제합니다.	
+	public int DeleteData(int cno) throws Exception {
+		PreparedStatement pstmt = null ;
+		String sql = " delete from comments where cno = ? " ;
+		
+		conn = super.getConnection() ;
+		conn.setAutoCommit(false);
+		
+		pstmt = conn.prepareStatement(sql) ;
+				
+		int cnt = -1 ;
+		pstmt.setInt(1, cno);
+		
+		cnt = pstmt.executeUpdate() ;
+		conn.commit();
+		
+		if(pstmt!=null){pstmt.close();}
+		if(conn!=null){conn.close();}
+		
+		return cnt ;
 	}
 
 
