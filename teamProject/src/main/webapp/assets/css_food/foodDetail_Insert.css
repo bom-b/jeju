@@ -5,6 +5,10 @@ html {
     font-size: inherit; 
 }
 
+p {
+    font-weight: inherit;
+}
+
 /* 메인사진과 메인설명 */
 .main{
 	margin-top: 100px;
@@ -71,7 +75,7 @@ html {
 	margin-bottom: 20px;
 }
 
-.sub-title.writer {
+.sub-title .writer {
     font-weight: bold !important;
 }
 
@@ -124,6 +128,11 @@ overflow: hidden;
 background-size: cover;
 background-position: center;
 object-fit: cover;
+}
+
+/* 삭제버튼 padding 추가 */
+.delete-button {
+	padding-left: 20px;
 }
 
 /********** 인서트폼 **********/
