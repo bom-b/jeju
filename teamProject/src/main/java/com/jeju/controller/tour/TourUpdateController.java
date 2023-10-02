@@ -57,7 +57,7 @@ public class TourUpdateController extends SuperClass{
 		bean.setTcategory(koname);		
 		bean.setTname(mr.getParameter("tname"));
 		bean.setTtime(mr.getParameter("ttime"));
-		bean.setTphoneno(super.getNumberData(mr.getParameter("tphoneno")));
+		bean.setTphoneno(mr.getParameter("tphoneno"));
 		bean.setTprice(mr.getParameter("tprice"));
 		bean.setTplace(mr.getParameter("tplace"));
 		bean.setTimage1(mr.getFilesystemName("timage1"));

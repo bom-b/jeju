@@ -241,7 +241,7 @@ public class TourDao extends SuperDao{
 			bean.setId(rs.getString("id"));
 			bean.setTname(rs.getString("tname"));
 			bean.setTtime(rs.getString("ttime"));
-			bean.setTphoneno(rs.getInt("tphoneno"));
+			bean.setTphoneno(rs.getString("tphoneno"));
 			bean.setTprice(rs.getString("tprice"));
 			bean.setTplace(rs.getString("tplace"));
 			bean.setTmap(rs.getString("tmap"));
@@ -258,7 +258,7 @@ public class TourDao extends SuperDao{
 		}
 		
 		// 기본키 정보를 이용하여 Bean 객체를 구한다.
-		public Tour getDataByPrimaryKey(Integer tno) throws Exception{
+		public Tour getDataByPrimaryKey(String tno) throws Exception{
 			String sql = " select * from tourist " ;
 			sql += " where tno = ?" ;
 			
@@ -267,7 +267,7 @@ public class TourDao extends SuperDao{
 			
 			conn = super.getConnection() ;
 			pstmt = conn.prepareStatement(sql) ;
-			pstmt.setInt(1, tno);
+			pstmt.setString(1, tno);
 			
 			rs = pstmt.executeQuery() ; 
 			
@@ -378,7 +378,7 @@ public class TourDao extends SuperDao{
 			pstmt.setString(1, bean.getId());		
 			pstmt.setString(2, bean.getTname());
 			pstmt.setString(3, bean.getTtime());		
-			pstmt.setInt(4, bean.getTphoneno());
+			pstmt.setString(4, bean.getTphoneno());
 			pstmt.setString(5, bean.getTprice());
 			pstmt.setString(6, bean.getTplace());
 			pstmt.setString(7, bean.getTimage1());
@@ -471,7 +471,7 @@ public class TourDao extends SuperDao{
 					
 			pstmt.setString(1, bean.getTname());
 			pstmt.setString(2, bean.getTtime());		
-			pstmt.setInt(3, bean.getTphoneno());
+			pstmt.setString(3, bean.getTphoneno());
 			pstmt.setString(4, bean.getTprice());
 			pstmt.setString(5, bean.getTplace());
 			pstmt.setString(6, bean.getTmap());
