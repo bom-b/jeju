@@ -403,7 +403,7 @@ public class FoodDao extends SuperDao {
 			return cnt ;
 		}
 
-		// 게시물 번호를 이용하여 해당 게시물을 삭제합니다.
+		// 게시물 번호를 이용하여 해당 게시물을 삭제합니다. 댓글과 추천기록도 함께 삭제.
 		public int DeleteDate(String no) throws Exception {
 			String sql = "";
 			int cnt = 0;
@@ -412,12 +412,27 @@ public class FoodDao extends SuperDao {
 			conn = super.getConnection();
 			conn.setAutoCommit(false);
 			
-			// 맛집 테이블에서 해당 번호와 관련된 행 삭제하기
+			// step1. 맛집 테이블에서 해당 번호와 관련된 행 삭제하기
 			sql = " delete from foodiespot where no = ? ";
+			
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, no);
+			cnt = pstmt.executeUpdate();
+			pstmt = null;
 			
+			// step2. 댓글 테이블에서 게시물 넘버에 해당하는 댓글 삭제하기
+			sql = " delete from comments where BOARDNO = ? and CATEGORY = 'food' ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			cnt = pstmt.executeUpdate();
+			pstmt = null;
+			
+			// step3. 추천 테이블에서 게시물 넘버에 해당하는 추천기록 삭제하기
+			sql = " delete from likes where NO = ? and CATEGORY = 'food' ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
 			cnt = pstmt.executeUpdate();
 			
 			conn.commit();
