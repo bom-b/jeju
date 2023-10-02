@@ -23,7 +23,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		
 		if(bean == null) {
 			super.setAlertMessage("잘못된 게시물 번호입니다.");
-			super.gotoPage("common/home.jsp"); 
+			super.gotoPage("/free/freeMain.jsp"); 
 		}else {
 			request.setAttribute("bean", bean) ;
 			super.gotoPage("/free/freeDetail.jsp"); 

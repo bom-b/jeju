@@ -208,7 +208,7 @@ body {
 					<div id="tab-1" class="tab-pane p-0 active">
 						<div class="row g-4">
 
-							<c:forEach var="bean" items="${requestScope.pcategory_datalist }">
+							<c:forEach var="bean" items="${requestScope.pcategory_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
@@ -246,7 +246,7 @@ body {
 					<div id="tab-2" class="tab-pane p-0">
 						<div class="row g-4">
 
-							<c:forEach var="bean" items="${requestScope.ta_datalist }">
+							<c:forEach var="bean" items="${requestScope.ta_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"

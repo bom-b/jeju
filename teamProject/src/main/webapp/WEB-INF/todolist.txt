@@ -45,5 +45,5 @@ frInsert=com.jeju.controller.free.freeInsertController
 frUpdate=com.jeju.controller.free.freeUpdateController
 frDelete=com.jeju.controller.free.freeDeleteController
 frEmoticon=com.jeju.controller.free.freeEmoticonController
-frEmoticon=com.jeju.controller.free.freeEmoticonController
+
 

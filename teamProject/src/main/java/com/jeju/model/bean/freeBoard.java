@@ -22,7 +22,9 @@ public class freeBoard {
 		private int groupno ; // 그룹 번호
 		private int orderno ; // 순서 번호
 		
-		private int likes ; // 좋아요
+		private int likes;
+
+		private int olikes;
 	
 		
 		public freeBoard() {
@@ -30,6 +32,30 @@ public class freeBoard {
 		}
 
 	
+
+		public int getLikes() {
+			return likes;
+		}
+
+
+
+		public void setLikes(int likes) {
+			this.likes = likes;
+		}
+
+
+
+		public int getOlikes() {
+			return olikes;
+		}
+
+
+
+		public void setOlikes(int olikes) {
+			this.olikes = olikes;
+		}
+
+
 
 		public int getNo() {
 			return no;
@@ -65,8 +91,8 @@ public class freeBoard {
 			return "freeBoard [ono=" + ono + ", no=" + no + ", id=" + id + ", oname=" + oname + ", ocontent=" + ocontent
 					+ ", readhit=" + readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1="
 					+ oimage1 + ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5="
-					+ oimage5 + ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes="
-					+ likes + " ]";
+					+ oimage5 + ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", olikes="
+					+ olikes + " ]";
 		}
 
 
@@ -246,14 +272,14 @@ public class freeBoard {
 
 
 
-		public int getLikes() {
-			return likes;
+		public int getolikes() {
+			return olikes;
 		}
 
 
 
-		public void setLikes(int likes) {
-			this.likes = likes;
+		public void setolikes(int olikes) {
+			this.olikes = olikes;
 		}
 
 
