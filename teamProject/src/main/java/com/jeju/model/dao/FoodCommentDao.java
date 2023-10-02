@@ -12,7 +12,7 @@ public class FoodCommentDao extends SuperDao {
 	// 해당 게시물 번호에 달려 있는 댓글 목록을 정렬 시켜 반환해 줍니다.
 	public List<FoodComment> GetDataByPk(int boardno) throws Exception {
 		String sql = " select * from comments " ;
-		sql += " where BOARDNO = ? and CATEGORY = 'fd' order by cno asc " ;
+		sql += " where BOARDNO = ? and CATEGORY = 'food' order by cno asc " ;
 		
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
@@ -56,7 +56,7 @@ public class FoodCommentDao extends SuperDao {
 		int cnt = -1 ;
 		
 		String sql = " insert into comments (cno, id, boardno, category, content, regdate) " ;
-		sql += " values(seqcomment.nextval, ?, ?, 'fd', ?, sysdate) " ; // 'fd' 대신 게시판별로 카테고리 입력
+		sql += " values(seqcomment.nextval, ?, ?, 'food', ?, sysdate) " ; // 'food' 대신 게시판별로 카테고리 입력
 		
 		PreparedStatement pstmt = null ;
 		
