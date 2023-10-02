@@ -2,12 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/common/bootstrap5.jsp" %>
 <%@ include file="/common/common.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%-- 맛집 전용 style.css --%>
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
+
 <style type="text/css">
         @font-face{
 		font-family:'SDMiSaeng'; /*글꼴*/
@@ -24,86 +29,80 @@
     </style>
 </head>
 <body>
-        <!-- Top content -->
-        <div class="top-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 text wow fadeInLeft">
-                        <h1 class="sdms-font" style="font-size: 100px">혼저옵서예~</h1>
-                        <div class="description">
-                        	<p class="medium-paragraph sdms-font" style="font-size: 50px; color: white;">
-                         	안녕하우꽈~
-                        	</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Features -->
-        <div class="features-container section-container">
-	        <div class="container">
-	            <div class="col">
-	                <div class="col-lg-12 features section-description wow fadeIn">
-	                    <h2 class="sdms-font">여기다가 맛집 관광지 행사 추가해용</h2>
-	                    <div class="divider-1 wow fadeInUp"><span></span></div>
-	                </div>
-	            </div>
-	            
-	            <div class="col">
-	                <div class="col-lg-4 features-box wow fadeInLeft">
-	                	<div class="col">
-	                		<div class="row-lg-3 features-box-icon" >                			
-	                			<i class="fa-solid fa-utensils" style="color: #ff9600;"></i>
-	                			<h1 class="sdms-font"> 맛집 </h1>
-	                		</div>
-	                		<div class="col-sm-9">
-	                			
-	                		</div>
-	                	</div>
-	                </div>
-	            </div>
-	            
-	            <div class="col">
-	                <div class="col-lg-4 features-box wow fadeInLeft">
-	                	<div class="col">
-	                		<div class="row-lg-3 features-box-icon">               			
-	                			<i class="fa-solid fa-landmark" style="color: #ff9600;"></i>
-	                			<h1 class="sdms-font"> 관광지 </h1>
-	                		</div>
-	                		<div class="col-sm-9">
-	                			
-	                		</div>
-	                	</div>
-	                </div>
-	            </div>
-
-				<div class="col">
-	                <div class="col-lg-4 features-box wow fadeInLeft">
-	                	<div class="col">
-	                		<div class="row-lg-3 features-box-icon">	                			
-	                			<i class="fa-regular fa-calendar-days" style="color: #ff9600;"></i>
-	                			<h1 class="sdms-font"> 행사 </h1>
-	                		</div>
-	                		<div class="col-sm-9">
-	                			
-	                		</div>
-	                	</div>
+	<!-- Top content -->
+	<div class="top-content">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-sm-12 text wow fadeInLeft">
+	                <h1 class="sdms-font" style="font-size: 100px">혼저옵서예~</h1>
+	                <div class="description">
+	                	<p class="medium-paragraph sdms-font" style="font-size: 50px; color: white;">
+	                 	안녕하우꽈~
+	                	</p>
 	                </div>
 	            </div>
 	        </div>
-        </div>
+	    </div>
+	</div>
+	
+	<!-- 이달의 행사 -->	
+	<div class="commentBox container-xxl py-5">
+		<div class="container my-5 py-5">
+			행사 배너 (캐르셀)
+		</div>
+	</div>
+	<!-- 이달의 행사 -->
+	
+   	<!-- 이달의 맛집과 관광지 -->
+	<div class="commentBox container-xxl py-5">
+		<div class="container my-5 py-5">
+			<div class="row align-items-center g-5">
+				<h3 class="text-left">이달의 베스트</h3>
+				<hr class="subtitle-hr">
+				<div class="col-sm-6 "> 
+					<div>
+						<p>맛집 베스트 6</p>
+					</div>     	
+				</div>
+				<div class="col-sm-6">
+					<div>
+						<p>관광지 베스트 6</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 이달의 맛집과 관광지 -->
+	
+	<!-- 자유게시판과 회원랭킹 -->	
+	<div class="commentBox container-xxl py-5">
+		<div class="container my-5 py-5">
+			<div class="row align-items-center g-5">
+				<div class="col-sm-8"> 
+					<div>
+						<p>자유게시판 베스트 8</p>
+					</div>     	
+				</div>
+				<div class="col-sm-4">
+					<div>
+						<p>회원랭킹 4</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 자유게시판과 회원랭킹 -->	
 
-        <!-- Footer -->
-        <footer>
-	        <div class="container">
-	        	<div class="row">
-	        		<div class="col-sm-12 footer-copyright">
-                    	<i class="fa fa-love"></i><a class="sdms-font" style="font-size: 30px; color: dark;" href="https://www.jeju.go.kr/index.htm">제주도청으로</a></a>
-                    </div>
-                </div>
-	        </div>
-        </footer>
+	 <!-- Footer -->
+	 <footer>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-sm-12 footer-copyright">
+	             	<i class="fa fa-love"></i><a class="sdms-font" style="font-size: 30px; color: dark;" href="https://www.jeju.go.kr/index.htm">제주도청으로</a></a>
+	             </div>
+	         </div>
+	  </div>
+	 </footer>
 
 </body>
 </html>
