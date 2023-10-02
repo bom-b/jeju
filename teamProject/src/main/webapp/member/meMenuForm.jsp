@@ -79,8 +79,8 @@
 	            </div>
 	            <c:if test="${whologin eq 2}">
 					<div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-	                	<div class="bn-medelete banner-item rounded pt-3">
-	                    <div class="p-5">
+	                	<div class="bn-melist banner-item rounded pt-3">
+	                    	<div class="p-5">
 	                        	<i class="text-primary mb-4"></i>
 	                        	<a class="banner-text text-white" href="<%=notWithFormTag%>meList">회원목록 및 관리</a>
 	                    	</div>

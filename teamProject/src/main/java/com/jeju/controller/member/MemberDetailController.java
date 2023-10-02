@@ -16,6 +16,8 @@ public class MemberDetailController extends SuperClass {
 		MemberDao dao = new MemberDao() ;
 		Member bean = null ;
 		
+		
+		
 		try {
 			bean = dao.getDataByPrimaryKey(id);
 			

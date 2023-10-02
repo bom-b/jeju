@@ -23,13 +23,13 @@
 					<td>${requestScope.bean.id}</td>
 				</tr>
 				<tr>
-					<td align="center">이름</td>
-					<td>${requestScope.bean.name}</td>
-				</tr>
-				<tr>
 					<td align="center">비밀번호</td>
 					<td>${requestScope.bean.password}</td>
 				</tr>
+				<tr>
+					<td align="center">이름</td>
+					<td>${requestScope.bean.name}</td>
+				</tr>			
 				<tr>
 					<td align="center">성별</td>
 					<c:if test="${requestScope.bean.gender eq 'male'}">
