@@ -143,12 +143,12 @@
 </head>
 <body>
 <!-- 헤더 Start -->
-   <div class="container-xxl py-5 bg-dark  mb-5"
+   <div class="container-xxl py-5 bg-dark  mb-5" 	data-wow-delay="0.3s"
       style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
-      <div class="container my-5 py-5">
+      <div class="container my-5  wow fadeInUp">
          <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
-               <h1 class="display-3 text-white" style="margin-bottom: 20px;">
+               <h1 class="display-3 text-white" style="margin-bottom: 20px; ">
                   자유게시판</h1>
                <h5 style="color: white; text-align: center;">제주도의 관한 궁금한점!
                   하고싶은 이야기! 모두해보세요!</h5>

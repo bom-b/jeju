@@ -156,18 +156,15 @@ public class freeBoardDao extends SuperDao {
 		sql += " from openforum ";
 
 		// 카테고리에 따라 분기
-		if (pcategory ==pcategory){
-			
-		} else if (pcategory == "ta") {
-			sql += " where pcategory = '잡담' " ;
-			
-		} else if (pcategory == "infor") {
-			sql += " where pcategory = '정보공유' " ;
-			
-		} else if (pcategory == "qu") {
-			sql += " where pcategory = '질문' " ;
-			
-		}
+		  if (pcategory.equals("ta")) {
+		        sql += "WHERE pcategory = '잡담' ";
+		    } else if (pcategory.equals("infor")) {
+		        sql += "WHERE pcategory = '정보공유' ";
+		    } else if (pcategory.equals("qu")) {
+		        sql += "WHERE pcategory = '질문' ";
+		    } else {
+		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
+		    }
 		
 		
 		String mode = pageInfo.getMode();

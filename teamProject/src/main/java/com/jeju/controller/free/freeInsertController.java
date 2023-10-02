@@ -43,7 +43,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 		    if (id == null || id.trim().equals("")) {
 		    	String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
 		    	this.setAlertMessage(message);
-		    	super.gotoPage(PREFIX + "freeMain.jsp");
+		    	new freeInsertController().doGet(request, response);
 		    	return;
 		    }
 	

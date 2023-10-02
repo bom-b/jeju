@@ -69,12 +69,17 @@ $(document).ready(function(){
   			}
   			
   			var content = $('#ocontent').val();
-  			if(content.length < 5 || content.length > 30){
-  				alert('글 내용은 5글자 이상 30글자 이하이어야 합니다.');
+  			if(content.length < 3){
+  				alert('글 내용은 3글자 이상이여야 합니다.');
   				$('#ocontent').focus() ;
   				return false ;
   			}
-  			
+  		  var category = $('#pcategory').val();
+          if (category === "default") {
+              alert('카테고리를 선택해주세요.');
+              $('#pcategory').focus();
+              return false;
+          }
   		}
   	</script>
 </head>
@@ -82,14 +87,8 @@ $(document).ready(function(){
 	<div class="container">
 		<h2>게시물 등록</h2>
 
-		<form action="<%=withFormTag%>" method="post">
-			<input type="hidden" name="pageNumber"
-				value="<%=request.getParameter("pageNumber")%>"> <input
-				type="hidden" name="pageSize"
-				value="<%=request.getParameter("pageSize")%>"> <input
-				type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
-			<input type="hidden" name="keyword"
-				value="<%=request.getParameter("keyword")%>"> <input
+		<form action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+		 <input
 				type="hidden" name="command" value="frInsert">
 			<div class="col-md-6">
 				<div class="input-group">
