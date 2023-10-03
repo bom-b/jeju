@@ -10,23 +10,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<%-- 맛집 전용 style.css --%>
-<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
+<%-- 홈 전용 style.css --%>
+<link href="<%=appName%>/assets/css/homestyle.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+</script>
 
 <style type="text/css">
-        @font-face{
-		font-family:'SDMiSaeng'; /*글꼴*/
-		src: local('SDMiSaeng'),
-			url('SDMiSaeng.eot'),
-			url('SDMiSaeng.woff') format('woff'),
-			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
-		}
+@font-face{
+font-family:'SDMiSaeng'; /*글꼴*/
+src: local('SDMiSaeng'),
+	url('SDMiSaeng.eot'),
+	url('SDMiSaeng.woff') format('woff'),
+	url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
+}
 
-		.sdms-font{
-			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
-			color: orange;
-		}
-    </style>
+.sdms-font{
+	font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
+	color: orange;
+}
+
+</style>
 </head>
 <body>
 	<!-- Top content -->
@@ -46,15 +51,24 @@
 	</div>
 	
 	<!-- 이달의 행사 -->	
-	<div class="commentBox container-xxl py-5">
+	<div class="container-xxl py-5">
 		<div class="container my-5 py-5">
-			행사 배너 (캐르셀)
+		
+			
+				
+		</div>
+	</div>
+	
+	<div class="container-xxl py-5">
+		<div class="container my-5 py-5">
+
+
 		</div>
 	</div>
 	<!-- 이달의 행사 -->
 	
    	<!-- 이달의 맛집과 관광지 -->
-	<div class="commentBox container-xxl py-5">
+	<div class="container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<h3 class="text-left">이달의 베스트</h3>
@@ -75,7 +89,7 @@
 	<!-- 이달의 맛집과 관광지 -->
 	
 	<!-- 자유게시판과 회원랭킹 -->	
-	<div class="commentBox container-xxl py-5">
+	<div class="container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-8"> 
@@ -103,6 +117,6 @@
 	         </div>
 	  </div>
 	 </footer>
-
+	
 </body>
 </html>

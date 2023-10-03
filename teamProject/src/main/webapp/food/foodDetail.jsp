@@ -149,7 +149,7 @@
 	    // 작성자 정보를 위한 첫 번째 셀 (<td>) 생성
 	    var td1 = document.createElement('td');
 	    td1.colSpan = 2;
-	    td1.className = 'comment';
+	    td1.className = 'col-sm-2 comment';
 
 	    // ID를 표시할 강조 (<strong>) 요소 생성
 	    var strong = document.createElement('strong');
@@ -166,13 +166,13 @@
 	    // 댓글 내용을 위한 두 번째 셀 (<td>) 생성
 	    var td2 = document.createElement('td');
 	    td2.colSpan = 8;
-	    td2.className = 'comment';
+	    td2.className = 'col-sm-8 comment';
 	    td2.textContent = content;
 	    
 		// 삭제 버튼을 위한 세 번째 셀 (<td>) 생성
 	    var td3 = document.createElement('td');
 	    td3.colSpan = 2;
-	    td3.className = 'comment text-right delete-button';
+	    td3.className = 'col-sm-2 comment text-right delete-button';
 
 	    if ('${sessionScope.loginfo.id}' === id) { // 로그인 정보와 댓글 작성자가 같을 경우
 	    	// 삭제 버튼 생성

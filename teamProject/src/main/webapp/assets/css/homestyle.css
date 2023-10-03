@@ -165,5 +165,7 @@ object-fit: cover;
 /********** 홈페이지 **********/
 
 .subtitle-hr {
-	border: 4px solid #000 !important;
+	border: 2px solid rgb(62, 62, 62) !important;
 }
+
+/********** 배너 **********/
