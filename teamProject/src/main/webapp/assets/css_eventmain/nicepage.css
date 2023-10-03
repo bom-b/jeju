@@ -3,6 +3,13 @@
  * License https://froala.com/wysiwyg-editor/terms/
  * Copyright 2014-2021 Froala Labs
  */
+		@font-face{
+		font-family:'SDMiSaeng'; /*글꼴*/
+		src: local('SDMiSaeng'),
+			url('SDMiSaeng.eot'),
+			url('SDMiSaeng.woff') format('woff'),
+			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
+		}
 
 .fr-clearfix::after {
   clear: both;
@@ -25024,7 +25031,7 @@ a.u-button-style.u-border-20 {
 }
 /*begin-variables font-family*/
 .u-body {
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'SDMiSaeng';
 }
 h1,
 h2,

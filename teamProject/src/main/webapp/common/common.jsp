@@ -101,7 +101,7 @@
 						</li>
 						<li><a class="sdms-font" style="font-size: 25px" href="<%=notWithFormTag%>fdMain">맛집</a></li>
 						<li><a class="sdms-font" style="font-size: 25px" href="<%=notWithFormTag%>trMain">관광지</a></li>
-						<li><a class="sdms-font" style="font-size: 25px" href="<%=notWithFormTag%>evMain">행사</a></li>
+					    <li><a class="sdms-font" style="font-size: 25px" href="<%=notWithFormTag%>evMain&enddate=allDate">행사</a></li>
 						<li><a class="sdms-font" style="font-size: 25px" href="<%=notWithFormTag%>frMain">자유게시판</a></li>
 					</ul>
 					

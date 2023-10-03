@@ -21,9 +21,9 @@
 }
 
 .u-section-1 .u-image-3 {
-  width: 100px;
-  height: 100px;
-  margin: -670px auto 0 -1px;
+  width: 200px;
+  height: 200px;
+  margin: -740px auto 0 -20px;
 }
 
 .u-section-1 .u-group-1 {
@@ -52,7 +52,6 @@
 .u-section-1 .u-btn-1 {
   font-weight: 500;
   background-image: none;
-  margin: 40px auto 0 0;
   padding: 12px 15px 2px 15px;
 }
 

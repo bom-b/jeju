@@ -15,10 +15,22 @@
 <link href="<%=appName%>/assets/css_eventmain/nicepage.css" rel="stylesheet" media="screen">
 <link href="<%=appName%>/assets/css_eventmain/Page-2.css" rel="stylesheet" media="screen">
 <link href="<%=appName%>/assets/css_eventmain/Page-4.css" rel="stylesheet" media="screen">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	function openContent() {
 		document.getElementById("detailContent").style.display = "block";
 	}
+	$(function() {
+		// 이미지 슬라이드 컨트롤를 사용하기 위해서 carousel를 실행
+		$('#carouselDiv').carousel({
+			// 슬리아딩 자동 순환 지연 시간
+			interval : 3000,
+			// hover를 설정하면 마우스를 가져대면 자동 순환이 멈춘다.
+			pause : "hover",
+			// 순환 설정, true면 1 -> 2가면 다시 1로 돌아가서 반복
+			wrap : true
+		});
+	});
 </script>
 <style type="text/css">
 #detailContent {
@@ -37,6 +49,7 @@
 					<h1 class="u-text u-text-custom-color-13 u-title u-text-1">
 						<span>${requestScope.eventDetail. ename}</span>
 					</h1>
+
 					<c:set var="data" value="${requestScope.eventDetail}" />
 					<c:if test="${fn:length(data.econtent)>=100 }">
 						<p class="u-large-text u-text u-text-variant u-text-2">${fn:substring(data.econtent,0,100)}......</p>
@@ -44,7 +57,7 @@
 					</c:if>
 					<c:if test="${fn:length(data.econtent)<100 }">
 						<p class="u-large-text u-text u-text-variant u-text-2">${requestScope.eventDetail.econtent}</p>
-						<a href="" class="u-btn u-button-style u-custom-color-11 u-text-white u-btn-1" style="display: none">자세히 보기</a>
+						<a href="" class="u-btn u-button-style u-custom-color-11 u-text-white u-btn-1" style="display: none;">자세히 보기</a>
 					</c:if>
 				</div>
 			</div>
@@ -65,80 +78,39 @@
 	</section>
 	<!--     자세한 설명 end -->
 	<!-- 사진보기 start -->
-	<section class="u-carousel u-slide u-block-f1e7-1" id="carousel-2ad1" data-interval="5000" data-u-ride="carousel">
 
-		<div class="u-carousel-inner" role="listbox">
-			<div class="u-active u-carousel-item u-clearfix u-section-2-1">
-				<div class="u-clearfix u-sheet u-sheet-1">
-					<div class="u-align-center-lg u-align-center-xl u-align-center-xs u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-group-1">
-						<div class="u-container-align-center u-container-layout u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs u-container-layout-1">
-							<h2 class="u-align-center-md u-align-center-sm u-text u-text-1">아직 하는 중</h2>
-							<div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
-						</div>
-					</div>
-					<img src="<%=appName%>/assets/img/event_img/snoopy01.png" class="u-align-left u-image u-opacity u-opacity-50 u-image-1"> <img src="<%=appName%>/assets/img/event_img/minsokchon01.png" class="u-align-left u-image u-opacity u-opacity-50 u-image-2"> <img src="<%=appName%>/assets/img/event_img/tamra01.png" class="u-align-left u-image u-image-3">
 
-				</div>
+
+	<!-- The slideshow/carousel -->
+	<!-- Carousel -->
+	<div id="carouselDiv" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto">
+		<!-- The slideshow/carousel -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage1}">
 			</div>
-			<%--         <div class="u-carousel-item u-clearfix u-section-2-2">
-             <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-align-center-lg u-align-center-xl u-align-center-xs u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-group-1">
-              <div class="u-container-align-center u-container-layout u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs u-container-layout-1">
-                <h2 class="u-align-center-md u-align-center-sm u-text u-text-1">How to Use Your Financial Aid Like a Paycheck</h2>
-                <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
-              </div>
-            </div>
-            <img src="<%=appName%>/assets/img/event_img/snoopy01.png" class="u-align-left u-image u-opacity u-opacity-50 u-image-1">
-            <img src="<%=appName%>/assets/img/event_img/minsokchon01.png" class="u-align-left u-image u-opacity u-opacity-50 u-image-2">
-            <img src="<%=appName%>/assets/img/event_img/tamra01.png" class="u-align-left u-image u-image-3">
-            <div class="u-container-style u-group u-group-2">
-              <div class="u-container-layout">
-                <p class="u-align-center u-custom-font u-small-text u-text u-text-font u-text-variant u-text-2">
-                  <a href="https://www.usnews.com/education/best-colleges/paying-for-college/articles/2018-08-13/how-to-use-your-financial-aid-like-a-paycheck?int=undefined-rec" target="_blank">learn more</a>
-                </p>
-                <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="u-carousel-item u-clearfix u-section-2-3">
-            <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-align-center-lg u-align-center-xl u-align-center-xs u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-group-1">
-              <div class="u-container-align-center u-container-layout u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs u-container-layout-1">
-                <h2 class="u-align-center-md u-align-center-sm u-text u-text-1">How to Use Your Financial Aid Like a Paycheck</h2>
-                <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
-              </div>
-            </div>
-            <img src="<%=appName%>/assets/img/event_img/snoopy01.png" class="u-align-left u-image u-opacity u-opacity-50 u-image-1">
-            <img src="<%=appName%>/assets/img/event_img/minsokchon01.png" class="u-align-left u-image u-opacity u-opacity-50 u-image-2">
-            <img src="<%=appName%>/assets/img/event_img/tamra01.png" class="u-align-left u-image u-image-3">
-            <div class="u-container-style u-group u-group-2">
-              <div class="u-container-layout">
-                <p class="u-align-center u-custom-font u-small-text u-text u-text-font u-text-variant u-text-2">
-                  <a href="https://www.usnews.com/education/best-colleges/paying-for-college/articles/2018-08-13/how-to-use-your-financial-aid-like-a-paycheck?int=undefined-rec" target="_blank">learn more</a>
-                </p>
-                <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-2"></div>
-              </div>
-            </div>
-          </div>
-        </div> --%>
+			<div class="item">
+				<img src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage2}">
+			</div>
+			<div class="item">
+				<img src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage3}">
+			</div>
+			<div class="item">
+				<img src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage4}">
+			</div>
+			<div class="item">
+				<img src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage5}" style="max-width: 100%; object-fit: contain;">
+			</div>
 		</div>
-		<a class="u-carousel-control u-carousel-control-prev u-text-body-alt-color u-block-f1e7-3" href="#carousel-2ad1" role="button" data-u-slide="prev">
-			<span aria-hidden="true"> <svg viewBox="0 0 451.847 451.847">
-					<path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path>
-</svg>
-			</span>
+		<a class="left carousel-control" href="#carouselDiv" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
 		</a>
-		<a class="u-carousel-control u-carousel-control-next u-text-body-alt-color u-block-f1e7-4" href="#carousel-2ad1" role="button" data-u-slide="next">
-			<span aria-hidden="true"> <svg viewBox="0 0 451.846 451.847">
-					<path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
-			</span>
-		</a>
-	</section>
+		<a class="right carousel-control" href="#carouselDiv" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
+  </a>
+	</div>
+
+
 	<!-- 사진보기 end -->
 
 </body>
