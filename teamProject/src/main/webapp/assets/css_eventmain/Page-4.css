@@ -377,15 +377,17 @@
 }
 
 .u-section-2-2 .u-text-2 {
-  font-style: italic;
-  margin: 24px 20px 0;
+  margin: 20px 20px -25px 20px;
+      font-family: 'SDMiSaeng';
+        font-size: 4rem;
+    text-align: center;
 }
 
 .u-section-2-2 .u-line-2 {
   height: 3px;
   transform-origin: right center 0;
   width: 590px;
-  margin: 16px auto 5px 0;
+  margin: 16px auto 300px 0;
 }
 
 @media (max-width: 1199px) {

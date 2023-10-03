@@ -176,14 +176,6 @@
 	color: black;
 }
 
-.carousel-inner {
-	width: 70%;
-	margin: 0 auto;
-}
-
-.carousel-control.left {
-	margin-left: 400px;
-}
 
 .ui-datepicker {
 	font-size: 30px;
@@ -209,7 +201,7 @@
 }
 
 .contact_section {
-	margin-top: 150px;
+
 	width: 100%;
 	float: left;
 }
@@ -217,7 +209,7 @@
 .contact_section_2 {
 	width: 100%;
 	text-align: center;
-	background-image: url(../img/event_img/bg_insert.png);
+	background-image: url(../img/event_img/bg_insert3.png);
 	height: 100%;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
@@ -265,7 +257,6 @@
 	border: 3px solid #84c0a0 !important;
 	background-color: #ffffff !important;
 	padding: 10px 15px 10px 15px;
-	margin-top: 20px;
 	border-radius: 4px;
 	font-family: 'SDMiSaeng';
 		font-weight: 600;
@@ -356,3 +347,4 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+

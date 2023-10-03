@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.Event;
 import com.jeju.model.dao.EventDao;
+import com.oreilly.servlet.MultipartRequest;
 
 public class EventInsertController extends SuperClass {
 	@Override
@@ -17,12 +18,13 @@ public class EventInsertController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
-
+		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr");
 		Event bean = new Event();
 		bean.setEname(request.getParameter("ename"));
 		bean.setStartdate(request.getParameter("startdate"));
 		bean.setEnddate(request.getParameter("enddate"));
 		bean.setEphoneno(request.getParameter("ephoneno"));
+		bean.setEimage1(request.getParameter("eimage1"));
 		bean.setEplace(request.getParameter("eplace"));
 		bean.setEcontent(request.getParameter("econtent"));
 

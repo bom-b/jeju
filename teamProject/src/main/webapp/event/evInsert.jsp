@@ -37,6 +37,7 @@ function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function(e) {
+		document.getElementById("image_section").style.display = "block";
       document.getElementById('image_section').src = e.target.result;
     };
     reader.readAsDataURL(input.files[0]);
@@ -61,12 +62,11 @@ function readURL(input) {
 								<input type="text" class="mail_text" placeholder="행사명" name="ename">
 								<input type="text" class="mail_text" placeholder="주최측 번호" name="ephoneno">
 								<input type="text" class="mail_text" placeholder="행사 위치" name="eplace"><br/>
-								<input class="mail_text" type="file" id="image01" name="image01" onchange="readURL(this);" hidden="">		
-								<label for="upload" class="image_label">Choose file</label><br/>
-								<img id="image_section" class="image_preview"/><br/>
+								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin:20px auto 0px auto">		
+								<img id="image_section" class="image_preview" style="display: none;"/><br/>
 								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent"></textarea>
 								<div class="order_bt">
-									<a href="#">등     록</a>
+									<a href="#">등록</a>
 								</div>
 							</div>
 						</form>

@@ -110,8 +110,8 @@
 							<button type="submit" class="btn green-background form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">검색</button>
 							<button type="button" class="btn green-background form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button>
 							<c:if test="${whologin eq 2}">
-								<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">글 쓰기</button>
 							</c:if>
+								<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">글 쓰기</button>
 						</div>
 				</form>
 			</div>
