@@ -15,6 +15,7 @@
 }
 
 .u-section-1 .u-image-2 {
+	border-radius:20px;
   width: 471px;
   height: 609px;
   margin: -697px auto 0 56px;
@@ -50,6 +51,7 @@
 }
 
 .u-section-1 .u-btn-1 {
+	border-radius:20px;
   font-weight: 500;
   background-image: none;
   padding: 12px 15px 2px 15px;
