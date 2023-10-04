@@ -24,11 +24,12 @@ public class freeBoardMainController extends SuperClass {
 
         freeBoardDao dao = new freeBoardDao();
         try {
-        	//전체 데이터 개수 구하기
-        	int totalCount_pcategory = dao.GetTotalRecordCount(mode, keyword, "pcategory");
-            String url_pcategory = super.getUrlInfomation("frMain");
-            boolean isGrid_pcategory = false;
-            Paging pageInfo_pcategory = new Paging(pageNumber, pageSize, totalCount_pcategory, url_pcategory, mode, keyword, isGrid_pcategory);
+            // 전체 데이터 개수 구하기
+        	int totalCount = dao.GetTotalRecordCount(mode, keyword); // 수정 예정
+			String url = super.getUrlInfomation("frMain") ;
+			boolean isGrid = false ;
+			Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, url, mode, keyword, isGrid);
+
         	
         	//잠답 데이터 개수 구하기
             int totalCount_ta = dao.GetTotalRecordCount(mode, keyword, "ta");
@@ -49,7 +50,7 @@ public class freeBoardMainController extends SuperClass {
             Paging pageInfo_infor = new Paging(pageNumber, pageSize, totalCount_infor, url_infor, mode, keyword, isGrid_infor);
        
          // pcategory 데이터 가져오기
-            List<freeBoard> pcategorylists = dao.selectAll(pageInfo_pcategory, "pcategory");
+            List<freeBoard> lists = dao.selectAll(pageInfo, "");
 
             // ta 데이터 가져오기
             List<freeBoard> talists = dao.selectAll(pageInfo_ta, "ta");
@@ -63,13 +64,13 @@ public class freeBoardMainController extends SuperClass {
 
 
 
-            request.setAttribute("pcategory_datalist", pcategorylists);
+            request.setAttribute("datalist", lists);
             request.setAttribute("ta_datalist",talists);
             request.setAttribute("qu_datalist", qulists);
             request.setAttribute("infor_datalist", inforlists);
 
             // 페이징 관련 정보를 바인딩
-            request.setAttribute("pageInfo_pcategory", pageInfo_pcategory);
+            request.setAttribute("pageInfo", pageInfo);
             request.setAttribute("pageInfo_ta", pageInfo_ta);
             request.setAttribute("pageInfo_qu", pageInfo_qu);
             request.setAttribute("pageInfo_infor", pageInfo_infor);

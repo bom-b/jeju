@@ -24,7 +24,7 @@ public class freeInsertController extends SuperClass{
 		if (id == null || id == "") {
 			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
 			this.setAlertMessage(message);
-			super.gotoPage(PREFIX + "freeMain.jsp");
+			new freeBoardMainController().doGet(request, response);
 			return;
 		}
 		
@@ -70,14 +70,14 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 			cnt = dao.InsertData(bean);
 			
 			if(cnt == -1 ) { //등록 실패
-				String message = "서버 오류로 게시물이 등록되지 않았습니다.";
-				super.setAlertMessage(message);
-			super.gotoPage("/free/freeDetail.jsp");
-			}else {//성공
-				new freeBoardMainController().doGet(request, response);
-			}
-		} catch (Exception e) { 
-			e.printStackTrace();
+	            String message = "서버 오류로 게시물이 등록되지 않았습니다.";
+	            super.setAlertMessage(message);
+	         super.gotoPage("/free/freeDetail.jsp");
+	         }else {//성공
+	        	 new freeBoardMainController().doGet(request, response);
+	         }
+	      } catch (Exception e) { 
+	         e.printStackTrace();
 			
 		}
 	}

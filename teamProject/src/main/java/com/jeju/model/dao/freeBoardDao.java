@@ -13,7 +13,7 @@ public class freeBoardDao extends SuperDao {
 		// ResultSet 정보를 Bean으로 만들어서 반환해 줍니다.
 		freeBoard bean = new freeBoard();
 
-		bean.setOno(rs.getInt("ono"));
+		bean.setOno(rs.getString("ono"));
 		bean.setId(rs.getString("id"));
 		bean.setOname(rs.getString("oname"));
 		bean.setOcontent(rs.getString("ocontent"));
@@ -38,16 +38,17 @@ public class freeBoardDao extends SuperDao {
 		return bean;
 	}
 
-	public freeBoard getDataByPrimaryKey(Integer ono) throws Exception {
-		String sql = " select * from openforum ";
-		sql += " where ono = ?";
+	public freeBoard getDataByPrimaryKey(String ono) throws Exception {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
+		String sql = " select * from openforum ";
+		sql += " where ono = ? ";
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, ono);
+		pstmt.setString(1, ono);
 
 		rs = pstmt.executeQuery();
 
@@ -75,7 +76,7 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select * from openForum order by ono desc";
+		String sql = " select * from openforum order by ono desc";
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -108,37 +109,46 @@ public class freeBoardDao extends SuperDao {
 		// 테이블의 총 행개수를 구합니다.
 		String sql = " select count(*) as cnt from openforum ";
 		
-		if (mode == null || mode.equals("all")) {
-		} else { // 전체 모드가 아니면
-			sql += " where " + mode + " like '%" + keyword + "%'";
-		}
-		
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		conn = super.getConnection();
-		pstmt = conn.prepareStatement(sql);
-
-		rs = pstmt.executeQuery();
-
-		int cnt = -1;
-
-		if (rs.next()) {
-			cnt = rs.getInt("cnt");
-		}
-
-		if (rs != null) {
-			rs.close();
-		}
-		if (pstmt != null) {
-			pstmt.close();
-		}
-		if (conn != null) {
-			conn.close();
-		}
-
-		return cnt;
+		// 카테고리에 따라 분기
+		  if (pcategory == "ta") {
+		        sql += "WHERE pcategory = '잡담' ";
+		    } else if (pcategory == "infor") {
+		        sql += "WHERE pcategory = '정보공유' ";
+		    } else if (pcategory == "qu") {
+		        sql += "WHERE pcategory = '질문' ";
+		    } else {
+		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
+		    }
+		  
+		  
+		// 검색 조건에 따라 분기
+					if (mode == null || mode.equals("all")) {
+						// 전체 모드, 또는 입력값이 안들어왔을경우
+						
+					} else {
+						// 전체 모드가 아니라면,
+						sql += " and " + mode + " like '%" + keyword + "%' " ;
+					}
+					
+					PreparedStatement pstmt = null ;
+					ResultSet rs = null ;
+					
+					conn = super.getConnection() ;
+					pstmt = conn.prepareStatement(sql) ;
+					
+					rs = pstmt.executeQuery() ; 
+					
+					int cnt = -1 ;
+					
+					if(rs.next()) {
+						cnt = rs.getInt("cnt") ;
+					}
+					
+					if(rs!=null) {rs.close();}
+					if(pstmt!=null) {pstmt.close();}
+					if(conn!=null) {conn.close();}
+					
+					return cnt;
 	}
 
 	public List<freeBoard> selectAll(Paging pageInfo, String pcategory) throws Exception {
@@ -146,21 +156,19 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes";
-
-		// 답글 이전 코딩 방식
-		// sql += " from (select no, id, password, subject, content, readhit, oregdate,
-		// remark, groupno, orderno, depth, rank() over(order by no desc) as ranking " ;
-
-		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes, rank() over(order by groupno desc, orderno asc) as ranking ";
+		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes ";
+		
+		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes, rank() over(order by ono desc) as ranking ";
 		sql += " from openforum ";
 
+
+		
 		// 카테고리에 따라 분기
-		  if (pcategory.equals("ta")) {
+		  if (pcategory == "ta") {
 		        sql += "WHERE pcategory = '잡담' ";
-		    } else if (pcategory.equals("infor")) {
+		    } else if (pcategory == "infor") {
 		        sql += "WHERE pcategory = '정보공유' ";
-		    } else if (pcategory.equals("qu")) {
+		    } else if (pcategory == "qu") {
 		        sql += "WHERE pcategory = '질문' ";
 		    } else {
 		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
@@ -244,15 +252,15 @@ public class freeBoardDao extends SuperDao {
 		return cnt;
 	}
 
-	public freeBoard GetDataByPk(Integer ono) throws Exception {
+	public freeBoard GetDataByPk(String ono) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select * from openforum ";
-		sql += " where ono = ? ";
+		String sql = " select * from openforum where ono = ? ";
+
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, ono);
+		pstmt.setString(1, ono);
 
 		rs = pstmt.executeQuery();
 
@@ -298,7 +306,7 @@ public class freeBoardDao extends SuperDao {
 		pstmt.setString(8, bean.getOimage3());
 		pstmt.setString(9, bean.getOimage4());
 		pstmt.setString(10, bean.getOimage5());
-		 pstmt.setInt(11, bean.getOno());
+		 pstmt.setString(11, bean.getOno());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();
@@ -313,7 +321,7 @@ public class freeBoardDao extends SuperDao {
 		return cnt;
 	}
 	// 추천을 했는지 체크하기
-			public int	CheckLikes(int no, String id) throws Exception {
+			public int	CheckLikes(String ono, String id) throws Exception {
 				int cnt = -1;
 				int count = 0;
 				
@@ -327,7 +335,7 @@ public class freeBoardDao extends SuperDao {
 				sql += " where no = ? and category = 'free' and id = ? "; // 여기에 'food' 대신 event, tour, free 입력
 				
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, no);
+				pstmt.setString(1, ono);
 				pstmt.setString(2, id);
 
 				rs = pstmt.executeQuery();
@@ -350,7 +358,7 @@ public class freeBoardDao extends SuperDao {
 				
 				return cnt;
 			}
-	public int UpdateEmoticon(int ono, String id) throws Exception {
+	public int UpdateEmoticon(String ono, String id) throws Exception {
 		
 
 		int cnt = -1;
@@ -365,7 +373,7 @@ public class freeBoardDao extends SuperDao {
 		
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, ono);
+		pstmt.setString(1, ono);
 
 		cnt = pstmt.executeUpdate();
 		pstmt = null;
@@ -374,7 +382,7 @@ public class freeBoardDao extends SuperDao {
 		sql += " values(?, 'free' ,?) "; // 여기에 'food' 대신 event, tour, free 입력
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, ono); // no는 int 타입
+		pstmt.setString(1, ono); // no는 int 타입
 		pstmt.setString(2, id); // id는 String 타입
 		
 		cnt = pstmt.executeUpdate();
@@ -387,7 +395,7 @@ public class freeBoardDao extends SuperDao {
 		return cnt;
 	}
 
-	public int DeleteDate(int ono) throws Exception{
+	public int DeleteDate(String ono) throws Exception{
 
 		int cnt = 0;
 		PreparedStatement pstmt = null;
@@ -397,19 +405,65 @@ public class freeBoardDao extends SuperDao {
 		String sql = " delete from openforum where ono = ? ";
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, ono); // ono 값을 바인딩
+		pstmt.setString(1, ono); // ono 값을 바인딩
 
 		cnt = pstmt.executeUpdate();
-
-		conn.commit();
-
-		if (pstmt != null) {
-			pstmt.close();
-		}
-		if (conn != null) {
-			conn.close();
-		}
-
-		return cnt;
+		pstmt = null;
+		// step2. 댓글 테이블에서 게시물 넘버에 해당하는 댓글 삭제하기
+					sql = " delete from comments where BOARDNO = ? and CATEGORY = ' free' ";
+					
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, ono);
+					cnt = pstmt.executeUpdate();
+					pstmt = null;
+					
+					// step3. 추천 테이블에서 게시물 넘버에 해당하는 추천기록 삭제하기
+					sql = " delete from likes where NO = ? and CATEGORY = 'free' ";
+					
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, ono);
+					cnt = pstmt.executeUpdate();
+					
+					conn.commit();
+					
+					if (pstmt != null) {pstmt.close();} 
+					if (conn != null) {conn.close();} 
+					
+					return cnt;
 	}
+
+	public int GetTotalRecordCount(String mode, String keyword) throws Exception{ //(전체)
+		System.out.println(" / 검색할 키워드 : " + keyword);
+		
+		
+		String sql = " select count(*) as cnt from openforum " ;
+		
+		if (mode == null || mode.equals("all")) {
+			// 전체 모드, 또는 입력값이 안들어왔을경우
+			
+		} else {
+			// 전체 모드가 아니라면,
+			sql += " where " + mode + " like '%" + keyword + "%' " ;
+		}
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		
+		conn = super.getConnection() ;
+		pstmt = conn.prepareStatement(sql) ;
+		
+		rs = pstmt.executeQuery() ; 
+		
+		int cnt = -1 ;
+		
+		if(rs.next()) {
+			cnt = rs.getInt("cnt") ;
+		}
+		
+		if(rs!=null) {rs.close();}
+		if(pstmt!=null) {pstmt.close();}
+		if(conn!=null) {conn.close();}
+		
+		return cnt;
+}
 }

@@ -16,11 +16,17 @@ public class freeUpdateController extends SuperClass {
 		super.doGet(request, response);
 
 		// 수정할 게시물 번호를 우선 챙깁니다.
-		Integer ono = Integer.parseInt(request.getParameter("ono"));
+		String ono = request.getParameter("ono");
 
 		freeBoardDao dao = new freeBoardDao();
 		freeBoard bean = dao.GetDataByPk(ono);
-		request.setAttribute("bean", bean);
+
+		try {
+			request.setAttribute("bean", bean);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		super.gotoPage(PREFIX + "freeUpdate.jsp");
 	}
@@ -28,24 +34,22 @@ public class freeUpdateController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
-		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr");
-		
+		MultipartRequest mr = (MultipartRequest) request.getAttribute("mr");
+
 		freeBoard bean = new freeBoard();
-		
-		  bean.setOno(Integer.parseInt(mr.getParameter("ono")));
-		  bean.setId(mr.getParameter("id"));
-		  bean.setOname(mr.getParameter("oname"));
-		  bean.setOcontent(mr.getParameter("ocontent"));
-		  bean.setPcategory(mr.getParameter("pcategory"));
-		  bean.setOregdate(mr.getParameter("oregdate"));
-		  bean.setOimage1(mr.getParameter("oimage1"));
-		  bean.setOimage2(mr.getParameter("oimage2"));
-		  bean.setOimage3(mr.getParameter("oimage3"));
-		  bean.setOimage4(mr.getParameter("oimage4"));
-		  bean.setOimage5(mr.getParameter("oimage5"));
-		  
-	
-		
+
+		bean.setOno(mr.getParameter("ono"));
+		bean.setId(mr.getParameter("id"));
+		bean.setOname(mr.getParameter("oname"));
+		bean.setOcontent(mr.getParameter("ocontent"));
+		bean.setPcategory(mr.getParameter("pcategory"));
+		bean.setOregdate(mr.getParameter("oregdate"));
+		bean.setOimage1(mr.getParameter("oimage1"));
+		bean.setOimage2(mr.getParameter("oimage2"));
+		bean.setOimage3(mr.getParameter("oimage3"));
+		bean.setOimage4(mr.getParameter("oimage4"));
+		bean.setOimage5(mr.getParameter("oimage5"));
+
 		freeBoardDao dao = new freeBoardDao();
 		int cnt = -1;
 		try {

@@ -48,5 +48,8 @@ frInsert=com.jeju.controller.free.freeInsertController
 frUpdate=com.jeju.controller.free.freeUpdateController
 frDelete=com.jeju.controller.free.freeDeleteController
 frEmoticon=com.jeju.controller.free.freeEmoticonController
+frcmList=com.jeju.controller.free.freeCommentListController
+frcmInsert=com.jeju.controller.free.freeCommentInsertController
+frcmDelete=com.jeju.controller.free.freeCommentDeleteController
 
 

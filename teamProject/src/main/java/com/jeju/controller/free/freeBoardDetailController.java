@@ -14,7 +14,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 	// TODO Auto-generated method stub
 	super.doGet(request, response);
 	
-	Integer ono = Integer.parseInt(request.getParameter("ono"));
+	String ono = request.getParameter("ono");
 	freeBoardDao dao = new freeBoardDao() ;
 	freeBoard bean = null ;
 	
@@ -23,7 +23,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		
 		if(bean == null) {
 			super.setAlertMessage("잘못된 게시물 번호입니다.");
-			super.gotoPage("/free/freeMain.jsp"); 
+			new freeBoardMainController().doGet(request, response);
 		}else {
 			request.setAttribute("bean", bean) ;
 			super.gotoPage("/free/freeDetail.jsp"); 

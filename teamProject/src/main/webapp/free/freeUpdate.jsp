@@ -58,11 +58,8 @@ h2 {
 	font-size: 70px;
 }
 </style>
-<script type="text/javascript">
-    $(document).ready(function(){
-        /* $('#regdate').datepicker(); */
-        $('#regdate').datepicker({dateFormat: "yy/mm/dd"});  	  	 
-    });
+				<script type="text/javascript">
+  
     
 
 
@@ -177,7 +174,7 @@ h2 {
 						id="oregdate" name="oregdate" type="text" class="form-control" readonly>
 				</div>
 				<script type="text/javascript">
-    // 현재 날짜를 가져오는 함수
+  // 현재 날짜를 가져오는 함수
     function getCurrentDate() {
         var currentDate = new Date();
         var year = currentDate.getFullYear();
@@ -189,6 +186,7 @@ h2 {
     // 작성일 입력란에 현재 날짜 채우기
     document.getElementById("oregdate").value = getCurrentDate();
 </script>
+
 
 				<div id="buttonset" class="input-group">
 					<button type="submit" class="btn btn-primary btn-lg"
