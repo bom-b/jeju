@@ -37,8 +37,35 @@
             $('#keyword').attr('disabled', true);
          }
       });
-   });
 
+  	// 각 배너에 이벤트 리스너 추가
+		$(".tab-link").click(function () {
+			// 변수 i 에 href의 값을 할당하여 그에 해당하는 번호 구하기
+			var i = $(this).attr("href");
+			var j = 0;
+			
+			if (i === "#tab-1") {
+				j = 1;
+			} else if (i === "#tab-2") {
+				j = 2;
+			} else if (i === "#tab-3") {
+				j = 3;
+			} else if (i === "#tab-4") {
+				j = 4;
+			}
+			
+          // 모든 탭 링크에서 'active' 클래스를 제거
+          $(".tab-pane").removeClass("active");
+          $(".nav-item a").removeClass("active");
+          
+          // 해당하는 카테고리에 'active' 클래스를 추가
+          $(".select-" + j).addClass("active");
+          
+          // 해당하는 탭 내용을 표시
+          $(i).addClass("active");
+		   });
+      });
+		
   	// 전체 검색
   	function searchAll() {
   	location.href = '<%=notWithFormTag%>frMain';
@@ -46,7 +73,7 @@
   	
  // 글쓰기
   	function writeForm() {
-  	        window.location.href = "<%=notWithFormTag%>frInsert";
+  		location.href = '<%=notWithFormTag%>frInsert';
 	}
 </script>
 <style type="text/css">
@@ -132,10 +159,11 @@ body {
 			<div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
 				<form class="search-box" name="myform" action="<%=withFormTag%>"
 					method="get">
+					<input type="hidden" name="command" value="frMain">
 					<div class="row">
 						<div class="search-box col-sm-12">
 							<select class="form-control-sm " id="mode" name="mode">
-								<option value="all" selected="selected">--- 검색옵션 ---
+								<%--<option value="all" selected="selected">--- 검색옵션 -----%>
 								<option value="oname">글 제목
 								<option value="ID">작성자
 							</select> <input class="form-control-sm" type="text" name="keyword"
@@ -149,7 +177,22 @@ body {
 							<span id="pagingStatus">${requestScope.pageInfo.pagingStatus}
 							</span>
 						</div>
+					</div>
 				</form>
+			</div>
+			<div class=" wow fadeInUp" data-wow-delay="0.3s">
+				<c:if test="${not empty requestScope.pageInfo_pcategory.keyword}">
+					<p class="serch-result">
+						<c:if test="${requestScope.pageInfo.mode eq 'oname'}">
+						  글제목
+						</c:if>
+						<c:if test="${requestScope.pageInfo.mode eq 'ID'}">
+						    작성자
+						</c:if>
+						<strong>'${requestScope.pageInfo_pcategory.keyword}'</strong> 에 대한
+						검색결과입니다.
+					</p>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -207,7 +250,10 @@ body {
 					<!-- 전체게시물 동적으로 표시하기 -->
 					<div id="tab-1" class="tab-pane p-0 active">
 						<div class="row g-4">
-							<c:forEach var="bean" items="${requestScope.pcategory_datalist}">
+							<c:if test="${empty requestScope.datalist}">
+								<p>게시글이 존재하지 않습니다.</p>
+							</c:if>
+							<c:forEach var="bean" items="${requestScope.datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
@@ -219,22 +265,22 @@ body {
 												</a> <span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
-											<div class="text-end">
-			
-											</div>
+											<div class="text-end"></div>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
 
 						</div>
-						${requestScope.pageInfo_pcategory.pagingHtml}
+						${requestScope.pageInfo.pagingHtml}
 					</div>
 
 					<!-- 잡담 게시물 동적으로 표시하기 -->
 					<div id="tab-2" class="tab-pane p-0">
 						<div class="row g-4">
-
+							<c:if test="${empty requestScope.ta_datalist}">
+								<p>'잡담' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.ta_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
@@ -247,10 +293,7 @@ body {
 												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent}</small>
-											<div class="text-end">
-
-
-											</div>
+											<div class="text-end"></div>
 										</div>
 									</div>
 								</div>
@@ -263,7 +306,9 @@ body {
 					<!-- 질문 게시물 동적으로 표시하기 -->
 					<div id="tab-3" class="tab-pane p-0">
 						<div class="row g-4">
-
+							<c:if test="${empty requestScope.qu_datalist}">
+								<p>'질문' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.qu_datalist }">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
@@ -276,10 +321,7 @@ body {
 												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
-											<div class="text-end">
-
-
-											</div>
+											<div class="text-end"></div>
 										</div>
 									</div>
 								</div>
@@ -292,7 +334,9 @@ body {
 					<!-- 정보게시물 동적으로 표시하기 -->
 					<div id="tab-4" class="tab-pane p-0">
 						<div class="row g-4">
-
+							<c:if test="${empty requestScope.qu_datalist}">
+								<p>'정보' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.infor_datalist }">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
@@ -305,9 +349,7 @@ body {
 												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
 											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
-											<div class="text-end">
-										
-											</div>
+											<div class="text-end"></div>
 										</div>
 									</div>
 								</div>

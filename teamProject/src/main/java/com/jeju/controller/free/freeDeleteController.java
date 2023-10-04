@@ -12,7 +12,7 @@ public class freeDeleteController extends SuperClass{
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
       super.doGet(request, response);
       
-      int ono = Integer.parseInt(request.getParameter("ono"));
+      String ono = String.valueOf(request.getParameter("ono"));
       
       freeBoardDao dao = new freeBoardDao();
       int cnt = -1;

@@ -1,7 +1,7 @@
 package com.jeju.model.bean;
 
 public class freeBoard {
-		private int ono ; //글번호
+		private String ono ; //글번호
 		private int no ; //참조하는번호
 		private String id ; //작성자 아이디
 		private String oname ; // 글 제목
@@ -97,13 +97,13 @@ public class freeBoard {
 
 
 
-		public int getOno() {
+		public String getOno() {
 			return ono;
 		}
 
 
 
-		public void setOno(int ono) {
+		public void setOno(String ono) {
 			this.ono = ono;
 		}
 
@@ -288,7 +288,7 @@ public class freeBoard {
 
 
 
-		public freeBoard(int ono, String id, String oname, String ocontent, int readhit, String oregdate,
+		public freeBoard(String ono, String id, String oname, String ocontent, int readhit, String oregdate,
 				String pcategory, String oimage1, String oimage2, String oimage3, String oimage4, String oimage5) {
 			super();
 			this.ono = ono;

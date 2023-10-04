@@ -20,7 +20,7 @@ public class freeEmoticonController extends SuperClass{
 		
 		// 게시글의 번호 받아오기
 		// 저는 게시글 no를 string으로 세팅해서 int로 변경해주시면 될것같습니다.
-		int ono = Integer.valueOf(request.getParameter("ono"));
+		String ono = String.valueOf(request.getParameter("ono"));
 		// 로그인한 유저 id 받아오기
 		String id = String.valueOf(request.getParameter("id"));
 		// 게시글을 작성한 유저 id 받아오기
