@@ -17,9 +17,9 @@ public class EventDao extends SuperDao {
 		if (dayConfirm.equals("allDate")) {
 			sql = "select * from event order by eno";
 		} else if (dayConfirm.equals("presentDate")) {
-			sql = "select * from event where enddate > sysdate";
+			sql = "select * from event where sysdate between startdate and enddate order by eno";
 		} else if (dayConfirm.equals("passDate")) {
-			sql = "select * from event where enddate < sysdate";
+			sql = "select * from event where enddate < sysdate ";
 		}
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -108,18 +108,37 @@ public class EventDao extends SuperDao {
 		return null;
 	}
 
-	public int insertData(Event bean) throws Exception {
+	public int insertData(Event bean, String confirmDate) throws Exception {
+		confirmDate = "allDate";
+		
 		PreparedStatement pstmt = null;
 		int cnt = -1;
 		String sql = "INSERT INTO EVENT (ENO,ID,ENAME, STARTDATE, ENDDATE, ECONTENT, EPHONENO, EPLACE, EIMAGE1, EIMAGE2, EIMAGE3, EIMAGE4, EIMAGE5, REGDATE) ";
 		sql += " VALUES(SEQEVENT.nextval,'admin',?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
-		
+
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, bean.getEname());
-		
+		pstmt.setString(2, bean.getStartdate());
+		pstmt.setString(3, bean.getEnddate());
+		pstmt.setString(4, (String) bean.getEcontent());
+		pstmt.setString(5, bean.getEphoneno());
+		pstmt.setString(6, bean.getEplace());
+		pstmt.setString(7, bean.getEimage1());
+		pstmt.setString(8, bean.getEimage2());
+		pstmt.setString(9, bean.getEimage3());
+		pstmt.setString(10, bean.getEimage4());
+		pstmt.setString(11, bean.getEimage5());
+		cnt = pstmt.executeUpdate();
+		conn.commit();
 
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
 		return cnt;
 	}
 }

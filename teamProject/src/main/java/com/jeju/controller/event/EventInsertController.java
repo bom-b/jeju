@@ -18,24 +18,30 @@ public class EventInsertController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
+		String confirmDate = request.getParameter("confirmDate");
 		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr");
 		Event bean = new Event();
-		bean.setEname(request.getParameter("ename"));
-		bean.setStartdate(request.getParameter("startdate"));
-		bean.setEnddate(request.getParameter("enddate"));
-		bean.setEphoneno(request.getParameter("ephoneno"));
-		bean.setEimage1(request.getParameter("eimage1"));
-		bean.setEplace(request.getParameter("eplace"));
-		bean.setEcontent(request.getParameter("econtent"));
+		bean.setEname(mr.getParameter("ename"));
+		bean.setStartdate(mr.getParameter("startdate"));
+		bean.setEnddate(mr.getParameter("enddate"));
+		bean.setEphoneno(mr.getParameter("ephoneno"));
+		bean.setEimage1(mr.getFilesystemName("eimage1"));
+		bean.setEimage2(mr.getFilesystemName("eimage2"));
+		bean.setEimage3(mr.getFilesystemName("eimage3"));
+		bean.setEimage4(mr.getFilesystemName("eimage4"));
+		bean.setEimage5(mr.getFilesystemName("eimage5"));
+		bean.setEplace(mr.getParameter("eplace"));
+		bean.setEcontent(mr.getParameter("econtent"));
 
 		EventDao dao = new EventDao();
 		int cnt = -1;
 		try {
-			cnt = dao.insertData(bean);
+			confirmDate = "allDate";
+			cnt = dao.insertData(bean,confirmDate);
 			if (cnt == -1) {
-				new EventInsertController().doGet(request, response);
+				super.gotoPage("event/evInsert.jsp");
 			} else {
-				new EventMainController().doGet(request, response);
+				super.gotoPage("event/eventMain.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

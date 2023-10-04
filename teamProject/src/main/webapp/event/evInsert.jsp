@@ -15,36 +15,47 @@
 <!-- 달력 -->
 <script type="text/javascript" src="<%=appName%>/assets/css_eventmain/jquery-ui.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#startdate').datepicker({
-			  changeMonth: true,
-			  changeYear: true
-	});
-	$('#enddate').datepicker({
-		  changeMonth: true,
-		  changeYear: true
-	});
-	 $.datepicker.setDefaults({
-		 dateFormat: 'yy-mm-dd', //Input Display Format 변경
-			 monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-		        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-		        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-	 });
-})
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-		document.getElementById("image_section").style.display = "block";
-      document.getElementById('image_section').src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    document.getElementById('image_section').src = "";
-  }
-}
+	$(function() {
+		$('#startdate').datepicker({
+			changeMonth : true,
+			changeYear : true
+		});
+		$('#enddate').datepicker({
+			changeMonth : true,
+			changeYear : true
+		});
+		$.datepicker.setDefaults({
+			dateFormat : 'yy-mm-dd', //Input Display Format 변경
+			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+					'9월', '10월', '11월', '12월' ],
+			monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+					'9월', '10월', '11월', '12월' ],
+			dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+			dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+			dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+		});
+	})
+	function readURL(input) {
+		if (input.files && input.files[1]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById("image_section").style.display = "block";
+				document.getElementById('image_section').src = e.target.result;
+			};
+			reader.readAsDataURL(input.files[0]);
+		} else {
+			document.getElementById('image_section').src = "";
+		}
+	}
+	var base = 0;
+
+	/* function addElement() {
+	 base++
+	 var element = document.createElement("input");
+	 element.type="file";
+	 element.id = 'eimage1'+base;
+	 document.body.appendChild(element)
+	 } */
 </script>
 </head>
 <body>
@@ -55,18 +66,35 @@ function readURL(input) {
 				<div class="row">
 					<div class="col-md-12">
 						<h1 class="contact_taital">행사 등록</h1>
-						<form action="">
+						<form action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="command" value="evInsert">
+							<!-- <input type="hidden" name="confirmDate" id="confirmDate" value="allDate"> -->
 							<div class="mail_section_1">
-							<input type="text" class="mail_text_date" placeholder="시작 날짜" name="startdate" id="startdate">
-							<input type="text" class="mail_text_date" placeholder="종료 날짜" name="enddate" id="enddate">
+								<input type="text" class="mail_text_date" placeholder="시작 날짜" name="startdate" id="startdate">
+								<input type="text" class="mail_text_date" placeholder="종료 날짜" name="enddate" id="enddate">
 								<input type="text" class="mail_text" placeholder="행사명" name="ename">
 								<input type="text" class="mail_text" placeholder="주최측 번호" name="ephoneno">
-								<input type="text" class="mail_text" placeholder="행사 위치" name="eplace"><br/>
-								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin:20px auto 0px auto">		
-								<img id="image_section" class="image_preview" style="display: none;"/><br/>
+								<input type="text" class="mail_text" placeholder="행사 위치" name="eplace">
+								<br />
+								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin: 20px auto 0px auto">
+								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
+								<br />
+								<input class="mail_text" type="file" id="eimage2" name="eimage2" onchange="readURL(this);" style="margin: 0 auto">
+								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
+								<br />
+								<input class="mail_text" type="file" id="eimage3" name="eimage3" onchange="readURL(this);" style="margin: 0 auto">
+								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
+								<br />
+								<input class="mail_text" type="file" id="eimage4" name="eimage4" onchange="readURL(this);" style="margin: 0 auto">
+								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
+								<br />
+								<input class="mail_text" type="file" id="eimage5" name="eimage5" onchange="readURL(this);" style="margin: 0 auto">
+								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
+								<br />
+								<!-- 	 <button onclick='addElement()'>+Add input</button> -->
 								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent"></textarea>
 								<div class="order_bt">
-									<a href="#">등록</a>
+									<button type="submit" onclick="return validCheck();">등록</button>
 								</div>
 							</div>
 						</form>

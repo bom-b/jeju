@@ -17,8 +17,7 @@ public class EventMainController extends SuperClass {
 		super.doGet(request, response);
 
 		EventDao dao = new EventDao();
-		String enddate = request.getParameter("enddate");
-		String startdate = request.getParameter("startdate");
+		String confirmDate = request.getParameter("confirmDate");
 		String search = request.getParameter("search");
 		String keyword = request.getParameter("keyword");
 		//전체,진행중,종료 
@@ -27,18 +26,21 @@ public class EventMainController extends SuperClass {
 		try {
 			List<Event> eventList = new ArrayList<>();
 			//전체, 진행중, 종료
-				if (enddate.equals("allDate")) {
+		
+				if (confirmDate.equals("allDate")) {
 					dayConfirm = "allDate";
 					eventList = dao.selectEventAll(dayConfirm);
 				
-				}else if(enddate.equals("presentDate")) {
+				}else if(confirmDate.equals("presentDate")) {
 					dayConfirm="presentDate";
 					eventList = dao.selectEventAll(dayConfirm);
 					
-				}else if(enddate.equals("passDate")) {
+				}else if(confirmDate.equals("passDate")) {
 					dayConfirm = "passDate";
 					eventList = dao.selectEventAll(dayConfirm);
 				}
+			
+				
 			request.setAttribute("eventList", eventList);
 
 			

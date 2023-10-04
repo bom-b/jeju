@@ -65,7 +65,7 @@
 	
 
 	 function searchAll(){/* 전체검색 */
-		 location.href='<%=notWithFormTag%>evMain&enddate=allDate';
+		 location.href='<%=notWithFormTag%>evMain&confirmDate=allDate';
 	}
 	function writeForm(){ /* 글쓰기 */
 		location.href = '<%=notWithFormTag%>evInsert';
@@ -110,8 +110,8 @@
 							<button type="submit" class="btn green-background form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">검색</button>
 							<button type="button" class="btn green-background form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button>
 							<c:if test="${whologin eq 2}">
-							</c:if>
 								<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">글 쓰기</button>
+							</c:if>
 						</div>
 				</form>
 			</div>
@@ -122,19 +122,19 @@
 		<ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#" onclick="return false()">
 					<i class="fa fas fa-calendar-check fa-3x"></i>
-					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&enddate=allDate'">
+					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&confirmDate=allDate'">
 						<h2 class="category-text">전체</h2>
 					</div>
 				</a></li>
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#" onclick="return false()">
 					<i class="fa far fa-calendar-check fa-3x"></i>
-					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&enddate=presentDate'">
+					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&confirmDate=presentDate'">
 						<h2 class="category-text">진행 중</h2>
 					</div>
 				</a></li>
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#" onclick="return false()">
 					<i class="fa far fa-calendar-times fa-3x"></i>
-					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&enddate=passDate'">
+					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&confirmDate=passDate'">
 						<h2 class="category-text">종료</h2>
 					</div>
 				</a></li>
