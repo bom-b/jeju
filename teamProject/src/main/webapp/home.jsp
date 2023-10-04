@@ -104,7 +104,7 @@ src: local('SDMiSaeng'),
 	<div class="event-box container-xxl py-5">
 		<div class="carousel-container-pa container my-5 py-5">
 			<div class="carousel-container">
-			  <h4 class="gmarket-m event-title text-left" >제주도의 행사를 만나보세요! (최신게시물은 사진이 없어 추후 최신순으로 배치예정)</h4>
+			  <h4 class="gmarket-m event-title text-left" >운영자가 추천하는 제주도의 행사를 만나보세요!</h4>
 			  <div class="carousel-imgs">
 			  		<div class="carousel-img visible">
 				  		<a href="<%=notWithFormTag%>evDetail&eno=${requestScope.eventList[0].eno}">
@@ -136,6 +136,7 @@ src: local('SDMiSaeng'),
 				</div>
 			</div>
 		</div>
+		<h6 class="gmarket-s text-center" >(최신게시물은 사진이 없어 추후 최신순으로 변경예정. 현재 가장 오래된 순)</h6>
 	</div>
 	<!-- 이달의 행사 -->
 	
@@ -143,81 +144,41 @@ src: local('SDMiSaeng'),
 	<div class="foodtour-box container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
-				<h3 class="gmarket-m textsize25 text-left">이달의 베스트</h3>
+				<h3 class="gmarket-m textsize28 text-left">이달의 베스트!</h3>
 				<h5 class="gmarket-s text-left">회원님들이 가장 많이 추천한 게시물 입니다.</h5>
 				<hr class="subtitle-hr">
+				<%-- 맛집 --%>
 				<div class="col-sm-6 foodtour-bean"> 
 					<div>
 						<p class="gmarket-m foodtour-subtitle text-left" >맛집</p>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-					</div>     	
+						
+						<c:forEach var="bean" items="${requestScope.foodList}">
+							<div class="col-sm-6 foodtour-bean text-left">
+								<a href="<%=notWithFormTag%>fdDetail&no=${bean.no}">
+									<img class="thum-image" alt="" src="<%=appName%>/upload/${bean.image1}" alt="썸네일">
+								</a>
+								<p class="gmarket-m foodtour-subcon text-left" >${bean.title}</p>
+								<p class="gmarket-s foodtour-subcon text-left" >${bean.category}</p>
+							</div>
+						</c:forEach>
+						<%-- <a class="gmarket-m moreview text-left" >맛집 더보기</a> --%>
+					</div>
 				</div>
+				
+				<%-- 관광지 --%>
 				<div class="col-sm-6 foodtour-bean"> 
 					<div>
 						<p class="gmarket-m foodtour-subtitle text-left" >관광지</p>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
-						<div class="col-sm-6 foodtour-bean text-left">
-							<a href="<%=notWithFormTag%>fdDetail&no=7">
-								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
-							</a>
-							
-							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
-							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
-						</div>
+						
+						<c:forEach var="bean" items="${requestScope.tourList}">
+							<div class="col-sm-6 foodtour-bean text-left">
+								<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">
+									<img class="thum-image" alt="" src="<%=appName%>/upload/${bean.timage1}" alt="썸네일">
+								</a>
+								<p class="gmarket-m foodtour-subcon text-left" >${bean.tname}</p>
+								<p class="gmarket-s foodtour-subcon text-left" >${bean.tcategory}</p>
+							</div>
+						</c:forEach>
 					</div>     	
 				</div>
 			</div>
@@ -226,17 +187,78 @@ src: local('SDMiSaeng'),
 	<!-- 이달의 맛집과 관광지 -->
 	
 	<!-- 자유게시판과 회원랭킹 -->	
-	<div class="container-xxl py-5">
+	<div class="freemember-box container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
-				<div class="col-sm-8"> 
+				<div class="col-sm-8 free-bean"> 
 					<div>
-						<p>자유게시판 베스트 8</p>
+						<p class="gmarket-m foodtour-subtitle text-left" >자유게시판 베스트</p>
+						<hr class="subtitle-hr">
+					</div>
+					<div>	
+						<table class="table table-hover">
+							<tbody>
+								<c:forEach var="bean" items="${requestScope.freeList}">
+								<tr class="text-left">
+		                           	<td colspan="1" class="col-sm-1 comment">
+		                           		<span class="gmarket-s badge badge-secondary">${bean.pcategory}</span>
+		                            </td>
+		                            <td colspan="9" class="col-sm-9 comment">
+		                            	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
+		                            		<span class="gmarket-l thumbnail-title text-primary  thum_title">${bean.oname}</span>
+		                            	</a>
+		                            </td>
+		                            <td colspan="2" class="col-sm-2 comment text-right">
+			                            <img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
+			                            <span class="gmarket-l"> ${bean.olikes}</span>
+		                            </td>
+		                        </tr>
+		                        </c:forEach>
+	                        </tbody>
+                        </table>	
 					</div>     	
 				</div>
 				<div class="col-sm-4">
-					<div>
-						<p>회원랭킹 4</p>
+					<div class="memberBox">
+						<div style="margin-bottom: 30px;">
+							<h3 class="gmarket-m textsize25 text-center" style="white-space: nowrap;">
+								<img class="thumbnail-content" src="<%=appName%>/assets/img/crown.png" alt="crown.png" style="width: 30px;">
+								회원랭킹
+								<img class="thumbnail-content" src="<%=appName%>/assets/img/crown.png" alt="crown.png" style="width: 30px;">
+							</h3>
+							<h4 class="gmarket-m text-center" style="white-space: nowrap;">
+								top 10
+							</h4>
+						</div>
+						<div>
+							<table class="table table-borderless">
+								<tbody>
+									<c:forEach var="bean" items="${requestScope.memberList}">
+									<tr class="non-border text-left">
+			                           	<td colspan="1" class="non-border col-sm-1">
+			                           		<c:if test="${bean.rank == 1}">
+			                           			<img class="thumbnail-content" src="<%=appName%>/assets/img/gold.png" style="width: 15px;">
+			                           		</c:if>
+			                           		<c:if test="${bean.rank == 2}">
+			                           			<img class="thumbnail-content" src="<%=appName%>/assets/img/silver.png" style="width: 15px;">
+			                           		</c:if>
+			                           		<c:if test="${bean.rank == 3}">
+			                           			<img class="thumbnail-content" src="<%=appName%>/assets/img/bronze.png" style="width: 15px;">
+			                           		</c:if>
+			                           		<c:if test="${bean.rank > 3}">
+			                           			<span class="gmarket-s badge badge-secondary">${bean.rank}</span>
+			                           		</c:if>
+			                            </td>
+			                            <td colspan="11" class="non-border col-sm-11 text-center">
+			                            	<a href="<%=notWithFormTag%>meDetail&id=${bean.id}">
+			                            		<span class="gmarket-m thumbnail-title text-primary thum_title" style="white-space: nowrap;">${bean.id}</span>
+			                            	</a>
+			                            </td>
+			                        </tr>
+			                        </c:forEach>
+		                        </tbody>
+	                        </table>	
+						</div>
 					</div>
 				</div>
 			</div>
