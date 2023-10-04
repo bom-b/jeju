@@ -88,9 +88,8 @@ src: local('SDMiSaeng'),
 	<div class="top-content">
 	    <div class="container">
 	        <div class="row">
-	        	<h3 class="gmarket-m textsize28 text-left wow fadeInDown" data-wow-delay="0.1s">제주도 여행의 모든것,</h3>
 	            <div class="col-sm-12 text wow fadeInLeft">
-	                <h1 class="main-title sdms-font text-left" style="font-size: 150px" data-wow-delay="0.3s">혼저옵서예</h1>
+	                <h1 class="sdms-font" style="font-size: 100px">혼저옵서예~</h1>
 	                <div class="description">
 	                	<p class="medium-paragraph sdms-font" style="font-size: 50px; color: white;">
 	                 	안녕하우꽈~
