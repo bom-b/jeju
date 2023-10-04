@@ -13,11 +13,49 @@
 <%-- 홈 전용 style.css --%>
 <link href="<%=appName%>/assets/css/homestyle.css" rel="stylesheet">
 
+<%-- 홈 전용 home.js --%>
+<script src="<%=appName%>/assets/js/home.js"></script>
+
 <script type="text/javascript">
 
 </script>
 
 <style type="text/css">
+/* 지마켓 산스체 */
+@font-face {
+    font-family: 'Gmarket-s';
+    font-weight: 300;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'Gmarket-m';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'Gmarket-l';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf') format("truetype");
+    font-display: swap;
+} 
+
 @font-face{
 font-family:'SDMiSaeng'; /*글꼴*/
 src: local('SDMiSaeng'),
@@ -28,10 +66,22 @@ src: local('SDMiSaeng'),
 
 .sdms-font{
 	font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
-	color: orange;
+}
+
+.gmarket-s {
+	font-family: 'Gmarket-s';
+}
+
+.gmarket-m {
+	font-family: 'Gmarket-m';
+}
+
+.gmarket-l {
+	font-family: 'Gmarket-l';
 }
 
 </style>
+
 </head>
 <body>
 	<!-- Top content -->
@@ -50,38 +100,125 @@ src: local('SDMiSaeng'),
 	    </div>
 	</div>
 	
-	<!-- 이달의 행사 -->	
-	<div class="container-xxl py-5">
-		<div class="container my-5 py-5">
-		
-			
-				
-		</div>
-	</div>
-	
-	<div class="container-xxl py-5">
-		<div class="container my-5 py-5">
-
-
+	<!-- 이달의 행사 (행사 등록 최신순 top3 추출) -->	
+	<div class="event-box container-xxl py-5">
+		<div class="carousel-container-pa container my-5 py-5">
+			<div class="carousel-container">
+			  <h4 class="gmarket-m event-title text-left" >제주도의 행사를 만나보세요! (최신게시물은 사진이 없어 추후 최신순으로 배치예정)</h4>
+			  <div class="carousel-imgs">
+			  		<div class="carousel-img visible">
+				  		<a href="<%=notWithFormTag%>evDetail&eno=${requestScope.eventList[0].eno}">
+				  			<img src="<%=appName%>/upload/${requestScope.eventList[0].eimage2}" alt="최근게시물의 이미지1"/>
+				  		</a>
+			  		</div>
+				  	<div class="carousel-img hidden">
+						<a href="<%=notWithFormTag%>evDetail&eno=${requestScope.eventList[1].eno}">
+					  		<img src="<%=appName%>/upload/${requestScope.eventList[1].eimage2}" alt="최근게시물의 이미지2"/>
+					  	</a>
+			  		</div>
+				  	<div class="carousel-img hidden">
+						<a href="<%=notWithFormTag%>evDetail&eno=${requestScope.eventList[2].eno}">
+				  			<img src="<%=appName%>/upload/${requestScope.eventList[2].eimage2}" alt="최근게시물의 이미지3"/>
+					  	</a>
+			  		</div>
+			  </div>
+			    <a class="prev arrow">&#10094;</a>
+			    <a class="next arrow">&#10095;</a>
+			  <div class="slide-numbers">
+			      <span class="dot active"></span>
+			      <span class="dot"></span>
+			      <span class="dot"></span>
+			  </div>
+			  <div class="carousel-captions">
+				  <p class="gmarket-m event-captions carousel-captionx visible">${requestScope.eventList[0].startdate} ~ ${requestScope.eventList[0].enddate}<br>${requestScope.eventList[0].ename}</p>
+				  <p class="gmarket-m event-captions carousel-captionx hidden">${requestScope.eventList[1].startdate} ~ ${requestScope.eventList[1].enddate}<br>${requestScope.eventList[1].ename}</p>
+				  <p class="gmarket-m event-captions carousel-captionx hidden">${requestScope.eventList[2].startdate} ~ ${requestScope.eventList[2].enddate}<br>${requestScope.eventList[2].ename}</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- 이달의 행사 -->
 	
    	<!-- 이달의 맛집과 관광지 -->
-	<div class="container-xxl py-5">
+	<div class="foodtour-box container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
-				<h3 class="text-left">이달의 베스트</h3>
+				<h3 class="gmarket-m textsize25 text-left">이달의 베스트</h3>
+				<h5 class="gmarket-s text-left">회원님들이 가장 많이 추천한 게시물 입니다.</h5>
 				<hr class="subtitle-hr">
-				<div class="col-sm-6 "> 
+				<div class="col-sm-6 foodtour-bean"> 
 					<div>
-						<p>맛집 베스트 6</p>
+						<p class="gmarket-m foodtour-subtitle text-left" >맛집</p>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-m foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
 					</div>     	
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-6 foodtour-bean"> 
 					<div>
-						<p>관광지 베스트 6</p>
-					</div>
+						<p class="gmarket-m foodtour-subtitle text-left" >관광지</p>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+						<div class="col-sm-6 foodtour-bean text-left">
+							<a href="<%=notWithFormTag%>fdDetail&no=7">
+								<img class="thum-image" alt="" src="<%=appName%>/upload/bagda01.png" alt="sub-image">
+							</a>
+							
+							<p class="gmarket-s foodtour-subcon text-left" >바그다드</p>
+							<p class="gmarket-s foodtour-subcon text-left" >한식</p>
+						</div>
+					</div>     	
 				</div>
 			</div>
 		</div>
@@ -117,6 +254,5 @@ src: local('SDMiSaeng'),
 	         </div>
 	  </div>
 	 </footer>
-	
 </body>
 </html>
