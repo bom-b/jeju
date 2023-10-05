@@ -10,10 +10,11 @@ import com.jeju.model.bean.Tour;
 import com.jeju.model.dao.TourDao;
 import com.jeju.utility.Paging;
 
+
 public class TourMainController extends SuperClass{
 	
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {		
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		super.doGet(request, response);
 		
@@ -22,7 +23,7 @@ public class TourMainController extends SuperClass{
 		String pageSize = request.getParameter("pageSize");
 		String mode = request.getParameter("mode");
 		String keyword = request.getParameter("keyword");
-				
+		
 		TourDao dao = new TourDao();
 		
 		try {
@@ -64,7 +65,7 @@ public class TourMainController extends SuperClass{
 			List<Tour> telists = dao.selectAll(PageInfo_te, "te");
 			
 			
-			// 액티비티 체험  게시물을 담은 리스트를 리퀘스트 저장소에 할당한다. (바인딩)
+			// 액티비티 체험 게시물을 담은 리스트를 리퀘스트 저장소에 할당한다. (바인딩)
 			request.setAttribute("ac_datalist", aclists);
 			
 			// 오름 명소 게시물을 담은 리스트를 리퀘스트 저장소에 할당한다. (바인딩)
@@ -84,9 +85,11 @@ public class TourMainController extends SuperClass{
 			
 			// 바인딩한 것을 페이지로 보냅니다.
 			super.gotoPage("/tour/tourMain.jsp");
-		
+			
 		}  catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 }

@@ -1,5 +1,7 @@
 package com.jeju.controller.tour;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.jeju.controller.SuperClass;
@@ -7,9 +9,8 @@ import com.jeju.model.bean.Tour;
 import com.jeju.model.dao.TourDao;
 import com.oreilly.servlet.MultipartRequest;
 
-
-public class TourInsertController extends SuperClass{
-
+public class TourInsertController extends SuperClass {
+	
 	private final String PREFIX = "tour/";
 	
 	@Override
@@ -18,17 +19,17 @@ public class TourInsertController extends SuperClass{
 		
 		// 로그인한 유저 id 받아오기
 		String id = String.valueOf(request.getParameter("id"));
-				
+		
 		// 만약 로그인을 하지 않았을 경우
 		if (id == null || id == "") {
 			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
 			this.setAlertMessage(message);
-			super.gotoPage(PREFIX + "tourMain.jsp");
+			new TourMainController().doGet(request, response);
 			return;
 		}
-				
-				
-		super.gotoPage("/tour/tourInsertForm.jsp");
+		
+		
+		super.gotoPage(PREFIX + "tourInsertForm.jsp");
 	}
 	
 	@Override
@@ -37,7 +38,18 @@ public class TourInsertController extends SuperClass{
 		
 		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr") ;
 		
-		Tour bean = new Tour() ;
+		// 만약 로그인을 하지 않았을 경우
+		String id = mr.getParameter("id");
+		
+		if (id == null || id == "") {
+			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
+			this.setAlertMessage(message);
+			super.gotoPage(PREFIX + "tourMain.jsp");
+			return;
+		}
+		
+		Tour bean = new Tour();
+		
 		// 카테고리 한국어로 다시 변환
 		String koname = "";
 		String enname = mr.getParameter("tcategory"); 
@@ -54,10 +66,11 @@ public class TourInsertController extends SuperClass{
 		
 		bean.setId(mr.getParameter("id"));
 		bean.setTcategory(koname);
-		bean.setTname(mr.getParameter("tname"));
+		bean.setTtitle(mr.getParameter("ttitle"));
 		bean.setTtime(mr.getParameter("ttime"));
+		bean.setTbreaktime(mr.getParameter("tbreaktime"));
 		bean.setTphoneno(mr.getParameter("tphoneno"));
-		bean.setTprice(mr.getParameter("tprice"));
+		bean.setTmenu(mr.getParameter("tmenu"));
 		bean.setTplace(mr.getParameter("tplace"));
 		bean.setTimage1(mr.getFilesystemName("timage1"));
 		bean.setTimage2(mr.getFilesystemName("timage2"));
@@ -65,8 +78,9 @@ public class TourInsertController extends SuperClass{
 		bean.setTimage4(mr.getFilesystemName("timage4"));
 		bean.setTimage5(mr.getFilesystemName("timage5"));
 		
-		TourDao dao = new TourDao() ;
+		TourDao dao = new TourDao();
 		int cnt = -1 ;
+		
 		try {
 			cnt = dao.InsertData(bean) ; 
 			
@@ -79,11 +93,13 @@ public class TourInsertController extends SuperClass{
 			}else {
 				
 				new TourMainController().doGet(request, response); 
-			
+				
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+				
 	}
 }

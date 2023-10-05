@@ -24,6 +24,6 @@ public class TourDeleteController extends SuperClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-		}	
+		}
 	}
 }

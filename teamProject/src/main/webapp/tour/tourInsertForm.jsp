@@ -1,33 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ include file="./../common/bootstrap5.jsp" %>
-<%@ include file="./../common/common.jsp" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/bootstrap5.jsp" %>
+<%@ include file="/common/common.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <!-- 맛집 전용 style.css -->
-<link href="<%=appName%>/assets/css_tour/TourDetail_Insert.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_tour/tourDetail_Insert.css" rel="stylesheet">
 
 <script>
 
-	/* form validation check */
+	/* Tour validation check */
 	function validCheck(){
 		
 		/* 관광지 이름을 작성하셔야 합니다. */
-		var tname = $('#tname').val();
-		if(tname.length < 1){
+		var name = $('#ttitle').val();
+		if(name.length < 1){
 			swal('관광지 이름을 작성해주세요.');
-			$('#tname').focus();
+			$('#ttitle').focus();
 			return false; 
 		}
 		
-		/* 카테고리를  선택해 주세요. */
-		var tcategory = $('#tcategory').val();
-		if(tcategory == '-') {
+		/* 카테고리를 선택해 주세요. */
+		var category = $('#tcategory').val();
+		if(category == '-') {
 			swal('카테고리를 선택해 주세요.');
 			$('#tcategory').focus();
 			return false;
@@ -35,17 +35,17 @@
 		
 		/* 영업시간을 작성해주세요. */
 		var name = $('#ttime').val();
-		if(ttime.length < 1){
+		if(name.length < 1){
 			swal('영업시간을 작성해주세요.');
 			$('#ttime').focus();
 			return false; 
 		}
 		
-		/* 입장료를 작성해주세요. */
-		var name = $('#tprice').val();
+		/* 브레이크타임을 작성해주세요. */
+		var name = $('#tbreaktime').val();
 		if(name.length < 1){
-			swal('입장료를 작성해주세요.');
-			$('#tprice').focus();
+			swal('브레이크타임을 작성해주세요.');
+			$('#tbreaktime').focus();
 			return false; 
 		}
 		
@@ -54,6 +54,14 @@
 		if(name.length < 1){
 			swal('전화번호를 작성해주세요.');
 			$('#tphoneno').focus();
+			return false; 
+		}
+		
+		/* 메뉴를 작성해주세요. */
+		var name = $('#tmenu').val();
+		if(name.length < 1){
+			swal('메뉴를 작성해주세요.');
+			$('#tmenu').focus();
 			return false; 
 		}
 		
@@ -92,40 +100,40 @@
 		/* 이미지의 확장자는 png 또는 jpg 형식이어야 합니다. */
 		var fileName = selectedFile.name;
 		var fileExtension = fileName.split('.').pop().toLowerCase();
-		if (fileExtension !== 'png' && fileExtension !== 'jpg' && fileExtension !== 'jpeg') {
-			swal('이미지의 확장자는 png 또는 jpg 또는 jpeg 형식이어야 합니다.');
-			$('#timage01').focus();
+		if (fileExtension !== 'png' && fileExtension !== 'jpg') {
+			swal('이미지의 확장자는 png 또는 jpg 형식이어야 합니다.');
+			$('#timage1').focus();
 			return false; 
 		}
 	}
-</script> 
-  	
- <style type="text/css">
+</script>
 
-</style>	 	
+<style type="text/css">
+
+</style>
 </head>
 <body>
 
 	<div class="main container-xxl py-5">
 	<div class="container my-5 py-5">
 		<div class="insert-title text-left wow fadeInUp" data-wow-delay="0.1s">
-		<h2>관광지 등록</h2>
+			<h2>알고계신 관광지를 공유해주세요.</h2>
 		</div>
-		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.3s">
-			<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+		<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="trInsert">
 			<span><span class="caution">* </span> 필수 입력사항 입니다.</span><br><br>
 			<div class="form-group my-5 py-5">
-			<label for="title"><span class="caution">* </span>작성자명 : </label>
-			<input type="text" class="form-control short-input" id="fakeid" name="fakeid" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
-			<input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">	
+			  <label for="title"><span class="caution">* </span>작성자명 : </label>
+			  <input type="text" class="form-control short-input" id="fakeid" name="fakeid" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
+			  <input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
 			</div>
 			<div class="form-group my-5 py-5">
-				<label for="tname"><span class="caution">* </span>관광지 이름 : </label>
-				<input type="text" class="form-control short-input" id="tname" name="tname">				
+			  <label for="ttitle"><span class="caution">* </span>관광지 이름 : </label>
+			  <input type="text" class="form-control short-input" id="ttitle" name="ttitle">
 			</div>
 			<div class="form-group">
-			  <label for="tcategory">관광지 카테고리 : </label>
+			  <label for="tcategory">카테고리 : </label>
 			  <select class="form-control short-input" id="tcategory" name="tcategory">
 			    <option value="ac">액티비티 체험</option>
 			    <option value="or">오름 명소</option>
@@ -134,16 +142,20 @@
 			  </select>
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="ttime"><span class="caution">* </span>개장시간 : </label>
+			  <label for="ttime"><span class="caution">* </span>영업시간 : </label>
 			  <input type="text" class="form-control short-input" id="ttime" name="ttime">
+			</div>
+			<div class="form-group my-5 py-5">
+			  <label for="tbreaktime"><span class="caution">* </span>브레이크타임 : </label>
+			  <input type="text" class="form-control short-input" id="tbreaktime" name="tbreaktime">
 			</div>
 			<div class="form-group my-5 py-5">
 			  <label for="tphoneno"><span class="caution">* </span>전화번호 : </label>
 			  <input type="text" class="form-control short-input" id="tphoneno" name="tphoneno">
 			</div>
 			<div class="form-group my-5 py-5">
-			  <label for="tprice"><span class="caution">* </span>입장료 : </label>
-			  <input type="text" class="form-control short-input" id="tprice" name="tprice">
+			  <label for="tmenu"><span class="caution">* </span>가격표(가격표1 : 20000원 / 가격표2 : 15000원 / ... 형식으로 입력해주세요.) : </label>
+			  <input type="text" class="form-control long-input" id="tmenu" name="tmenu">
 			</div>
 			<div class="form-group my-5 py-5">
 			  <label for="tplace"><span class="caution">* </span>주소 : </label>
@@ -164,15 +176,16 @@
 			  <input type="file" class="form-control-file border" id="timage5" name="timage5">
 			</div>
 			
-			<div id="buttonset" class="input-group">
-				<button type="submit" class="btn btn-primary btn-lg" onclick="return validCheck();"> 등록</button>
+			
+			<div id="buttonset" class="input-group my-5 py-5">
+				<button type="submit" class="btn btn-primary" onclick="return validCheck();">등록</button>
 				&nbsp;&nbsp;&nbsp;
-				<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
+				<button type="reset" class="btn btn-primary">초기화</button>
 			</div>
 		</form>
 		</div>
 	</div>
 	</div>
-		
+				
 </body>
 </html>
