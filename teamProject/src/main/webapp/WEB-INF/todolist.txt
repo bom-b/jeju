@@ -13,7 +13,8 @@ meDelete=com.jeju.controller.member.MemberDeleteController
 meDeleteProcess=com.jeju.controller.member.MemberDeleteProcessServlet
 meListDelete=com.jeju.controller.member.MemberListDeleteProcess
 mePasswordFind=com.jeju.controller.member.MemberPasswordFindController
-
+mePasswordRecovery=com.jeju.controller.member.PasswordRecoveryProcess
+mePasswordRecovery2=com.jeju.controller.member.PasswordRecoveryProcess2
 
 # food section
 fdMain=com.jeju.controller.food.FoodMainController

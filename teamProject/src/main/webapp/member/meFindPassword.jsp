@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h2>아이디 확인</h2>
-        <form action="<%= request.getContextPath() %>/member/PasswordRecoveryProcess" method="post">
+        <form action="<%=notWithFormTag%>mePasswordRecovery" method="post">
             <div class="mb-3">
                 <label for="id" class="form-label">아이디</label>
                 <input type="text" class="form-control" id="id" name="id" required>

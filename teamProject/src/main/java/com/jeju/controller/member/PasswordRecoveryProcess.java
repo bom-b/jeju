@@ -13,7 +13,7 @@ public class PasswordRecoveryProcess extends SuperClass {
         
         String id = request.getParameter("id");
         MemberDao dao = new MemberDao();
-        Member member = dao.getDataByPrimaryKey(id);
+        Member member = dao.getDataByPrimaryKey(id);                
         
         if (member != null) {
             // 아이디가 존재하면 비밀번호 찾는 페이지로 이동
@@ -24,5 +24,8 @@ public class PasswordRecoveryProcess extends SuperClass {
             super.setAlertMessage("입력한 아이디가 존재하지 않습니다. 다시 확인해주세요.");
             super.gotoPage("/member/meFindPassword.jsp");
         }
+        
+        String mquestion = request.getParameter("mquestion");
+        String manswer = request.getParameter("manswer");
     }
 }
