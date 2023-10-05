@@ -269,6 +269,11 @@ object-fit: cover;
 	border: none !important;
 }
 
+.main-title {
+	margin-top: 40px !important;
+	margin-left: 0px !important;
+	color: white;
+}
 
 /********** 배너 **********/
 *{
