@@ -42,7 +42,6 @@ html {
     opacity: 1;
 }
 
-
 /*** Button ***/
 .btn {
     font-weight: 500;
@@ -562,3 +561,12 @@ background-position: center;
 	margin-top: 20px;
 }
 
+/********** 맵 **********/
+
+#map {
+	
+}
+
+.map-zone {
+	padding-left: 50px;
+}
