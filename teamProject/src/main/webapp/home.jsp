@@ -249,7 +249,10 @@ src: local('SDMiSaeng'),
 			                            </td>
 			                            <td colspan="11" class="non-border col-sm-11 text-center">
 			                            	<a href="<%=notWithFormTag%>meDetail&id=${bean.id}">
-			                            		<span class="gmarket-m thumbnail-title text-primary thum_title" style="white-space: nowrap;">${bean.id}</span>
+			                            		<span class="gmarket-m thumbnail-title text-primary thum_title" style="white-space: nowrap;">
+			                            		<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;">
+			                            		${bean.id}
+			                            		</span>
 			                            	</a>
 			                            </td>
 			                        </tr>
