@@ -200,7 +200,7 @@ object-fit: cover;
 }
 
 .subtitle-hr {
-	border: 2px solid rgb(255, 128, 0) !important;
+	border: 1px solid rgb(255, 128, 0) !important;
 }
 
 .event-box{
