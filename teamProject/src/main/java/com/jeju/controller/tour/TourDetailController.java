@@ -7,11 +7,12 @@ import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.Tour;
 import com.jeju.model.dao.TourDao;
 
+
 public class TourDetailController extends SuperClass{
 	
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {		
+
 		super.doGet(request, response);
 		
 		String tno = request.getParameter("tno");
@@ -19,11 +20,11 @@ public class TourDetailController extends SuperClass{
 		Tour bean = null;
 		
 		try {
-			bean = dao.GetDataByPk(tno);
+			bean = dao.getDataByPrimarykey(tno);
 			
 			if(bean == null) {
 				super.setAlertMessage("잘못된 게시글 정보 입니다.");
-				super.gotoPage("tour/tourMain.jsp");
+				new TourMainController().doGet(request, response);
 			} else {
 				request.setAttribute("bean", bean);
 				super.gotoPage("/tour/tourDetail.jsp");
@@ -32,5 +33,6 @@ public class TourDetailController extends SuperClass{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 }

@@ -3,34 +3,41 @@ home=com.jeju.controller.HomeController
 
 # member section
 meLogin=com.jeju.controller.member.MemberLoginController
-#meLogout=com.jeju.controller.member.MemberLogoutController
+meLogout=com.jeju.controller.member.MemberLogoutController
 meInsert=com.jeju.controller.member.MemberInsertController
-#meList=com.jeju.controller.member.MemberListController
-#meDetail=com.jeju.controller.member.MemberDetailController
+meList=com.jeju.controller.member.MemberListController
+meDetail=com.jeju.controller.member.MemberDetailController
 meMenu=com.jeju.controller.member.MemberMenuController
+meUpdate=com.jeju.controller.member.MemberUpdateController
+meDelete=com.jeju.controller.member.MemberDeleteController
+meDeleteProcess=com.jeju.controller.member.MemberDeleteProcessServlet
+
 
 # food section
 fdMain=com.jeju.controller.food.FoodMainController
 fdDetail=com.jeju.controller.food.FoodDetailController
 fdLikes=com.jeju.controller.food.FoodLikesController
-#boInsert=com.jeju.controller.board.BoardInsertController
-#boList=com.jeju.controller.board.BoardListController
-#boUpdate=com.jeju.controller.board.BoardUpdateController
-#boReply=com.jeju.controller.board.BoardReplyController
-
+fdInsert=com.jeju.controller.food.FoodInsertController
+fdDelete=com.jeju.controller.food.FoodDeleteController
+fdUpdate=com.jeju.controller.food.FoodUpdateController
+fdcmList=com.jeju.controller.food.FoodCommentListController
+fdcmInsert=com.jeju.controller.food.FoodCommentInsertController
+fdcmDelete=com.jeju.controller.food.FoodCommentDeleteController
 
 # tour section
 trMain=com.jeju.controller.tour.TourMainController
-trList=com.jeju.controller.tour.TourListController
-trInsert=com.jeju.controller.tour.TourInsertController
-trUpdate=com.jeju.controller.tour.TourUpdateController
 trDetail=com.jeju.controller.tour.TourDetailController
-trDelete=com.jeju.controller.tour.TourDeleteController
 trLikes=com.jeju.controller.tour.TourLikesController
-
+trInsert=com.jeju.controller.tour.TourInsertController
+trDelete=com.jeju.controller.tour.TourDeleteController
+trUpdate=com.jeju.controller.tour.TourUpdateController
+trcmList=com.jeju.controller.tour.TourCommentListController
+trcmInsert=com.jeju.controller.tour.TourCommentInsertController
+trcmDelete=com.jeju.controller.tour.TourCommentDeleteController
 
 # event section
 evMain=com.jeju.controller.event.EventMainController
+evDetail=com.jeju.controller.event.EventDetailController
 #cmList=com.jeju.controller.comment.CommentListController
 #cmInsert=com.jeju.controller.comment.CommentInsertController
 #cmDelete=com.jeju.controller.comment.CommentDeleteController
@@ -40,4 +47,7 @@ frMain=com.jeju.controller.free.freeBoardMainController
 frDetail=com.jeju.controller.free.freeBoardDetailController
 frInsert=com.jeju.controller.free.freeInsertController
 frUpdate=com.jeju.controller.free.freeUpdateController
+frDelete=com.jeju.controller.free.freeDeleteController
 frEmoticon=com.jeju.controller.free.freeEmoticonController
+
+
