@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./../common/bootstrap5.jsp"%>
-<%@ include file="./../common/common.jsp"%>
+<%@ include file="/common/bootstrap5.jsp" %>
+<%@ include file="/common/common.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 게시판 메인 전용 부트스트랩 -->
-<link rel="stylesheet"
-	href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
+<link rel="stylesheet"href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- SimpleLightbox CSS 파일 추가 -->
 <link rel="stylesheet" href="path/to/simple-lightbox.min.css">
@@ -17,13 +16,19 @@
 <!-- 맛집 전용 style.css -->
 <link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
 	rel="stylesheet">
+	
 	<%-- sweetalert 버전 2 --%>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
-.container {
-	margin: 10px;
+ui{
+    float: right;
 }
+a{
+text-align:right;
+text-decoration: none;
+}
+
 
 #backButton {
 	margin: auto;
@@ -221,7 +226,7 @@
 <body>
 	<!-- 헤더 Start -->
 	<div class="container-xxl py-5 bg-dark  mb-5" data-wow-delay="0.3s"
-		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
+		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg'); "  >
 		<div class="container my-5  wow fadeInUp">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">

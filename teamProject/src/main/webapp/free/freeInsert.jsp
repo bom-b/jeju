@@ -88,13 +88,11 @@ $(document).ready(function(){
   	</script>
 </head>
 <body>
+
 	<div class="main container-xxl py-5">
 		<div class="container my-5 py-5">
-			<div class="insert-title text-left wow fadeInUp"
-				data-wow-delay="0.1s">
-				<h2>게시물 등록</h2>
-			</div>
 				<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+	<h4>자유롭게 글을 작성해보세요!</h4>
 		<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="frInsert">
 				<span><span class="caution">* </span> 필수 입력사항 입니다.</span><br><br>
@@ -124,7 +122,7 @@ $(document).ready(function(){
 						</select>
 					</div>
 				<div class="form-group my-5 py-5">		
-			<span class="caution">* </span>이미지 파일 (자유) </label>
+			이미지 파일 (자유) </label>
 			 <input type="file" class="form-control-file border" id="oimage1" name="oimage1">
 			  <input type="file" class="form-control-file border" id="oimage2" name="oimage2">
 			  <input type="file" class="form-control-file border" id="oimage3" name="oimage3">
