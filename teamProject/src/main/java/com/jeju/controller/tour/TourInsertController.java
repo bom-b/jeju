@@ -4,22 +4,32 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.Tour;
 import com.jeju.model.dao.TourDao;
 import com.oreilly.servlet.MultipartRequest;
 
-
-public class TourInsertController extends SuperClass{
-
-
+public class TourInsertController extends SuperClass {
+	
+	private final String PREFIX = "tour/";
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
-		super.gotoPage("/tour/trInsertForm.jsp");
-		// Categories 테이블에서 상품 카테고리 목록을 읽어서 request에 바인딩합니다.
 		
+		// 로그인한 유저 id 받아오기
+		String id = String.valueOf(request.getParameter("id"));
+		
+		// 만약 로그인을 하지 않았을 경우
+		if (id == null || id == "") {
+			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
+			this.setAlertMessage(message);
+			new TourMainController().doGet(request, response);
+			return;
+		}
+		
+		
+		super.gotoPage(PREFIX + "tourInsertForm.jsp");
 	}
 	
 	@Override
@@ -28,39 +38,68 @@ public class TourInsertController extends SuperClass{
 		
 		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr") ;
 		
-		Tour bean = new Tour() ;
-		// bean.setPnum(null); // 상품 번호는 시퀀스가 알아서 처리해 줌
+		// 만약 로그인을 하지 않았을 경우
+		String id = mr.getParameter("id");
 		
-		bean.setTno(mr.getParameter("tno"));
+		if (id == null || id == "") {
+			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
+			this.setAlertMessage(message);
+			super.gotoPage(PREFIX + "tourMain.jsp");
+			return;
+		}
+		
+		Tour bean = new Tour();
+		
+		// 카테고리 한국어로 다시 변환
+		String koname = "";
+		String enname = mr.getParameter("tcategory"); 
+
+		if (enname.equals("ac")) {
+		    koname = "액티비티 체험";
+		} else if (enname.equals("or")) {
+		    koname = "오름 명소";
+		} else if (enname.equals("sea")) {
+		    koname = "해수욕장";
+		} else if (enname.equals("te")) {
+		    koname = "테마파크";
+		}
+		
 		bean.setId(mr.getParameter("id"));
-		bean.setTname(mr.getParameter("tname"));
+		bean.setTcategory(koname);
+		bean.setTtitle(mr.getParameter("ttitle"));
 		bean.setTtime(mr.getParameter("ttime"));
-		bean.setTphoneno(super.getNumberData(mr.getParameter("tphoneno")));
-		bean.setTprice(mr.getParameter("tprice"));
+		bean.setTbreaktime(mr.getParameter("tbreaktime"));
+		bean.setTphoneno(mr.getParameter("tphoneno"));
+		bean.setTmenu(mr.getParameter("tmenu"));
 		bean.setTplace(mr.getParameter("tplace"));
-		bean.setTmap(mr.getParameter("tmap"));
-		bean.setTlikes(mr.getParameter("tlikes"));
 		bean.setTimage1(mr.getFilesystemName("timage1"));
 		bean.setTimage2(mr.getFilesystemName("timage2"));
 		bean.setTimage3(mr.getFilesystemName("timage3"));
 		bean.setTimage4(mr.getFilesystemName("timage4"));
 		bean.setTimage5(mr.getFilesystemName("timage5"));
-		bean.setRegdate(mr.getParameter("regdate"));
-		bean.setTcategory(mr.getParameter("tcategory"));
 		
-		TourDao dao = new TourDao() ;
+		TourDao dao = new TourDao();
 		int cnt = -1 ;
+		
 		try {
 			cnt = dao.InsertData(bean) ; 
 			
 			if(cnt == -1) {
-				super.gotoPage("/tour/trInsertForm.jsp");
+				
+				String message = "서버 오류로 게시물이 등록되지 않았습니다.";
+				super.setAlertMessage(message);
+				super.gotoPage("/tour/tourInsertForm.jsp");
 				
 			}else {
-				new TourListController().doGet(request, response); 
+				
+				new TourMainController().doGet(request, response); 
+				
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+				
 	}
 }

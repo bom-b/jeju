@@ -45,16 +45,24 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		// mode 값 유지하기
-		var optionList = $('#mode option'); // mode 안에 있는 옵션 태그들을 옵션리스트 변수에 대입
-		for(var i=0; i < optionList.length; i++) {
-			if (optionList[i].value == '${requestScope.pageInfo.mode}') {
-				optionList[i].selected = true;
-			}
+		
+		var optionList = $('#mode option');
+		for(var i=0 ; i<optionList.length ; i++){
+			if(optionList[i].value == '${requestScope.PageInfo_ko.mode}'){
+				optionList[i].selected = true ;
+			}	
 		}
 		
-		// keyword 값 유지하기
-		$('#keyword').val('${requestScope.pageInfo.keyword}')
+		$('#keyword').val('${requestScope.PageInfo_ko.keyword}');
+		
+		$("#mode").change(function(){				 
+			  if($(this).val() != 'all'){
+				  $('#keyword').attr('disabled', false);
+			  }else{
+				  $('#keyword').val('');
+				  $('#keyword').attr('disabled', true);
+			  }
+		});	
 		
 		// 각 배너에 이벤트 리스너 추가
 		$(".tab-link").click(function () {
@@ -81,14 +89,14 @@
             
             // 해당하는 탭 내용을 표시
             $(i).addClass("active");
+            
         });
-		
 		
 	});
 	
 	// 전체 검색
 	function searchAll() {
-		location.href = '<%=notWithFormTag%>boList';
+		location.href = '<%=notWithFormTag%>fdMain';
 	}
 	
 	// 글쓰기
@@ -170,22 +178,38 @@
 		<div class="container">		
 			<div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">	
 			<form class="search-box" name="myform" action="<%=withFormTag%>" method="get">
+				<input type="hidden" name="command" value="fdMain">
 				<div class="row">
 					<div class="search-box col-sm-12" >
-						<select class="form-control-sm " id="mode" name="mode">
-							<option value="all" selected="selected">--- 검색옵션 ---
+						<select class="serchbox form-control-sm " id="mode" name="mode">
+							<%-- <option value="all" selected="selected">--- 검색옵션 --- --%>
 							<option value="title">맛집이름
 							<option value="ID">작성자
 						</select>
-						<input class="form-control-sm" type="text" 
+						<input class="serchbox form-control-sm" type="text" 
 							name="keyword" id="keyword" placeholder="키워드 입력">
 						<button type="submit" class="btn btn-warning form-control-sm " onclick="">검색</button>
 						<button type="button" class="btn btn-warning form-control-sm "  onclick="searchAll();">초기화</button>
 						<button type="button" class="btn btn-secondary form-control-sm "  onclick="writeForm();">글 쓰기</button>
 						<span id="pagingStatus">${requestScope.pageInfo.pagingStatus} </span>
+					</div>	
 				</div>
 			</form>	
-			</div>					
+			</div>
+			<div class=" wow fadeInUp" data-wow-delay="0.3s">
+				<c:if test="${not empty requestScope.PageInfo_ko.keyword}">
+				    <p class="serch-resault">
+				    	<c:if test="${requestScope.PageInfo_ko.mode eq 'title'}">
+						    맛집이름
+						</c:if>
+						<c:if test="${requestScope.PageInfo_ko.mode eq 'ID'}">
+						    작성자
+						</c:if>
+				    	<strong>'${requestScope.PageInfo_ko.keyword}'</strong>
+				    	에 대한 검색결과입니다.
+				    </p>
+				</c:if>
+			</div>				
 		</div>
 	</div>
 	<!-- 검색창 End -->
@@ -238,6 +262,9 @@
 	                <div id="tab-1" class="tab-pane p-0 active">
 	                    <div class="row g-4">
 	                    
+	                    	<c:if test="${empty requestScope.ko_datalist}">
+							    <p>'한식' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.ko_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
@@ -263,6 +290,9 @@
 	                <div id="tab-2" class="tab-pane p-0">
 	                    <div class="row g-4">
 	                    
+	                    	<c:if test="${empty requestScope.fo_datalist}">
+							    <p>'세계음식' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.fo_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
@@ -288,6 +318,9 @@
 	                <div id="tab-3" class="tab-pane p-0">
 	                    <div class="row g-4">
 	                    
+	                    	<c:if test="${empty requestScope.ca_datalist}">
+							    <p>'카페' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.ca_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
@@ -313,6 +346,9 @@
 	                <div id="tab-4" class="tab-pane p-0">
 	                    <div class="row g-4">
 	                    
+	                    	<c:if test="${empty requestScope.be_datalist}">
+							    <p>'술집' 카테고리의 검색결과가 존재하지 않습니다.</p>
+							</c:if>
 							<c:forEach var="bean" items="${requestScope.be_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">

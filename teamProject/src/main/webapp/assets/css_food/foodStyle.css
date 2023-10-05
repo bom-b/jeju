@@ -532,11 +532,20 @@ a {
 .medium-paragraph {
 	color: rgb(192, 192, 192);
 }
-
 	
 .ps-3 {
 	padding-left: 16px;
 	padding-right: 16px;
+}
+
+/* 검색창 테두리 주황색 */
+.serchbox {
+	border-color: orange;
+}
+
+/* 댓글개수 굵게 */
+.comment-count {
+	font-weight: bold;
 }
 
 /* 썸네일 이미지 사이즈 맞추기 */
@@ -547,3 +556,9 @@ overflow: hidden;
 background-size: cover;
 background-position: center;
 }
+
+/* 검색결과 안내문 */
+.serch-resault {
+	margin-top: 20px;
+}
+
