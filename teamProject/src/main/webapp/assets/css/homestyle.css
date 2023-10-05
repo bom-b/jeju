@@ -169,6 +169,26 @@ object-fit: cover;
 	margin-top: 40px;
 }
 
+.font-white {
+	color: rgb(255, 255, 255) !important;
+}
+
+.font-black {
+	color: black !important;
+}
+
+.font-gray {
+	color: rgb(192, 192, 192) !important;
+}
+
+.font-orange {
+	color: rgb(255, 128, 0) !important;
+}
+
+.font-blue {
+	color: mediumblue !important;
+}
+
 .textsize25{
 	font-size: 25px;
 	color: black;
@@ -385,7 +405,7 @@ object-fit: cover;
 /* 캡션 위치 설정 */
 .carousel-captions {
   position: absolute;
-  top: 50px;
+  top: 65px;
   left: 50px;
   text-align: left;
 }

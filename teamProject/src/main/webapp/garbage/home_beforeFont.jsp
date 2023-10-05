@@ -66,7 +66,6 @@ src: local('SDMiSaeng'),
 
 .sdms-font{
 	font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
-	color: 
 }
 
 .gmarket-s {
@@ -105,7 +104,7 @@ src: local('SDMiSaeng'),
 	<div class="event-box container-xxl py-5">
 		<div class="carousel-container-pa container my-5 py-5">
 			<div class="carousel-container">
-			  <h4 class="sdms-font font-black event-title text-left" style="font-size: 30px;">운영자가 추천하는 제주도의 행사를 만나보세요!</h4>
+			  <h4 class="gmarket-m event-title text-left" >운영자가 추천하는 제주도의 행사를 만나보세요!</h4>
 			  <div class="carousel-imgs">
 			  		<div class="carousel-img visible">
 				  		<a href="<%=notWithFormTag%>evDetail&eno=${requestScope.eventList[0].eno}">
@@ -145,13 +144,13 @@ src: local('SDMiSaeng'),
 	<div class="foodtour-box container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
-				<h3 class="sdms-font font-black text-left" style="font-size: 50px;">이달의 베스트!</h3>
-				<h5 class="sdms-font font-gray text-left" style="font-size: 18px;">회원님들이 가장 많이 추천한 게시물 입니다.</h5>
+				<h3 class="gmarket-m textsize28 text-left">이달의 베스트!</h3>
+				<h5 class="gmarket-s text-left">회원님들이 가장 많이 추천한 게시물 입니다.</h5>
 				<hr class="subtitle-hr">
 				<%-- 맛집 --%>
 				<div class="col-sm-6 foodtour-bean"> 
 					<div>
-						<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">맛집</p>
+						<p class="gmarket-m foodtour-subtitle text-left" >맛집</p>
 						
 						<c:forEach var="bean" items="${requestScope.foodList}">
 							<div class="col-sm-6 foodtour-bean text-left">
@@ -169,14 +168,14 @@ src: local('SDMiSaeng'),
 				<%-- 관광지 --%>
 				<div class="col-sm-6 foodtour-bean"> 
 					<div>
-						<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">관광지</p>
+						<p class="gmarket-m foodtour-subtitle text-left" >관광지</p>
 						
 						<c:forEach var="bean" items="${requestScope.tourList}">
 							<div class="col-sm-6 foodtour-bean text-left">
 								<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">
 									<img class="thum-image" alt="" src="<%=appName%>/upload/${bean.timage1}" alt="썸네일">
 								</a>
-								<p class="gmarket-m foodtour-subcon text-left" >${bean.ttitle}</p>
+								<p class="gmarket-m foodtour-subcon text-left" >${bean.tname}</p>
 								<p class="gmarket-s foodtour-subcon text-left" >${bean.tcategory}</p>
 							</div>
 						</c:forEach>
@@ -193,7 +192,7 @@ src: local('SDMiSaeng'),
 			<div class="row align-items-center g-5">
 				<div class="col-sm-8 free-bean"> 
 					<div>
-						<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">자유게시판 베스트</p>
+						<p class="gmarket-m foodtour-subtitle text-left" >자유게시판 베스트</p>
 						<hr class="subtitle-hr">
 					</div>
 					<div>	
@@ -202,11 +201,11 @@ src: local('SDMiSaeng'),
 								<c:forEach var="bean" items="${requestScope.freeList}">
 								<tr class="text-left">
 		                           	<td colspan="1" class="col-sm-1 comment">
-		                           		<span class="sdms-font font-white badge badge-secondary"  style="font-size: 20px;">${bean.pcategory}</span>
+		                           		<span class="gmarket-s badge badge-secondary">${bean.pcategory}</span>
 		                            </td>
 		                            <td colspan="9" class="col-sm-9 comment">
 		                            	<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}">
-		                            		<span class="gmarket-m thumbnail-title text-primary  thum_title">${bean.oname}</span>
+		                            		<span class="gmarket-l thumbnail-title text-primary  thum_title">${bean.oname}</span>
 		                            	</a>
 		                            </td>
 		                            <td colspan="2" class="col-sm-2 comment text-right">
@@ -222,12 +221,12 @@ src: local('SDMiSaeng'),
 				<div class="col-sm-4">
 					<div class="memberBox">
 						<div style="margin-bottom: 30px;">
-							<h3 class="sdms-font textsize25 text-center" style="white-space: nowrap; font-size: 40px;">
+							<h3 class="gmarket-m textsize25 text-center" style="white-space: nowrap;">
 								<img class="thumbnail-content" src="<%=appName%>/assets/img/crown.png" alt="crown.png" style="width: 30px;">
 								회원랭킹
 								<img class="thumbnail-content" src="<%=appName%>/assets/img/crown.png" alt="crown.png" style="width: 30px;">
 							</h3>
-							<h4 class="sdms-font text-center" style="white-space: nowrap; font-size: 30px;">
+							<h4 class="gmarket-m text-center" style="white-space: nowrap;">
 								top 10
 							</h4>
 						</div>
@@ -247,15 +246,15 @@ src: local('SDMiSaeng'),
 			                           			<img class="thumbnail-content" src="<%=appName%>/assets/img/bronze.png" style="width: 15px;">
 			                           		</c:if>
 			                           		<c:if test="${bean.rank > 3}">
-			                           			<span class="gmarket-s badge badge-secondary" style="font-size:: 20px;">${bean.rank}</span>
+			                           			<span class="gmarket-s badge badge-secondary">${bean.rank}</span>
 			                           		</c:if>
 			                            </td>
 			                            <td colspan="11" class="non-border col-sm-11 text-center">
 			                            	<a href="<%=notWithFormTag%>meDetail&id=${bean.id}">
 
-			                            		<span class="gmarket-m font-blue" style="white-space: nowrap; font-size: 16px;">
-			                            		<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;" style="margin-right: 10px;">
-			                            		  ${bean.id}
+			                            		<span class="gmarket-m thumbnail-title text-primary thum_title" style="white-space: nowrap;">
+			                            		<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;">
+			                            		${bean.id}
 			                            		</span>
 
 			                            	</a>
