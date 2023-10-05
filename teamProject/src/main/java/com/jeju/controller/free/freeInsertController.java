@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.freeBoard;
+import com.jeju.model.dao.MemberDao;
 import com.jeju.model.dao.freeBoardDao;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -61,13 +62,14 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 		bean.setOimage3(mr.getFilesystemName("oimage3"));
 		bean.setOimage4(mr.getFilesystemName("oimage4"));
 		bean.setOimage5(mr.getFilesystemName("oimage5"));
-		
-		
-		
+			
 		freeBoardDao dao = new freeBoardDao();
+		MemberDao dao2 = new MemberDao();
+		
 		int cnt = 1 ;
 		try {
 			cnt = dao.InsertData(bean);
+			cnt = dao2.updateMrating(id);
 			
 			if(cnt == -1 ) { //등록 실패
 	            String message = "서버 오류로 게시물이 등록되지 않았습니다.";
