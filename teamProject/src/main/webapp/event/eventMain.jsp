@@ -70,6 +70,15 @@
 	function writeForm(){ /* 글쓰기 */
 		location.href = '<%=notWithFormTag%>evInsert';
 	}
+	$(document).ready(function(){
+		var optionList = $('#search option');
+		for(var i=0;i<optionList.length;i++){
+			if(optionList[i].value=='${requestScope.pageInfo.mode}'){
+				optionList[i].selected=true;
+			}
+		}
+		$('#keyword').val('${requestScope.pageInfo.keyword}');
+	});
 </script>
 </head>
 <body>
@@ -86,9 +95,6 @@
 		</div>
 	</div>
 	<!-- 헤더 End -->
-
-
-
 	<!-- 검색창 start -->
 	<div class="container-xxl py-5 text-center">
 		<div class="container">
@@ -96,8 +102,9 @@
 				<form class="search-box" name="myform" action="<%=withFormTag%>" method="get">
 					<div class="row">
 						<div class="search-box col-sm-12">
-							<select class="form-control-sm" id="search" name="search" onchange="seChange(this)" style="font-size: 2rem;">
-								<option value="subject">제목
+							<select class="form-control-sm" id="mode" name="mode" onchange="seChange(this)" style="font-size: 2rem;">
+								<option value="all" selected="selected">--- 선택해 주세요 ---
+								<option value="subject">행사명
 								<option value="dateSearch">날짜
 							</select>
 							<input class="form-control-sm" type="text" name="keyword" id="keyword" placeholder="키워드 입력" style="font-size: 2rem;">
@@ -107,8 +114,8 @@
 								<input class="form-control-sm" type="text" name="enddate" id="enddate" placeholder="종료 날짜" style="font-size: 2rem;">
 							</div>
 
-							<button type="submit" class="btn green-background form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">검색</button>
-							<button type="button" class="btn green-background form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button>
+							<button type="submit" class="btn btn-secondary form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">검색</button>
+							<button type="button" class="btn btn-secondary form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button>
 							<c:if test="${whologin eq 2}">
 								<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">글 쓰기</button>
 							</c:if>
@@ -138,6 +145,12 @@
 						<h2 class="category-text">종료</h2>
 					</div>
 				</a></li>
+					<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#" onclick="return false()">
+					<i class="fa far fa-calendar-times fa-3x"></i>
+					<div class="ps-3" onclick="location.href='<%=notWithFormTag%>evMain&confirmDate=futureDate'" onclick="return false()">
+						<h2 class="category-text">예정중</h2>
+					</div>
+				</a></li>
 		</ul>
 	</div>
 	<!-- 게시물 목록 Start -->
@@ -151,7 +164,7 @@
 								<img src="<%=appName%>/assets/img/event_img/${bean.eimage1 } " alt="">
 							</a>
 							<div class="down-content">
-								<p style="font-size: 2.3rem;">${bean.startdate } ~ ${bean.enddate }</p>
+								<p style="font-size: 2.3rem;">${bean.startdate }~ ${bean.enddate }</p>
 								<h4 style="word-break: break-all;">${bean.ename }</h4>
 								<!-- 	<ul class="info">
 								<li><i class="fa fas fa-phone-square fa-2x text-primary" style="text-align: center;"></i> 064-1234-1234</li>
@@ -165,7 +178,7 @@
 					</div>
 				</c:forEach>
 				<!-- 페이지 start -->
-			<!-- 	<div class="col-lg-12">
+<!-- 				<div class="col-lg-12">
 					<ul class="pagination">
 						<li><a href="#">
 								<i class="fa fa-arrow-left"></i>
@@ -182,5 +195,6 @@
 			</div>
 		</div>
 	</section>
+<%-- 		${requestScope.pageInfo.pagingHtml}  --%>
 </body>
 </html>

@@ -47,8 +47,64 @@
 			document.getElementById('image_section').src = "";
 		}
 	}
-	var base = 0;
+	//var base = 0;
+	function validCheck() {
+		var startdate = $('#startdate').val();
+		if (startdate.length == 0) {
+			swal('시작 날짜를 입력해주세요.');
+			$('#startdate').focus();
+			return false;
+		}
+		var enddate = $('#enddate').val();
+		if (enddate.length == 0) {
+			swal('종료 날짜를 입력해주세요.');
+			$('#enddate').focus();
+			return false;
+		}
+		var ename = $('#ename').val();
+		if (ename.length == 0) {
+			swal('행사명을 입력해주세요.');
+			$('#ename').focus();
+			return false;
+		}
+		var eplace = $('#eplace').val();
+		if (eplace.length == 0) {
+			swal('행사위치를 입력해주세요.');
+			$('#eplace').focus();
+			return false;
+		}
+		var econtent = $('#econtent').val();
+		if (econtent.length == 0) {
+			swal('행사내용을 입력해주세요.');
+			$('#econtent').focus();
+			return false;
+		}
 
+		var isCheck = false; /* 확장자 체크에 충족하면 true가 됩니다. */
+		const imgCheck = [ '.png', '.jpg' ]; /* 확장자 체크용 배열 */
+		for (var i = 0; i < imgCheck.length; i++) {
+			if (eimage + i[i].endsWith(imgCheck[i])) {
+				isCheck = true;
+				break;
+			}
+		}
+		if (isCheck == false) {
+			swal('이미지의 확장자는 png 또는 jpg 형식이어야 합니다.');
+			return false;
+		}
+		var cnt = 0;
+		for (var i = 1; i <= 5; i++) {
+			alert('');
+			if ($('#eimage' + i).val() != '') {
+				cnt++;
+				console.log("cnt >>>> " + cnt);
+			}
+		}
+		if (cnt <= 3 || cnt == 0) {
+			swal('이미지는 3개 이상 추가해야 등록 가능해요.');
+			return false;
+		}
+	}
 	/* function addElement() {
 	 base++
 	 var element = document.createElement("input");
@@ -72,10 +128,11 @@
 							<div class="mail_section_1">
 								<input type="text" class="mail_text_date" placeholder="시작 날짜" name="startdate" id="startdate">
 								<input type="text" class="mail_text_date" placeholder="종료 날짜" name="enddate" id="enddate">
-								<input type="text" class="mail_text" placeholder="행사명" name="ename">
-								<input type="text" class="mail_text" placeholder="주최측 번호" name="ephoneno">
-								<input type="text" class="mail_text" placeholder="행사 위치" name="eplace">
+								<input type="text" class="mail_text" placeholder="행사명" name="ename" id="ename">
+								<input type="text" class="mail_text" placeholder="주최측 번호가 없으면 넣지 않으셔도 됩니다." name="ephoneno" id="ephoneno">
+								<input type="text" class="mail_text" placeholder="행사 위치" name="eplace" id="eplace">
 								<br />
+								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent"></textarea>
 								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin: 20px auto 0px auto">
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
@@ -92,7 +149,7 @@
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
 								<!-- 	 <button onclick='addElement()'>+Add input</button> -->
-								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent"></textarea>
+
 								<div class="order_bt">
 									<button type="submit" onclick="return validCheck();">등록</button>
 								</div>

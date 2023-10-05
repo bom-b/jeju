@@ -100,7 +100,7 @@
 		</div>
 	</section>
 	<!--     자세한 설명 end -->
-	<div class="container post" style="margin-top: 120px;">
+	<div class="container post" style="margin-top: 170px;">
 		<div>
 			<div class="carousel">
 				<ul class="slides" style="border-radius: 20px;">

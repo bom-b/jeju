@@ -7,20 +7,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jeju.model.bean.Event;
+import com.jeju.utility.Paging;
 
 public class EventDao extends SuperDao {
 
-	public List<Event> selectEventAll(String dayConfirm) throws Exception {
+	public List<Event> selectEventAll(String dayConfirm, Paging pageInfo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "";
-		if (dayConfirm.equals("allDate")) {
-			sql = "select * from event order by eno";
-		} else if (dayConfirm.equals("presentDate")) {
-			sql = "select * from event where sysdate between startdate and enddate order by eno";
-		} else if (dayConfirm.equals("passDate")) {
-			sql = "select * from event where enddate < sysdate ";
+		String mode = pageInfo.getMode();
+		String keyword = pageInfo.getKeyword();
+
+		if (dayConfirm.equals("allDate")) {// 전체
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event order by ename)e1) where rnum between ? and ? order by startdate;";// 검색없을
+																																														// 때
+		} else if (dayConfirm.equals("presentDate")) {// 진행중
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where sysdate between startdate and enddate order by ename)e1) where rnum between ? and ? order by startdate;";// 검색없을
+																																																									// 떄..
+		} else if (dayConfirm.equals("passDate")) {// 종료
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where enddate<sysdate order by ename)e1) where rnum between ? and ? order by startdate; ";// 검색없을
+																																																				// 떄..
+		} else if (dayConfirm.equals("futureDate")) {// 예정중
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where startdate>sysdate order by ename)e1) where rnum between ? and ? order by startdate;";// 검색없을																																																// 떄..
 		}
+
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
@@ -110,7 +120,7 @@ public class EventDao extends SuperDao {
 
 	public int insertData(Event bean, String confirmDate) throws Exception {
 		confirmDate = "allDate";
-		
+
 		PreparedStatement pstmt = null;
 		int cnt = -1;
 		String sql = "INSERT INTO EVENT (ENO,ID,ENAME, STARTDATE, ENDDATE, ECONTENT, EPHONENO, EPLACE, EIMAGE1, EIMAGE2, EIMAGE3, EIMAGE4, EIMAGE5, REGDATE) ";
@@ -133,6 +143,37 @@ public class EventDao extends SuperDao {
 		cnt = pstmt.executeUpdate();
 		conn.commit();
 
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
+		return cnt;
+	}
+
+	public int GetTotalRecordCount(String mode, String keyword) throws Exception {
+		String sql = "select count(*)as cnt from event";
+		if (mode == null || mode.equals("all")) {
+
+		} else {
+			sql += " where " + mode + " like'%" + keyword + "%'";
+		}
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		conn = super.getConnection();
+		pstmt = conn.prepareStatement(sql);
+
+		rs = pstmt.executeQuery();
+
+		int cnt = -1;
+		if (rs.next()) {
+			cnt = rs.getInt("cnt");
+		}
+		if (rs != null) {
+			rs.close();
+		}
 		if (pstmt != null) {
 			pstmt.close();
 		}

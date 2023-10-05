@@ -33637,8 +33637,8 @@ input.u-field-input.u-field-input.u-border-active-palette-3-light-3:checked {
 .u-border-palette-3-base.u-input,
 .u-border-palette-3-base.u-field-input.u-field-input,
 .u-separator-palette-3-base:after {
-  border-color: #f1c50e;
-  stroke: #f1c50e;
+  border-color: #84c0a0;
+  stroke: #84c0a0;
 }
 .u-button-style.u-border-palette-3-base {
   border-color: #f1c50e !important;
@@ -41344,7 +41344,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-table-alt-custom-color-4 tr:nth-child(even)
         {
             color: #111111;
-            background-color: #e2eef3;
+            background-color: #f7f7f7;
         }
 
         .u-input.u-custom-color-4,
@@ -41843,7 +41843,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-button-style.u-custom-color-11[class*="u-border-"]
         {
             color: #111111 !important;
-            background-color: #b3d1ab !important;
+            background-color: #84c0a0 !important;
         }
 
         .u-button-style.u-custom-color-11:hover,

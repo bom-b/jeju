@@ -53,7 +53,8 @@
 
 .contest-waiting .waiting-item .down-content h4 {
 	font-size: 20px;
-	color: #84c0a0;
+/*	color: #84c0a0;*/
+color: #6c757d;
 	font-weight: 900;
 	margin-bottom: 18px;
 	width: 100%;
@@ -69,6 +70,7 @@
 	font-size: 24px;
 	font-family: 'SDMiSaeng';
 	font-weight: 300;
+	color:#145a4e;
 }
 
 .contest-waiting .waiting-item .down-content span.price,
@@ -164,11 +166,12 @@
 
 
 .fa-calendar-check {
-	color: #84c0a0;
+/*	color: #84c0a0;*/
+color: #6c757d;
 }
 
 .fa-calendar-times {
-	color: #84c0a0;
+	color: #6c757d;
 }
 
 .category-text {
@@ -259,6 +262,7 @@
 	padding: 10px 15px 10px 15px;
 	border-radius: 4px;
 	font-family: 'SDMiSaeng';
+	margin-top: 20px;
 		font-weight: 600;
 }
 
@@ -402,7 +406,7 @@ ul.slides input {
     left: 0;
     right: 0;
     z-index: 999;
-    font-size: 100px;
+    font-size: 50px;
     line-height: 600px;
     color: #fff;
 }
@@ -476,3 +480,5 @@ input#img-6:checked ~ .carousel-dots label#img-dot-6 {
 
 
 input:checked + .slide-container .nav label { display: block; }
+
+
