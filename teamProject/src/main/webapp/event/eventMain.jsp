@@ -96,7 +96,8 @@
 	</div>
 	<!-- 헤더 End -->
 	<!-- 검색창 start -->
-	<div class="container-xxl py-5 text-center">
+	<div class="container" style="background-color: #faf1e4">
+	<div class="container-xxl py-5 text-center" style="background-color: #faf1e4">
 		<div class="container">
 			<div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
 				<form class="search-box" name="myform" action="<%=withFormTag%>" method="get">
@@ -114,18 +115,15 @@
 								<input class="form-control-sm" type="text" name="enddate" id="enddate" placeholder="종료 날짜" style="font-size: 2rem;">
 							</div>
 
-							<button type="submit" class="btn btn-secondary form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">검색</button>
-							<button type="button" class="btn btn-secondary form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button>
+							<button type="submit" class="btn form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';background-color: #9eb384;color:#ffffff">검색</button>
+						<!-- 	<button type="button" class="btn btn-secondary form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button> -->
 							<c:if test="${whologin eq 2}">
-								<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">글 쓰기</button>
+								<button type="button" class="btn  form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';background-color: #9eb384;color:#ffffff">글 쓰기</button>
 							</c:if>
 						</div>
 				</form>
 			</div>
 		</div>
-	</div>
-	<!-- 검색창 End -->
-	<div class="container-xxl pt-5">
 		<ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#" onclick="return false()">
 					<i class="fa fas fa-calendar-check fa-3x"></i>
@@ -152,7 +150,6 @@
 					</div>
 				</a></li>
 		</ul>
-	</div>
 	<!-- 게시물 목록 Start -->
 	<section class="contest-waiting">
 		<div class="container-xxl">
@@ -195,6 +192,8 @@
 			</div>
 		</div>
 	</section>
+	</div>
+	</div>
 <%-- 		${requestScope.pageInfo.pagingHtml}  --%>
 </body>
 </html>

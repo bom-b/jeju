@@ -2,6 +2,10 @@
 /** {
   font-family: "SDMiSaeng" !important;
 }*/
+
+/* .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
+	background-color: green;
+} */
 .event-header {
 	background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/bg_event.png);
 	background-position: center center;
@@ -54,7 +58,7 @@
 .contest-waiting .waiting-item .down-content h4 {
 	font-size: 20px;
 /*	color: #84c0a0;*/
-color: #6c757d;
+color: #435334;
 	font-weight: 900;
 	margin-bottom: 18px;
 	width: 100%;
@@ -167,11 +171,11 @@ color: #6c757d;
 
 .fa-calendar-check {
 /*	color: #84c0a0;*/
-color: #6c757d;
+	color: #435334;
 }
 
 .fa-calendar-times {
-	color: #6c757d;
+	color: #435334;
 }
 
 .category-text {

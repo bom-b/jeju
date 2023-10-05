@@ -19,20 +19,22 @@ public class EventDao extends SuperDao {
 		String keyword = pageInfo.getKeyword();
 
 		if (dayConfirm.equals("allDate")) {// 전체
-			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event order by ename)e1) where rnum between ? and ? order by startdate;";// 검색없을
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event order by ename)e1) where rnum between ? and ? order by startdate";// 검색없을
 																																														// 때
 		} else if (dayConfirm.equals("presentDate")) {// 진행중
-			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where sysdate between startdate and enddate order by ename)e1) where rnum between ? and ? order by startdate;";// 검색없을
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where sysdate between startdate and enddate order by ename)e1) where rnum between ? and ? order by startdate";// 검색없을
 																																																									// 떄..
 		} else if (dayConfirm.equals("passDate")) {// 종료
-			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where enddate<sysdate order by ename)e1) where rnum between ? and ? order by startdate; ";// 검색없을
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where enddate<sysdate order by ename)e1) where rnum between ? and ? order by startdate";// 검색없을
 																																																				// 떄..
 		} else if (dayConfirm.equals("futureDate")) {// 예정중
-			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where startdate>sysdate order by ename)e1) where rnum between ? and ? order by startdate;";// 검색없을																																																// 떄..
+			sql = "select * from (select row_number() over(order by e1.eno) as rnum,e1.* from (select * from event where startdate>sysdate order by ename)e1) where rnum between ? and ? order by startdate";// 검색없을																																																// 떄..
 		}
 
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, pageInfo.getBeginRow());
+		pstmt.setInt(2, pageInfo.getEndRow());
 		rs = pstmt.executeQuery();
 
 		List<Event> eventList = new ArrayList<Event>();

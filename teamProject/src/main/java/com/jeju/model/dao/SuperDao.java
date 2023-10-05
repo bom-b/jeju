@@ -7,7 +7,8 @@ public class SuperDao {
 	protected Connection conn = null ;
 	
 	public Connection getConnection() { // step02. 접속 객체 구하기
-		String url = "jdbc:oracle:thin:@192.168.0.17:1521:xe" ;
+//		String url = "jdbc:oracle:thin:@192.168.0.17:1521:xe" ;
+		String url = "jdbc:oracle:thin:@localhost:1521:xe" ;
 		String id = "jeju" ;
 		String password = "oracle" ;
 		
