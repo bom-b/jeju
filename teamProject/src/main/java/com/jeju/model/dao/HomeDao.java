@@ -201,7 +201,7 @@ public class HomeDao extends SuperDao {
 		
 		freeBoard bean = new freeBoard();
 
-		bean.setOno(rs.getInt("ono"));
+		bean.setOno(rs.getString("ono"));
 		bean.setId(rs.getString("id"));
 		bean.setOname(rs.getString("oname"));
 		bean.setOcontent(rs.getString("ocontent"));
