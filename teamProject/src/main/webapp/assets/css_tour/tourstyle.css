@@ -1,4 +1,3 @@
-/********** Template CSS **********/
 
 /* 상위 스타일 상속 방지 */
 html {
@@ -140,7 +139,7 @@ html {
 
 /*** 헤더  ***/
 .hero-header {
-    background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/jeju.jpeg);
+    background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/bg-hero.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -223,7 +222,6 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .banner-item {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
     transition: .5s;
@@ -267,7 +265,9 @@ html {
 
 .thumbnail-content  {
 	font-size: 17px;
+	
 }
+
 
 /* 자유게시판 글 목록 */
 .freeBoard {
@@ -548,12 +548,10 @@ a {
 	font-weight: bold;
 }
 
-/* 썸네일 이미지 사이즈 맞추기 */
-.thumnail_img {
-width: 150px;
-height: 150px;
-overflow: hidden;
-background-size: cover;
-background-position: center;
+
+
+/* 검색결과 안내문 */
+.serch-resault {
+	margin-top: 20px;
 }
 

@@ -14,8 +14,7 @@
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_boardmain/tourstyle.css" rel="stylesheet">
-<link href="<%=appName%>/assets/css_tour/tourStyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_tour/tourstyle.css" rel="stylesheet">
 
 <style type="text/css">
 	@font-face{
@@ -41,6 +40,14 @@
 	} */
 	
 	/* 아아 */
+	/* 썸네일 이미지 사이즈 맞추기 */
+.thumnail_timg {
+width: 150px;
+height: 150px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+}
 	
 </style>
 
@@ -96,6 +103,7 @@
 	function writeForm() {
 		location.href = '<%=notWithFormTag%>trInsert&id=${sessionScope.loginfo.id}';
 	}
+	
 </script>
 
 </head>
@@ -247,7 +255,7 @@
 							<c:forEach var="bean" items="${requestScope.ac_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
-	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
+	                                <div class="thumnail_timg flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
 	                                <div class="w-100 d-flex flex-column text-start ps-4">
 	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
 	                                    	<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">

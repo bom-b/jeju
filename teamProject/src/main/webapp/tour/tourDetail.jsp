@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 
 <%-- 관광지 전용 style.css --%>
-<link href="<%=appName%>/assets/css_boardmain/tourstyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_tour/tourDetail_Insert.css" rel="stylesheet">
 
 <%-- 사진 크게보기 --%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />

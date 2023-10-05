@@ -18,15 +18,6 @@
     </script>
     <style type="text/css">
 
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-
         .login-form {
             text-align: center;
         }
@@ -37,6 +28,7 @@
         .login-form a {
             margin: 5px 0;
         }
+        
 		.login-container {
     	display: flex;
     	flex-direction: column;
@@ -49,6 +41,7 @@
     	background-repeat: no-repeat;
     	background-position: center center;
 		}
+		
         .bottom_button { margin-top: 20px; } /* Increase the margin-top for spacing */
         @font-face{
 		font-family:'SDMiSaeng'; /*글꼴*/
@@ -64,7 +57,7 @@
 		}
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
     <br/>
     <div class="login-container">
         <div class="login-form">
