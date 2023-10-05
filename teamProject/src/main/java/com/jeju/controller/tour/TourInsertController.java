@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.Tour;
+import com.jeju.model.dao.MemberDao;
 import com.jeju.model.dao.TourDao;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -79,11 +80,12 @@ public class TourInsertController extends SuperClass {
 		bean.setTimage5(mr.getFilesystemName("timage5"));
 		
 		TourDao dao = new TourDao();
+		MemberDao dao2 = new MemberDao();
 		int cnt = -1 ;
 		
 		try {
 			cnt = dao.InsertData(bean) ; 
-			
+			cnt = dao2.updateMrating(id);
 			if(cnt == -1) {
 				
 				String message = "서버 오류로 게시물이 등록되지 않았습니다.";
