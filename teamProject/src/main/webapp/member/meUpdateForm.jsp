@@ -74,9 +74,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            
-            
+            height: 100vh;      
             background-image: url('assets/img/loginbackground.jpeg');
     		background-size: cover;
     		background-repeat: no-repeat;
