@@ -159,8 +159,8 @@ public class HomeDao extends SuperDao {
 		Tour bean = new Tour() ;
 		
 		bean.setTno(rs.getString("tno"));		
-		bean.setTname(rs.getString("TTITLE"));
-		bean.setTlikes(rs.getString("tlikes")); // 좋아요
+		bean.setTtitle(rs.getString("TTITLE"));
+		bean.setTlikes(rs.getInt("tlikes")); // 좋아요
 		bean.setTimage1(rs.getString("timage1"));
 		bean.setTcategory(rs.getString("tcategory"));
 		
