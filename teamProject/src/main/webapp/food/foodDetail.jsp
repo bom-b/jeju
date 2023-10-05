@@ -23,8 +23,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
 
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
-
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -507,7 +505,7 @@
 	
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.title}</div>'
+	        	content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.title}</div>'
 	        });
 	        infowindow.open(map, marker);
 	

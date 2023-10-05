@@ -15,6 +15,7 @@ meListDelete=com.jeju.controller.member.MemberListDeleteProcess
 mePasswordFind=com.jeju.controller.member.MemberPasswordFindController
 mePasswordRecovery=com.jeju.controller.member.PasswordRecoveryProcess
 mePasswordRecovery2=com.jeju.controller.member.PasswordRecoveryProcess2
+meView=com.jeju.controller.member.MemberViewController
 
 # food section
 fdMain=com.jeju.controller.food.FoodMainController

@@ -200,7 +200,7 @@ object-fit: cover;
 }
 
 .subtitle-hr {
-	border: 2px solid rgb(255, 128, 0) !important;
+	border: 1px solid rgb(255, 128, 0) !important;
 }
 
 .event-box{
@@ -292,6 +292,13 @@ object-fit: cover;
 .main-title {
 	margin-top: 40px !important;
 	margin-left: 0px !important;
+	padding-left: 0px !important;
+	color: white;
+}
+
+.main-title2 {
+	margin-left: 0px !important;
+	padding-left: 0px !important;
 	color: white;
 }
 

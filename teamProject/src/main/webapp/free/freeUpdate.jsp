@@ -95,10 +95,10 @@ $(document).ready(function(){
 		<div class="container my-5 py-5">
 			<div class="insert-title text-left wow fadeInUp"
 				data-wow-delay="0.1s">
-				<h2>게시물 등록</h2>
 			</div>
 			<div class="mainBox container my-5 py-5 wow fadeInUp"
 				data-wow-delay="0.1s">
+				<h4>자유롭게 글을 수정해보세요!</h4>
 				<form class="text-left container my-5 py-5"
 					action="<%=withFormTag%>" method="post"
 					enctype="multipart/form-data">
@@ -134,7 +134,7 @@ $(document).ready(function(){
 						</select>
 					</div>
 					<div class="form-group my-5 py-5">
-						<span class="caution">* </span>이미지 파일 (자유) </label> <input type="file"
+						이미지 파일 (자유) </label> <input type="file"
 							class="form-control-file border" id="oimage1" name="oimage1">
 						<input type="file" class="form-control-file border" id="oimage2"
 							name="oimage2"> <input type="file"
@@ -144,7 +144,7 @@ $(document).ready(function(){
 							class="form-control-file border" id="oimage5" name="oimage5">
 					</div>
 					<div class="form-group my-5 py-5">
-						<label for="oregdate"><span class="caution">* </span>작성일 :
+						<label for="oregdate">작성일 :
 						</label> <input type="text" class="form-control short-input" id="oregdate"
 							name="oregdate" readonly>
 					</div>
