@@ -88,12 +88,12 @@ src: local('SDMiSaeng'),
 	<div class="top-content">
 	    <div class="container">
 	        <div class="row">
+
+	        	<h3 class="main-title gmarket-m textsize28 text-left wow fadeInDown" data-wow-delay="0.1s">제주도 여행의 모든것,</h3>
 	            <div class="col-sm-12 text wow fadeInLeft">
-	                <h1 class="sdms-font" style="font-size: 100px">혼저옵서예~</h1>
+	                <h1 class="main-title sdms-font text-left" style="font-size: 150px" data-wow-delay="0.3s">혼저옵서예</h1>
 	                <div class="description">
-	                	<p class="medium-paragraph sdms-font" style="font-size: 50px; color: white;">
-	                 	안녕하우꽈~
-	                	</p>
+
 	                </div>
 	            </div>
 	        </div>
@@ -251,7 +251,12 @@ src: local('SDMiSaeng'),
 			                            </td>
 			                            <td colspan="11" class="non-border col-sm-11 text-center">
 			                            	<a href="<%=notWithFormTag%>meDetail&id=${bean.id}">
-			                            		<span class="gmarket-m thumbnail-title text-primary thum_title" style="white-space: nowrap;">${bean.id}</span>
+
+			                            		<span class="gmarket-m thumbnail-title text-primary thum_title" style="white-space: nowrap;">
+			                            		<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;">
+			                            		${bean.id}
+			                            		</span>
+
 			                            	</a>
 			                            </td>
 			                        </tr>
