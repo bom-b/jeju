@@ -164,6 +164,10 @@ object-fit: cover;
 
 /********** 회원페이지 **********/
 
+.subtitle-hr {
+	border: 2px solid rgb(255, 128, 0) !important;
+}
+
 .moreview {
 	color: cornflowerblue;
 	margin-top: 40px;
@@ -197,4 +201,13 @@ object-fit: cover;
 .textsize28{
 	font-size: 28px;
 	color: black;
+}
+
+.view-info {
+	padding-top: 20px;
+}
+
+.bo-box {
+	margin-top: 50px;
+	
 }

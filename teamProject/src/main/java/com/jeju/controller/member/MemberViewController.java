@@ -19,6 +19,7 @@ public class MemberViewController extends SuperClass {
 		try {
 			bean = dao.getDataByPrimaryKey(id);
 			
+			
 			if(bean == null) {
 				super.setAlertMessage("잘못된 회원 정보입니다.");
 				super.gotoPage("/common/home.jsp"); 
