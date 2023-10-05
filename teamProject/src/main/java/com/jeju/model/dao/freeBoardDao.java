@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jeju.model.bean.Food;
 import com.jeju.model.bean.freeBoard;
 import com.jeju.utility.Paging;
 
@@ -27,12 +28,6 @@ public class freeBoardDao extends SuperDao {
 		bean.setOimage3(rs.getString("oimage3"));
 		bean.setOimage4(rs.getString("oimage4"));
 		bean.setOimage5(rs.getString("oimage5"));
-
-		bean.setDepth(rs.getInt("depth"));
-		bean.setGroupno(rs.getInt("groupno"));
-		bean.setOrderno(rs.getInt("orderno"));
-
-		bean.setLikes(rs.getInt("likes")); // 좋아요
 		bean.setOlikes(rs.getInt("olikes")); // 좋아요
 
 		return bean;
@@ -110,11 +105,11 @@ public class freeBoardDao extends SuperDao {
 		String sql = " select count(*) as cnt from openforum ";
 		
 		// 카테고리에 따라 분기
-		  if (pcategory == "ta") {
+		  if (pcategory == "잡담") {
 		        sql += "WHERE pcategory = '잡담' ";
-		    } else if (pcategory == "infor") {
+		    } else if (pcategory == "정보공유") {
 		        sql += "WHERE pcategory = '정보공유' ";
-		    } else if (pcategory == "qu") {
+		    } else if (pcategory == "질문") {
 		        sql += "WHERE pcategory = '질문' ";
 		    } else {
 		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
@@ -150,31 +145,70 @@ public class freeBoardDao extends SuperDao {
 					
 					return cnt;
 	}
+	public List<freeBoard> selectAll(Paging pageInfo)  throws Exception {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, olikes ";
+		
+		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, olikes, rank() over(order by ono desc) as ranking ";
+		sql += " from openforum ";
+		
+	
+		String mode = pageInfo.getMode();
+		String keyword = pageInfo.getKeyword();
+		if (mode == null || mode.equals("all")) {
+			// 전체 모드, 또는 입력값이 안들어왔을경우
+
+		} else {
+			// 전체 모드가 아니라면,
+			sql += " where " + mode + " like '%" + keyword + "%' " ;
+		}
+		
+		sql += " ) " ;
+		sql += " where ranking between ? and ? " ;
+		
+		conn = super.getConnection();
+		
+		pstmt = conn.prepareStatement(sql) ;
+		pstmt.setInt(1, pageInfo.getBeginRow());
+		pstmt.setInt(2, pageInfo.getEndRow());
+		
+		rs = pstmt.executeQuery() ;
+		
+		List<freeBoard> lists = new ArrayList<freeBoard>();
+		
+		while(rs.next()) {
+			lists.add(getBeanData(rs)) ;
+		}
+		
+		if(rs != null) {rs.close();}
+		if(pstmt != null) {pstmt.close();}
+		if(conn != null) {conn.close();}
+		
+		return lists;
+  
+	}
 	public List<freeBoard> selectAll(Paging pageInfo, String pcategory) throws Exception {
 		// TopN 구문을 사용하여 페이징 처리된 게시물 목록을 반환합니다.
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes ";
+		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5,  olikes ";
 		
-		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, groupno, orderno, depth, likes, olikes, rank() over(order by ono desc) as ranking ";
+		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5,  olikes, rank() over(order by ono desc) as ranking ";
 		sql += " from openforum ";
-
-
 		
 		// 카테고리에 따라 분기
-		  if (pcategory == "ta") {
+		  if (pcategory == "잡담") {
 		        sql += "WHERE pcategory = '잡담' ";
-		    } else if (pcategory == "infor") {
+		    } else if (pcategory == "정보공유") {
 		        sql += "WHERE pcategory = '정보공유' ";
-		    } else if (pcategory == "qu") {
+		    } else if (pcategory == "질문") {
 		        sql += "WHERE pcategory = '질문' ";
 		    } else {
 		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
 		    }
-		
-		
 		String mode = pageInfo.getMode();
 		String keyword = pageInfo.getKeyword();
 
@@ -433,6 +467,7 @@ public class freeBoardDao extends SuperDao {
 	}
 
 	public int GetTotalRecordCount(String mode, String keyword) throws Exception{ //(전체)
+		System.out.print("검색할 필드명 (칼럼명) : " + mode);
 		System.out.println(" / 검색할 키워드 : " + keyword);
 		
 		
