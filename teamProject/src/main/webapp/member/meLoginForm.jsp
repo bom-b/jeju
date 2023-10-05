@@ -89,7 +89,17 @@
                     <a type="button" href="<%=notWithFormTag%>meInsert" class="btn btn-info sdms-font" style="font-size: 25px">회원 가입</a>
                 </div>                
             </form>
+
+	        	<div class="row">
+	        		<div class="col-sm-12">
+                    	<a class="sdms-font" style="font-size: 30px;" href="<%=notWithFormTag%>mePasswordFind">비밀번호를 잊으셨나요??</a>
+                    </div>
+                </div>
+
         </div>
     </div>
+
+	        
+
 </body>
 </html>
