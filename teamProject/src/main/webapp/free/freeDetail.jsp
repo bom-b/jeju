@@ -14,14 +14,10 @@
 <!-- SimpleLightbox CSS 파일 추가 -->
 <link rel="stylesheet" href="path/to/simple-lightbox.min.css">
 
-<!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_boardmain/style.css"
+<!-- 맛집 전용 style.css -->
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
 	rel="stylesheet">
-<!--  폰트 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+
 <style type="text/css">
 .container {
 	margin: 10px;
@@ -35,170 +31,7 @@
 	text-decoration: none;
 }
 </style>
-<style type="text/css">
-/* 댓글들을 위한 스타일 지정 */
-* {
-	padding: 0;
-	margin: 0;
-	margin: auto;
-	color: #333;
-	font-family: 'Jua', sans-serif;
-}
 
-ul {
-	list-style: none;
-}
-
-#container {
-	padding: 30px 20px;
-}
-
-#insertComment {
-	border: 2px solid #000; /* 테두리 색상을 원하는 색상으로 변경 */
-	border-radius: 15px; /* 테두리 모서리를 둥글게 만듭니다. */
-	background-color: #f2f2f2;
-	width: 30%;
-	margin-right: auto;
-	font-family: 'Jua', sans-serif;
-}
-
-#insertComment label {
-	display: inline-block;
-	width: auto;
-	font-size: 14px;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-#insertComment input[type='text'], #insertComment textarea {
-	border: 1px solid #ccc;
-	vertical-align: middle;
-	padding: 3px 10px;
-	font-size: 12px;
-	margin-right: auto;;
-	font-family: 'Jua', sans-serif;
-	width: auto;
-}
-
-#insertComment textarea {
-	width: auto;
-	height: auto;
-	font-family: 'Jua', sans-serif;
-}
-
-.commentItem {
-	font-size: 13px;
-	color: #333;
-	padding: 15px;
-	border-bottom: 1px dotted #ccc;
-	line-height: 150%;
-}
-
-.commentItem .id {
-	color: #555;
-	line-height: 200%;
-}
-
-.commentItem .id input {
-	vertical-align: middle;
-}
-
-.commentItem .id .name {
-	color: #222;
-	font-weight: bold;
-	font-size: 14px;
-}
-
-.form-group {
-	margin-bottom: 3px;
-}
-
-.form-control {
-	height: 25px;
-}
-
-.btn-primary {
-	opacity: 0.8;
-}
-
-<
-style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 스타일 */
-	.container {
-	margin: 10px;
-}
-
-/* 돌아가기 버튼 스타일 */
-#backButton {
-	margin: 15px;
-	font-family: 'Jua', sans-serif;
-}
-
-/* 이모티콘 스타일 */
-.emoticon {
-	text-decoration: none;
-}
-
-/* 게시판 테이블 스타일 */
-
-/* 댓글 영역 스타일 */
-#comment_list {
-	padding: 20px 0;
-	border-top: 1px solid #ccc;
-}
-
-.commentItem {
-	font-size: 13px;
-	color: #333;
-	padding: 15px;
-	border-bottom: 1px dotted #ccc;
-	line-height: 150%;
-}
-
-.commentItem .id {
-	color: #555;
-	line-height: 200%;
-}
-
-.commentItem .id input {
-	vertical-align: middle;
-}
-
-.commentItem .id .name {
-	color: #222;
-	font-weight: bold;
-	font-size: 14px;
-}
-
-.form-group {
-	margin-bottom: 3px;
-}
-
-.form-control {
-	height: 25px;
-}
-
-.btn-primary {
-	opacity: 0.8;
-}
-
-/* 게시글 섹션에 박스 테두리 스타일 적용 */
-#postSection {
-	border-radius: 10px; /* 테두리 모서리를 둥글게 만듭니다. */
-	background-color: #f2f2f2;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-	padding: 3px; /* 내용과 테두리 사이 여백 추가 */
-	margin-left: auto;
-	margin-right: auto;
-	font-family: 'Jua', sans-serif;
-}
-
-#tablSection {
-	border: 2px solid #000; /* 테두리 색상을 원하는 색상으로 변경 */
-	border-radius: 15px; /* 테두리 모서리를 둥글게 만듭니다. */
-	background-color: #f2f2f2;
-	margin-bottom: 15px;
-}
-</style>
 
 <script type="text/javascript">
 		/* 삭제버튼 클릭 */
@@ -219,91 +52,25 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 				});
 			}
 		});
-		
-		function getListComment(){
-			$('#comment_list').empty();			
-			/* $.ajax() 함수를 이용하여 데이터 보여 주기 */
-			$.ajax({
-				url:'<%=notWithFormTag%>frMain', 
-				data:'no=' + '${requestScope.bean.no}',
-				type:'get', 
-				dataType:'json',
-				success:function(result, status){
-					/* console.log('result는 넘어온 데이터 결과 값') ; */
-					/* console.log(result) ; */
-					
-					$.each(result, function(idx){ /* idx는 색인 번호 */
-						var cnum = result[idx].cnum ;
-						var id = result[idx].id ;
-						var content = result[idx].content ;
-						var regdate = result[idx].regdate ;
-						addNewItem(cnum, id, content, regdate);
-					})
-				},
-				error:function(result, status){
-					console.log(result) ;
-					console.log(status) ;
-				}
-			});
-		}
-		
-		function addNewItem(cnum, id, content, regdate){
-			/* 댓글 1개를 추가해주는 함수입니다. */
-			var litag = $('<li>') ; /* 댓글의 외곽 li 태그  */
-			litag.addClass('commentItem') ;
-			
-			var ptag = $('<p>') ; /* 작성자 정보가 들어갈 태그  */
-			ptag.addClass('id') ;
-
-			var spantag = $('<span>') ; /* 작성자 이름이 들어갈 태그  */
-			spantag.addClass('name') ;
-			spantag.html(id + "님") ;
-			
-			var spandate = $('<span>') ;  /* 작성 일자가 들어갈 태그  */
-			spandate.html("&nbsp;&nbsp;/&nbsp;&nbsp;" + regdate + '&nbsp;&nbsp;&nbsp;') ;
-			
-			/* 로그인한 사람이 작성한 댓글이면 삭제 가능 */
-			if(id == '${sessionScope.loginfo.id}'){ 
-				var inputtag = $('<input>') ; /* 삭제 버튼 */
-				var attrlist = {'id':id, 'type':'button', 'value':'삭제', 'class':'btn btn-xs btn-outline-primary', 'cnum':cnum};
-				inputtag.attr(attrlist);
-				inputtag.addClass('delete_btn');
-			}else{
-				var inputtag = '' ;
-			}
-			
-			var content_p = $('<p>') ; /* 작성한 댓글 내용 */
-			content_p.html(content) ; 
-			
-			/* 조립하기(compose up) */
-			ptag.append(spantag).append(spandate).append(inputtag);
-			litag.append(ptag).append(content_p) ; 
-			
-			$('#comment_list').append(litag) ;
-		}
-	
-		 
-		
 		$(document).ready(function(){
 			getListComment();
 			
 			/* 사용자가 댓글을 입력하고, 전송 버튼을 눌렀습니다. */
 			$('#comment_form').submit(function(){				
 				/* 댓글 입력 없이 전송 버튼을 누른 경우 */
-				if(!$('#content').val()){
-					alert('댓글을 입력해 주셔야 합니다.');
-					$('#content').focus() ;
+				if(!$('#comment_content').val()){
+					alert('댓글 내용을 입력해주세요.');
+					$('#comment_content').focus() ;
 					return false ;
 				}
 				
 				/* post 방식으로 데이터를 전송합니다. */
-				var URL = '<%=notWithFormTag%>
-	frInsert';
+				var URL = '<%=notWithFormTag%>frcmInsert';
 			var parameters = $('#comment_form').serialize();
 			/* alert(parameters); */
 			$.post(URL, parameters, function(data) {
 				getListComment(); /* 목록 갱신하기 */
-				$('#content').val('');
+				$('#comment_content').val('');
 				return true;
 
 			}).fail(function() {
@@ -312,14 +79,168 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 			});
 			return false;
 		});
-	});
+	}
+		var commentNum = 0; // 댓글 개수
+		
+		//댓글리스트 가져오기
+		function getListComment(){
+		    /* 댓글창 비우기 */
+		    $('#comment_list').empty();
+		    /* $.ajax() 함수를 이용하여 데이터 보여 주기 */
+		    $.ajax({
+		        url:'<%=notWithFormTag%>frcmList', 
+		        data:'boardno=' + '${requestScope.bean.no}',
+		        type:'get', 
+		        dataType:'json',
+		        success:function(result, status){
+		            console.log(result);
+		            
+		            // result의 길이를 commentNum에 할당
+		            commentNum = result.length;
+		            
+		            // 댓글 개수를 업데이트
+		            updateCommentCount();
+		            
+		            if (commentNum > 0) { // 댓글이 있을 경우
+		                $.each(result, function(idx){ /* idx는 색인 번호 */
+		                    var cno = result[idx].cno ;
+		                    var id = result[idx].id ;
+		                    var content = result[idx].content ;
+		                    var regdate = result[idx].regdate ;
+		                    addNewItem(cno, id, content, regdate);
+		                });
+		            } else { // 댓글이 없을 경우
+		                addEmptyComment();
+		            }
+		        },
+		        error:function(result, status){
+		            console.log(result);
+		            console.log(status);
+		        }
+		    });
+		}
+		
+		// 댓글 개수 업데이트 함수
+		function updateCommentCount() {
+		    // commentNum의 값을 <p> 요소에 할당
+		    $('.comment-count').text('댓글 (' + commentNum + ')');
+		}
+		
+		// 댓글을 한개씩 동적으로 추가하기
+		function addNewItem(cno, id, content, regdate){
+			// 댓글을 위한 새로운 테이블 행 (<tr>) 요소 생성
+		    var tr = document.createElement('tr');
+		    tr.className = 'text-left';
+
+		    // 작성자 정보를 위한 첫 번째 셀 (<td>) 생성
+		    var td1 = document.createElement('td');
+		    td1.colSpan = 2;
+		    td1.className = 'comment';
+
+		    // ID를 표시할 강조 (<strong>) 요소 생성
+		    var strong = document.createElement('strong');
+		    strong.textContent = id;
+		    td1.appendChild(strong);
+		    td1.appendChild(document.createElement('br'));
+
+		    // 작성일자를 표시할 스팬 (<span>) 요소 생성
+		    var spanRegdate = document.createElement('span');
+		    spanRegdate.className = 'regdate';
+		    spanRegdate.textContent = regdate;
+		    td1.appendChild(spanRegdate);
+
+		    // 댓글 내용을 위한 두 번째 셀 (<td>) 생성
+		    var td2 = document.createElement('td');
+		    td2.colSpan = 8;
+		    td2.className = 'comment';
+		    td2.textContent = content;
+		    
+			// 삭제 버튼을 위한 세 번째 셀 (<td>) 생성
+		    var td3 = document.createElement('td');
+		    td3.colSpan = 2;
+		    td3.className = 'comment text-right delete-button';
+
+		    if ('${sessionScope.loginfo.id}' === id) { // 로그인 정보와 댓글 작성자가 같을 경우
+		    	// 삭제 버튼 생성
+			    var deleteButton = document.createElement('button');
+			    deleteButton.id = 'delete-comment';
+			    deleteButton.type = 'button';
+			    deleteButton.className = 'btn btn-outline-dark form-control-sm';
+			    deleteButton.textContent = '삭제';
+			    
+				 // 댓글 번호를 data-cno 속성으로 버튼에 할당
+			    deleteButton.setAttribute('cno', cno);
+			    
+			 	// 삭제 버튼을 세 번째 셀에 추가
+			    td3.appendChild(deleteButton);
+		    } else { // 로그인 정보와 댓글 작성자가 같지 않을 경우
+		    	td3.textContent = '';
+		    }
+		    
+		    // 세 개의 셀을 테이블 행에 추가
+		    tr.appendChild(td1);
+		    tr.appendChild(td2);
+		    tr.appendChild(td3);
+
+		    // 댓글 목록에 테이블 행을 추가
+		    var commentList = document.getElementById('comment_list');
+		    commentList.appendChild(tr);
+		}
+		
+		// 댓글이 없을 경우 없다는 문구 보여주기
+		function addEmptyComment() {
+			// 새로운 테이블 행 (<tr>) 요소 생성
+		    var tr = document.createElement('tr');
+		    tr.className = 'text-left';
+
+		    // 댓글 없음 메시지를 위한 셀 (<td>) 생성
+		    var td = document.createElement('td');
+		    td.colSpan = 12;
+		    td.className = 'comment';
+		    td.textContent = '아직 댓글이 존재하지 않습니다.';
+
+		    // 셀을 테이블 행에 추가
+		    tr.appendChild(td);
+			
+			// 댓글 목록에 테이블 행을 추가
+		    var commentList = document.getElementById('comment_list');
+		    commentList.appendChild(tr);
+		}
+		
+		/* 댓글 삭제 버튼 클릭 */
+		$(document).on('click', '#delete-comment', function(){
+		    Swal.fire({
+		    	title: "댓글을 삭제하시겠습니까?",
+		        icon: "warning",
+		        showCancelButton: true,
+		        confirmButtonText: "확인",
+		        cancelButtonText: "취소"
+		    }).then((result) => {
+		        if (result.isConfirmed) {
+		            // 확인 버튼을 눌렀을 때의 동작
+		            $.ajax({
+		                url: '<%=notWithFormTag%>frcmDelete',
+		                data: 'cno=' + $(this).attr('cno'),
+		                type: 'get',
+		                dataType: 'text',
+		                success: function(result, status) {
+		                    console.log(result);
+		                    console.log(status);
+		                    getListComment(); // 목록 갱신하기
+		                }
+		            });
+		        }
+		    });
+		});
+		
+	
 </script>
 </head>
 <body>
 	<!-- 헤더 Start -->
-	<div class="container-xxl py-5 bg-dark  mb-5"
+	<div class="container-xxl py-5 bg-dark  mb-5" data-wow-delay="0.3s"
 		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
-		<div class="container my-5 py-5">
+		<div class="container my-5  wow fadeInUp">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
 					<h1 class="display-3 text-white" style="margin-bottom: 20px;">
@@ -333,116 +254,179 @@ style type ="text /css "> <style type ="text /css "> /* 게시판 컨테이너 �
 	</div>
 	<!-- 헤더 End -->
 
-	<div class="container" id="postSection">
-		<h2 align="center" style="margin-bottom: 5px;">${requestScope.bean.oname}글
-			제목</h2>
-		<h5 align="center" style="margin-bottom: 25px;">카테고리
-			${requestScope.bean.category}</h5>
-		<br> <span class="td-length" style="margin-left: 20px;">no.${requestScope.bean.ono}글번호</span>
-		&nbsp;&nbsp; <span class="td-length" style="text-align: right;">작성자
-			: ${requestScope.bean.id}</span> &nbsp;&nbsp; &nbsp;&nbsp; <span
-			align="center" class="td-length">${requestScope.bean.readhit}조회수
-			: </span> &nbsp;&nbsp; &nbsp;&nbsp; <span align="center" class="td-length">${requestScope.bean.regdate}작성일자
-			 </span>
+	<div class="main container-xxl ">
+		<div class="text-left container my-5 "></div>
+		<div class="mainBox container my-5  wow fadeInUp"
+			data-wow-delay="0.3s">
+			<div class="content col-sm-7">
+				<div class="title">
+					<span class="title " style="margin-left: 5px; display: block;">
+						${requestScope.bean.oname}</span>
+				</div>
+				<div class="contents">
+					<span class="sub-title"><strong>작성자: </strong></span> <img class=""
+						src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png"
+						height="25px;" width="25px;"> <span class="">${requestScope.bean.id}</span>
+
+				</div>
+				<div class="contents">
+					<span class="sub-title"><strong>카테고리: </strong></span> <span
+						class="">${requestScope.bean.pcategory}</span> <span
+						class="sub-title"><strong>&nbsp;&nbsp;조회수: </strong></span> <span
+						class="">${requestScope.bean.readhit}</span> &nbsp;&nbsp; <span
+						class="sub-title"><strong>작성날짜: </strong></span> <span class="">${requestScope.bean.oregdate}</span>
+				</div>
+
+				<div class="contents">
+					<div class="display-content" style="height: 300px; width: auto;">${requestScope.bean.ocontent}</div>
+				</div>
 
 
+				<!-- openForum 이미지 시작 -->
+				<div id="backButton" style="text-align: left;">
+					<!-- 이미지 1 -->
+					<a data-wow-delay="0.3s"
+						href="<%=appName%>/upload/${requestScope.bean.oimage1}"
+						data-lightbox="my-gallery"> <img
+						src="<%=appName%>/upload/${requestScope.bean.oimage1}"
+						width="100px" height="100px" alt="이미지 1">
+					</a>
 
+					<!-- 이미지 2 -->
+					<a href="<%=appName%>/upload/${requestScope.bean.oimage2}"
+						data-lightbox="my-gallery"> <img
+						src="<%=appName%>/upload/${requestScope.bean.oimage2}"
+						width="100px" height="100px" alt="이미지 2">
+					</a>
 
-		<textarea rows="10" cols="50" readonly
-			style="margin-top: 5px; width: 95%; border: none; background-color: #f2f2f2; margin: auto; display: flex;">${requestScope.bean.content}글 내용들어가요</textarea>
+					<!-- 이미지 3 -->
+					<a href="<%=appName%>/upload/${requestScope.bean.oimage3}"
+						data-lightbox="my-gallery"> <img
+						src="<%=appName%>/upload/${requestScope.bean.oimage3}"
+						width="100px" height="100px" alt="이미지 3">
+					</a>
 
+					<!-- 이미지 4 -->
+					<a href="<%=appName%>/upload/${requestScope.bean.oimage4}"
+						data-lightbox="my-gallery"> <img
+						src="<%=appName%>/upload/${requestScope.bean.oimage4}"
+						width="100px" height="100px" alt="이미지 4">
+					</a>
 
-		<!-- openForum 이미지 시작 -->
-		<div id="backButton" style="text-align: left;">
-			<!-- 이미지 1 -->
-			<a href="<%=appName%>/assets/img/자유게시판.jpg"
-				data-lightbox="my-gallery"> <img
-				src="<%=appName%>/assets/img/자유게시판.jpg" width="100px" height="100px"
-				alt="이미지 1">
-			</a>
+					<!-- 이미지 5 -->
+					<a href="<%=appName%>/upload/${requestScope.bean.oimage5}"
+						data-lightbox="my-gallery"> <img
+						src="<%=appName%>/upload/${requestScope.bean.oimage5}"
+						width="100px" height="100px" alt="이미지 5">
+					</a>
+				</div>
+			</div>
 
-			<!-- 이미지 2 -->
-			<a href="<%=appName%>/assets/img/자유게시판.jpg"
-				data-lightbox="my-gallery"> <img
-				src="<%=appName%>/assets/img/자유게시판.jpg" width="100px" height="100px"
-				alt="이미지 2">
-			</a>
-
-			<!-- 이미지 3 -->
-			<a href="<%=appName%>/assets/img/싫어요.png" data-lightbox="my-gallery">
-				<img src="<%=appName%>/assets/img/싫어요.png" width="100px"
-				height="100px" alt="이미지 3">
-			</a>
-
-			<!-- 이미지 4 -->
-			<a href="<%=appName%>/assets/img/좋아요.png" data-lightbox="my-gallery">
-				<img src="<%=appName%>/assets/img/좋아요.png" width="100px"
-				height="100px" alt="이미지 4">
-			</a>
-
-			<!-- 이미지 5 -->
-			<a href="<%=appName%>/assets/img/자유게시판.jpg"
-				data-lightbox="my-gallery"> <img
-				src="<%=appName%>/assets/img/자유게시판.jpg" width="100px" height="100px"
-				alt="이미지 5">
-			</a>
 		</div>
+		<div class="thumb container-xxl wow fadeInUp" data-wow-delay="0.5s">
+			<div class="container   text-right">
+				<a style="text-decoration: none;"
+					href="<%=notWithFormTag%>frEmoticon&ono=${requestScope.bean.ono}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
+					<button type="submit" class="btn btn-warning follower">
+						<span> <img class="thumbnail-content"
+							src="<%=appName%>/assets/img/thumb.png" alt="recommand"
+							style="width: 20px;"> <span class=""> 추천하기 </span> <span
+							class="">${requestScope.bean.olikes}</span>
+						</span>
+					</button>
+					<div class="text-end">
+						<!-- 수정 버튼 표시 조건문 -->
+						<c:if test="${sessionScope.loginfo.id==bean.id}">
+							<a
+								href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+								class="btn btn-primary btn-sm">수정</a>
+							<!-- 삭제 버튼 -->
+							<a
+								href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+								class="btn btn-danger btn-sm">삭제</a>
+						</c:if>
 
-		<div id="backButton" style="text-align: right;">
-
-			<button type="button" class="btn btn-primary"
-				onclick="history.back();">돌아 가기</button>
-			&nbsp;&nbsp;&nbsp; <a class="emoticon"
-				href="<%=notWithFormTag%>boEmoticon&mode=likes&no=${bean.no}"> <img
-				src="<%=appName%>/image/likes.png" width="30px" height="30px" alt="">
-				${bean.likes}
-			</a> &nbsp;&nbsp; <a class="emoticon"
-				href="<%=notWithFormTag%>boEmoticon&mode=hates&no=${bean.no}"> <img
-				src="<%=appName%>/image/hates.png" width="30px" height="30px" alt="">
-				${bean.hates}
-			</a>
+					</div>
+				</a>
+			</div>
 		</div>
-
 	</div>
+
+
+
+
+
+
 
 	<%-- 댓글 영역(Comment Zone) --%>
-	<!--  <ul id="comment_list">
-		<%-- 여기에 동적으로 댓글들을 추가합니다. --%>
-	</ul>-->
+	<div class=" container-xxl py-5">
+		<div class="container my-5 py-5">
+			<div class="row align-items-center g-5">
+				<div class="col-sm-8  wow fadeInUp" data-wow-delay="0.3s">
+					<p class="text-left comment-count" style="font-weight: bold;"></p>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th colspan="2" style="display: none;">작성자</th>
+								<th colspan="8" style="display: none;">내용</th>
+								<th colspan="2" style="display: none;">추천 및 삭제</th>
+							</tr>
+						</thead>
+						<tbody id="comment_list">
+							<%-- 여기에 동적으로 요소들을 추가합니다. --%>
+						</tbody>
+					</table>
 
-	<div id="insertComment">
-		<form id="comment_form" method="post" role="form"
-			class="form-horizontal">
-			<table class="table">
+					<!-- 댓글작성폼 -->
+					<div id="insertComment">
+						<p class="text-left" style="font-weight: bold;">댓글작성</p>
+						<form id="comment_form" method="post" role="form"
+							class="form-horizontal">
+							<input type="hidden" name="ono" id="ono"
+								value="${requestScope.bean.ono}"> <input type="hidden"
+								name="id" id="id" value="${sessionScope.loginfo.id}">
+							<table class="table">
+								<thead>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="text-left"><label for="content"
+											class="menubox-sub">작성자</label></td>
+										<td><input type="text" name="fakeid" id="fakeid"
+											class="form-control" size="5" disabled="disabled"
+											value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
+										</td>
+									</tr>
+									<tr>
+										<td class="text-left"><label for="content"
+											class="menubox-sub">댓글내용</label></td>
+										<td class="text-left">
+											<div>
+												<c:if test="${whologin ne 0}">
+													<textarea name="content" rows="3" cols="50"
+														id="comment_content"></textarea>
+												</c:if>
+												<c:if test="${whologin eq 0}">
+													<textarea name="content" rows="3" cols="50"
+														id="comment_content" disabled="disabled">댓글을 작성하시려면 로그인이 필요합니다.</textarea>
+												</c:if>
+											</div>
+											<div>
+												<c:if test="${whologin ne 0}">
+													<button type="submit" id="submit" class="btn btn-warning">등록</button>
+												</c:if>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<!-- 댓글작성폼 -->
 
-				<thead>
-				</thead>
-				<tbody>
-					<tr>
-						<td><label for="content"
-							class="col-xs-3 col-lg-3 control-label" style="width: 50px;">작성자</label></td>
-						<td><input type="hidden" name="no" value="${bean.no}" /> <input
-							type="text" name="fakeid" id="fakeid" size="10"
-							disabled="disabled"
-							value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
-							<input type="hidden" name="id" id="id"
-							value="${sessionScope.loginfo.id}"></td>
-					</tr>
-					<tr>
-						<td><label for="content"
-							class="col-xs-3 col-lg-3 control-label">댓글 내용</label></td>
-						<td><textarea id="content" name="content" rows="3" cols="50"></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<button type="submit" class="btn btn-info">글 쓰기</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-	</div>
+			</div>
+		</div>
 	</div>
 	<!-- SimpleLightbox JavaScript 파일 추가 -->
 	<script src="path/to/simple-lightbox.min.js"></script>

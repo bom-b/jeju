@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jeju.model.bean.Food;
+import com.jeju.utility.MyUtility;
 import com.jeju.utility.Paging;
 
 public class FoodDao extends SuperDao {
@@ -300,7 +301,7 @@ public class FoodDao extends SuperDao {
 			
 			// 추천기록 테이블에서 해당 유저의 추천기록 확인하기
 			String sql = " select count(*) as cnt from likes ";
-			sql += " where no = ? and id = ?";
+			sql += " where no = ? and category = 'food' and id = ? "; // 여기에 'food' 대신 event, tour, free 입력
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, no);
@@ -338,7 +339,7 @@ public class FoodDao extends SuperDao {
 			conn.setAutoCommit(false);
 			
 			// step1. 추천수 업데이트
-			String sql = " update foodiespot set likes = likes +1 ";
+			String sql = " update foodiespot set likes = likes +1 "; 
 			sql += " where no = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -348,8 +349,8 @@ public class FoodDao extends SuperDao {
 			pstmt = null;
 			
 			// step2. 추천 테이블에 추천기록 입력
-			sql = " insert into likes(no, id) ";
-			sql += " values(?, ?) ";
+			sql = " insert into likes(no, category, id) "; 
+			sql += " values(?, 'food' ,?) "; // 여기에 'food' 대신 event, tour, free 입력
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, no);
@@ -363,6 +364,153 @@ public class FoodDao extends SuperDao {
 			if(conn != null) {conn.close();}
 			
 			return cnt;
+		}
+
+		// Bean 객체 정보를 이용하여 데이터 베이스에 추가합니다.
+		public int InsertData(Food bean) throws Exception {
+			System.out.println(bean); 
+			
+			int cnt = -1 ;
+			
+			String sql = " insert into foodiespot (no, id, CATEGORY, TITLE, TIME, BREAKTIME, PHONENO, MENU, PLACE, MAP, IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5) " ;
+			sql += " values(seqfood.nextval, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?) " ; 
+			
+			PreparedStatement pstmt = null ;		
+			conn = super.getConnection() ;
+			conn.setAutoCommit(false);		
+			pstmt = conn.prepareStatement(sql) ; 
+			
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getCategory());
+			pstmt.setString(3, bean.getTitle());
+			pstmt.setString(4, bean.getTime());
+			pstmt.setString(5, bean.getBreaktime());
+			pstmt.setString(6, bean.getPhoneno());
+			pstmt.setString(7, bean.getMenu());
+			pstmt.setString(8, bean.getPlace());
+			pstmt.setString(9, bean.getImage1());
+			pstmt.setString(10, bean.getImage2());
+			pstmt.setString(11, bean.getImage3());
+			pstmt.setString(12, bean.getImage4());
+			pstmt.setString(13, bean.getImage5());
+			
+			cnt = pstmt.executeUpdate() ; 
+			conn.commit();
+			
+			if(pstmt != null) {pstmt.close();}
+			if(conn != null) {conn.close();}
+			
+			return cnt ;
+		}
+
+		// 게시물 번호를 이용하여 해당 게시물을 삭제합니다. 댓글과 추천기록도 함께 삭제.
+		public int DeleteDate(String no) throws Exception {
+			String sql = "";
+			int cnt = 0;
+			
+			PreparedStatement pstmt = null;
+			conn = super.getConnection();
+			conn.setAutoCommit(false);
+			
+			// step1. 맛집 테이블에서 해당 번호와 관련된 행 삭제하기
+			sql = " delete from foodiespot where no = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			cnt = pstmt.executeUpdate();
+			pstmt = null;
+			
+			// step2. 댓글 테이블에서 게시물 넘버에 해당하는 댓글 삭제하기
+			sql = " delete from comments where BOARDNO = ? and CATEGORY = 'food' ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			cnt = pstmt.executeUpdate();
+			pstmt = null;
+			
+			// step3. 추천 테이블에서 게시물 넘버에 해당하는 추천기록 삭제하기
+			sql = " delete from likes where NO = ? and CATEGORY = 'food' ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
+			
+			if (pstmt != null) {pstmt.close();} 
+			if (conn != null) {conn.close();} 
+			
+			return cnt;
+		}
+		
+		// 게시물 번호를 입력하여 해당 게시물에 대한 bean 객체를 반환해줍니다.
+		public Food GetDataByPK(String no) throws Exception {
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = " select * from foodiespot where no = ? ";
+			
+			conn = super.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			// 치환
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			Food bean = null;
+			
+			// 존재할때만 객체 생성을 하는게 좋다. 처음엔 null로 지정하는게 좋음
+			if(rs.next()) {
+				bean = getBeanData(rs);
+			}
+			
+			if(rs != null) {rs.close();}
+			if(pstmt != null) {pstmt.close();}
+			if(conn != null) {conn.close();}
+			
+			return bean;
+		}
+
+		// 업데이트
+		public int UpdateData(Food bean) throws Exception{
+			System.out.println("게시물 수정 빈 :\n" + bean);
+			
+			PreparedStatement pstmt = null;
+		    String sql = " update foodiespot set CATEGORY = ?, TITLE = ?, TIME = ?, BREAKTIME = ?, PHONENO = ?, MENU = ?, PLACE = ?, IMAGE1 = ?, IMAGE2 = ?, IMAGE3 = ?, IMAGE4 = ?, IMAGE5 = ? " ;
+		    sql += " where no = ? " ; 
+		
+			int cnt = -1;
+			
+			conn = super.getConnection();
+			conn.setAutoCommit(false);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			// 물음표 치환
+			pstmt.setString(1, bean.getCategory());
+			pstmt.setString(2, bean.getTitle());
+			pstmt.setString(3, bean.getTime());
+			pstmt.setString(4, bean.getBreaktime());
+			pstmt.setString(5, bean.getPhoneno());
+			pstmt.setString(6, bean.getMenu());
+			pstmt.setString(7, bean.getPlace());
+			pstmt.setString(8, bean.getImage1());
+			pstmt.setString(9, bean.getImage2());
+			pstmt.setString(10, bean.getImage3());
+			pstmt.setString(11, bean.getImage4());
+			pstmt.setString(12, bean.getImage5());
+			pstmt.setString(13, bean.getNo());
+			
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			
+			if(pstmt != null) {pstmt.close();}
+			if(conn != null) {conn.close();}
+			
+			return cnt;
+			
 		}
 	
 	

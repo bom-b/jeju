@@ -1,162 +1,202 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    
-<%@ include file="/common/bootstrap5.jsp" %>
-<%@ include file="/common/common.jsp" %>
-    
+
+<%@ include file="/common/bootstrap5.jsp"%>
+<%@ include file="/common/common.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>게시물 등록</title>
+<meta charset="UTF-8">
+<title>게시물 등록</title>
+
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
 <style type="text/css">
-  		.insert-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            
-            
-            background-image: url('assets/img/loginbackground.jpeg');
-    		background-size: cover;
-    		background-repeat: no-repeat;
-    		background-position: center center;
-        	}
-    .input-group {
-        margin: 7px;
-    }
+.insert-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-image: url('assets/img/loginbackground.jpeg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
 
-    .input-group-text {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+.input-group {
+	margin: 7px;
+}
 
-    #buttonset {
-        margin-top: 15px;
-    }
+.input-group-text {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-    .radio_gender, .checkbox_hobby {
-        font-size: 1.1rem; /* 주위 글꼴의 1.1배 */
-    }
-  	@font-face{
-		font-family:'SDMiSaeng'; /*글꼴*/
-		src: local('SDMiSaeng'),
-			url('SDMiSaeng.eot'),
-			url('SDMiSaeng.woff') format('woff'),
-			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
-		}
+#buttonset {
+	margin-top: 15px;
+}
 
-		.sdms-font{
-			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
-			color: orange;
-		}	
-		h2{
-			font-size: 70px;
-		}
-		
-  	</style>
-	<script type="text/javascript">
-  		$(document).ready(function(){
-  	  		/* $('#regdate').datepicker(); */
-  	  		$('#regdate').datepicker({dateFormat: "yy/mm/dd"});  	  	 
-  		});
-  		
-  		function validCheck(){/* 폼 유효성 검사 */  			
-  			var subject = $('#oname').val();
-  			if(subject.length < 3 || subject.length > 20){
-  				alert('글 제목은 3글자 이상 20글자 이하이어야 합니다.');
-  				$('#oname').focus() ;
-  				return false ;
-  			}
-  			
-  			var content = $('#ocontent').val();
-  			if(content.length < 5 || content.length > 30){
-  				alert('글 내용은 5글자 이상 30글자 이하이어야 합니다.');
-  				$('#ocontent').focus() ;
-  				return false ;
-  			}
-  			
-  		}
-  	</script>
+.radio_gender, .checkbox_hobby {
+	font-size: 1.1rem; /* 주위 글꼴의 1.1배 */
+}
+
+@font-face {
+	font-family: 'SDMiSaeng'; /*글꼴*/
+	src: local('SDMiSaeng'), url('SDMiSaeng.eot'), url('SDMiSaeng.woff')
+		format('woff'), url('assets/font-awesome/fonts/SDMiSaeng.ttf')
+		format('truetype');
+}
+
+.sdms-font {
+	font-family: 'SDMiSaeng', sans-serif; /*웹 폰트 지정*/
+	color: orange;
+}
+
+h2 {
+	font-size: 70px;
+}
+</style>
+				<script type="text/javascript">
+  
+    
+
+
+    // 폼 유효성 검사
+    function validCheck() {
+        var subject = $('#oname').val();
+        if(subject.length < 3 || subject.length > 20){
+            alert('글 제목은 3글자 이상 20글자 이하이어야 합니다.');
+            $('#oname').focus() ;
+            return false ;
+        }
+
+        var content = $('#ocontent').val();
+        if(content.length < 5 || content.length > 30){
+            alert('글 내용은 5글자 이상 30글자 이하이어야 합니다.');
+            $('#ocontent').focus() ;
+            return false ;
+        }
+
+        alert('수정이 완료되었습니다.');
+
+        // 일정 시간 후 메시지 자동으로 사라지도록 설정
+        setTimeout(function () {
+            $('.alert').fadeOut('slow');
+        }, 3000); // 3초 후에 메시지 사라짐
+    }
+    
+    // 페이지 로드 시 현재 날짜를 입력란에 채워 넣음
+    $('#oregdate').val(getCurrentDate());
+</script>
 </head>
 <body>
-	<div class="container">
-		<h2>게시물 등록</h2>
+	<div class="main container-xxl py-5">
+	<div class="container py-5">
+			<div class="insert-title text-left wow fadeInUp" data-wow-delay="0.1s">
+			<h2>게시물 수정</h2>
+		</div>
 
-		<form action="<%=withFormTag%>" method="post">
+		<form action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+
+	
+
+			<div id="freeno" class="input-group">
+				<span class="input-group-text col-md-2">게시물 번호</span> <input
+					id="fakeno" name="fakeno" type="number" disabled="disabled"
+					class="form-control" value="${bean.ono}"> <input id="ono"
+					name="ono" type="hidden" value="${bean.ono}">
+			</div>
 			<input type="hidden" name="command" value="frUpdate">
- <div class="col-md-6">
-			<div class="input-group">
-				<span class="input-group-text col-md-2">작성자</span>
-				<c:set var="userInfo"
-					value="${sessionScope.loginfo.oname}(${sessionScope.loginfo.id})" />
-				<input id="fakeid" name="fakeid" disabled="disabled" type="text"
-					class="form-control" placeholder="" value="${userInfo}"> <input
-					id="id" name="id" type="hidden" value="${sessionScope.loginfo.id}">
-			</div>
-		
-			<div class="input-group">
-				<span class="input-group-text col-md-2">글 제목</span> <input
-					id="oname" name="oname" type="text" class="form-control"
-					placeholder="">
-			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-text col-md-2">작성자</span>
+					<c:set var="userInfo"
+						value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})" />
+					<input id="fakeid" name="fakeid" disabled="disabled" type="text"
+						class="form-control" placeholder="" value="${userInfo}"> <input
+						id="id" name="id" type="hidden" value="${sessionScope.loginfo.id}">
+				</div>
 
-			<div class="input-group">
-				<span class="input-group-text col-md-2">글 내용</span> <input
-					id="ocontent" name="ocontent" type="text" class="form-control"
-					placeholder="">
-			</div>
-			<div class="input-group">
-				<span class="input-group-text col-md-2">글 카테고리</span> <select
-					id="pcategory" name="pcategory" class="form-select">
-					<option value="잡담">잡담</option>
-					<option value="정보공유">정보공유</option>
-					<option value="질문">질문</option>
-				</select>
-			</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">글 제목</span> <input
+						id="oname" name="oname" type="text" class="form-control"
+						placeholder="">
+				</div>
+
+				<div class="input-group">
+					<span class="input-group-text col-md-2">글 내용</span> <input
+						id="ocontent" name="ocontent" type="text" class="form-control"
+						placeholder="">
+				</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">글 카테고리</span> <select
+						id="pcategory" name="pcategory" class="form-select">
+						<option value="잡담">잡담</option>
+						<option value="정보공유">정보공유</option>
+						<option value="질문">질문</option>
+					</select>
+				</div>
 			</div>
 			<div class="col-md-6">
-			<div class="input-group">
-				<span class="input-group-text col-md-2">이미지 1</span> <input
-					id="oimage1" name="oimage1" type="file" class="form-control"
-					accept="image/*">
-			</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">이미지 1</span> <input
+						id="oimage1" name="oimage1" type="file" class="form-control"
+						accept="image/*">
+				</div>
 
-			<div class="input-group">
-				<span class="input-group-text col-md-2">이미지 2</span> <input
-					id="oimage2" name="oimage2" type="file" class="form-control"
-					accept="image/*">
-			</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">이미지 2</span> <input
+						id="oimage2" name="oimage2" type="file" class="form-control"
+						accept="image/*">
+				</div>
 
-			<div class="input-group">
-				<span class="input-group-text col-md-2">이미지 3</span> <input
-					id="oimage3" name="oimage3" type="file" class="form-control"
-					accept="image/*">
-			</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">이미지 3</span> <input
+						id="oimage3" name="oimage3" type="file" class="form-control"
+						accept="image/*">
+				</div>
 
-			<div class="input-group">
-								<span class="input-group-text col-md-2">이미지 4</span> <input
-					id="oimage4" name="oimage4" type="file" class="form-control"
-					accept="image/*">
-			</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">이미지 4</span> <input
+						id="oimage4" name="oimage4" type="file" class="form-control"
+						accept="image/*">
+				</div>
 
-			<div class="input-group">
-				<span class="input-group-text col-md-2">이미지 5</span> <input
-					id="oimage5" name="oimage5" type="file" class="form-control"
-					accept="image/*">
-			</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">이미지 5</span> <input
+						id="oimage5" name="oimage5" type="file" class="form-control"
+						accept="image/*">
+				</div>
+				<div class="input-group">
+					<span class="input-group-text col-md-2">작성일</span> <input
+						id="oregdate" name="oregdate" type="text" class="form-control" readonly>
+				</div>
+				<script type="text/javascript">
+  // 현재 날짜를 가져오는 함수
+    function getCurrentDate() {
+        var currentDate = new Date();
+        var year = currentDate.getFullYear();
+        var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 포맷팅
+        var day = String(currentDate.getDate()).padStart(2, '0'); // 날짜를 2자리로 포맷팅
+        return year + '/' + month + '/' + day;
+    }
 
-			<div id="buttonset" class="input-group">
-				<button type="submit" class="btn btn-primary btn-lg"
-					onclick="return validCheck();">등록</button>
-				&nbsp;&nbsp;&nbsp;
-				<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
-			</div>
+    // 작성일 입력란에 현재 날짜 채우기
+    document.getElementById("oregdate").value = getCurrentDate();
+</script>
+
+
+				<div id="buttonset" class="input-group">
+					<button type="submit" class="btn btn-primary btn-lg"
+						onclick="return validCheck();">수정</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
+				</div>
 			</div>
 		</form>
 	</div>
 </body>
 </html>
-				
+

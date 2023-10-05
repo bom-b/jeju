@@ -12,6 +12,8 @@ public class Member {
 	private String birth; // 날짜 형식
 	private String ratingimg;
 	
+	private int rank; // 순위 메기기용
+	
 	
 	public String getId() {
 		return id;
@@ -73,6 +75,12 @@ public class Member {
 	public void setRatingimg(String ratingimg) {
 		this.ratingimg = ratingimg;
 	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
 	
 	@Override
 	public String toString() {
@@ -96,7 +104,7 @@ public class Member {
 		this.ratingimg = ratingimg;
 	}
 	public Member() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

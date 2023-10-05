@@ -9,17 +9,58 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 게시판 메인 전용 부트스트랩 -->
+<!-- 맛집에서 따온 메인 전용 부트스트랩과 css-->
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 <link href="<%=appName%>/assets/css_boardmain/style.css" rel="stylesheet">
-<!-- 게시판 메인 전용 style.css -->
+<!-- 행사 메인 전용 style.css -->
 <link href="<%=appName%>/assets/css_eventmain/eventmain.css" rel="stylesheet">
+<!-- 달력 -->
+<link rel="stylesheet" type="text/css" href="<%=appName%>/assets/css_eventmain/flatpickr.css">
+<script src="<%=appName%>/assets/css_eventmain/flatpickr.js"></script>
+
 <style type="text/css">
 .green-background {
 	background-color: #84c0a0;
 }
 
 </style>
+<script type="text/javascript">
+	function seChange(obj) {
+		var selectBox = obj;
+		var selected = selectBox.options[selectBox.selectedIndex].value;
+		var subText = document.getElementById("keyword");
+		var dateHidden = document.getElementById("dateHidden");
+
+		if (selected == 'subject') {
+			subText.style.display = "inline";
+			dateHidden.style.display = "none";
+
+		} else {
+			subText.style.display = "none";
+			dateHidden.style.display = "inline";
+
+		}
+	}
+	$(document).ready(function(){
+		
+		
+	});
+	$( ".startDate" ).change(function() {
+		  alert( "Handler for .change() called." );
+		});
+	/* flatpickr("input[type=datetime-local]",{}); */
+
+	/* 	var startDateInput = document.getElementById('startDate');
+	 alert(startDateInput);
+	 flatpickr(startDateInput, {
+	 dateFormat: 'Y-m-d',
+	 enableTime: false,
+	 minDate: 'today',
+	 defaultDate: 'today',
+	 locale: 'ko',
+	
+	 }); */
+</script>
 </head>
 <body>
 
@@ -45,16 +86,23 @@
 				<form class="search-box" name="myform" action="<%=withFormTag%>" method="get">
 					<div class="row">
 						<div class="search-box col-sm-12">
-							<select class="form-control-sm" id="mode" name="mode">
-								<option value="all" selected="selected">--- 검색옵션 ---
-								<option value="name">글제목
-								<option value="company">글내용
-								<option value="category">작성자
+							<select class="form-control-sm" id="search" name="search" onchange="seChange(this)">
+								<option value="subject">제목
+								<option value="date">날짜
 							</select>
 							<input class="form-control-sm" type="text" name="keyword" id="keyword" placeholder="키워드 입력">
+							
+							<div style="display: none" id="dateHidden">
+								<input class="form-control-sm" type="text" name="startDate" id="startDate" placeholder="시작 날짜">
+
+								<input class="form-control-sm" type="text" name="endDate" id="endDate" placeholder="종료 날짜">
+							</div>
+
 							<button type="submit" class="btn green-background form-control-sm" onclick="">검색</button>
 							<button type="button" class="btn green-background form-control-sm" onclick="searchAll();">전체 검색</button>
-							<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();">글 쓰기</button>
+							<c:if test="${whologin eq 2}">
+								<button type="button" class="btn btn-secondary form-control-sm" onclick="writeForm();">글 쓰기</button>
+							</c:if>
 						</div>
 				</form>
 			</div>
@@ -64,19 +112,21 @@
 	<div class="container-xxl pt-5">
 		<ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-					<i class="fa far fas fa-calendar-day fa-2x text-primary" style="color: #ff9600;"></i>
+					<!-- 	<i class="fa far fas fa-calendar-day fa-2x text-primary" style="color: red;"></i> -->
+					<i class="fa fa-phone-square"></i>
 					<div class="ps-3">
 						<h2 class="category-text">전체</h2>
 					</div>
 				</a></li>
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-					<i class="fa far fa-calendar-check fa-2x text-primary"></i>
+					<i class="fa far fa-calendar-check"></i>
 					<div class="ps-3">
 						<h2 class="category-text">진행 중</h2>
 					</div>
 				</a></li>
 			<li class="nav-item"><a class="category d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-					<i class="fa far fa-calendar-times fa-2x text-primary"></i>
+					<!-- 				<i class="fa far fa-calendar-times fa-2x text-primary"></i> -->
+					<i class="fa far fa-calendar-times"></i>
 					<div class="ps-3">
 						<h2 class="category-text">종료</h2>
 					</div>
@@ -88,18 +138,18 @@
 		<div class="container-xxl">
 			<div class="row">
 				<c:forEach var="bean" items="${requestScope.eventList }">
-					<div class="col-lg-3 col-sm-6">
+					<div class="col-lg-4 col-sm-6">
 						<div class="waiting-item">
 							<a href="<%=notWithFormTag%>evDetail&eno=${bean.eno}">
 								<img src="<%=appName%>/assets/img/event_img/${bean.eimage1 } " alt="">
 							</a>
 							<div class="down-content">
+								<p>${bean.startdate }~${bean.enddate }</p>
 								<h4>${bean.ename }</h4>
-								<p>${bean.eduration }</p>
 								<!-- 	<ul class="info">
 								<li><i class="fa fas fa-phone-square fa-2x text-primary" style="text-align: center;"></i> 064-1234-1234</li>
 							</ul> -->
-								<span class="price"><i class="fa fas fa-phone-square fa-2x text-primary" style="text-align: center;"></i> <em>${bean.ephoneno}</em></span>
+								<span class="price"><i class="fa fas fa-map-marker-alt" style="text-align: center;"></i> <em>${bean.eplace}</em></span>
 								<br />
 								<!-- 	<span class="deadline">Deadline: <em>4 Days</em></span> -->
 
@@ -125,8 +175,5 @@
 			</div>
 		</div>
 	</section>
-
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

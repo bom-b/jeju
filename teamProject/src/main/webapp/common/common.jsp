@@ -49,6 +49,7 @@
 	<script src="assets/js/sweetalert.js"></script>
 	<link rel="shortcut icon" href="/assets/ico/icon.png">
 	<style type="text/css">
+		#alert_box{margin-top: 80px;}
 		.alert-dismissible{margin: 10px;}
 		.alert-danger{
 			margin: 20px;
@@ -78,7 +79,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="home.jsp" >1</a>
+					<a class="navbar-brand" href="<%=notWithFormTag%>home" >1</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
@@ -190,7 +191,7 @@
 	
 	<c:if test="${not empty sessionScope.alertMessage}">
 		<%-- 사용자에게 주의/경고/오류 등을 알려 주기 위한 Alert Box --%>
-		<div class="alert alert-danger alert-dismissible">
+		<div id="alert_box" class="alert alert-danger alert-dismissible">
 	    	<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 	    	<strong>경고 메시지</strong> ${sessionScope.alertMessage}
 	  	</div>
