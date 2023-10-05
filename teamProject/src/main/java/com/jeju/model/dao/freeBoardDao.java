@@ -104,16 +104,15 @@ public class freeBoardDao extends SuperDao {
 		// 테이블의 총 행개수를 구합니다.
 		String sql = " select count(*) as cnt from openforum ";
 		
-		// 카테고리에 따라 분기
-		  if (pcategory == "잡담") {
-		        sql += "WHERE pcategory = '잡담' ";
-		    } else if (pcategory == "정보공유") {
-		        sql += "WHERE pcategory = '정보공유' ";
-		    } else if (pcategory == "질문") {
-		        sql += "WHERE pcategory = '질문' ";
-		    } else {
-		        // 다른 경우에는 모든 카테고리를 가져오도록 설정
-		    }
+		if (pcategory.equals("ta")) {
+		    sql += "WHERE pcategory = '잡담' ";
+		} else if (pcategory.equals("infor")) {
+		    sql += "WHERE pcategory = '정보공유' ";
+		} else if (pcategory.equals("qu")) {
+		    sql += "WHERE pcategory = '질문' ";
+		} else {
+		    // 다른 경우에는 모든 카테고리를 가져오도록 설정
+		}
 		  
 		  
 		// 검색 조건에 따라 분기
@@ -317,7 +316,7 @@ public class freeBoardDao extends SuperDao {
 		return bean;
 	}
 
-	public int UpdateData(freeBoard bean) throws Exception { // 고쳐야함
+	public int UpdateData(freeBoard bean) throws Exception {  //업데이트
 		System.out.println(bean);
 
 		int cnt = -1;
@@ -354,8 +353,8 @@ public class freeBoardDao extends SuperDao {
 
 		return cnt;
 	}
-	// 추천을 했는지 체크하기
-			public int	CheckLikes(String ono, String id) throws Exception {
+
+			public int	CheckLikes(String ono, String id) throws Exception {	// 추천 체크하기
 				int cnt = -1;
 				int count = 0;
 				
@@ -392,7 +391,7 @@ public class freeBoardDao extends SuperDao {
 				
 				return cnt;
 			}
-	public int UpdateEmoticon(String ono, String id) throws Exception {
+	public int UpdateEmoticon(String ono, String id) throws Exception { // 좋아요 올리기
 		
 
 		int cnt = -1;

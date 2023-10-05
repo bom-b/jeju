@@ -30,6 +30,7 @@ public class freeBoardMainController extends SuperClass {
 			boolean isGrid = false ;
 			Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, url, mode, keyword, isGrid);
 
+
         	
         	//잠답 데이터 개수 구하기
             int totalCount_ta = dao.GetTotalRecordCount(mode, keyword, "ta");

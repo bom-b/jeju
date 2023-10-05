@@ -17,6 +17,8 @@
 <!-- 맛집 전용 style.css -->
 <link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
 	rel="stylesheet">
+	<%-- sweetalert 버전 2 --%>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
 .container {
@@ -34,24 +36,6 @@
 
 
 <script type="text/javascript">
-		/* 삭제버튼 클릭 */
-		/* on() 메소드는 선택된 요소에 이벤트 핸들러 함수를 연결시켜 주는 기능을 합니다. */
-		/* cnum이라는 속성을 개발자가 지정해 두었습니다. */
-		$(document).on('click', '.delete_btn', function(){
-			if(confirm('선택하신 항목을 삭제하시겠습니까?')){
-				$.ajax({
-					url:'<%=notWithFormTag%>frdelete', 
-					data:'cnum=' + $(this).attr('cnum') ,
-					type:'get', 
-					dataType:'text',
-					success:function(result, status){
-						console.log(result);	
-						console.log(status);
-						getListComment() ; 
-					}
-				});
-			}
-		});
 		$(document).ready(function(){
 			getListComment();
 			
@@ -79,7 +63,7 @@
 			});
 			return false;
 		});
-	}
+		});
 		var commentNum = 0; // 댓글 개수
 		
 		//댓글리스트 가져오기
@@ -89,7 +73,7 @@
 		    /* $.ajax() 함수를 이용하여 데이터 보여 주기 */
 		    $.ajax({
 		        url:'<%=notWithFormTag%>frcmList', 
-		        data:'boardno=' + '${requestScope.bean.no}',
+		        data:'boardno=' + '${requestScope.bean.ono}',
 		        type:'get', 
 		        dataType:'json',
 		        success:function(result, status){
@@ -232,8 +216,6 @@
 		        }
 		    });
 		});
-		
-	
 </script>
 </head>
 <body>
