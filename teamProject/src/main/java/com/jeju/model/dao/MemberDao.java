@@ -281,6 +281,53 @@ public class MemberDao extends SuperDao{
 	        }
 	    }
 	}
+	
+	public int updateMrating(String id) {
+	    conn = null;
+	    PreparedStatement pstmt = null;
+
+	    try {
+	        conn = super.getConnection();
+	        
+	        // 현재 mrating 값을 가져옴
+	        String selectSql = "SELECT mrating FROM members WHERE id = ?";
+	        pstmt = conn.prepareStatement(selectSql);
+	        pstmt.setString(1, id);
+	        ResultSet rs = pstmt.executeQuery();
+	        
+	        int currentRating = 0;
+	        if (rs.next()) {
+	            currentRating = Integer.parseInt(rs.getString("mrating"));
+	        }
+	        
+	        // 새로운 mrating 값을 설정
+	        int newRating = currentRating + 5;
+
+	        // mrating 값을 업데이트
+	        String updateSql = "UPDATE members SET mrating = ? WHERE id = ?";
+	        pstmt = conn.prepareStatement(updateSql);
+	        pstmt.setString(1, Integer.toString(newRating));
+	        pstmt.setString(2, id);
+	        
+	        int updatedRows = pstmt.executeUpdate();
+	        
+	        return updatedRows;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1; // 실패 시 -1 반환
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
 
 
 }
