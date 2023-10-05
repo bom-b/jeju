@@ -49,8 +49,8 @@ public class freeBoardMainController extends SuperClass {
             boolean isGrid_infor = false;
             Paging pageInfo_infor = new Paging(pageNumber, pageSize, totalCount_infor, url_infor, mode, keyword, isGrid_infor);
        
-         // pcategory 데이터 가져오기
-            List<freeBoard> lists = dao.selectAll(pageInfo, "");
+         //  데이터 가져오기
+            List<freeBoard> lists = dao.selectAll(pageInfo);
 
             // ta 데이터 가져오기
             List<freeBoard> talists = dao.selectAll(pageInfo_ta, "ta");
