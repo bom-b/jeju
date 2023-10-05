@@ -45,6 +45,6 @@ public class HomeController extends SuperClass {
 			e.printStackTrace();
 		}
 		
-		super.gotoPage("/home.jsp");
+		super.gotoPage("/common/home.jsp");
 	}
 }
