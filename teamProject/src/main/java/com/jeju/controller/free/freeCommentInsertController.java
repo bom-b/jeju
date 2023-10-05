@@ -15,7 +15,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 	super.doPost(request, response);
 	
 	FreeComment bean = new FreeComment();
-	bean.setBoardno(Integer.parseInt(request.getParameter("no"))); // 부모(게시물) 글번호
+	bean.setBoardno(Integer.parseInt(request.getParameter("ono"))); // 부모(게시물) 글번호
 	bean.setContent(request.getParameter("content")); // 내가 작성한 댓글 내용
 	bean.setId(request.getParameter("id")); // 나의 아이디
 	freeCommentDao dao = new freeCommentDao();
