@@ -19,11 +19,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <%-- 카카오지도 관련 코드 --%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
-
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	e9690708443890b865a0c886aadfeff8"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript">
 
@@ -457,7 +454,13 @@
 				<!-- 댓글작성폼 -->	       	
 				
 				<!-- 지도 -->
-				<div class="map-zone col-sm-4 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px; margin-bottom: 100px;">
+				<!-- <div class="map-zone col-sm-4 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px;">
+					<p class="text-left" style="font-weight: bold;">위치</p>
+					<div class="col-md-6" >
+			       		  <div id="map" style="width: 350px; height: 450px;"></div>
+			      	</div>
+				</div> -->
+				<div class="map-zone col-sm-4 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px;">
 					<p class="text-left" style="font-weight: bold;">위치</p>
 					<div class="col-md-6" >
 			       		  <div id="map" style="width: 350px; height: 450px;"></div>
@@ -478,45 +481,58 @@
 <%-- 사진 크게보기 --%>
 
 <%-- 지도 --%>
-	<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
 
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
-	
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('${requestScope.bean.place}', function(result, status) {
-	
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === kakao.maps.services.Status.OK) {
-	
-	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-	
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.title}</div>'
-	        });
-	        infowindow.open(map, marker);
-	
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});    
+	<script>
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 	</script>
+	
 <%-- 지도 --%>
 
+<%-- 지도 --%>
+	<!-- <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+        	center: { lat: 37.5400456, lng: 126.9921017 },
+          zoom: 15
+        });
+        
+        // 마커표시
+        const malls = [
+            { label: "위치", name: "테스트", lat: 37.5115557, lng: 127.0595261 }
+          ];
+        
+        // 클릭시 정보보여주기
+        const infowindow = new google.maps.InfoWindow();
+        
+     	// 마커표시
+         malls.forEach(({ label, name, lat, lng }) => {
+           const marker = new google.maps.Marker({
+             position: { lat, lng },
+             label,
+             map,
+           });
+         });
+          
+      	 // 클릭시 정보보여주기
+         marker.addListener("click", () => {
+        	 map.panTo(marker.position);
+             infowindow.setContent(name);
+             infowindow.open({
+               anchor: marker,
+               map,
+             });
+           });
+          
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHjIv6PAsyMyT8Zqp0TzSk9qtmthXkvzw&callback=initMap" async defer></script> -->
+<%-- 지도 --%>
 </body>
 </html>
