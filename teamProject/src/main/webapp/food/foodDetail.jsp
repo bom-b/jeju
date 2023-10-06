@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/common/bootstrap5.jsp" %>
-<%@ include file="/common/common.jsp" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/bootstrap5.jsp"%>
+<%@ include file="/common/common.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +14,19 @@
 <link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <%-- 사진 크게보기 --%>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
 <%-- sweetalert 버전 2 --%>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <%-- 카카오지도 관련 코드 --%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript">
 
@@ -269,18 +273,29 @@
 </script>
 
 <style type="text/css">
-
 </style>
 
 </head>
 <body>
-	
-<!-- 메인사진과 메인설명 -->
+
+	<!-- 메인사진과 메인설명 -->
 	<div class="main container-xxl py-5">
 		<div class="text-left container my-5 py-5">
-		
+
 			<!-- 작성자와 장성일자 -->
 			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
+				<div class="contents">
+					<span class="sub-title" style="font-weight: bold;">작성자: </span> <img
+						src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}"
+						height="25px" width="25px">
+					<c:choose>
+						<c:when test="${empty requestScope.bean.id}">
+							<span class="">탈퇴한 회원</span>
+						</c:when>
+						<c:otherwise>
+							<span class="">${requestScope.bean.id}</span>
+						</c:otherwise>
+					</c:choose>
 				<div class="contents" >
 					<span class="sub-title" style="font-weight: bold;">작성자: </span>
 					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
@@ -296,17 +311,21 @@
 		               </c:choose>
 				</div>
 				<div class="">
-					<span class="sub-title" style="font-weight: bold;">작성일자: </span>
-					<span class="">${requestScope.bean.regdate}</span>
+					<span class="sub-title" style="font-weight: bold;">작성일자: </span> <span
+						class="">${requestScope.bean.regdate}</span>
 				</div>
 			</div>
 			<!-- 작성자와 장성일자 -->
-			
+
 		</div>
-		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="mainBox container my-5 py-5 wow fadeInUp"
+			data-wow-delay="0.1s">
 			<div class="col-sm-5">
-				<a href="<%=appName%>/upload/${requestScope.bean.image1}" data-fancybox="gallery"  data-caption="${requestScope.bean.title}">
-					<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.image1}" alt="main-image">
+				<a href="<%=appName%>/upload/${requestScope.bean.image1}"
+					data-fancybox="gallery" data-caption="${requestScope.bean.title}">
+					<img class="main-image"
+					src="<%=appName%>/upload/${requestScope.bean.image1}"
+					alt="main-image">
 				</a>
 			</div>
 			<div class="content col-sm-7">
@@ -314,26 +333,28 @@
 					<span class="title text-primary">${requestScope.bean.title}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title" style="font-weight: bold;">주소: </span> 
-					<span class="">${requestScope.bean.place}</span>
+					<span class="sub-title" style="font-weight: bold;">주소: </span> <span
+						class="">${requestScope.bean.place}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title" style="font-weight: bold;">영업시간: </span> 
-					<span class="">${requestScope.bean.time}</span>
+					<span class="sub-title" style="font-weight: bold;">영업시간: </span> <span
+						class="">${requestScope.bean.time}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title" style="font-weight: bold;">브레이크타임: </span> 
+					<span class="sub-title" style="font-weight: bold;">브레이크타임: </span>
 					<span class="">${requestScope.bean.breaktime}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title" style="font-weight: bold;">연락처: </span> 
-					<span class="">${requestScope.bean.phoneno}</span>
+					<span class="sub-title" style="font-weight: bold;">연락처: </span> <span
+						class="">${requestScope.bean.phoneno}</span>
 				</div>
 				<div class="menubox wow fadeInUp" data-wow-delay="0.1s">
 					<div class="menubox-sub col-sm-3">
-						<span class="menubox-sub sub-title" style="font-weight: bold;">대표 메뉴: </span> 
+						<span class="menubox-sub sub-title" style="font-weight: bold;">대표
+							메뉴: </span>
 					</div>
-					<div id="result" class="col-sm-9 text-left " style="padding-left: 30px;">
+					<div id="result" class="col-sm-9 text-left "
+						style="padding-left: 30px;">
 						<script type="text/javascript">
 							splitString("${requestScope.bean.menu}");
 						</script>
@@ -342,78 +363,93 @@
 			</div>
 		</div>
 	</div>
-<!-- 메인사진과 메인설명 -->	
+	<!-- 메인사진과 메인설명 -->
 
-<!-- 삭제, 추천버튼 -->
-	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+	<!-- 삭제, 추천버튼 -->
+	<div class="thumb container-xxl py-5 wow fadeInUp"
+		data-wow-delay="0.1s">
 		<div class="container my-5 py-5 text-right">
-			<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
-				<a href="<%=notWithFormTag%>fdDelete&no=${requestScope.bean.no}" id="deleteLink">
-				<button type="submit" class="btn btn-danger follower">
-					<span>
-						<span class=""> 삭제하기 </span>
-					</span>
-				</button>
+			<c:if
+				test="${sessionScope.loginfo.id eq requestScope.bean.id or sessionScope.loginfo.id eq 'admin'}">
+				<a href="<%=notWithFormTag%>fdDelete&no=${requestScope.bean.no}"
+					id="deleteLink">
+					<button type="submit" class="btn btn-danger follower">
+						<span> <span class=""> 삭제하기 </span>
+						</span>
+					</button>
 				</a>
 				<a href="<%=notWithFormTag%>fdUpdate&no=${requestScope.bean.no}">
-				<button type="submit" class="btn btn-info follower">
-					<span>
-						<span class=""> 수정하기 </span>
-					</span>
-				</button>
+					<button type="submit" class="btn btn-info follower">
+						<span> <span class=""> 수정하기 </span>
+						</span>
+					</button>
 				</a>
 			</c:if>
-			<a href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
-			<button type="submit" class="btn btn-warning follower">
-				<span>
-					<img class="thumbnail-content" src="<%=appName%>/assets/img/thumb.png" alt="recommand" style="width: 20px;">
-					<span class=""> 추천하기 </span>
-					<span class="">${requestScope.bean.likes}</span>
-				</span>
-			</button>
+			<a
+				href="<%=notWithFormTag%>fdLikes&no=${requestScope.bean.no}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
+				<button type="submit" class="btn btn-warning follower">
+					<span> <img class="thumbnail-content"
+						src="<%=appName%>/assets/img/thumb.png" alt="recommand"
+						style="width: 20px;"> <span class=""> 추천하기 </span> <span
+						class="">${requestScope.bean.likes}</span>
+					</span>
+				</button>
 			</a>
 		</div>
 	</div>
-<!-- 삭제, 추천버튼 -->
+	<!-- 삭제, 추천버튼 -->
 
-<!-- 서브사진들 -->
+	<!-- 서브사진들 -->
 	<div class="container-xxl py-5">
-		<div class="container my-5 py-5 py-5 wow fadeInUp" data-wow-delay="0.2s">
+		<div class="container my-5 py-5 py-5 wow fadeInUp"
+			data-wow-delay="0.2s">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image2 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image2}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image2}" alt="sub-image">
+						<a href="<%=appName%>/upload/${requestScope.bean.image2}"
+							data-fancybox="gallery" data-caption="${requestScope.bean.title}">
+							<img class="sub-image" alt=""
+							src="<%=appName%>/upload/${requestScope.bean.image2}"
+							alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image3 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image3}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image3}" alt="sub-image">
+						<a href="<%=appName%>/upload/${requestScope.bean.image3}"
+							data-fancybox="gallery" data-caption="${requestScope.bean.title}">
+							<img class="sub-image" alt=""
+							src="<%=appName%>/upload/${requestScope.bean.image3}"
+							alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image4 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image4}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image4}" alt="sub-image">
+						<a href="<%=appName%>/upload/${requestScope.bean.image4}"
+							data-fancybox="gallery" data-caption="${requestScope.bean.title}">
+							<img class="sub-image" alt=""
+							src="<%=appName%>/upload/${requestScope.bean.image4}"
+							alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.image5 ne null}">
-						<a href="<%=appName%>/upload/${requestScope.bean.image5}" data-fancybox="gallery" data-caption="${requestScope.bean.title}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.image5}" alt="sub-image">
+						<a href="<%=appName%>/upload/${requestScope.bean.image5}"
+							data-fancybox="gallery" data-caption="${requestScope.bean.title}">
+							<img class="sub-image" alt=""
+							src="<%=appName%>/upload/${requestScope.bean.image5}"
+							alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
-<!-- 서브사진들 -->	
-	
-<!-- 댓글창과 지도 -->	
+	<!-- 서브사진들 -->
+
+	<!-- 댓글창과 지도 -->
 	<div class="commentBox container-xxl py-5">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
@@ -435,32 +471,35 @@
 					<!-- 댓글작성폼 -->
 					<div id="insertComment">
 						<p class="text-left" style="font-weight: bold;">댓글작성</p>
-						<form id="comment_form" method="post" role="form" class="form-horizontal">
-							<input type="hidden" name="no" id="no" value="${requestScope.bean.no}" > 
-							<input type="hidden" name="id" id="id" value="${sessionScope.loginfo.id}" >
+						<form id="comment_form" method="post" role="form"
+							class="form-horizontal">
+							<input type="hidden" name="no" id="no"
+								value="${requestScope.bean.no}"> <input type="hidden"
+								name="id" id="id" value="${sessionScope.loginfo.id}">
 							<table class="table">
 								<thead>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="text-left">
-											<label for="content" class="menubox-sub">작성자</label>
-										</td>
-										<td>
-											<input type="text" name="fakeid" id="fakeid" class="form-control" size="5" disabled="disabled" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
+										<td class="text-left"><label for="content"
+											class="menubox-sub">작성자</label></td>
+										<td><input type="text" name="fakeid" id="fakeid"
+											class="form-control" size="5" disabled="disabled"
+											value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님">
 										</td>
 									</tr>
 									<tr>
-										<td class="text-left">
-											<label for="content" class="menubox-sub">댓글내용</label>
-										</td>
+										<td class="text-left"><label for="content"
+											class="menubox-sub">댓글내용</label></td>
 										<td class="text-left">
 											<div>
 												<c:if test="${whologin ne 0}">
-													<textarea name="content" rows="3" cols="50" id="comment_content"></textarea>
+													<textarea name="content" rows="3" cols="50"
+														id="comment_content"></textarea>
 												</c:if>
 												<c:if test="${whologin eq 0}">
-													<textarea name="content" rows="3" cols="50" id="comment_content" disabled="disabled">댓글을 작성하시려면 로그인이 필요합니다.</textarea>
+													<textarea name="content" rows="3" cols="50"
+														id="comment_content" disabled="disabled">댓글을 작성하시려면 로그인이 필요합니다.</textarea>
 												</c:if>
 											</div>
 											<div>
@@ -475,30 +514,32 @@
 						</form>
 					</div>
 				</div>
-				<!-- 댓글작성폼 -->	       	
-				
+				<!-- 댓글작성폼 -->
+
 				<!-- 지도 -->
-				<div class="map-zone col-sm-4 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px; margin-bottom: 100px;">
+				<div class="map-zone col-sm-4 wow fadeInUp" data-wow-delay="0.3s"
+					style="padding-left: 30px; margin-bottom: 100px;">
 					<p class="text-left" style="font-weight: bold;">위치</p>
-					<div class="col-md-6" >
-			       		  <div id="map" style="width: 350px; height: 450px;"></div>
-			      	</div>
+					<div class="col-md-6">
+						<div id="map" style="width: 350px; height: 450px;"></div>
+					</div>
 				</div>
 				<!-- 지도 -->
-				
+
 			</div>
 		</div>
 	</div>
-<!-- 댓글창과 지도 -->	
+	<!-- 댓글창과 지도 -->
 
-<%-- 사진 크게보기 --%>
-	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+	<%-- 사진 크게보기 --%>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 	<script>
 	      Fancybox.bind('[data-fancybox="gallery"]', {});    
 	</script>
-<%-- 사진 크게보기 --%>
+	<%-- 사진 크게보기 --%>
 
-<%-- 지도 --%>
+	<%-- 지도 --%>
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -537,7 +578,7 @@
 	    } 
 	});    
 	</script>
-<%-- 지도 --%>
+	<%-- 지도 --%>
 
 </body>
 </html>

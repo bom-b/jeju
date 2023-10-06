@@ -59,7 +59,7 @@
 
             var mquestion = $('#mquestion').val();
             if (mquestion == '-') { /* 코딩할 때 option의 value 속성을 하이폰으로 설정했습니다. */
-                swal('질문을 선택해 주세요.');
+            	swal('질문을 작성해주세요.');
                 $('#mquestion').focus();
                 return false;
             }
