@@ -36,8 +36,8 @@ public class FoodDetailController extends SuperClass {
 				request.setAttribute("bean", bean);
 				request.setAttribute("bean2", bean2); // 게시글 작성자 정보를 request에 추가
 				super.gotoPage("/food/foodDetail.jsp");
-
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
