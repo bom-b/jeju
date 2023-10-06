@@ -347,6 +347,37 @@ public class MemberDao extends SuperDao{
 	    }
 	}
 
+	public boolean isIdDuplicate(String id) throws Exception {
+        conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
+        try {
+            conn = super.getConnection();
+            String sql = "SELECT COUNT(*) FROM members WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0; // 중복된 아이디가 있으면 true, 아니면 false 반환
+            }
+
+            return false; // 아이디가 존재하지 않음
+
+        } finally {
+            // 리소스 해제
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
 
 }
