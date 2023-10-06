@@ -10,8 +10,8 @@
 <title>Insert title here</title>
 
 <%-- 맛집 전용 style.css --%>
-<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
-	rel="stylesheet">
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <%-- 사진 크게보기 --%>
 <link rel="stylesheet"

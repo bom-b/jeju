@@ -12,6 +12,7 @@
 
 <%-- 홈 전용 style.css --%>
 <link href="<%=appName%>/assets/css/homestyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <%-- 홈 전용 home.js --%>
 <script src="<%=appName%>/assets/js/home.js"></script>

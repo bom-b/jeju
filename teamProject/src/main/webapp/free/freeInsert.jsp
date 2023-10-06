@@ -13,6 +13,7 @@
 <!-- style.css -->
 <link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
 	rel="stylesheet">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 <style type="text/css">
 .insert-container {
 	display: flex;
