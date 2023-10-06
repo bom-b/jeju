@@ -81,6 +81,7 @@
 		}
 
 		var isCheck = false; /* 확장자 체크에 충족하면 true가 됩니다. */
+		
 		const imgCheck = [ '.png', '.jpg' ]; /* 확장자 체크용 배열 */
 		for (var i = 0; i < imgCheck.length; i++) {
 			if (eimage + i[i].endsWith(imgCheck[i])) {
@@ -88,23 +89,32 @@
 				break;
 			}
 		}
-		if (isCheck == false) {
-			swal('이미지의 확장자는 png 또는 jpg 형식이어야 합니다.');
-			return false;
-		}
-		var cnt = 0;
-		for (var i = 1; i <= 5; i++) {
-			alert('');
-			if ($('#eimage' + i).val() != '') {
-				cnt++;
-				console.log("cnt >>>> " + cnt);
-			}
-		}
-		if (cnt <= 3 || cnt == 0) {
-			swal('이미지는 3개 이상 추가해야 등록 가능해요.');
-			return false;
-		}
+		//이미지 체크
+/* 	      var cnt = 0;
+	      for (var i = 0; i < 5; i++) {
+	         if($("input[type=file]")[i].id !=""){//eimage1~eimage5를 가져옴
+	        	 alert("여기 와랄라ㅏㄹ라: ");
+	            cnt++;
+	         }
+	      }
+	      if (cnt <= 3 || cnt == 0) {
+	         swal('이미지는 3개 이상 추가해야 등록 가능해요.');
+	         return false;
+	      } */
+	      
+	      var cnt = 0;
+	      for (var i = 0; i < 5; i++) {
+	         if($("input[type=file]")[i].id !=""){//eimage1~eimage5를 가져옴
+	            cnt++;
+	         }
+	      }
+	      if (cnt <= 3 || cnt == 0) {
+	         swal('이미지는 3개 이상 추가해야 등록 가능해요.');
+	         return false;
+	      }
 	}
+	
+	
 	/* function addElement() {
 	 base++
 	 var element = document.createElement("input");
