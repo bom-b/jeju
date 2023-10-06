@@ -281,4 +281,99 @@ public class HomeDao extends SuperDao {
 		
 		return bean;
 	}
+
+	// 푸드 게시물 다 받아오기
+	public List<Food> membersFood(String id) throws Exception {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = " SELECT * FROM foodiespot WHERE ID = ? ";
+		
+		conn = super.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rs = pstmt.executeQuery();
+
+		List<Food> foodtList = new ArrayList<Food>();
+		while (rs.next()) {
+			foodtList.add(getFoodBeanData(rs));
+		}
+		if (rs != null) {
+			rs.close();
+		}
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
+		return foodtList;
+	}
+
+	// 관광지 게시물 다 받아오기
+	public List<Tour> membersTour(String id) throws Exception {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = " SELECT * FROM tourist WHERE ID = ? ";
+		
+		conn = super.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rs = pstmt.executeQuery();
+
+		List<Tour> tourtList = new ArrayList<Tour>();
+		while (rs.next()) {
+			tourtList.add(getTourBeanData(rs));
+		}
+		if (rs != null) {
+			rs.close();
+		}
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
+		return tourtList;
+	}
+
+	// 자유게시판 게시물 다 받아오기
+	public List<freeBoard> membersFree(String id)throws Exception {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = " SELECT * FROM openforum WHERE ID = ? ";
+		
+		conn = super.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rs = pstmt.executeQuery();
+
+		List<freeBoard> freeList = new ArrayList<freeBoard>();
+		while (rs.next()) {
+			freeList.add(getFreeBeanData(rs));
+		}
+		if (rs != null) {
+			rs.close();
+		}
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
+		return freeList;
+	
+	}
+
 }
