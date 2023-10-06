@@ -23,10 +23,6 @@
 .green-background {
 	background-color: #84c0a0;
 }
-
-* {
-	font-family: 'SDMiSaeng';
-}
 </style>
 <script type="text/javascript">
 	function seChange(obj) {
@@ -88,8 +84,8 @@
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
-					<h1 class="display-3 text-white" style="margin-bottom: 15px; font-size: 5rem;">행사</h1>
-					<p class="medium-paragraph" style="font-size: 3rem;">제주도의 행사들을 만나보세요!</p>
+					<h1 class="display-3 text-white" style="margin-bottom: 15px; font-size: 3rem;">행사</h1>
+					<p class="medium-paragraph" style="font-size: 2.3rem;">제주도의 행사들을 만나보세요!</p>
 				</div>
 			</div>
 		</div>
@@ -103,22 +99,22 @@
 				<form class="search-box" name="myform" action="<%=withFormTag%>" method="get">
 					<div class="row">
 						<div class="search-box col-sm-12">
-							<select class="form-control-sm" id="mode" name="mode" onchange="seChange(this)" style="font-size: 2rem;">
+							<select class="form-control-sm" id="mode" name="mode" onchange="seChange(this)" style="font-size: 1.8rem;">
 								<option value="all" selected="selected">--- 선택해 주세요 ---
 								<option value="subject">행사명
 								<option value="dateSearch">날짜
 							</select>
-							<input class="form-control-sm" type="text" name="keyword" id="keyword" placeholder="키워드 입력" style="font-size: 2rem;">
+							<input class="form-control-sm" type="text" name="keyword" id="keyword" placeholder="키워드 입력" style="font-size: 1.8rem;">
 
 							<div style="display: none" id="dateHidden">
-								<input class="form-control-sm" type="text" name="startdate" id="startdate" placeholder="시작 날짜" style="font-size: 2rem;">
-								<input class="form-control-sm" type="text" name="enddate" id="enddate" placeholder="종료 날짜" style="font-size: 2rem;">
+								<input class="form-control-sm" type="text" name="startdate" id="startdate" placeholder="시작 날짜" style="font-size: 1.8rem;">
+								<input class="form-control-sm" type="text" name="enddate" id="enddate" placeholder="종료 날짜" style="font-size: 1.8rem;">
 							</div>
 
-							<button type="submit" class="btn form-control-sm" onclick="" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';background-color: #9eb384;color:#ffffff">검색</button>
+							<button type="submit" class="btn form-control-sm" onclick="" style="margin-top: -15px; font-size: 1.8rem;background-color: #9eb384;color:#ffffff">검색</button>
 						<!-- 	<button type="button" class="btn btn-secondary form-control-sm" onclick="searchAll();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';">전체 검색</button> -->
 							<c:if test="${whologin eq 2}">
-								<button type="button" class="btn  form-control-sm" onclick="writeForm();" style="margin-top: -10px; font-size: 2rem; font-family: 'SDMiSaeng';background-color: #9eb384;color:#ffffff">글 쓰기</button>
+								<button type="button" class="btn  form-control-sm" onclick="writeForm();" style="margin-top: -15px; font-size: 2rem; background-color: #9eb384;color:#ffffff">글 쓰기</button>
 							</c:if>
 						</div>
 				</form>
@@ -161,7 +157,7 @@
 								<img src="<%=appName%>/assets/img/event_img/${bean.eimage1 } " alt="">
 							</a>
 							<div class="down-content">
-								<p style="font-size: 2.3rem;">${bean.startdate }~ ${bean.enddate }</p>
+								<p style="font-size: 1.8rem;">${bean.startdate }~ ${bean.enddate }</p>
 								<h4 style="word-break: break-all;">${bean.ename }</h4>
 								<!-- 	<ul class="info">
 								<li><i class="fa fas fa-phone-square fa-2x text-primary" style="text-align: center;"></i> 064-1234-1234</li>

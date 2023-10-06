@@ -6,6 +6,39 @@
 /* .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
 	background-color: green;
 } */
+@font-face {
+    font-family: 'Gmarket-s';
+    font-weight: 300;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'Gmarket-m';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'Gmarket-l';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf') format("truetype");
+    font-display: swap;
+} 
 .event-header {
 	background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/bg_event.png);
 	background-position: center center;
@@ -16,6 +49,19 @@
 .event-header img {
 	animation: imgRotate 50s linear infinite;
 }
+
+.event-detail-header {
+	background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/ev-detail4.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 430px;
+}
+
+.event-detail-header img {
+	animation: imgRotate 50s linear infinite;
+}
+
 
 .contest-waiting {
 	margin-bottom: 10px;
@@ -59,22 +105,17 @@
 	font-size: 20px;
 /*	color: #84c0a0;*/
 color: #435334;
-	font-weight: 900;
 	margin-bottom: 18px;
 	width: 100%;
 	text-align: center;
-	font-family: 'SDMiSaeng';
-	font-size: 3rem;
+	   font-family: 'Gmarket-m';
+	font-size: 2rem;
 	letter-spacing: -1px;
 }
 
 .contest-waiting .waiting-item .down-content p {
-	line-height: 20px;
 	margin-bottom: 20px;
-	font-size: 24px;
-	font-family: 'SDMiSaeng';
-	font-weight: 300;
-	color:#145a4e;
+	font-weight: 600;
 }
 
 .contest-waiting .waiting-item .down-content span.price,
@@ -101,13 +142,12 @@ color: #435334;
 
 .contest-waiting .waiting-item .down-content span.price em,
 .contest-waiting .waiting-item .down-content span.deadline em {
-	font-size: inherit;
 	text-align: inherit;
 	font-style: normal;
-	font-size: 2.5rem;
+	font-size: 1.8rem;
 	text-align: center;
-	font-family: 'SDMiSaeng';
 	letter-spacing: -1px;
+	    font-family: 'Gmarket-s';
 }
 
 .contest-waiting ul.pagination {
@@ -145,9 +185,9 @@ color: #435334;
 .u-clearfix {
 	font-family: inherit;
 	font-size: inherit;
-	font-family: 'SDMiSaeng';
+ font-family: 'Gmarket-s';
 	/*글꼴*/
-	font-size: 3rem;
+	font-size: 2rem;
 }
 
 .u-body {
@@ -157,6 +197,7 @@ color: #435334;
 }
 
 .u-clearfix.u-section-1 {
+	margin-top: 240px;
 	margin-bottom: inherit;
 	margin-bottom: -200px;
 }
@@ -171,15 +212,15 @@ color: #435334;
 
 .fa-calendar-check {
 /*	color: #84c0a0;*/
-	color: #435334;
+	color: #9eb384;
 }
 
 .fa-calendar-times {
-	color: #435334;
+	color: #9eb384;
 }
 
 .category-text {
-	font-size: 2.2rem;
+	font-size: 1.8rem;
 	color: black;
 }
 

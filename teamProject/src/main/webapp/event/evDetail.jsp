@@ -44,17 +44,30 @@
 #detailContent {
 	display: none
 }
+/* 지마켓 산스체 */
+
 </style>
 </head>
-<body data-path-to-root="./" class="u-body u-xl-mode" data-lang="en">
+<body data-path-to-root="./" class="u-body u-xl-mode" data-lang="en" >
+	<!-- 헤더 Start -->
+	<div class="container-xxl py-5 bg-dark event-detail-header mb-5 ">
+		<div class="container my-5 py-5">
+			<div class="row align-items-center g-5">
+				<div class="col-lg-6 text-center text-lg-start">
+					<h1 class="display-3 text-white" style="margin-bottom: 15px; font-size: 3rem;">상세정보</h1>
+					<p class="medium-paragraph" style="font-size: 2.3rem;"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 헤더 End -->
 	<!--  이미지와 간단설명 start -->
 	<section class="u-clearfix u-section-1" id="sec-d4a9">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<div
-				class="u-custom-color-4 u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-shape u-shape-rectangle u-shape-1"></div>
-			<img src="<%=appName%>/assets/img/event_img/morae.png" alt=""
+			<div class="u-custom-color-4 u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-shape u-shape-rectangle u-shape-1"></div>
+			<%-- <img src="<%=appName%>/assets/img/event_img/morae.png" alt=""
 				class="u-image u-image-contain u-image-default u-image-1"
-				data-image-width="500" data-image-height="396"> <img
+				data-image-width="500" data-image-height="396">  --%><img
 				src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage1}"
 				alt="" class="u-image u-image-default u-image-2"
 				data-image-width="400" data-image-height="400"> <img
@@ -100,7 +113,7 @@
 		</div>
 	</section>
 	<!--     자세한 설명 end -->
-	<div class="container post" style="margin-top: 170px;">
+	<div class="container post" style="margin-top: 80px;">
 		<div>
 			<div class="carousel">
 				<ul class="slides" style="border-radius: 20px;">
