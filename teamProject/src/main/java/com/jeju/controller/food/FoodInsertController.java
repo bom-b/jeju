@@ -8,6 +8,7 @@ import com.jeju.controller.SuperClass;
 import com.jeju.controller.tour.TourListController;
 import com.jeju.model.bean.Food;
 import com.jeju.model.dao.FoodDao;
+import com.jeju.model.dao.MemberDao;
 import com.oreilly.servlet.MultipartRequest;
 
 public class FoodInsertController extends SuperClass {
@@ -25,7 +26,7 @@ public class FoodInsertController extends SuperClass {
 		if (id == null || id == "") {
 			String message = "게시글을 작성 하시려면 로그인이 필요합니다.";
 			this.setAlertMessage(message);
-			super.gotoPage(PREFIX + "foodMain.jsp");
+			new FoodMainController().doGet(request, response);
 			return;
 		}
 		
@@ -80,11 +81,12 @@ public class FoodInsertController extends SuperClass {
 		bean.setImage5(mr.getFilesystemName("image5"));
 		
 		FoodDao dao = new FoodDao();
+		MemberDao dao2 = new MemberDao();
 		int cnt = -1 ;
 		
 		try {
 			cnt = dao.InsertData(bean) ; 
-			
+			cnt = dao2.updateMrating(id);
 			if(cnt == -1) {
 				
 				String message = "서버 오류로 게시물이 등록되지 않았습니다.";

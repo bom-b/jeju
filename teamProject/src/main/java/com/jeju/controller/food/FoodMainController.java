@@ -27,6 +27,7 @@ public class FoodMainController extends SuperClass{
 		FoodDao dao = new FoodDao();
 		
 		try {
+			
 			// 한식 데이터 개수 구하기
 			int totalCount_Ko = dao.GetTotalRecordCount(mode, keyword, "ko");
 			String url_ko = super.getUrlInfomation("fdMain") ;

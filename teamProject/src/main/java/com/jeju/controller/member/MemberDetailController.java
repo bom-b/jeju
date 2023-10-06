@@ -12,9 +12,9 @@ public class MemberDetailController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {	
 		super.doGet(request, response);
 		
-		String id = request.getParameter("id");
-		MemberDao dao = new MemberDao() ;
-		Member bean = null ;
+		String id = loginfo.getId();
+        MemberDao dao = new MemberDao();
+        Member bean = dao.getDataByPrimaryKey(id);
 		
 		try {
 			bean = dao.getDataByPrimaryKey(id);

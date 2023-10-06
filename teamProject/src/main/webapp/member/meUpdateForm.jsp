@@ -15,58 +15,74 @@
   	  		//$('#birth').datepicker({dateFormat: "yy/mm/dd"});   	  	 	
   		//});
   		
-  		function validCheck(){/* form validation check */
-  			var id = $('#id').val();
-  			
-  			if(id.length < 4 || id.length > 10){
-  				swal('아이디는 4자리 이상 10자리 이하로 입력해 주세요.');
-  				$('#id').focus();
-  				return false ; /* false이면 이벤트 전파 방지 */
-  			}
-  			
-  			var password = $('#password').val();  			
-  			if(password.length < 5 || password.length > 12){
-  				swal('비밀 번호는 5자리 이상 12자리 이하로 입력해 주세요.');
-  				$('#password').focus();
-  				return false ;
-  			}
-  			
-  			var name = $('#name').val();  			
-  			if(name.length < 3 || name.length > 15){  				
-  				$('#name').focus();
-  				swal('이름은 3자리 이상 15자리 이하로 입력해 주세요.');
-  				return false ;
-  			}
-  			
-  			var regex = /^[a-z]\S{4,11}$/; /* 정규 표현식 */
-  			var result = regex.test(password) ;
+  		function validCheck() {
+            var id = $('#id').val();
 
-  			if(result == false){
-  				swal('비밀 번호의 첫글자는 반드시 소문자이어야 합니다.');  				
-  				return false ;
-  			}
-  			
-  			if(password.indexOf('@') <= 0 && password.indexOf('#') <= 0 && password.indexOf('$') <= 0){
-  				swal('특수 문자 @#% 중에 최소 1개가 포함이 되어야 합니다.');  				
-  				return false ;
-  			}
-  			
-			var radioList = $('input[type="radio"]:checked') ;
-  			if(radioList.length == 0){
-  				swal('성별은 반드시 선택이 되어야 합니다.');
-  				return false ; 
-  			}
- 			
-  			/* jqueryUI 플러그인 date picker */
-  			var birth = $('#birth').val();
-  			var regex = /^\d{4}\/[01]\d{1}\/[0123]\d{1}$/ ;
-  			var result = regex.test(birth);
-  			
-  			if(result == false){
-  				swal('생일은 반드시 yyyy/mm/dd 형식으로 입력해 주세요.');  				
-  				return false ;
-  			}   			
-  		}
+            if (id.length < 4 || id.length > 10) {
+                swal('아이디는 4자리 이상 10자리 이하로 입력해 주세요.');
+                $('#id').focus();
+                return false; /* false이면 이벤트 전파 방지 */
+            }
+
+
+            var password = $('#password').val();
+            if (password.length < 5 || password.length > 12) {
+                swal('비밀 번호는 5자리 이상 12자리 이하로 입력해 주세요.');
+                $('#password').focus();
+                return false;
+            }
+
+            var name = $('#name').val();
+            if (name.length < 3 || name.length > 15) {
+                swal('이름은 3자리 이상 15자리 이하로 입력해 주세요.');
+                $('#name').focus();
+                return false;
+            }
+
+            var regex = /^[a-z]\S{4,11}$/; /* 정규 표현식 */
+            var result = regex.test(password);
+
+            if (result == false) {
+                swal('비밀 번호의 첫글자는 반드시 소문자이어야 합니다.');
+                return false;
+            }
+
+            if (password.indexOf('@') <= 0 && password.indexOf('#') <= 0 && password.indexOf('$') <= 0) {
+                swal('비밀번호에는 특수 문자 @#% 중에 최소 1개가 포함이 되어야 합니다.');
+                return false;
+            }
+
+            var radioList = $('input[type="radio"]:checked');
+            if (radioList.length == 0) {
+                swal('성별은 반드시 선택이 되어야 합니다.');
+                return false;
+            }
+
+            var mquestion = $('#mquestion').val();
+            if (mquestion == '-') { /* 코딩할 때 option의 value 속성을 하이폰으로 설정했습니다. */
+                swal('질문을 작성해주세요.');
+                $('#mquestion').focus();
+                return false;
+            }
+
+            var mphoneno = $('#mphoneno').val();
+            if (mphoneno.length != 11) {
+                $('#mphoneno').focus();
+                swal('핸드폰번호 11자리를 입력해주세요');
+                return false;
+            }
+
+            /* jqueryUI 플러그인 date picker */
+            var birth = $('#birth').val();
+            var regex = /^\d{4}\/[01]\d{1}\/[0123]\d{1}$/;
+            var result = regex.test(birth);
+
+            if (result == false) {
+                swal('생일은 반드시 yyyy/mm/dd 형식으로 입력해 주세요.');
+                return false;
+            }
+
+        }
   	</script>
   	<style type="text/css">
   		.insert-container {
@@ -74,9 +90,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            
-            
+            height: 100vh;      
             background-image: url('assets/img/loginbackground.jpeg');
     		background-size: cover;
     		background-repeat: no-repeat;
@@ -157,9 +171,9 @@
 
             
             <div class="input-group">
-                <span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문</span>
-                <input class="form-control" type="text" id="mquestion" name="mquestion">
-            </div>
+                    <span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문</span>
+                    <input class="form-control" type="text" id="mquestion" name="mquestion">
+                </div>
             <div class="input-group">
 				<span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문 답</span>
 				<input class="form-control" type="text" id="manswer" name="manswer">				

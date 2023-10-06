@@ -1,16 +1,32 @@
 package com.jeju.controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.jeju.controller.SuperClass;
 import com.jeju.model.bean.Member;
+import com.jeju.model.bean.Pquestion;
 import com.jeju.model.dao.MemberDao;
+import com.jeju.model.dao.PquestionDao;
 
 public class MemberUpdateController extends SuperClass {
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
         super.doGet(request, response);
+        
+     // Pquestion 테이블에서 상품 카테고리 목록을 읽어서 request에 바인딩합니다.
+     		PquestionDao pdao = new PquestionDao() ;
+     		List<Pquestion> lists = null ;
+     				
+     		try {
+     			lists = pdao.GetPquestionList("members", "select") ;
+     			request.setAttribute("pquestion", lists); 
+     			
+     		} catch (Exception e) {
+     			e.printStackTrace();
+     		}
         
         // 세션에서 현재 로그인된 사용자의 정보를 가져옵니다.
         Member loginfo = (Member) session.getAttribute("loginfo");

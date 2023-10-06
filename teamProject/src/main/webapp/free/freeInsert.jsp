@@ -9,6 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 등록</title>
+
+<!-- style.css -->
+<link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
+	rel="stylesheet">
 <style type="text/css">
 .insert-container {
 	display: flex;
@@ -56,12 +60,10 @@ h2 {
 	font-size: 70px;
 }
 </style>
+
 <script type="text/javascript">
-  		$(document).ready(function(){
-  	  		/* $('#regdate').datepicker(); */
-  	  		$('#regdate').datepicker({dateFormat: "yy/mm/dd"});  	  	 
-  		});
-  		
+$(document).ready(function(){
+ 
   		function validCheck(){/* 폼 유효성 검사 */  			
   			var subject = $('#oname').val();
   			if(subject.length < 3 || subject.length > 20){
@@ -71,97 +73,89 @@ h2 {
   			}
   			
   			var content = $('#ocontent').val();
-  			if(content.length < 5 || content.length > 30){
-  				alert('글 내용은 5글자 이상 30글자 이하이어야 합니다.');
+  			if(content.length < 3){
+  				alert('글 내용은 3글자 이상이여야 합니다.');
   				$('#ocontent').focus() ;
   				return false ;
   			}
-  			
+  		  var category = $('#pcategory').val();
+          if (category === "default") {
+              alert('카테고리를 선택해주세요.');
+              $('#pcategory').focus();
+              return false;
+          }
   		}
   	</script>
 </head>
 <body>
-	<div class="container">
-		<h2>게시물 등록</h2>
 
-		<form action="<%=withFormTag%>" method="post">
-			<input type="hidden" name="pageNumber"
-				value="<%=request.getParameter("pageNumber")%>"> <input
-				type="hidden" name="pageSize"
-				value="<%=request.getParameter("pageSize")%>"> <input
-				type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
-			<input type="hidden" name="keyword"
-				value="<%=request.getParameter("keyword")%>"> <input
-				type="hidden" name="command" value="frInsert">
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-text col-md-2">작성자</span>
-					<c:set var="userInfo"
-						value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})" />
-					<input id="fakeid" name="fakeid" disabled="disabled" type="text"
-						class="form-control" placeholder="" value="${userInfo}"> <input
-						id="id" name="id" type="hidden" value="${sessionScope.loginfo.id}">
-				</div>
-
-				<div class="input-group">
-					<span class="input-group-text col-md-2">글 제목</span> <input
-						id="oname" name="oname" type="text" class="form-control"
-						placeholder="">
-				</div>
-
-				<div class="input-group">
-					<span class="input-group-text col-md-2">글 내용</span> <input
-						id="ocontent" name="ocontent" type="text" class="form-control"
-						placeholder="">
-				</div>
-				<div class="input-group">
-					<span class="input-group-text col-md-2">글 카테고리</span> <select
-						id="pcategory" name="pcategory" class="form-select">
-						<option value="잡담">잡담</option>
-						<option value="정보공유">정보공유</option>
-						<option value="질문">질문</option>
-					</select>
-				</div>
+	<div class="main container-xxl py-5">
+		<div class="container my-5 py-5">
+				<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+	<h4>자유롭게 글을 작성해보세요!</h4>
+		<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="command" value="frInsert">
+				<span><span class="caution">* </span> 필수 입력사항 입니다.</span><br><br>
+				<div class="form-group my-5 py-5">
+			  <label for="title"><span class="caution">* </span>작성자명 : </label>
+			  <input type="text" class="form-control short-input" id="fakeid" name="fakeid" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
+			  <input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
 			</div>
-			<div class="col-md-6">
-				<div class="input-group">
-					<span class="input-group-text col-md-2">이미지 1</span> <input
-						id="oimage1" name="oimage1" type="file" class="form-control"
-						accept="image/*">
-				</div>
 
-				<div class="input-group">
-					<span class="input-group-text col-md-2">이미지 2</span> <input
-						id="oimage2" name="oimage2" type="file" class="form-control"
-						accept="image/*">
-				</div>
+					<div class="form-group my-5 py-5">
+						  <label for="title"><span class="caution">* </span>글 제목 : </label> <input
+							id="oname" name="oname" type="text" class="form-control short-input"
+							placeholder="글 제목을 입력하여 주세요">
+					</div>
 
-				<div class="input-group">
-					<span class="input-group-text col-md-2">이미지 3</span> <input
-						id="oimage3" name="oimage3" type="file" class="form-control"
-						accept="image/*">
-				</div>
-
-				<div class="input-group">
-					<span class="input-group-text col-md-2">이미지 4</span> <input
-						id="oimage4" name="oimage4" type="file" class="form-control"
-						accept="image/*">
-				</div>
-
-				<div class="input-group">
-					<span class="input-group-text col-md-2">이미지 5</span> <input
-						id="oimage5" name="oimage5" type="file" class="form-control"
-						accept="image/*">
-				</div>
-
-				<div id="buttonset" class="input-group">
-					<button type="submit" class="btn btn-primary btn-lg"
-						onclick="return validCheck();">등록</button>
-					&nbsp;&nbsp;&nbsp;
-					<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
-				</div>
+					<div class="form-group my-5 py-5">
+						  <label for="ocontent"><span class="caution">* </span>글 내용</label> <input
+							id="ocontent" name="ocontent" type="text" class="form-control short-input"
+							placeholder="글 내용을 입력하여 주세요">
+					</div>
+					<div class="form-group">
+							  <label for="pcategory">카테고리 : </label> <select
+							id="pcategory" name="pcategory" class="form-control short-input">
+							<option value="잡담">잡담</option>
+							<option value="정보공유">정보공유</option>
+							<option value="질문">질문</option>
+						</select>
+					</div>
+				<div class="form-group my-5 py-5">		
+			이미지 파일 (자유) </label>
+			 <input type="file" class="form-control-file border" id="oimage1" name="oimage1">
+			  <input type="file" class="form-control-file border" id="oimage2" name="oimage2">
+			  <input type="file" class="form-control-file border" id="oimage3" name="oimage3">
+			  <input type="file" class="form-control-file border" id="oimage4" name="oimage4">
+			  <input type="file" class="form-control-file border" id="oimage5" name="oimage5">
 			</div>
-		</form>
-	</div>
+			<div class="form-group my-5 py-5">
+			  <label for="oregdate"><span class="caution">* </span>작성일 : </label>
+			  <input type="text" class="form-control short-input" id="oregdate" name="oregdate" readonly>
+			</div>
+					
+					<script type="text/javascript">
+    // 현재 날짜를 가져오는 함수
+    function getCurrentDate() {
+        var currentDate = new Date();
+        var year = currentDate.getFullYear();
+        var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 포맷팅
+        var day = String(currentDate.getDate()).padStart(2, '0'); // 날짜를 2자리로 포맷팅
+        return year + '/' + month + '/' + day;
+    }
+
+    // 작성일 입력란에 현재 날짜 채우기
+    document.getElementById("oregdate").value = getCurrentDate();
+</script>
+
+					<div id="buttonset" class="input-group">
+						<button type="submit" class="btn btn-primary btn-lg"
+							onclick="return validCheck();">등록</button>
+						&nbsp;&nbsp;&nbsp;
+						<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
+					</div>
+				</div>
+			</form>
+		</div>
 </body>
 </html>
