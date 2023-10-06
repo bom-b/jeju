@@ -232,4 +232,5 @@ object-fit: cover;
 	width: 100%;
 	background-color: ghostwhite;
 	padding: 30px;
+	overflow: hidden;
 }
