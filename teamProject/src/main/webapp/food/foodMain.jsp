@@ -360,7 +360,7 @@
 	                                        <span class="thumbnail-title text-primary  thum_title">${bean.title }</span>
 	                                        </a>
 	                                    </h5>
-	                                    <small class="thumbnail-content  thum_contents">${bean.place }</small>
+	                                    <small class="TheJamsil400 thumbnail-content  thum_contents">${bean.place }</small>
 	                                    <small class="thumbnail-content  thum_contents">${bean.menu }</small>
 	                                </div>
 	                            </div>
