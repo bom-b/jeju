@@ -325,7 +325,7 @@
 <!-- 삭제, 추천버튼 -->
 	<div class="thumb container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
 		<div class="container my-5 py-5 text-right">
-			<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id}">
+			<c:if test="${sessionScope.loginfo.id eq requestScope.bean.id or sessionScope.loginfo.id eq 'admin'}">
 				<a href="<%=notWithFormTag%>trDelete&tno=${requestScope.bean.tno}" id="deleteLink">
 				<button type="submit" class="btn btn-danger follower">
 					<span>

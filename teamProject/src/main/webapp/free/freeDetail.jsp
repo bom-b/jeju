@@ -253,7 +253,10 @@ a {
 				</div>
 				<div class="contents">
 
-					<span class="sub-title"><strong>작성자: </strong></span> <img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px"><c:choose>
+					<span class="sub-title"><strong>작성자: </strong></span> <img
+						src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}"
+						height="25px" width="25px">
+					<c:choose>
 						<c:when test="${empty requestScope.bean.id}">
                 탈퇴한 회원
             </c:when>
@@ -318,28 +321,37 @@ a {
 		</div>
 		<div class="thumb container-xxl wow fadeInUp" data-wow-delay="0.5s">
 			<div class="container   text-right">
-				<a style="text-decoration: none;"
-					href="<%=notWithFormTag%>frEmoticon&ono=${requestScope.bean.ono}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
-					<button type="submit" class="btn btn-warning follower">
-						<span> <img class="thumbnail-content"
-							src="<%=appName%>/assets/img/thumb.png" alt="recommand"
-							style="width: 20px;"> <span class=""> 추천하기 </span> <span
-							class="">${requestScope.bean.olikes}</span>
-						</span>
-					</button>
-					<div class="text-end">
-						<!-- 수정 버튼 표시 조건문 -->
-						<c:if test="${sessionScope.loginfo.id==bean.id}">
-							<a
-								href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-								class="btn btn-primary btn-sm">수정</a>
-							<!-- 삭제 버튼 -->
-							<a
-								href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
-								class="btn btn-danger btn-sm">삭제</a>
-						</c:if>
 
-					</div>
+				<div class="text-end">
+					<!-- 수정 버튼 표시 조건문 -->
+					<c:if
+						test="${sessionScope.loginfo.id eq requestScope.bean.id or sessionScope.loginfo.id eq 'admin'}">
+						<a
+							href="<%=notWithFormTag%>frDelete&ono=${bean.ono}${requestScope.pageInfo.flowParameter}"
+							id="deleteLink">
+							<button type="submit" class="btn btn-danger follower">
+								<span> <span class=""> 삭제하기 </span>
+								</span>
+							</button>
+						</a>
+						<a
+							href="<%=notWithFormTag%>frUpdate&ono=${bean.ono}${requestScope.pageInfo.flowParameter}">
+							<button type="submit" class="btn btn-info follower">
+								<span> <span class=""> 수정하기 </span>
+								</span>
+							</button>
+						</a>
+					</c:if>
+					<a style="text-decoration: none;"
+						href="<%=notWithFormTag%>frEmoticon&ono=${requestScope.bean.ono}&id=${sessionScope.loginfo.id}&writer=${requestScope.bean.id}">
+						<button type="submit" class="btn btn-warning follower">
+							<span> <img class="thumbnail-content"
+								src="<%=appName%>/assets/img/thumb.png" alt="recommand"
+								style="width: 20px;"> <span class=""> 추천하기 </span> <span
+								class="">${requestScope.bean.olikes}</span>
+							</span>
+						</button>
+				</div>
 				</a>
 			</div>
 		</div>
