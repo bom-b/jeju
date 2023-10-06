@@ -86,7 +86,7 @@ src: local('SDMiSaeng'),
 			
 			<div class="col-sm-5">
 				
-				<img class="main-image" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" alt="main-image">
+				<img class="main-image" src="<%=appName%>/assets/img/${requestScope.bean.ratingimg}" alt="main-image">
 				
 			</div>
 			<div class="view-info content col-sm-7">
