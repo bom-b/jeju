@@ -270,7 +270,7 @@
 			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
 				<div class="contents" >
 					<span class="sub-title" style="font-weight: bold;">작성자: </span>
-					<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="25px;" width="25px;">
+					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
 					<span class="">${requestScope.bean.id}</span>
 				</div>
 				<div class="">
@@ -284,7 +284,7 @@
 		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
 			<div class="col-sm-5">
 				<a href="<%=appName%>/upload/${requestScope.bean.timage1}" data-fancybox="gallery"  data-caption="${requestScope.bean.ttitle}">
-					<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.timage1}" alt="main-image">
+					<img class="main-image" src="<%=appName%>/image/${requestScope.bean.timage1}" alt="main-image">
 				</a>
 			</div>
 			<div class="content col-sm-7">
@@ -361,28 +361,28 @@
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage2 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage2}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage2}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage3 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage3}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage3}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage4 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage4}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage4}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage5 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage5}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage5}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
