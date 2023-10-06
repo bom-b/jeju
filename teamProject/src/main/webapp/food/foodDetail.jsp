@@ -161,9 +161,22 @@
 	    td1.colSpan = 2;
 	    td1.className = 'col-sm-2 comment';
 
+		// 회원정보로 이동하는 a 태그 생성
+	    var link = document.createElement('a');
+	    link.href = '<%=notWithFormTag%>meView&id=' + id;
+	    link.textContent = id;
+
 	    // ID를 표시할 강조 (<strong>) 요소 생성
 	    var strong = document.createElement('strong');
-	    strong.textContent = id;
+	    strong.appendChild(link);
+
+	    // id 텍스트를 클릭하면 해당 a 태그의 href로 이동
+	    link.addEventListener('click', function(event) {
+	        event.preventDefault(); // 기본 동작 (링크 이동) 방지
+	        window.location.href = link.href;
+	    });
+
+	    // td1에 strong 요소 추가
 	    td1.appendChild(strong);
 	    td1.appendChild(document.createElement('br'));
 
@@ -283,6 +296,19 @@
 							<span class="">${requestScope.bean.id}</span>
 						</c:otherwise>
 					</c:choose>
+				<div class="contents" >
+					<span class="sub-title" style="font-weight: bold;">작성자: </span>
+					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
+					   <c:choose>
+		                  <c:when test="${empty requestScope.bean.id}">
+		               		 <span class="">탈퇴한 회원</span>
+		          		  </c:when>
+		                  <c:otherwise>
+		                  	<a href="<%=notWithFormTag%>meView&id=${bean.id}">
+		                    	 <span class="">${requestScope.bean.id}</span>
+		                    </a>
+		                  </c:otherwise>
+		               </c:choose>
 				</div>
 				<div class="">
 					<span class="sub-title" style="font-weight: bold;">작성일자: </span> <span

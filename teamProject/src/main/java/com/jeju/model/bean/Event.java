@@ -9,7 +9,7 @@ private String ename;
 private String ephoneno;
 private String startdate;
 private String enddate;
-private String econtent;
+private Object econtent;
 private String eplace;
 private String emap;
 private String eimage1;
@@ -63,10 +63,10 @@ public String getEphoneno() {
 public void setEphoneno(String ephoneno) {
 	this.ephoneno = ephoneno;
 }
-public String getEcontent() {
+public Object getEcontent() {
 	return econtent;
 }
-public void setEcontent(String econtent) {
+public void setEcontent(Object econtent) {
 	this.econtent = econtent;
 }
 public String getEplace() {

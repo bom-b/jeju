@@ -1,5 +1,7 @@
 package com.jeju.controller.event;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,8 +18,8 @@ public class EventDetailController extends SuperClass {
 		EventDao dao = new EventDao();
 		try {
 			Event bean = dao.GetDataByPk(eno);
+			
 			request.setAttribute("eventDetail", bean);
-
 			super.gotoPage("event/evDetail.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();

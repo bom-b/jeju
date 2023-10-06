@@ -127,9 +127,22 @@ a {
 		    td1.colSpan = 2;
 		    td1.className = 'comment';
 
+		 	// 회원정보로 이동하는 a 태그 생성
+		    var link = document.createElement('a');
+		    link.href = '<%=notWithFormTag%>meView&id=' + id;
+		    link.textContent = id;
+
 		    // ID를 표시할 강조 (<strong>) 요소 생성
 		    var strong = document.createElement('strong');
-		    strong.textContent = id;
+		    strong.appendChild(link);
+
+		    // id 텍스트를 클릭하면 해당 a 태그의 href로 이동
+		    link.addEventListener('click', function(event) {
+		        event.preventDefault(); // 기본 동작 (링크 이동) 방지
+		        window.location.href = link.href;
+		    });
+
+		    // td1에 strong 요소 추가
 		    td1.appendChild(strong);
 		    td1.appendChild(document.createElement('br'));
 
@@ -258,10 +271,12 @@ a {
 						height="25px" width="25px">
 					<c:choose>
 						<c:when test="${empty requestScope.bean.id}">
-                탈퇴한 회원
-            </c:when>
+			                탈퇴한 회원
+			            </c:when>
 						<c:otherwise>
-							<span class="">${requestScope.bean.id}</span>
+							<a href="<%=notWithFormTag%>meView&id=${bean.id}">
+		                    	 <span class="">${requestScope.bean.id}</span>
+		                    </a>
 						</c:otherwise>
 					</c:choose>
 				</div>
