@@ -300,7 +300,7 @@ public class TourDao extends SuperDao {
 			conn.setAutoCommit(false);
 			
 			// 추천기록 테이블에서 해당 유저의 추천기록 확인하기
-			String sql = " select count(*) as cnt from tlikes ";
+			String sql = " select count(*) as cnt from tourist ";
 			sql += " where tno = ? and tcategory = 'tour' and id = ? "; // 여기에 'food' 대신 event, tour, free 입력
 			
 			pstmt = conn.prepareStatement(sql);
@@ -349,7 +349,7 @@ public class TourDao extends SuperDao {
 			pstmt = null;
 			
 			// step2. 추천 테이블에 추천기록 입력
-			sql = " insert into tlikes(tno, tcategory, id) "; 
+			sql = " insert into likes(no, category, id) "; 
 			sql += " values(?, 'tour' ,?) "; // 여기에 'food' 대신 event, tour, free 입력
 			
 			pstmt = conn.prepareStatement(sql);
