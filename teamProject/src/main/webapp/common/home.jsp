@@ -256,11 +256,7 @@ src: local('SDMiSaeng'),
 			                            <td colspan="11" class="non-border col-sm-11 text-center">
 			                            	<a href="<%=notWithFormTag%>meView&id=${bean.id}">
 			                            		<span class="gmarket-m font-blue" style="white-space: nowrap; font-size: 16px;">
-<<<<<<< HEAD
 			                            		<img class="" src="<%=appName%>/assets/img/${bean.ratingimg}" height="20px;" width="20px;" style="margin-right: 10px;">
-=======
-			                            		<!-- <img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;" style="margin-right: 10px;"> -->
->>>>>>> branch 'master' of https://github.com/bom-b/jeju.git
 			                            		  ${bean.id}
 			                            		</span>
 			                            	</a>
