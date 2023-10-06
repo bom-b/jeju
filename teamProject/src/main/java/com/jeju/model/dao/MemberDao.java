@@ -288,33 +288,35 @@ public class MemberDao extends SuperDao{
 
 	    try {
 	        conn = super.getConnection();
-	        
-	        // 현재 mrating 값을 가져옴
+
+	        // 현재 mrating 값을 검색합니다.
 	        String selectSql = "SELECT mrating FROM members WHERE id = ?";
 	        pstmt = conn.prepareStatement(selectSql);
 	        pstmt.setString(1, id);
 	        ResultSet rs = pstmt.executeQuery();
-	        
+
 	        int currentRating = 0;
 	        if (rs.next()) {
 	            currentRating = Integer.parseInt(rs.getString("mrating"));
 	        }
-	        
-	        // 새로운 mrating 값을 설정
-	        int newRating = currentRating + 5;
 
-	        // mrating 값을 업데이트
-	        String updateSql = "UPDATE members SET mrating = ? WHERE id = ?";
+	        // 새로운 mrating 및 해당하는 ratingimg를 계산합니다.
+	        int newRating = currentRating + 5;
+	        String newRatingImg = calculateRatingImg(newRating);
+
+	        // mrating 및 ratingimg를 업데이트합니다.
+	        String updateSql = "UPDATE members SET mrating = ?, ratingimg = ? WHERE id = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setString(1, Integer.toString(newRating));
-	        pstmt.setString(2, id);
-	        
+	        pstmt.setString(2, newRatingImg);
+	        pstmt.setString(3, id);
+
 	        int updatedRows = pstmt.executeUpdate();
-	        
+
 	        return updatedRows;
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return -1; // 실패 시 -1 반환
+	        return -1; // 업데이트 실패
 	    } finally {
 	        try {
 	            if (pstmt != null) {
@@ -328,6 +330,23 @@ public class MemberDao extends SuperDao{
 	        }
 	    }
 	}
+
+	private String calculateRatingImg(int mrating) {
+	    if (mrating >= 0 && mrating <= 10) {
+	        return "1st.png";
+	    } else if (mrating >= 11 && mrating <= 20) {
+	        return "2nd.png";
+	    } else if (mrating >= 21 && mrating <= 30) {
+	        return "3rd.png";
+	    } else if (mrating >= 31 && mrating <= 40) {
+	        return "4th.png";
+	    } else if (mrating >= 41) {
+	        return "5th.png";
+	    } else {
+	        return "logo.png"; // 다른 경우 처리 가능
+	    }
+	}
+
 
 
 }
