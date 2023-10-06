@@ -11,6 +11,7 @@ import com.jeju.model.bean.Member;
 import com.jeju.model.bean.Tour;
 import com.jeju.model.bean.freeBoard;
 import com.jeju.model.dao.HomeDao;
+import com.jeju.model.dao.MemberDao;
 import com.jeju.model.dao.freeBoardDao;
 
 public class HomeController extends SuperClass {
@@ -19,7 +20,7 @@ public class HomeController extends SuperClass {
 		super.doGet(request, response);
 		
 		HomeDao homeDao = new HomeDao();
-		
+				
 		try {
 			// 이벤트 탑 3 받아오기
 			List<Event> eventList = homeDao.selectEvent();

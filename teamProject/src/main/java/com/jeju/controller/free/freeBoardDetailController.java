@@ -33,7 +33,6 @@ public class freeBoardDetailController extends SuperClass {
 				MemberDao dao2 = new MemberDao();
 				Member bean2 = dao2.getDataByPrimaryKey(writerId); // 작성자의 id를 이용하여 회원 정보 가져온다
 
-			
 				request.setAttribute("bean", bean);
 				request.setAttribute("bean2", bean2); // 게시글 작성자 정보를 request에 추가
 				super.gotoPage("/free/freeDetail.jsp");
