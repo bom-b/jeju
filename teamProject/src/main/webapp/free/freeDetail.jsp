@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <!-- 게시판 메인 전용 부트스트랩 -->
 <link rel="stylesheet"
 	href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
@@ -240,15 +242,14 @@ a {
 </head>
 <body>
 	<!-- 헤더 Start -->
-	<div class="container-xxl py-5 bg-dark  mb-5" data-wow-delay="0.3s"
-		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg'); ">
-		<div class="container my-5  wow fadeInUp">
+	<div class= "container-xxl py-5 bg-dark hero-header mb-5"
+	 style="background: linear-gradient(rgba(61, 64, 71, 0.7), rgba(0, 0, 0, 0.7)), url('<%=appName%>/assets/img/freeboardMain.jpg');">
+		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
 					<h1 class="display-3 text-white" style="margin-bottom: 20px;">
 						자유게시판</h1>
-					<h5 style="color: white; text-align: center;">제주도의 관한 궁금한점!
-						하고싶은 이야기! 모두해보세요!</h5>
+					  	<p  style="color: #888;" class="medium-paragraph">제주도의 관한 궁금한점!하고싶은 이야기! 모두해보세요!</p>
 					<p class="medium-paragraph"></p>
 				</div>
 			</div>

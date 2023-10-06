@@ -79,14 +79,12 @@
 	}
 </script>
 <style type="text/css">
-body {
-	font-family: 'Jua', sans-serif;
-}
+
 
 .display-3 {
-	font-size: 50px;
+	
 	color: white;
-	text-align: center;
+
 }
 
 /* 검색 옵션 select에 스타일 적용 */
@@ -114,23 +112,16 @@ body {
 	color: #fff; /* 텍스트 색상을 흰색으로 설정 */
 }
 
-/* 검색창 내용을 중앙 정렬 */
-.search-box {
-	
-}
-
 /* 검색 버튼 마진 조정 */
 .search-box button {
 	margin-left: 10px; /* 왼쪽 여백 설정 */
 }
-
 .freeBoard:hover {
 	/* 호버 시 적용될 스타일을 여기에 추가합니다. */
 	background-color: #ff9800; /* 예시: 배경색을 바꿉니다. */
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 	transition: background-color 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
 }
-
 .freeboardform {
 	position: relative;
 	min-height: 1px;
@@ -139,15 +130,14 @@ body {
 </head>
 <body>
 	<!-- 헤더 Start -->
-	<div class="container-xxl py-5 bg-dark  mb-5"
-		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg');  ">
+	<div class= "container-xxl py-5 bg-dark hero-header mb-5"
+	 style="background: linear-gradient(rgba(61, 64, 71, 0.7), rgba(0, 0, 0, 0.7)), url('<%=appName%>/assets/img/freeboardMain.jpg');">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
 					<h1 class="display-3 text-white" style="margin-bottom: 20px;">
 						자유게시판</h1>
-					<h5 style="color: white; text-align: center;">제주도의 관한 궁금한점!
-						하고싶은 이야기! 모두해보세요!</h5>
+					  	<p class="medium-paragraph">제주도의 관한 궁금한점!하고싶은 이야기! 모두해보세요!</p>
 					<p class="medium-paragraph"></p>
 				</div>
 			</div>
@@ -336,7 +326,7 @@ body {
 					<!-- 정보게시물 동적으로 표시하기 -->
 					<div id="tab-4" class="tab-pane p-0">
 						<div class="row g-4">
-							<c:if test="${empty requestScope.qu_datalist}">
+							<c:if test="${empty requestScope.infor_datalist}">
 								<p>'정보' 카테고리의 검색결과가 존재하지 않습니다.</p>
 							</c:if>
 							<c:forEach var="bean" items="${requestScope.infor_datalist }">
