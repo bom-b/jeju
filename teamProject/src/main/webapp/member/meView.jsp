@@ -26,32 +26,73 @@
 <!-- 회원등급 사진과 정보 -->
 	<div class="main container-xxl py-5">
 		<div class="text-left container my-5 py-5" style="margin-bottom: 20px;">
-			<h4 class="sdms-font font-black event-title text-left" style="font-size: 30px;"><strong>${requestScope.bean.id}</strong>님의 페이지 입니다.</h4>
+			<h4 class="sdms-font font-black event-title text-left" style="font-size: 30px;"><strong>${requestScope.bean.id}</strong> 님의 페이지 입니다.</h4>
 		</div>
+		
 		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
-			
-			<div class="col-sm-5">
-				
-				<img class="main-image" src="<%=appName%>/assets/img/${requestScope.bean.ratingimg}" alt="main-image">
-				
+			<div class="col-sm-8"> 
+				<div class="col-sm-5">
+					<img class="main-image" src="<%=appName%>/assets/img/${requestScope.bean.ratingimg}" alt="main-image">
+				</div>
+				<div class="view-info content col-sm-7">
+					<div class="meinfo">
+						<span class="gmarket-l font-black" style="font-size: 20px;">ID :  </span> 
+						<span class="gmarket-m font-black" style="margin-left:15px; font-size: 20px;">${requestScope.bean.id}</span>
+					</div>
+					<div class="meinfo">
+						<span class="gmarket-l font-black" style="font-size: 20px;">등급포인트 :  </span> 
+						<span class="gmarket-m font-black" style="margin-left:15px; font-size: 20px;">${requestScope.bean.mrating}</span>
+					</div>
+					<div class="meinfo" style="margin-top: 40px;">
+						<span class="gmarket-l font-black" style="font-size: 20px;">작성한 게시글 수 :  </span> 
+						<span class="gmarket-m font-blue " style="margin-left:15px; font-size: 20px;">${requestScope.totalLength}개</span>
+					</div>
+				</div>
+			</div> 
+			<div class="col-sm-4 text-left"> 
+				<div class="notice wow fadeInUp" data-wow-delay="0.1s">
+				<div>
+					<span class="gmarket-l font-black" style="font-size: 20px;">등급 기준 안내</span><br>
+					<span class="gmarket-m font-gray" style="font-size: 14px;">포인트는 글 작성시 5점씩 올라갑니다.</span>
+				</div>
+				<div style="margin-top: 25px;">
+					<img src="<%=appName%>/assets/img/1st.png" height="25px" width="25px">
+					<span class="gmarket-m font-black" style="font-size: 16px;">1단계 : </span>
+					<span class="gmarket-s font-black" style="font-size: 16px;">0점 ~ 10점 </span>
+				</div>
+				<div>
+					<img src="<%=appName%>/assets/img/2nd.png" height="25px" width="25px">
+					<span class="gmarket-m font-black" style="font-size: 16px;">2단계 : </span>
+					<span class="gmarket-s font-black" style="font-size: 16px;">11점 ~ 20점 </span>
+				</div>
+				<div>
+					<img src="<%=appName%>/assets/img/3rd.png" height="25px" width="25px">
+					<span class="gmarket-m font-black" style="font-size: 16px;">3단계 : </span>
+					<span class="gmarket-s font-black" style="font-size: 16px;">21점 ~ 30점 </span>
+				</div>
+				<div>
+					<img src="<%=appName%>/assets/img/4th.png" height="25px" width="25px">
+					<span class="gmarket-m font-black" style="font-size: 16px;">4단계 : </span>
+					<span class="gmarket-s font-black" style="font-size: 16px;">31점 ~ 40점 </span>
+				</div>
+				<div>
+					<img src="<%=appName%>/assets/img/5th.png" height="25px" width="25px">
+					<span class="gmarket-m font-black" style="font-size: 16px;">5단계 : </span>
+					<span class="gmarket-s font-black" style="font-size: 16px;">41점 ~</span>
+				</div>
 			</div>
-			<div class="view-info content col-sm-7">
-				<div class="meinfo">
-					<span class="gmarket-m " style="font-size: 22px;">ID :  </span> 
-					<span class="font-blue gmarket-m" style="font-size: 22px;">${requestScope.bean.id}</span>
-				</div>
-				<div class="meinfo">
-					<span class="gmarket-m " style="font-size: 22px;">등급포인트 :  </span> 
-					<span class="font-blue gmarket-m" style="font-size: 22px;">${requestScope.bean.mrating}</span>
-				</div>
-				<div class="meinfo" style="margin-top: 20px;">
-					<span class="gmarket-m " style="font-size: 22px; margin-top: 20px;">작성한 게시글 수 :  </span> 
-					<span class="font-blue gmarket-m" style="font-size: 22px;" id="resultSpan">${requestScope.totalLength}개</span>
-				</div>
 			</div>
 		</div>
 	</div>
 <!-- 회원등급 사진과 정보 -->	
+
+<!-- 등급 기준 안내 -->
+	<div class="main container-xxl py-5">
+		<div class="text-left container my-5 py-5" style="margin-bottom: 20px;">
+			
+		</div>
+	</div>
+<!-- 등급 기준 안내 -->	
 
 <!-- 작성한 게시물 -->	
 	<div class="bo-box wow fadeInUp" data-wow-delay="0.1s">
