@@ -17,17 +17,52 @@
 
 <!DOCTYPE html>
 <html>
+<style type="text/css">
+              
+		.pwrc-container {
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	align-items: center;
+    	height: 100vh;
+    	/* Set the background image and adjust its size */
+    	background-image: url('assets/img/loginbackground.jpeg');
+    	background-size: cover;
+    	background-repeat: no-repeat;
+    	background-position: center center;
+		}
+		
+        .bottom_button { margin-top: 20px; } /* Increase the margin-top for spacing */
+        @font-face{
+		font-family:'SDMiSaeng'; /*글꼴*/
+		src: local('SDMiSaeng'),
+			url('SDMiSaeng.eot'),
+			url('SDMiSaeng.woff') format('woff'),
+			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
+		}
+
+		.sdms-font{
+			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
+			color: orange;
+			font-size: 70px;
+		}
+		.pwrc-tbody{
+			font-size: 20px;
+			color: black;
+		}
+    </style>
 <head>
+	<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>비밀번호 찾기</title>
 </head>
 <body>
-    <div class="container">
-        <h2>비밀번호를 찾기 위해 질문에 답을 해주세요.</h2>
+    <div class="pwrc-container">
+        <h2 class="sdms-font">비밀번호를 찾기 위해 질문에 답을 해주세요.</h2>
         <form action="<%=notWithFormTag%>mePasswordRecovery2" method="post">
             <table class="table">
                 <thead></thead>
-                <tbody>
+                <tbody class="pwrc-tbody gmarket-m">
                     <tr>
                         <td align="center">입력하신 아이디</td>
                         <td><input type="text" name="id" value="<%= id %>" readonly></td>
@@ -42,10 +77,10 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-primary">비밀번호 찾기</button>
+            <button type="submit" class="btn sdms-font" style="margin-top: 10px; font-size: 25px;">비밀번호 찾기</button>
         </form>
         <div id="backButton">
-            <button type="button" class="btn btn-primary" onclick="history.back();">
+            <button type="button" class="btn sdms-font" onclick="history.back();" style="margin-top: 10px; font-size: 25px;">
                 돌아가기
             </button>
         </div>
