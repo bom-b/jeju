@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/common/bootstrap5.jsp" %>
-<%@ include file="/common/common.jsp" %>
+<%@ include file="/common/bootstrap5.jsp"%>
+<%@ include file="/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 게시판 메인 전용 부트스트랩 -->
-<link rel="stylesheet"href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- SimpleLightbox CSS 파일 추가 -->
 <link rel="stylesheet" href="path/to/simple-lightbox.min.css">
@@ -16,19 +17,19 @@
 <!-- 맛집 전용 style.css -->
 <link href="<%=appName%>/assets/css_food/foodDetail_Insert.css"
 	rel="stylesheet">
-	
-	<%-- sweetalert 버전 2 --%>
+
+<%-- sweetalert 버전 2 --%>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
-ui{
-    float: right;
-}
-a{
-text-align:right;
-text-decoration: none;
+ui {
+	float: right;
 }
 
+a {
+	text-align: right;
+	text-decoration: none;
+}
 
 #backButton {
 	margin: auto;
@@ -226,7 +227,7 @@ text-decoration: none;
 <body>
 	<!-- 헤더 Start -->
 	<div class="container-xxl py-5 bg-dark  mb-5" data-wow-delay="0.3s"
-		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg'); "  >
+		style="background-image:url('<%=appName%>/assets/img/freeboardMain.jpg'); ">
 		<div class="container my-5  wow fadeInUp">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
@@ -251,8 +252,15 @@ text-decoration: none;
 						${requestScope.bean.oname}</span>
 				</div>
 				<div class="contents">
-					<span class="sub-title"><strong>작성자: </strong></span> <img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px"> <span class="">${requestScope.bean.id}</span>
 
+					<span class="sub-title"><strong>작성자: </strong></span> <img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px"><c:choose>
+						<c:when test="${empty requestScope.bean.id}">
+                탈퇴한 회원
+            </c:when>
+						<c:otherwise>
+							<span class="">${requestScope.bean.id}</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>카테고리: </strong></span> <span
