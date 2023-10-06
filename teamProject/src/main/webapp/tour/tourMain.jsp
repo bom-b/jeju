@@ -14,8 +14,7 @@
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
 
 <!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_boardmain/tourstyle.css" rel="stylesheet">
-<link href="<%=appName%>/assets/css_tour/tourStyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_tour/tourstyle.css" rel="stylesheet">
 
 <style type="text/css">
 	@font-face{
@@ -41,6 +40,14 @@
 	} */
 	
 	/* 아아 */
+	/* 썸네일 이미지 사이즈 맞추기 */
+.thumnail_timg {
+width: 150px;
+height: 150px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+}
 	
 </style>
 
@@ -96,6 +103,7 @@
 	function writeForm() {
 		location.href = '<%=notWithFormTag%>trInsert&id=${sessionScope.loginfo.id}';
 	}
+	
 </script>
 
 </head>
@@ -176,7 +184,7 @@
 					<div class="search-box col-sm-12" >
 						<select class="serchbox form-control-sm " id="mode" name="mode">
 							<%-- <option value="all" selected="selected">--- 검색옵션 --- --%>
-							<option value="title">관광지이름
+							<option value="ttitle">관광지이름
 							<option value="ID">작성자
 						</select>
 						<input class="serchbox form-control-sm" type="text" 
@@ -188,6 +196,20 @@
 					</div>	
 				</div>
 			</form>	
+			</div>
+			<div class=" wow fadeInUp" data-wow-delay="0.3s">
+				<c:if test="${not empty requestScope.PageInfo_ac.keyword}">
+				    <p class="serch-resault">
+				    	<c:if test="${requestScope.PageInfo_ac.mode eq 'ttitle'}">
+						    관광지이름
+						</c:if>
+						<c:if test="${requestScope.PageInfo_ac.mode eq 'ID'}">
+						    작성자
+						</c:if>
+				    	<strong>'${requestScope.PageInfo_ac.keyword}'</strong>
+				    	에 대한 검색결과입니다.
+				    </p>
+				</c:if>
 			</div>					
 		</div>
 	</div>
@@ -247,7 +269,7 @@
 							<c:forEach var="bean" items="${requestScope.ac_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
-	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
+	                                <div class="thumnail_timg flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
 	                                <div class="w-100 d-flex flex-column text-start ps-4">
 	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
 	                                    	<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">
@@ -275,7 +297,7 @@
 							<c:forEach var="bean" items="${requestScope.or_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
-	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
+	                                <div class="thumnail_timg flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
 	                                <div class="w-100 d-flex flex-column text-start ps-4">
 	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
 	                                    	<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">
@@ -303,7 +325,7 @@
 							<c:forEach var="bean" items="${requestScope.sea_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
-	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
+	                                <div class="thumnail_timg flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
 	                                <div class="w-100 d-flex flex-column text-start ps-4">
 	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
 	                                    	<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">
@@ -331,7 +353,7 @@
 							<c:forEach var="bean" items="${requestScope.te_datalist }">
 	                        <div class="col-lg-12">
 	                            <div class="d-flex align-items-center">
-	                                <div class="thumnail_img flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
+	                                <div class="thumnail_timg flex-shrink-0 img-fluid rounded" style="background-image: url('<%=appName%>/upload/${bean.timage1 }');"></div>
 	                                <div class="w-100 d-flex flex-column text-start ps-4">
 	                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
 	                                    	<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">

@@ -39,6 +39,12 @@
 			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
 			color: orange;
 		}
+		.bn-melist {
+		background: linear-gradient(rgb(230 232 237 / 30%), rgb(251 251 251 / 30%)), url(../img/mainbg.jpg);
+		background-position: center center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+}
 </style>
 </head>
 <body>
@@ -79,7 +85,7 @@
 	            </div>
 	            <c:if test="${whologin eq 2}">
 					<div class="col-lg-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-	                	<div class="bn-medelete banner-item rounded pt-3">
+	                	<div class="bn-melist banner-item rounded pt-3">
 	                    <div class="p-5">
 	                        	<i class="text-primary mb-4"></i>
 	                        	<a class="banner-text text-white" href="<%=notWithFormTag%>meList">회원목록 및 관리</a>
@@ -89,6 +95,8 @@
 				</c:if>
 	        </div>
 	    </div>
+	    
 	</div>
+	
 </body>
 </html>

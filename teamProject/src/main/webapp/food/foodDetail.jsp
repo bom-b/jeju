@@ -23,8 +23,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
 
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
-
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -271,8 +269,15 @@
 			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
 				<div class="contents" >
 					<span class="sub-title" style="font-weight: bold;">작성자: </span>
-					<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="25px;" width="25px;">
-					<span class="">${requestScope.bean.id}</span>
+					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
+					   <c:choose>
+		                  <c:when test="${empty requestScope.bean.id}">
+		               		 <span class="">탈퇴한 회원</span>
+		          		  </c:when>
+		                  <c:otherwise>
+		                     <span class="">${requestScope.bean.id}</span>
+		                  </c:otherwise>
+		               </c:choose>
 				</div>
 				<div class="">
 					<span class="sub-title" style="font-weight: bold;">작성일자: </span>
@@ -507,7 +512,7 @@
 	
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.title}</div>'
+	        	content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.title}</div>'
 	        });
 	        infowindow.open(map, marker);
 	

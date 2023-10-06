@@ -10,13 +10,19 @@
 <title>Insert title here</title>
 
 <%-- 관광지 전용 style.css --%>
-<link href="<%=appName%>/assets/css_boardmain/tourstyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_tour/tourDetail_Insert.css" rel="stylesheet">
 
 <%-- 사진 크게보기 --%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
 <%-- sweetalert 버전 2 --%>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<%-- 카카오지도 관련 코드 --%>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
+
 
 <script type="text/javascript">
 
@@ -264,7 +270,7 @@
 			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
 				<div class="contents" >
 					<span class="sub-title" style="font-weight: bold;">작성자: </span>
-					<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="25px;" width="25px;">
+					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
 					<span class="">${requestScope.bean.id}</span>
 				</div>
 				<div class="">
@@ -278,11 +284,11 @@
 		<div class="mainBox container my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
 			<div class="col-sm-5">
 				<a href="<%=appName%>/upload/${requestScope.bean.timage1}" data-fancybox="gallery"  data-caption="${requestScope.bean.ttitle}">
-					<img class="main-image" src="<%=appName%>/upload/${requestScope.bean.timage1}" alt="main-image">
+					<img class="main-image" src="<%=appName%>/image/${requestScope.bean.timage1}" alt="main-image">
 				</a>
 			</div>
 			<div class="content col-sm-7">
-				<div class="title">
+				<div class="">
 					<span class="title text-primary">${requestScope.bean.ttitle}</span>
 				</div>
 				<div class="contents">
@@ -355,28 +361,28 @@
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage2 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage2}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage2}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage2}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage3 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage3}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage3}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage3}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage4 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage4}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage4}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage4}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
 				<div class="col-sm-3">
 					<c:if test="${requestScope.bean.timage5 ne null}">
 						<a href="<%=appName%>/upload/${requestScope.bean.timage5}" data-fancybox="gallery" data-caption="${requestScope.bean.ttitle}">
-							<img class="sub-image" alt="" src="<%=appName%>/upload/${requestScope.bean.timage5}" alt="sub-image">
+							<img class="sub-image" alt="" src="<%=appName%>/image/${requestScope.bean.timage5}" alt="sub-image">
 						</a>
 					</c:if>
 				</div>
@@ -448,13 +454,15 @@
 					</div>
 				</div>
 				<!-- 댓글작성폼 -->	       	
-				
-				<div class="col-sm-4 wow fadeInUp" data-wow-delay="0.3s">
+			<!-- 지도 -->
+				<div class="map-zone col-sm-4 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px; margin-bottom: 100px;">
 					<p class="text-left" style="font-weight: bold;">위치</p>
-					<div class="col-md-6 maps" >
-			       		 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<div class="col-md-6" >
+			       		  <div id="map" style="width: 350px; height: 450px;"></div>
 			      	</div>
 				</div>
+				<!-- 지도 -->
+				
 			</div>
 		</div>
 	</div>
@@ -463,19 +471,49 @@
 <%-- 사진 크게보기 --%>
 	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 	<script>
-	      Fancybox.bind('[data-fancybox="gallery"]', {
-	      });    
+	      Fancybox.bind('[data-fancybox="gallery"]', {});    
 	</script>
 <%-- 사진 크게보기 --%>
 
-<%-- 페이지 로드 시 자동으로 함수 호출 --%>
-<!-- 	<script type="text/javascript">
-	    document.addEventListener("DOMContentLoaded", function() {
-	        getListComment(); 
-	        
-	    });
-	    
-	</script> -->
-<%-- 페이지 로드 시 자동으로 함수 호출 --%>
+<%-- 지도 --%>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch('${requestScope.bean.tplace}', function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.ttitle}</div>'
+	        });
+	        infowindow.open(map, marker);
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	</script>
+<%-- 지도 --%>
 </body>
 </html>

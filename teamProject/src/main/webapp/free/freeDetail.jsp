@@ -252,6 +252,7 @@ a {
 						${requestScope.bean.oname}</span>
 				</div>
 				<div class="contents">
+
 					<span class="sub-title"><strong>작성자: </strong></span> <img class=""
 						src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png"
 						height="25px;" width="25px;">
@@ -263,6 +264,8 @@ a {
 							<span class="">${requestScope.bean.id}</span>
 						</c:otherwise>
 					</c:choose>
+
+					<span class="sub-title"><strong>작성자: </strong></span> <img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px"> <span class="">${requestScope.bean.id}</span>
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>카테고리: </strong></span> <span

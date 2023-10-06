@@ -74,9 +74,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            
-            
+            height: 100vh;      
             background-image: url('assets/img/loginbackground.jpeg');
     		background-size: cover;
     		background-repeat: no-repeat;
@@ -157,9 +155,13 @@
 
             
             <div class="input-group">
-                <span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문</span>
-                <input class="form-control" type="text" id="mquestion" name="mquestion">
-            </div>
+                    <span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문</span>
+                    <select id="mquestion" name="mquestion" class="form-select">
+                        <c:forEach var="mquestion" items="${requestScope.pquestion}"> 
+                            <option value="${mquestion.question}">${mquestion.question}</option>
+                        </c:forEach>
+                    </select>
+                </div>
             <div class="input-group">
 				<span class="input-group-text sdms-font" style="font-size: 30px">비밀번호 찾기 질문 답</span>
 				<input class="form-control" type="text" id="manswer" name="manswer">				

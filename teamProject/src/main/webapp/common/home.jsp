@@ -66,7 +66,6 @@ src: local('SDMiSaeng'),
 
 .sdms-font{
 	font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
-	color: 
 }
 
 .gmarket-s {
@@ -91,8 +90,8 @@ src: local('SDMiSaeng'),
 	        <div class="row">
 
 	        	<h3 class="main-title gmarket-m textsize28 text-left wow fadeInDown" data-wow-delay="0.1s">제주도 여행의 모든것,</h3>
-	            <div class="col-sm-12 text wow fadeInLeft">
-	                <h1 class="main-title sdms-font text-left" style="font-size: 150px" data-wow-delay="0.3s">혼저옵서예</h1>
+	            <div class="main-title2 col-sm-12 text wow fadeInLeft">
+	                <h1 class="sdms-font text-left" style="font-size: 150px" data-wow-delay="0.3s">혼저옵서예</h1>
 	                <div class="description">
 
 	                </div>
@@ -151,8 +150,9 @@ src: local('SDMiSaeng'),
 				<%-- 맛집 --%>
 				<div class="col-sm-6 foodtour-bean"> 
 					<div>
-						<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">맛집</p>
-						
+						<a href="<%=notWithFormTag%>fdMain">
+							<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">맛집</p>
+						</a>
 						<c:forEach var="bean" items="${requestScope.foodList}">
 							<div class="col-sm-6 foodtour-bean text-left">
 								<a href="<%=notWithFormTag%>fdDetail&no=${bean.no}">
@@ -169,8 +169,9 @@ src: local('SDMiSaeng'),
 				<%-- 관광지 --%>
 				<div class="col-sm-6 foodtour-bean"> 
 					<div>
-						<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">관광지</p>
-						
+						<a href="<%=notWithFormTag%>trMain">
+							<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">관광지</p>
+						</a>
 						<c:forEach var="bean" items="${requestScope.tourList}">
 							<div class="col-sm-6 foodtour-bean text-left">
 								<a href="<%=notWithFormTag%>trDetail&tno=${bean.tno}">
@@ -193,7 +194,9 @@ src: local('SDMiSaeng'),
 			<div class="row align-items-center g-5">
 				<div class="col-sm-8 free-bean"> 
 					<div>
-						<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">자유게시판 베스트</p>
+						<a href="<%=notWithFormTag%>frMain">
+							<p class="sdms-font foodtour-subtitle text-left" style="font-size: 40px;">자유게시판 베스트</p>
+						</a>	
 						<hr class="subtitle-hr">
 					</div>
 					<div>	
@@ -251,13 +254,11 @@ src: local('SDMiSaeng'),
 			                           		</c:if>
 			                            </td>
 			                            <td colspan="11" class="non-border col-sm-11 text-center">
-			                            	<a href="<%=notWithFormTag%>meDetail&id=${bean.id}">
-
+			                            	<a href="<%=notWithFormTag%>meView&id=${bean.id}">
 			                            		<span class="gmarket-m font-blue" style="white-space: nowrap; font-size: 16px;">
-			                            		<img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;" style="margin-right: 10px;">
+			                            		<!-- <img class="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" height="20px;" width="20px;" style="margin-right: 10px;"> -->
 			                            		  ${bean.id}
 			                            		</span>
-
 			                            	</a>
 			                            </td>
 			                        </tr>
@@ -277,10 +278,10 @@ src: local('SDMiSaeng'),
 	  <div class="container">
 	  	<div class="row">
 	  		<div class="col-sm-12 footer-copyright">
-	             	<i class="fa fa-love"></i><a class="sdms-font" style="font-size: 30px; color: dark;" href="https://www.jeju.go.kr/index.htm">제주도청으로</a></a>
+	             	<i class="fa fa-love"></i><a class="sdms-font" style="font-size: 30px; color: dark;" href="https://www.jeju.go.kr/index.htm">제주도청으로</a>
 	             </div>
 	         </div>
-	  </div>
+	 	 </div>
 	 </footer>
 </body>
 </html>
