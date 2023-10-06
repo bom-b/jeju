@@ -19,25 +19,6 @@
 
 <script>
 
-$(document).ready(function () {
-	var boLength = 0;
-
-	var foodList = ${requestScope.foodList};
-	var tourList = ${requestScope.tourList};
-	var freeList = ${requestScope.freeList};
-
-	// 각각의 리스트의 길이를 구합니다.
-	var foodListLength = foodList.length;
-	var tourListLength = tourList.length;
-	var freeListLength = freeList.length;
-
-	// 길이들을 합하여 결과값을 계산합니다.
-	var boLength = foodListLength + tourListLength + freeListLength;
-
-	// 결과값을 HTML 요소에 설정합니다.
-	document.getElementById("resultSpan").textContent = boLength;
-});
-
 </script>
 
 </head>
@@ -51,7 +32,7 @@ $(document).ready(function () {
 			
 			<div class="col-sm-5">
 				
-				<img class="main-image" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbcdHQb%2FbtsuG4zaJd7%2F9MkJVs5zrmwJYsBcTMSJJ0%2Fimg.png" alt="main-image">
+				<img class="main-image" src="<%=appName%>/assets/img/${requestScope.bean.ratingimg}" alt="main-image">
 				
 			</div>
 			<div class="view-info content col-sm-7">
@@ -65,7 +46,7 @@ $(document).ready(function () {
 				</div>
 				<div class="meinfo" style="margin-top: 20px;">
 					<span class="gmarket-m " style="font-size: 22px; margin-top: 20px;">작성한 게시글 수 :  </span> 
-					<span class="font-blue gmarket-m" style="font-size: 22px;" id="resultSpan"></span>
+					<span class="font-blue gmarket-m" style="font-size: 22px;" id="resultSpan">${requestScope.totalLength}개</span>
 				</div>
 			</div>
 		</div>

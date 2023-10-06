@@ -33,6 +33,13 @@ public class MemberViewController extends SuperClass {
 			List<Tour> tourList = homeDao.membersTour(id);
 			List<freeBoard> freeList = homeDao.membersFree(id);
 			
+			// 길이 확인용 받아오기
+			int foodLength = homeDao.membersFoodLength(id);
+			int tourLength = homeDao.membersTourLength(id);
+			int freeLength = homeDao.membersFreeLength(id);
+			
+			int totalLength = foodLength + tourLength + freeLength;
+			
 			if(bean == null) {
 				super.setAlertMessage("잘못된 회원 정보입니다.");
 				super.gotoPage("/common/home.jsp"); 
@@ -41,6 +48,7 @@ public class MemberViewController extends SuperClass {
 				request.setAttribute("foodList", foodList);
 				request.setAttribute("tourList", tourList);
 				request.setAttribute("freeList", freeList);
+				request.setAttribute("totalLength", totalLength);
 			
 				super.gotoPage("/member/meView.jsp"); 
 			}
