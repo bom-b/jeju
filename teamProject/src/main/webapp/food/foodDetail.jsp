@@ -270,7 +270,14 @@
 				<div class="contents" >
 					<span class="sub-title" style="font-weight: bold;">작성자: </span>
 					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
-					<span class="">${requestScope.bean.id}</span>
+					   <c:choose>
+		                  <c:when test="${empty requestScope.bean.id}">
+		               		 <span class="">탈퇴한 회원</span>
+		          		  </c:when>
+		                  <c:otherwise>
+		                     <span class="">${requestScope.bean.id}</span>
+		                  </c:otherwise>
+		               </c:choose>
 				</div>
 				<div class="">
 					<span class="sub-title" style="font-weight: bold;">작성일자: </span>
