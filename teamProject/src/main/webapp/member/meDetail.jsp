@@ -85,7 +85,7 @@
                 </tr>
                 <tr>
                     <td align="center">등급이미지 :</td>
-                    <td>${requestScope.bean.ratingimg}</td>
+                    <td><img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px"></td>
                 </tr>
                 <tr>
                     <td align="center">생일 :</td>
