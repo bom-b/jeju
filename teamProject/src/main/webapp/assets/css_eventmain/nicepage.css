@@ -3,6 +3,46 @@
  * License https://froala.com/wysiwyg-editor/terms/
  * Copyright 2014-2021 Froala Labs
  */
+	/*	@font-face{
+		font-family:'SDMiSaeng'; 글꼴
+		src: local('SDMiSaeng'),
+			url('SDMiSaeng.eot'),
+			url('SDMiSaeng.woff') format('woff'),
+			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
+		}*/
+		@font-face {
+    font-family: 'Gmarket-s';
+    font-weight: 300;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'Gmarket-m';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf') format("truetype");
+    font-display: swap;
+} 
+@font-face {
+    font-family: 'Gmarket-l';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf') format("truetype");
+    font-display: swap;
+} 
 
 .fr-clearfix::after {
   clear: both;
@@ -25024,7 +25064,7 @@ a.u-button-style.u-border-20 {
 }
 /*begin-variables font-family*/
 .u-body {
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'SDMiSaeng';
 }
 h1,
 h2,
@@ -25032,7 +25072,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'SDMiSaeng';
+ font-family: 'Gmarket-m';
 }
 /*end-variables font-family*/
 /*begin-variables color*/
@@ -33630,8 +33670,8 @@ input.u-field-input.u-field-input.u-border-active-palette-3-light-3:checked {
 .u-border-palette-3-base.u-input,
 .u-border-palette-3-base.u-field-input.u-field-input,
 .u-separator-palette-3-base:after {
-  border-color: #f1c50e;
-  stroke: #f1c50e;
+  border-color: #84c0a0;
+  stroke: #84c0a0;
 }
 .u-button-style.u-border-palette-3-base {
   border-color: #f1c50e !important;
@@ -41337,7 +41377,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-table-alt-custom-color-4 tr:nth-child(even)
         {
             color: #111111;
-            background-color: #e2eef3;
+           /* background-color: #f7f7f7;*/
         }
 
         .u-input.u-custom-color-4,
@@ -41757,7 +41797,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-table-alt-custom-color-10 tr:nth-child(even)
         {
             color: #ffffff;
-            background-color: #678a5d;
+            background-color: #9eb384;
         }
 
         .u-input.u-custom-color-10,
@@ -41766,7 +41806,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-button-style.u-custom-color-10[class*="u-border-"]
         {
             color: #ffffff !important;
-            background-color: #678a5d !important;
+            background-color: #9eb384 !important;
         }
 
         .u-button-style.u-custom-color-10:hover,
@@ -41836,7 +41876,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-button-style.u-custom-color-11[class*="u-border-"]
         {
             color: #111111 !important;
-            background-color: #b3d1ab !important;
+            background-color: #9eb384 !important;
         }
 
         .u-button-style.u-custom-color-11:hover,
@@ -43993,7 +44033,7 @@ a.u-link.u-text-hover-grey-90:hover {
         }
         p.u-large-text
         {
-        font-size: 2.4rem;
+        font-size: 2.1rem;
         margin-top: 20px;
         margin-bottom: 20px;
         }

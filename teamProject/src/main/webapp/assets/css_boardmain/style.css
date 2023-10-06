@@ -262,9 +262,10 @@ html {
 	text-decoration: none;
 }
 
-.category-text{
-	font-size: 20px;
-	color: black;
+.category-text {
+    font-size: 2rem;
+    color: black;
+    margin-top: 20px;
 }
 
 .thumbnail-title  {
