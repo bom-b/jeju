@@ -15,6 +15,7 @@
 
 <!-- 게시판 메인 전용 style.css -->
 <link href="<%=appName%>/assets/css_tour/tourstyle.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <style type="text/css">
 	@font-face{

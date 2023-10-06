@@ -12,6 +12,7 @@
 
 <!-- 게시판 메인 전용 부트스트랩 -->
 <link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <!-- 게시판 메인 전용 style.css -->
 <link href="<%=appName%>/assets/css_food/foodStyle.css" rel="stylesheet">

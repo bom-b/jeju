@@ -11,6 +11,7 @@
 
 <!-- 맛집 전용 style.css -->
 <link href="<%=appName%>/assets/css_tour/tourDetail_Insert.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <script>
 

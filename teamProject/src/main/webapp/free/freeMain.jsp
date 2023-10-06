@@ -20,6 +20,7 @@
 <!-- 게시판 메인 전용 style.css -->
 <link href="<%=appName%>/assets/css_boardmain/style.css"
 	rel="stylesheet">
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 <script type="text/javascript">
       $(document).ready(function(){
          var optionList = $('#mode option');
