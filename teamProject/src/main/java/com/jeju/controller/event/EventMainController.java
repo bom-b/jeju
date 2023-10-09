@@ -20,45 +20,53 @@ public class EventMainController extends SuperClass {
 		EventDao dao = new EventDao();
 		String pageNumber = request.getParameter("pageNumber");
 		String pageSize = request.getParameter("pageSize");
-		String confirmDate = request.getParameter("confirmDate");
 		String mode = request.getParameter("mode");
 		String keyword = request.getParameter("keyword");
+//	String evSection = request.getParameter("evSection");
+
 		// 전체,진행중,종료
-		String dayConfirm = "";
 
 		try {
-			int totalCount = dao.GetTotalRecordCount(mode, keyword); // 수정 예정
-			List<Event> eventList = new ArrayList<>();
-			// 전체, 진행중, 종료
-			String url = super.getUrlInfomation("evMain");
 			boolean isGrid = false;
-			Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, url, mode, keyword, isGrid);
-			
-			if (confirmDate.equals("allDate")) {
-				dayConfirm = "allDate";
-				eventList = dao.selectEventAll(dayConfirm,pageInfo);
+			String url = super.getUrlInfomation("evMain");
 
-			} else if (confirmDate.equals("presentDate")) {
-				dayConfirm = "presentDate";
-				eventList = dao.selectEventAll(dayConfirm,pageInfo);
+			// 전체카운트
+			int totalCountAll = dao.GetTotalRecordCount(mode, keyword);
+			Paging pageInfoAll = new Paging(pageNumber, pageSize, totalCountAll, url, mode, keyword, isGrid);
 
-			} else if (confirmDate.equals("passDate")) {
-				dayConfirm = "passDate";
-				eventList = dao.selectEventAll(dayConfirm,pageInfo);
-			}else if(confirmDate.equals("futureDate")) {
-				dayConfirm="futureDate";
-				eventList = dao.selectEventAll(dayConfirm,pageInfo);
-			}
-			
-			
-		//검색
-			//eventList = dao.selectPageAll(pageInfo);
-			
+			// 진행중 카운트
+			int totalCountPR = dao.GetTotalRecordCountGubun(mode, keyword, "진행중");
+			Paging pageInfoPr = new Paging(pageNumber, pageSize, totalCountPR, url, mode, keyword, isGrid);
 
-			request.setAttribute("eventList", eventList);
+			// 종료 카운트
+			int totalCountEnd = dao.GetTotalRecordCountGubun(mode, keyword, "종료");
+			Paging pageInfoEnd = new Paging(pageNumber, pageSize, totalCountEnd, url, mode, keyword, isGrid);
 
-			// 페이징 관련 정보를 바인딩
-			request.setAttribute("pageInfo", pageInfo);
+			// 예정중 카운트
+			int totalCountFu = dao.GetTotalRecordCountGubun(mode, keyword, "예정중");
+			Paging pageInfoFu = new Paging(pageNumber, pageSize, totalCountFu, url, mode, keyword, isGrid);
+
+			// 전체
+			List<Event> eventAllList = dao.selectEventGetAll(pageInfoAll);
+			request.setAttribute("eventAllList", eventAllList);
+
+			// 진행중
+			List<Event> eventPrList = dao.selectEventAll("진행중", pageInfoPr);
+			request.setAttribute("eventPrList", eventPrList);
+
+			// 종료
+			List<Event> eventEndList = dao.selectEventAll("종료",pageInfoEnd);
+		request.setAttribute("eventEndList", eventEndList);
+	
+		//예정중
+		List<Event> eventFuList = dao.selectEventAll("예정중",pageInfoFu);
+		request.setAttribute("eventFuList", eventFuList);
+
+			// 페이징 정보를 바인딩
+			request.setAttribute("pageInfoAll", pageInfoAll);
+			request.setAttribute("pageInfoPr", pageInfoPr);
+			request.setAttribute("pageInfoEnd", pageInfoEnd);
+			request.setAttribute("pageInfoFu", pageInfoFu);
 
 			// 검색
 			super.gotoPage("/event/eventMain.jsp");

@@ -1,5 +1,7 @@
 package com.jeju.controller.event;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,21 +10,32 @@ import com.jeju.model.bean.Event;
 import com.jeju.model.dao.EventDao;
 import com.oreilly.servlet.MultipartRequest;
 
-public class EventInsertController extends SuperClass {
+public class EventUpdateController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		super.doGet(request, response);
-		super.gotoPage("event/evInsert.jsp");
+		// 해당하는 번호를 가져옴
+		int eno = Integer.parseInt(request.getParameter("eno"));
+
+		EventDao dao = new EventDao();
+		Event bean = dao.GetDataByPk(eno);
+		try {
+			request.setAttribute("bean", bean);
+			System.out.println("=========bean content: " + bean.getEcontent());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		super.gotoPage("/event/evUpdate.jsp");
 	}
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
-	
-		MultipartRequest mr = (MultipartRequest)request.getAttribute("mr");
+		MultipartRequest mr = (MultipartRequest) request.getAttribute("mr");
 		Event bean = new Event();
-//		String evsection = mr.getParameter("evsection");
-		
+		//		bean.setEcontent(clob.getSubString(1, (int) clob.length()));
+		bean.setEno(super.getNumberData(mr.getParameter("eno")));
 		bean.setEname(mr.getParameter("ename"));
 		bean.setStartdate(mr.getParameter("startdate"));
 		bean.setEnddate(mr.getParameter("enddate"));
@@ -35,16 +48,20 @@ public class EventInsertController extends SuperClass {
 		bean.setEplace(mr.getParameter("eplace"));
 		bean.setEcontent(mr.getParameter("econtent"));
 		bean.setEvsection(mr.getParameter("evsection"));
+
 		EventDao dao = new EventDao();
 		int cnt = -1;
 		try {
-			cnt=dao.insertData(bean);
+			cnt = dao.updateData(bean);
 			if (cnt == -1) {
-				super.gotoPage("event/evInsert.jsp");
+				super.gotoPage("/event/evUpdate.jsp");
 			} else {
-				//response.sendRedirect("jeju?command=evMain&confirmDate=allDate");
-				
-				 new EventMainController().doGet(request, response);
+				String gotopage = super.getUrlInfomation("evMain") ;
+				gotopage += "&pageNumber=" + mr.getParameter("pageNumber");
+				gotopage += "&pageSize=" + mr.getParameter("pageSize");
+				gotopage += "&mode=" + mr.getParameter("mode");
+				gotopage += "&keyword=" + mr.getParameter("keyword");
+				response.sendRedirect(gotopage); 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

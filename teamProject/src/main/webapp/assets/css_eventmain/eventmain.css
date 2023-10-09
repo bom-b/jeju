@@ -98,7 +98,7 @@
 
 .nav-pills .nav-item .active {
 	border-bottom: inherit;
-	border-bottom: #b3d1ab 4px solid;
+	border-bottom: #9eb384 7px solid;
 }
 
 .contest-waiting .waiting-item .down-content h4 {
@@ -281,7 +281,7 @@ color: #435334;
 	margin-top: 20px;
 	border-radius: 4px;
 	font-family: 'SDMiSaeng';
-		font-weight: 600;
+	font-weight: 600;
 }
 .mail_text_date {
 	width: 30%;
@@ -291,7 +291,6 @@ color: #435334;
 	border: 3px solid #84c0a0 !important;
 	background-color: #ffffff !important;
 	padding: 10px 15px 10px 15px;
-	margin-top: 20px;
 	border-radius: 4px;
 	font-family: 'SDMiSaeng';
 		font-weight: 600;

@@ -43,6 +43,8 @@ trcmDelete=com.jeju.controller.tour.TourCommentDeleteController
 evMain=com.jeju.controller.event.EventMainController
 evDetail=com.jeju.controller.event.EventDetailController
 evInsert= com.jeju.controller.event.EventInsertController
+evDelete= com.jeju.controller.event.EventDeleteController
+evUpdate= com.jeju.controller.event.EventUpdateController
 
 # free board section
 frMain=com.jeju.controller.free.freeBoardMainController
