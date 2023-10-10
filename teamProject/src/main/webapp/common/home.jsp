@@ -199,8 +199,8 @@
 			                            <td colspan="11" class="non-border col-sm-11 text-left" style="margin-left: 15px;">
 			                            	<a href="<%=notWithFormTag%>meView&id=${bean.id}">
 			                            		<span class=" font-blue" style="white-space: nowrap; font-size: 16px;">
-			                            		<img class="" src="<%=appName%>/assets/img/${bean.ratingimg}" height="20px;" width="20px;" style="margin-right: 10px;">
-			                            		  ${bean.id}
+			                            			<img class="" src="<%=appName%>/assets/img/${bean.ratingimg}" height="20px;" width="20px;" style="margin-right: 10px;">
+			                            			${bean.id}
 			                            		</span>
 			                            	</a>
 			                            </td>
