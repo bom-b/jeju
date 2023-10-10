@@ -207,7 +207,6 @@ public class HomeDao extends SuperDao {
 		bean.setOcontent(rs.getString("ocontent"));
 		bean.setPcategory(rs.getString("pcategory"));
 
-	
 		bean.setOregdate(rs.getString("oregdate"));
 
 		bean.setOimage1(rs.getString("oimage1"));

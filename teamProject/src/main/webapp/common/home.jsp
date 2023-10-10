@@ -31,8 +31,7 @@
 	<div class="top-content">
 	    <div class="container">
 	        <div class="row">
-	        	<h3 class="main-title gmarket-m textsize28 text-left wow fadeInDown" data-wow-delay="0.1s">제주도 여행의 모든것,</h3>
-	        	<h3 class="main-title  textsize28 text-left wow fadeInDown" data-wow-delay="0.1s">제주도 여행의 모든것,</h3>
+	        	<h3 class="main-title textsize28 text-left wow fadeInDown" data-wow-delay="0.1s">제주도 여행의 모든것,</h3>
 	            <div class="main-title2 col-sm-12 text wow fadeInLeft">
 	                <h1 class="sdms-font text-left" style="font-size: 150px" data-wow-delay="0.3s">혼저옵서예</h1>
 	                <div class="description">
