@@ -61,7 +61,7 @@
             <th>비밀번호 찾기 질문</th>
             <th>비밀번호 질문 답변</th>
             <th>휴대폰번호</th>
-            <th>회원등급</th>
+            <th>회원점수</th>
             <th>생일</th>
             <th>등급별 이미지</th>
             <th>삭제</th>
@@ -82,7 +82,7 @@
                 <td>${bean.mphoneno}</td>
                 <td>${bean.mrating}</td>
                 <td>${bean.birth}</td>
-                <td>${bean.ratingimg}</td>
+                <td><img src="<%=appName%>/assets/img/${bean.ratingimg}" height="25px" width="25px"></td>
                 <td>
                     <form action="<%= notWithFormTag %>meListDelete" method="post">
                         <!-- memberId를 숨겨진 input 필드로 전달 -->

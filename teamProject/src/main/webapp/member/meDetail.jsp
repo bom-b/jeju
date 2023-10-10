@@ -105,7 +105,7 @@
                     <td>${requestScope.bean.mphoneno}</td>
                 </tr>
                 <tr>
-                    <td align="center">회원등급 :</td>
+                    <td align="center">회원점수 :</td>
                     <td>${requestScope.bean.mrating}</td>
                 </tr>
                 <tr>
