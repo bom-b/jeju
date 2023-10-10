@@ -273,7 +273,8 @@ a {
 					<span class="sub-title"><strong>작성자: </strong></span>
 					<c:choose>
 						<c:when test="${empty requestScope.bean.id}">
-			                탈퇴한 회원
+							<img src="<%=appName%>/assets/img/deletedid.png" height="25px" width="25px">
+			                <span class="">탈퇴한 회원</span>
 			            </c:when>
 						<c:otherwise>
 							<img
