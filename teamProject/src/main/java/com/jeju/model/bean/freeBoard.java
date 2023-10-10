@@ -6,7 +6,7 @@ public class freeBoard {
 		private String id ; //작성자 아이디
 		private String oname ; // 글 제목
 		private String ocontent ; //글 내용
-		private int readhit ;	 //조회수 
+		
 		private String oregdate;// 날짜 형식
 		private String pcategory;// 글 카테고리
 		
@@ -86,13 +86,16 @@ public class freeBoard {
 
 
 
+	
+
+
 		@Override
 		public String toString() {
 			return "freeBoard [ono=" + ono + ", no=" + no + ", id=" + id + ", oname=" + oname + ", ocontent=" + ocontent
-					+ ", readhit=" + readhit + ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1="
-					+ oimage1 + ", oimage2=" + oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5="
-					+ oimage5 + ", depth=" + depth + ", groupno=" + groupno + ", orderno=" + orderno + ", olikes="
-					+ olikes + " ]";
+					+ ", oregdate=" + oregdate + ", pcategory=" + pcategory + ", oimage1=" + oimage1 + ", oimage2="
+					+ oimage2 + ", oimage3=" + oimage3 + ", oimage4=" + oimage4 + ", oimage5=" + oimage5 + ", depth="
+					+ depth + ", groupno=" + groupno + ", orderno=" + orderno + ", likes=" + likes + ", olikes="
+					+ olikes + "]";
 		}
 
 
@@ -145,15 +148,6 @@ public class freeBoard {
 
 
 
-		public int getReadhit() {
-			return readhit;
-		}
-
-
-
-		public void setReadhit(int readhit) {
-			this.readhit = readhit;
-		}
 
 
 
@@ -288,14 +282,14 @@ public class freeBoard {
 
 
 
-		public freeBoard(String ono, String id, String oname, String ocontent, int readhit, String oregdate,
+		public freeBoard(String ono, String id, String oname, String ocontent, String oregdate,
 				String pcategory, String oimage1, String oimage2, String oimage3, String oimage4, String oimage5) {
 			super();
 			this.ono = ono;
 			this.id = id;
 			this.oname = oname;
 			this.ocontent = ocontent;
-			this.readhit = readhit;
+			
 			this.oregdate = oregdate;
 			this.pcategory = pcategory;
 			this.oimage1 = oimage1;
