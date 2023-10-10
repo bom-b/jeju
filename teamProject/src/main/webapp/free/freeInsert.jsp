@@ -102,13 +102,11 @@ $(document).ready(function(){
 			  <input type="text" class="form-control short-input" id="fakeid" name="fakeid" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})님" disabled="disabled" >
 			  <input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
 			</div>
-
 					<div class="form-group my-5 py-5">
 						  <label for="title"><span class="caution">* </span>글 제목 : </label> <input
 							id="oname" name="oname" type="text" class="form-control short-input"
 							placeholder="글 제목을 입력하여 주세요">
 					</div>
-
 					<div class="form-group my-5 py-5">
 						  <label for="ocontent"><span class="caution">* </span>글 내용</label> <input
 							id="ocontent" name="ocontent" type="text" class="form-control short-input"
@@ -133,8 +131,7 @@ $(document).ready(function(){
 			<div class="form-group my-5 py-5">
 			  <label for="oregdate"><span class="caution">* </span>작성일 : </label>
 			  <input type="text" class="form-control short-input" id="oregdate" name="oregdate" readonly>
-			</div>
-					
+			</div>	
 					<script type="text/javascript">
     // 현재 날짜를 가져오는 함수
     function getCurrentDate() {

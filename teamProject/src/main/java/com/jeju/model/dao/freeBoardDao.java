@@ -340,7 +340,7 @@ public class freeBoardDao extends SuperDao {
 		pstmt.setString(8, bean.getOimage3());
 		pstmt.setString(9, bean.getOimage4());
 		pstmt.setString(10, bean.getOimage5());
-		 pstmt.setString(11, bean.getOno());
+		pstmt.setString(11, bean.getOno());
 
 		cnt = pstmt.executeUpdate();
 		conn.commit();
