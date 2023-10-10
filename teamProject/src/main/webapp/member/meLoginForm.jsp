@@ -16,7 +16,7 @@
         });
     </script>
     <style type="text/css">
-
+		
         .login-form {
             text-align: center;
         }
@@ -58,6 +58,7 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
+       
     </style>
 <head>
     <meta charset="UTF-8">
