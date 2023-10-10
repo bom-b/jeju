@@ -24,7 +24,7 @@
 
 .selectbox {
 	box-sizing: border-box;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'TheJamsil400';
 	font-size: 25px;
 	display: inline-block;
 	margin: 2px;
@@ -45,6 +45,7 @@
 }
 
 .selectbox__option {
+	font-size: 17px;
 	padding: 5px 10px;
 	cursor: pointer;
 	color: #202020;
@@ -57,6 +58,7 @@
 }
 
 .selectbox__option:first-child {
+	font-size: 17px;
 	border-top: 1px solid #eee;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px
@@ -69,27 +71,31 @@
 }
 
 .selectbox__option:hover {
-	background: #ff747d;
+	background: #9eb384;
 	color: #fff
 }
 
 .selectbox__option--selected {
 	color: #fff;
-	background: #ff747d
+	background: #9eb384
 }
 
 .selectbox__label {
-	cursor: pointer;
-	padding: 5px 10px;
-	background: #fff;
-	color: #202020;
-	position: relative;
-	display: flex;
-	align-items: center;
-	border-radius: 5px;
-	border: 1px solid #eee;
-	transition: 150ms linear all;
-	box-shadow: 1px 1px 10px #eee
+    /* color: #757575; */
+    font-family: 'TheJamsil400';
+    /* border: 4px; */
+    font-size: 17px;
+    cursor: pointer;
+    padding: 5px 10px;
+    background: #fff;
+    color: #757575;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    border: 3px solid #84c0a0 !important;
+    transition: 150ms linear all;
+    box-shadow: 1px 1px 10px #eee;
 }
 
 .selectbox__label:after {
@@ -106,10 +112,10 @@
 }
 
 .selectbox__label:hover {
-	border: 1px solid #ff747d;
-	color: #ff747d
+	border: 1px solid #9eb384;
+	color: #9eb384
 }
 
 .selectbox__label:hover:after {
-	border-top: 6px solid #ff747d
+	border-top: 6px solid #9eb384
 }

@@ -41,7 +41,9 @@
 	});
 </script>
 <style type="text/css">
-
+* {
+		    font-family: 'TheJamsil400';
+}
 </style>
 </head>
 <body class="u-body u-xl-mode" data-lang="en" >
@@ -50,8 +52,8 @@
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
-					<h1 class="display-3 text-white" style="margin-bottom: 15px; font-size: 3rem;">상세정보</h1>
-					<p class="medium-paragraph" style="font-size: 2.3rem;"></p>
+						<h1 class="display-3 text-white" style="margin-bottom: 15px; font-size: 64px;font-family: 'TheJamsil100';font-weight: inherit;">상세정보</h1>
+					<p class="medium-paragraph" style="font-size: 18px;">제주도의 행사를 자세히 알아보아요</p>
 				</div>
 			</div>
 		</div>
@@ -110,7 +112,30 @@
 		</div>
 	</section>
 	<!--     자세한 설명 end -->
-	<div class="container post" style="margin-top: 80px;">
+	<section class="u-clearfix u-grey-90 u-section-1" id="sec-8486">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-sheet-1">
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-container-align-center u-container-style u-image u-image-round u-list-item u-radius-50 u-repeater-item u-shading u-image-1" data-image-width="1500" data-image-height="1000">
+              <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
+                <h6 class="u-align-center u-text u-text-default u-text-1"> Food Sourcing</h6>
+              </div>
+            </div>
+            <div class="u-container-align-center u-container-style u-image u-image-round u-list-item u-radius-50 u-repeater-item u-shading u-image-2" data-image-width="2250" data-image-height="1500">
+              <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
+                <h6 class="u-align-center u-text u-text-default u-text-2"> Menu Development</h6>
+              </div>
+            </div>
+            <div class="u-container-align-center u-container-style u-image u-image-round u-list-item u-radius-50 u-repeater-item u-shading u-image-3" data-image-width="1500" data-image-height="1000">
+              <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
+                <h6 class="u-align-center u-text u-text-default u-text-3"> Restaurant</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	<%-- <div class="container post" style="margin-top: -500px;">
 		<div>
 			<div class="carousel">
 				<ul class="slides" style="border-radius: 20px;">
@@ -158,13 +183,13 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 	    <section class="u-clearfix mapCss" id="carousel_4cef">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="data-layout-selected u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
-            <div class="u-layout-row">
+            <div class="u-layout-row col-md-8">
               <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
                 <div class="u-container-layout u-valign-middle u-container-layout-1">
                   <p class="u-text u-text-2">${requestScope.eventDetail.eplace}</p>
@@ -179,9 +204,9 @@
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-expanded  u-map">
                     	<!-- 지도 -->
-				<div class="map-zone col-sm-5 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px; margin-bottom: 100px;">
-					<div class="col-md-6" >
-			       		  <div id="map" style="width: 700px; height: 450px;"></div>
+				<div class="map-zone col-sm-5 wow fadeInUp" data-wow-delay="0.3s" style="padding-right:30px; margin-bottom: 60px;">
+					<div class="col-md-4" >
+			       		  <div id="map" style="width: 600px; height: 450px;"></div>
 			      	</div>
 				</div>
 				<!-- 지도 -->

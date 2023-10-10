@@ -150,22 +150,26 @@
 	 } */
 </script>
 <style type="text/css">
+*{
+font-family: 'TheJamsil400';
+}
+
 input[type="submit"] {
-        margin: 10px 0 10px 3px;
+font-family: 'TheJamsil400';
+color: #757575;
         width: 100px;
         padding: 5px;
-        font-size: 10pt;
-        font-weight: bold;
+        font-size: 20px;
         cursor: pointer;
-        border: 1px solid #FF747D;
+border: 3px solid #84c0a0 !important;
         background: #ffffff;
-        border-radius: 5px;
+        border-radius: 4px;
         box-shadow: 2px 2px 15px #ccc;
         transition: 150ms linear all;
       }
 
       input[type="submit"]:hover {
-        background: #FF747D;
+        background: #9eb384;
       }
 
       input[type="submit"]:focus, input[type="submit"]:active {
@@ -179,7 +183,7 @@ input[type="submit"] {
 </head>
 <body>
 	<!-- contact section start -->
-	<div class="contact_section">
+	<div class="contact_section" style="margin-top:130px;">
 		<div class="container">
 			<div class="contact_section_2">
 				<div class="row">
@@ -211,12 +215,16 @@ input[type="submit"] {
 								<input class="mail_text" type="file" id="eimage5" name="eimage5" onchange="readURL(this);" style="margin: 0 auto">
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
-								<label for="evsection" class="mail_text_date">구분</label>
+								<div>
+							<!-- 	<label for="evsection" class="insertGu">구분</label> -->
 									<select name="evsection" id="evsection" class="justselect">
 										  <option value="진행중">진행중</option>
 										  <option value="종료">종료</option>
 										  <option value="예정중">예정중</option>
 									</select>
+								</div>
+								
+						
 								<div class="order_bt">
 								     <input type="submit" value="등록" onclick="return validCheck();">
 								<!-- 	<button type="submit" >등록</button> -->
