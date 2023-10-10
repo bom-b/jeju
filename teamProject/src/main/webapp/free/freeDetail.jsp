@@ -273,7 +273,8 @@ a {
 					<span class="sub-title"><strong>작성자: </strong></span>
 					<c:choose>
 						<c:when test="${empty requestScope.bean.id}">
-			                탈퇴한 회원
+							<img src="<%=appName%>/assets/img/deletedid.png" height="25px" width="25px">
+			                <span class="">탈퇴한 회원</span>
 			            </c:when>
 						<c:otherwise>
 							<img
@@ -287,9 +288,7 @@ a {
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>카테고리: </strong></span> <span
-						class="">${requestScope.bean.pcategory}</span> <span
-						class="sub-title"><strong>&nbsp;&nbsp;조회수: </strong></span> <span
-						class="">${requestScope.bean.readhit}</span> &nbsp;&nbsp; <span
+						class="">${requestScope.bean.pcategory}</span>   &nbsp;&nbsp; <span
 						class="sub-title"><strong>작성날짜: </strong></span> <span class="">${requestScope.bean.oregdate}</span>
 				</div>
 

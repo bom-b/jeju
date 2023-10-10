@@ -20,7 +20,7 @@ public class freeBoardDao extends SuperDao {
 		bean.setOcontent(rs.getString("ocontent"));
 		bean.setPcategory(rs.getString("pcategory"));
 
-		bean.setReadhit(rs.getInt("readhit"));
+	
 		bean.setOregdate(rs.getString("oregdate"));
 
 		bean.setOimage1(rs.getString("oimage1"));
@@ -148,9 +148,9 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, olikes ";
+		String sql = " select ono, id, oname, ocontent , oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5, olikes ";
 		
-		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, olikes, rank() over(order by ono desc) as ranking ";
+		sql += " from (select ono, id, oname, ocontent,  oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5, olikes, rank() over(order by ono desc) as ranking ";
 		sql += " from openforum ";
 		
 	
@@ -193,9 +193,9 @@ public class freeBoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " select ono, id, oname, ocontent , readhit, oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5,  olikes ";
+		String sql = " select ono, id, oname, ocontent ,  oregdate, pcategory , oimage1, oimage2, oimage3, oimage4, oimage5,  olikes ";
 		
-		sql += " from (select ono, id, oname, ocontent, readhit, oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5,  olikes, rank() over(order by ono desc) as ranking ";
+		sql += " from (select ono, id, oname, ocontent,  oregdate,  pcategory ,oimage1, oimage2, oimage3, oimage4, oimage5,  olikes, rank() over(order by ono desc) as ranking ";
 		sql += " from openforum ";
 		
 		// 카테고리에 따라 분기
