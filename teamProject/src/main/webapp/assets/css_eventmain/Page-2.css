@@ -18,7 +18,7 @@
 	border-radius:20px;
   width: 471px;
   height: 609px;
-  margin: -697px auto 0 56px;
+  margin: -697px auto 0 20px;
 }
 
 .u-section-1 .u-image-3 {
@@ -360,7 +360,7 @@
 }
 
 .u-section-2 .u-text-2 {
-  margin: -280px -170px -600px -20px;
+  margin: -380px -170px -60px -20px;
 }
 
 @media (max-width: 1199px) {

@@ -22,7 +22,6 @@ public class EventUpdateController extends SuperClass {
 		Event bean = dao.GetDataByPk(eno);
 		try {
 			request.setAttribute("bean", bean);
-			System.out.println("=========bean content: " + bean.getEcontent());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,15 +52,14 @@ public class EventUpdateController extends SuperClass {
 		int cnt = -1;
 		try {
 			cnt = dao.updateData(bean);
-			if (cnt == -1) {
+			if (cnt == -1) {//수정 실패 시 
 				super.gotoPage("/event/evUpdate.jsp");
 			} else {
-				String gotopage = super.getUrlInfomation("evMain") ;
-				gotopage += "&pageNumber=" + mr.getParameter("pageNumber");
-				gotopage += "&pageSize=" + mr.getParameter("pageSize");
-				gotopage += "&mode=" + mr.getParameter("mode");
-				gotopage += "&keyword=" + mr.getParameter("keyword");
-				response.sendRedirect(gotopage); 
+//				response.sendRedirect("jeju?command=evMain");
+				//메시지담을 str
+				String alerMsg = "수정이 완료되었습니다.";//이걸 아까 만든 jsp로 줘야되는디...그 리스트 넘겨줄때처럼 담아봐
+				request.setAttribute("alertMsg", alerMsg);
+				super.gotoPage("/event/eventPopup.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

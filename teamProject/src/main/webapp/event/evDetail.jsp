@@ -9,65 +9,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 게시판 메인 전용 부트스트랩 -->
-<link rel="stylesheet"
-	href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
-<link href="<%=appName%>/assets/css_boardmain/style.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="<%=appName%>/assets/css_boardmain/bootstrap.min.css">
+<link href="<%=appName%>/assets/css_boardmain/style.css" rel="stylesheet">
 <!-- 게시판 메인 전용 style.css -->
-<link href="<%=appName%>/assets/css_eventmain/eventmain.css"
-	rel="stylesheet">
-<link href="<%=appName%>/assets/css_eventmain/nicepage.css"
-	rel="stylesheet" media="screen">
-<link href="<%=appName%>/assets/css_eventmain/Page-2.css"
-	rel="stylesheet" media="screen">
-<link href="<%=appName%>/assets/css_eventmain/Page-4.css"
-	rel="stylesheet" media="screen">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="<%=appName%>/assets/css_eventmain/eventmain.css" rel="stylesheet">
+<link href="<%=appName%>/assets/css_eventmain/nicepage.css" rel="stylesheet" media="screen">
+<link href="<%=appName%>/assets/css_eventmain/Page-2.css" rel="stylesheet" media="screen">
+<link href="<%=appName%>/assets/css_eventmain/Page-4.css" rel="stylesheet" media="screen">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <%-- 카카오지도 관련 코드 --%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
-<%-- 지도 --%>
-	<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
 
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
-	
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('${requestScope.bean.place}', function(result, status) {
-	
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === kakao.maps.services.Status.OK) {
-	
-	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-	
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	        	content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.bean.title}</div>'
-	        });
-	        infowindow.open(map, marker);
-	
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});    
-	</script>
-<%-- 지도 --%>
 <script type="text/javascript">
 	function openContent() {
 		document.getElementById("detailContent").style.display = "block";
@@ -102,6 +58,7 @@
 	</div>
 	<!-- 헤더 End -->
 	<!--  이미지와 간단설명 start -->
+	<div class="container" style="background-color: #faf1e4">
 	<section class="u-clearfix u-section-1" id="sec-d4a9">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<div class="u-custom-color-4 u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-shape u-shape-rectangle u-shape-1"></div>
@@ -202,24 +159,80 @@
 			</div>
 		</div>
 	</div>
-	<!-- 댓글창과 지도 -->	
-	<div class="commentBox container-xxl py-5">
-		<div class="container my-5 py-5">
-			<div class="row align-items-center g-5">
-				<!-- 지도 -->
-				<div class="map-zone col-sm-12 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px; margin-bottom: 100px;">
-					<p class="text-left" style="font-weight: bold;">위치</p>
+
+	    <section class="u-clearfix mapCss" id="carousel_4cef">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="data-layout-selected u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-valign-middle u-container-layout-1">
+                  <p class="u-text u-text-2">${requestScope.eventDetail.eplace}</p>
+               <p class="u-text u-text-2">${requestScope.eventDetail.ephoneno}</p>
+                  <p class="u-text u-text-4">
+                  <a href="javascript:history.back();"
+							class="u-btn u-button-style u-custom-color-11 u-text-white u-btn-1">뒤로가기</a>
+                  </p>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <div class="u-expanded  u-map">
+                    	<!-- 지도 -->
+				<div class="map-zone col-sm-5 wow fadeInUp" data-wow-delay="0.3s" style="padding-left: 30px; margin-bottom: 100px;">
 					<div class="col-md-6" >
-			       		  <div id="map" style="width: 350px; height: 450px;"></div>
+			       		  <div id="map" style="width: 700px; height: 450px;"></div>
 			      	</div>
 				</div>
 				<!-- 지도 -->
-				
-			</div>
-		</div>
-	</div>
-<!-- 댓글창과 지도 -->	
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
+</div>
+<%-- 지도 --%>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch('${requestScope.eventDetail.eplace}', function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	        	content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.eventDetail.eplace}</div>'
+	        });
+	        infowindow.open(map, marker);
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	</script>
+<%-- 지도 --%>
 </body>
 </html>

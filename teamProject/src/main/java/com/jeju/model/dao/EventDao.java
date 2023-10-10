@@ -15,24 +15,29 @@ public class EventDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "";
-		sql = "select * from (select row_number() over (order by eventA.eno) as rnum , eventA.* from";
+	
+		sql = "select * from (select row_number() over (order by A.eno) as rnum , A.* from (select * from event where 1=1 ";
 
 		if (evSection.equals("진행중")) {
-			sql += " (select * from event where sysdate between startdate and enddate order by ename)eventA)";
+			sql += " and sysdate between startdate and enddate";
+
 		} else if (evSection.equals("종료")) {
-			sql += " (select * from event where enddate<sysdate order by ename)eventA)";
+			sql += " and  enddate<sysdate";
 		} else if (evSection.equals("예정중")) {
-			sql += " (select * from event where startdate>sysdate order by ename)eventA)";
+			sql += " and  startdate>sysdate";
+		}else if (evSection.equals("전체"))  {
+			
 		}
 		 String mode = pageInfo.getMode();
 		 String keyword = pageInfo.getKeyword();
 		 
 		 if (mode == null || mode.equals("all")) { 
 			 } else { // 전체 모드가 아니면
-				 sql+= " where " + mode + " like '%"+keyword+"%'";
+				 sql+= " and " + mode + " like '%"+keyword+"%'";//잠ㅁ아마자잠시마나아아나ㅏ마나
 		 }
 
-		sql += " where rnum between ? and ? order by startdate";
+		sql += ") A) where rnum between ? and ? order by startdate";
+
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pageInfo.getBeginRow());
@@ -59,7 +64,6 @@ public class EventDao extends SuperDao {
 	private Event getEventBeanData(ResultSet rs) throws Exception {
 		Event bean = new Event();
 		Clob clob = rs.getClob("econtent");
-
 		bean.setEno(rs.getInt("eno"));
 		bean.setId(rs.getString("id"));
 		bean.setEname(rs.getString("ename"));
@@ -287,7 +291,7 @@ public class EventDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		int cnt = -1;
 		//행사 수정
-		String sql="update event set startdate=?, enddate=?, ename=?, ephoneno=?, econtent=?, eplace=?, eimage1=?, eimage2=?, eimage3=?, eimage4=?, eimage5=?,evsection=? where eno=?";
+		String sql="update event set  startdate=?, enddate=?, ename=?, ephoneno=?, econtent=?, eplace=?, eimage1=?, eimage2=?, eimage3=?, eimage4=?, eimage5=?, evsection=? where eno=?";
 		
 		conn = super.getConnection();
 		conn.setAutoCommit(false);
@@ -309,7 +313,8 @@ public class EventDao extends SuperDao {
 		
 		cnt = pstmt.executeUpdate() ;
 		conn.commit();
-		
+		System.out.println("==========bean.toString:  " +bean.toString());
+		System.out.println("==================bean update: " + bean.getEno());
 		if(pstmt != null) {pstmt.close();}
 		if(conn != null) {conn.close();}
 		

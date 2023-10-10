@@ -34,7 +34,16 @@ $(document).ready(function(){
 			changeMonth : true,
 			changeYear : true
 		});
-
+		$.datepicker.setDefaults({
+			dateFormat : 'yy-mm-dd', //Input Display Format 변경
+		/* 	monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+					'9월', '10월', '11월', '12월' ],
+			monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+					'9월', '10월', '11월', '12월' ],
+			dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+			dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+			dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ], */
+		});
 	})
 	function readURL(input) {
 		if (input.files && input.files[1]) {
@@ -79,8 +88,29 @@ $(document).ready(function(){
 			swal('행사내용을 입력해주세요.');
 			$('#econtent').focus();
 			return false;
+		}	/* 이미지는 필수 입력 사항입니다. */
+		var selectedFile = $('#eimage1').prop('files')[0];
+		if(!selectedFile){
+			swal('이미지는 최소 3장 이상 등록해주세요.');
+			$('#eimage1').focus();
+			return false; 
 		}
-
+		
+		/* 이미지는 필수 입력 사항입니다. */
+		var selectedFile = $('#eimage2').prop('files')[0];
+		if(!selectedFile){
+			swal('이미지는 최소 3장 이상 등록해주세요.');
+			$('#eimage2').focus();
+			return false; 
+		}
+		
+		/* 이미지는 필수 입력 사항입니다. */
+		var selectedFile = $('#eimage3').prop('files')[0];
+		if(!selectedFile){
+			swal('이미지는 최소 3장 이상 등록해주세요.');
+			$('#eimage3').focus();
+			return false; 
+		}
 		var isCheck = false; /* 확장자 체크에 충족하면 true가 됩니다. */
 
 		const imgCheck = [ '.png', '.jpg' ]; /* 확장자 체크용 배열 */
@@ -132,16 +162,14 @@ input[type="submit"] {
 						<form action="<%=withFormTag%>" method="post"
 							enctype="multipart/form-data">
 							<input type="hidden" name="command" value="evUpdate"> 
-			<input type="text" name="evsection" value="${requestScope.bean.evsection}"> 
-							<input
-								type="hidden" name="pageNumber"
-								value="<%=request.getParameter("pageNumber")%>"> <input
-								type="hidden" name="pageSize"
-								value="<%=request.getParameter("pageSize")%>"> <input
-								type="hidden" name="mode"
-								value="<%=request.getParameter("mode")%>"> <input
-								type="hidden" name="keyword"
-								value="<%=request.getParameter("keyword")%>">
+		<%-- 	<input type="text" name="evsection" value="${requestScope.bean.evsection}">  --%>
+							<input type="hidden" name="pageNumber" value="<%=request.getParameter("pageNumber")%>">
+							 <input type="hidden" name="pageSize" value="<%=request.getParameter("pageSize")%>"> 
+							 <input type="hidden" name="mode" value="<%=request.getParameter("mode")%>"> 
+							 <input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
+							 
+			
+							  <input type="hidden" name="eno" value="<%=request.getParameter("eno")%>">
 							<div class="mail_section_1">
 								<input type="text" class="mail_text_date" name="startdate"
 									id="startdate" value="${requestScope.bean.startdate }">
@@ -154,8 +182,10 @@ input[type="submit"] {
 									type="text" class="mail_text" name="eplace" id="eplace"
 									value="${requestScope.bean.eplace}"> <br />
 								<textarea class="massage-bt" rows="5" id="econtent"
-									name="econtent" value="${requestScope.bean.econtent}">
+									name="econtent" value="${requestScope.bean.econtent}"  v>
 								</textarea>
+								${requestScope.bean.econtent}
+								eno:        ${requestScope.bean.eno}
 								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin: 20px auto 0px auto" value="${requestScope.bean.eimage1}">
 									<br />
 								<input class="mail_text" type="file" id="eimage2" name="eimage2" onchange="readURL(this);" style="margin: 0 auto" value="${requestScope.bean.eimage2}">
@@ -173,7 +203,8 @@ input[type="submit"] {
 										  <option value="예정중">예정중</option>
 									</select>
 								<div class="order_bt">
-								     <input type="submit" value="등록" onclick="return validCheck();">
+				<!-- 				     <input type="submit" value="등록" onclick="return validCheck();"> -->
+								     			     <input type="submit" value="등록" >
 								<!-- 	<button type="submit" >등록</button> -->
 								</div>
 							</div>

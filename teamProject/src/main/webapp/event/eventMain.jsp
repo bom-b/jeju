@@ -213,7 +213,6 @@ $(document).ready(function(){
 								</div>
 							</c:forEach>
 						</div>
-						${requestScope.pageInfoAll.pagingHtml}
 					</div>
 					<!-- 진행중 List start-->
 					<div class="cont container-xxl" id="tab2">
@@ -250,8 +249,6 @@ $(document).ready(function(){
 								</div>
 							</c:forEach>
 						</div>
-						
-						${requestScope.pageInfoPr.pagingHtml}
 					</div>
 					<!-- 진행중 List end-->
 
@@ -290,7 +287,6 @@ $(document).ready(function(){
 								</div>
 							</c:forEach>
 						</div>
-						${requestScope.pageInfoEnd.pagingHtml}
 					</div>
 					<!-- 종료 List end-->
 					<!-- 예정중 List start-->
@@ -328,8 +324,9 @@ $(document).ready(function(){
 								</div>
 							</c:forEach>
 						</div>
-						${requestScope.pageInfoFu.pagingHtml}
 					</div>
+							${requestScope.pageInfoAll.pagingHtml}
+					
 				</div>
 				<!-- 예정중 List end-->
 			</div>
