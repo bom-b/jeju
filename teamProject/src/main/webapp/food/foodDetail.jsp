@@ -14,19 +14,13 @@
 <link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
 
 <%-- 사진 크게보기 --%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
 <%-- sweetalert 버전 2 --%>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <%-- 카카오지도 관련 코드 --%>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey= e9690708443890b865a0c886aadfeff8"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript">
 
