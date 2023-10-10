@@ -287,9 +287,7 @@ a {
 				</div>
 				<div class="contents">
 					<span class="sub-title"><strong>카테고리: </strong></span> <span
-						class="">${requestScope.bean.pcategory}</span> <span
-						class="sub-title"><strong>&nbsp;&nbsp;조회수: </strong></span> <span
-						class="">${requestScope.bean.readhit}</span> &nbsp;&nbsp; <span
+						class="">${requestScope.bean.pcategory}</span>   &nbsp;&nbsp; <span
 						class="sub-title"><strong>작성날짜: </strong></span> <span class="">${requestScope.bean.oregdate}</span>
 				</div>
 
