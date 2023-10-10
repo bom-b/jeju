@@ -30,7 +30,7 @@ ui {
 }
 
 a {
-	text-align: right;
+	
 	text-decoration: none;
 }
 
@@ -294,7 +294,7 @@ a {
 				</div>
 
 				<div class="contents">
-					<div class="display-content" style="height: 300px; width: auto;">${requestScope.bean.ocontent}</div>
+					<div class="display-content" style="height: 300px; width: auto; margin-top: 5%;">${requestScope.bean.ocontent}</div>
 				</div>
 
 
