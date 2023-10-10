@@ -31,15 +31,6 @@
     	background-repeat: no-repeat;
     	background-position: center center;
 		}
-		
-        .bottom_button { margin-top: 20px; } /* Increase the margin-top for spacing */
-        @font-face{
-		font-family:'SDMiSaeng'; /*글꼴*/
-		src: local('SDMiSaeng'),
-			url('SDMiSaeng.eot'),
-			url('SDMiSaeng.woff') format('woff'),
-			url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
-		}
 
 		.sdms-font{
 			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
@@ -50,6 +41,15 @@
 			font-size: 20px;
 			color: black;
 		}
+		.btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
     </style>
 <head>
 	<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
@@ -77,10 +77,10 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="submit" class="btn sdms-font" style="margin-top: 10px; font-size: 25px;">비밀번호 찾기</button>
+            <button type="submit" class="btn btn-primary sdms-font" style="margin-top: 10px; font-size: 25px;">비밀번호 찾기</button>
         </form>
         <div id="backButton">
-            <button type="button" class="btn sdms-font" onclick="history.back();" style="margin-top: 10px; font-size: 25px;">
+            <button type="button" class="btn btn-primary sdms-font" onclick="history.back();" style="margin-top: 10px; font-size: 25px;">
                 돌아가기
             </button>
         </div>

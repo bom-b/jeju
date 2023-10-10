@@ -40,6 +40,8 @@
 
 <!DOCTYPE html>
 <html>
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
+
 <head>
 	<meta charset="UTF-8">
 	<title>혼저옵서예~</title>
@@ -66,6 +68,16 @@
 			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
 			color: orange;
 		}
+		#alert_box {
+        margin-top: 10px; /* 위쪽 margin을 조절합니다. */
+        margin-bottom: 1px; /* 아래쪽 margin을 조절합니다. */
+    	}
+    	.alert-dismissible {
+        margin: 10px; /* 모든 방향의 margin을 조절합니다. */
+    	}
+    	.alert-danger {
+        margin: 20px; /* 모든 방향의 margin을 조절합니다. */
+    	}
 	</style>
 </head>
 
@@ -111,9 +123,9 @@
 		</nav>	
 	<c:if test="${not empty sessionScope.alertMessage}">
 		<%-- 사용자에게 주의/경고/오류 등을 알려 주기 위한 Alert Box --%>
-		<div id="alert_box" class="alert alert-danger alert-dismissible">
+		<div id="alert_box" class="alert alert-danger alert-dismissible gmarket-m">
 	    	<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	    	<strong>@@@</strong> ${sessionScope.alertMessage}
+	    	<strong>알림 : </strong> ${sessionScope.alertMessage}
 	  	</div>
 	</c:if>
 	<%-- 보여준 Alert Box를 session 영역에서 제거합니다. --%>

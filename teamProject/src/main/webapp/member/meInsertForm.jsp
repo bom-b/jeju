@@ -126,17 +126,10 @@
             margin-right: auto;
         }
         #buttonset {
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .radio_gender, .checkbox_hobby {
             font-size: 1.1rem; /* 주위 글꼴의 1.1배 */
-        }
-        @font-face{
-            font-family:'SDMiSaeng'; /*글꼴*/
-            src: local('SDMiSaeng'),
-            url('SDMiSaeng.eot'),
-            url('SDMiSaeng.woff') format('woff'),
-            url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
         }
         .sdms-font{
             font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
@@ -144,6 +137,15 @@
         }	
         h2{
             font-size: 70px;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -159,7 +161,7 @@
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">아이디</span>
                     <input class="form-control" type="text" id="id" name="id">
-                    <button type="button" class="btn btn-primary sdms-font" onclick="checkId()" style="font-size: 20px">중복 체크</button>
+                    <button type="button" class="btn btn-primary sdms-font" onclick="checkId()" style="font-size: 20px; margin-top: 10px;">중복 체크</button>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">비밀 번호</span>
@@ -180,8 +182,7 @@
                         </label>
                     </div>
                 </div>
-                
-                <!-- 추가: 비밀번호 찾기 질문 추가 -->
+                               
             </div>
             <div class="col-md-6">
                 <!-- 오른쪽 컨테이너 -->
@@ -195,7 +196,7 @@
                 </div>	
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">핸드폰 번호</span>
-                    <input class="form-control" type="number" id="mphoneno" name="mphoneno">				
+                    <input class="form-control" type="text" id="mphoneno" name="mphoneno">				
                 </div>
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">생일</span>
@@ -209,7 +210,7 @@
                     등록
                 </button>
                 &nbsp;&nbsp;&nbsp;
-                <button type="reset" class="btn btn-info sdms-font" style="font-size: 25px">초기화</button>				
+                <button type="reset" class="btn btn-primary sdms-font" style="font-size: 25px">초기화</button>				
             </div>
         </form>
     </div>
