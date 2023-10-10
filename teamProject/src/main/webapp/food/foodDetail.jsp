@@ -284,26 +284,14 @@
 
 			<!-- 작성자와 장성일자 -->
 			<div class="writerBox wow fadeInUp" data-wow-delay="0.1s">
-				<div class="contents">
-					<span class="sub-title" style="font-weight: bold;">작성자: </span> <img
-						src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}"
-						height="25px" width="25px">
-					<c:choose>
-						<c:when test="${empty requestScope.bean.id}">
-							<span class="">탈퇴한 회원</span>
-						</c:when>
-						<c:otherwise>
-							<span class="">${requestScope.bean.id}</span>
-						</c:otherwise>
-					</c:choose>
 				<div class="contents" >
 					<span class="sub-title" style="font-weight: bold;">작성자: </span>
-					<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
 					   <c:choose>
 		                  <c:when test="${empty requestScope.bean.id}">
 		               		 <span class="">탈퇴한 회원</span>
 		          		  </c:when>
 		                  <c:otherwise>
+		                  	<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px">
 		                  	<a href="<%=notWithFormTag%>meView&id=${bean.id}">
 		                    	 <span class="">${requestScope.bean.id}</span>
 		                    </a>
