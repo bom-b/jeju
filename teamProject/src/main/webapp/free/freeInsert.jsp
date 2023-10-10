@@ -117,9 +117,9 @@ $(document).ready(function(){
 					<div class="form-group">
 							  <label for="pcategory">카테고리 : </label> <select
 							id="pcategory" name="pcategory" class="form-control short-input">
-							<option value=ta>잡담</option>
-							<option value="infor">정보공유</option>
-							<option value="qu">질문</option>
+							<option value="잡담">잡담</option>
+							<option value="정보공유">정보공유</option>
+							<option value="잘문">질문</option>
 						</select>
 					</div>
 				<div class="form-group my-5 py-5">		
