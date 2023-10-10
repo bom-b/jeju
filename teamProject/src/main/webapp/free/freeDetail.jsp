@@ -308,7 +308,6 @@ a {
 							width="100px" height="100px" alt="이미지 1">
 						</a>
 					</c:if>
-
 					<!-- 이미지 2 -->
 					<c:if test="${not empty requestScope.bean.oimage2}">
 						<a href="<%=appName%>/upload/${requestScope.bean.oimage2}"
@@ -317,7 +316,6 @@ a {
 							width="100px" height="100px" alt="이미지 2">
 						</a>
 					</c:if>
-
 					<!-- 이미지 3 -->
 					<c:if test="${not empty requestScope.bean.oimage3}">
 						<a href="<%=appName%>/upload/${requestScope.bean.oimage3}"
@@ -326,7 +324,6 @@ a {
 							width="100px" height="100px" alt="이미지 3">
 						</a>
 					</c:if>
-
 					<!-- 이미지 4 -->
 					<c:if test="${not empty requestScope.bean.oimage4}">
 						<a href="<%=appName%>/upload/${requestScope.bean.oimage4}"
@@ -335,7 +332,6 @@ a {
 							width="100px" height="100px" alt="이미지 4">
 						</a>
 					</c:if>
-
 					<!-- 이미지 5 -->
 					<c:if test="${not empty requestScope.bean.oimage5}">
 						<a href="<%=appName%>/upload/${requestScope.bean.oimage5}"

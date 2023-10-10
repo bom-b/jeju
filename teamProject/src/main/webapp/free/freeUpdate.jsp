@@ -80,15 +80,8 @@ $(document).ready(function(){
             $('#ocontent').focus() ;
             return false ;
         }
-
-        alert('수정이 완료되었습니다.');
-
-        // 일정 시간 후 메시지 자동으로 사라지도록 설정
-        setTimeout(function () {
-            $('.alert').fadeOut('slow');
-        }, 3000); // 3초 후에 메시지 사라짐
     }
-  		}
+  	
   	</script>
 </head>
 <body>
@@ -100,10 +93,14 @@ $(document).ready(function(){
 			<div class="mainBox container my-5 py-5 wow fadeInUp"
 				data-wow-delay="0.1s">
 				<h4>자유롭게 글을 수정해보세요!</h4>
-				<form class="text-left container my-5 py-5"
-					action="<%=withFormTag%>" method="post"
-					enctype="multipart/form-data">
-					<input type="hidden" name="command" value="frUpdate"> <span><span
+				<form class="text-left container my-5 py-5" action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="command" value="frUpdate"> 
+						<input type="hidden" name="ono" value="${requestScope.bean.ono}">
+			<input type="hidden" name="pageNumber" value="<%=request.getParameter("pageNumber")%>"> 
+			<input type="hidden" name="pageSize" value="<%=request.getParameter("pageSize")%>">
+			<input type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
+			<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
+			<span><span
 						class="caution">* </span> 필수 입력사항 입니다.</span><br>
 					<br>
 					<div class="form-group my-5 py-5">
@@ -147,7 +144,7 @@ $(document).ready(function(){
 					<div class="form-group my-5 py-5">
 						<label for="oregdate">작성일 :
 						</label> <input type="text" class="form-control short-input" id="oregdate"
-							name="oregdate" readonly>
+							name="oregdate"   readonly>
 					</div>
 
 					<script type="text/javascript">
