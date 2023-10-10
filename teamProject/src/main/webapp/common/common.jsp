@@ -40,6 +40,8 @@
 
 <!DOCTYPE html>
 <html>
+<link href="<%=appName%>/assets/css/font-All.css" rel="stylesheet">
+
 <head>
 	<meta charset="UTF-8">
 	<title>혼저옵서예~</title>
@@ -66,6 +68,16 @@
 			font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
 			color: orange;
 		}
+		#alert_box {
+        margin-top: 10px; /* 위쪽 margin을 조절합니다. */
+        margin-bottom: 1px; /* 아래쪽 margin을 조절합니다. */
+    	}
+    	.alert-dismissible {
+        margin: 10px; /* 모든 방향의 margin을 조절합니다. */
+    	}
+    	.alert-danger {
+        margin: 20px; /* 모든 방향의 margin을 조절합니다. */
+    	}
 	</style>
 </head>
 
@@ -108,92 +120,12 @@
 					
 				</div>
 			</div>
-		</nav>
-	<%-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="home.jsp">TlqkfdhodksehlsirhRotoirlifdl</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<c:if test="${whologin eq 0}">
-							<a class="nav-link" href="#">로그인</a>
-						</c:if>
-						<c:if test="${whologin ne 0}">
-							<a class="nav-link" href="#">${sessionScope.loginfo.name}님</a>
-						</c:if>
-					</li>
-					
-					<!-- member section -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">회원</a>
-						<ul class="dropdown-menu">
-							<c:if test="${whologin eq 0}">
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>meInsert">회원 가입</a></li>								
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>meLogin">로그인</a></li>
-							</c:if>		
-							<c:if test="${whologin ne 0}">				
-								<li><a class="dropdown-item" href="#">정보 수정</a></li>
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>meLogout">로그 아웃</a></li>
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>meDetail&id=${sessionScope.loginfo.id}">상세 보기</a></li>
-								<li><a class="dropdown-item" href="#">탈퇴하기</a></li>
-							</c:if>
-							<c:if test="${whologin eq 2}">
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>meList">목록 보기</a></li>
-							</c:if>
-						</ul>
-					</li>
-					
-					<!-- board section -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">게시물</a>
-						<ul class="dropdown-menu">
-							<c:if test="${whologin ne 0}">
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>boInsert">게시물 등록</a></li>
-							</c:if>
-							<li><a class="dropdown-item" href="<%=notWithFormTag%>boList">목록 보기</a></li>
-						</ul>
-					</li>
-					
-					<!-- product section -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">상품</a>
-						<ul class="dropdown-menu">
-							<c:if test="${whologin eq 2}">
-								<li><a class="dropdown-item" href="<%=notWithFormTag%>prInsert">상품 등록</a></li>
-							</c:if>
-							<li><a class="dropdown-item" href="<%=notWithFormTag%>prList">목록 보기</a></li>
-						</ul>
-					</li>		
-					
-					<!-- view section -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">데이터 보기</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="<%=notWithFormTag%>vwList">목록 보기
-								</a>
-							</li>
-						</ul>
-					</li>	
-					
-				</ul>
-			</div>
-		</div>
-	</nav> --%>
-	
+		</nav>	
 	<c:if test="${not empty sessionScope.alertMessage}">
 		<%-- 사용자에게 주의/경고/오류 등을 알려 주기 위한 Alert Box --%>
-		<div id="alert_box" class="alert alert-danger alert-dismissible">
+		<div id="alert_box" class="alert alert-danger alert-dismissible gmarket-m">
 	    	<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	    	<strong>@@@</strong> ${sessionScope.alertMessage}
+	    	<strong>알림 : </strong> ${sessionScope.alertMessage}
 	  	</div>
 	</c:if>
 	<%-- 보여준 Alert Box를 session 영역에서 제거합니다. --%>

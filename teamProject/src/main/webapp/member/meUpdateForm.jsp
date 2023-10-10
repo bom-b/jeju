@@ -128,7 +128,19 @@
 		h2{
 			font-size: 70px;
 		}
-		
+		#buttonset {
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
   	</style>
 </head>
 <body>
@@ -180,7 +192,7 @@
 			</div>	
 			<div class="input-group">
 				<span class="input-group-text sdms-font" style="font-size: 30px">핸드폰 번호</span>
-				<input class="form-control" type="number" id="mphoneno" name="mphoneno">				
+				<input class="form-control" type="text" id="mphoneno" name="mphoneno">				
 			</div>
 			<div class="input-group">
                 <span class="input-group-text sdms-font" style="font-size: 30px">생일</span>
@@ -196,7 +208,7 @@
 					등록
 				</button>
 				&nbsp;&nbsp;&nbsp;
-				<button type="reset" class="btn btn-info sdms-font" style="font-size: 25px">초기화</button>				
+				<button type="reset" class="btn btn-primary sdms-font" style="font-size: 25px">초기화</button>				
 			</div>
 		</form>
 	</div>

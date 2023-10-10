@@ -14,38 +14,63 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Set the background image and adjust its size */
             background-image: url('assets/img/loginbackground.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
-        }
-        
-        .bottom_button { margin-top: 20px; } /* Increase the margin-top for spacing */
-        @font-face{
-        font-family:'SDMiSaeng'; /*글꼴*/
-        src: local('SDMiSaeng'),
-            url('SDMiSaeng.eot'),
-            url('SDMiSaeng.woff') format('woff'),
-            url('assets/font-awesome/fonts/SDMiSaeng.ttf') format('truetype');
-        }
+        }        
 
         .sdms-font{
             font-family: 'SDMiSaeng', sans-serif;/*웹 폰트 지정*/
             color: orange;
         }
+        
         .detail-table{
-            background-color: white;
             width: 60%;
-            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .detail-table th, .detail-table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .detail-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .detail-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .detail-table tr:hover {
+            background-color: #ddd;
+        }
+        
+      	#backButton {
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="detail-container sdms-font">
         <h2 style="font-size: 50px;">${requestScope.bean.name}님의 회원 정보</h2>
-        <table class="table">
-            <tbody class="detail-table" style="font-size: 30px;">
+        <table class="detail-table">
+            <tbody style="font-size: 30px;">
                 <tr>
                     <td align="center">아이디 :</td>
                     <td>${requestScope.bean.id}</td>
