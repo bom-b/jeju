@@ -75,7 +75,7 @@
   	
  // 글쓰기
  function writeForm() {
-  location.href = '<%=notWithFormTag%>frInsert';
+  location.href = '<%=notWithFormTag%>frInsert&id=${sessionScope.loginfo.id}';
 }
 
 

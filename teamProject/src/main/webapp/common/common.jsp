@@ -69,8 +69,8 @@
 			color: orange;
 		}
 		#alert_box {
-        margin-top: 10px; /* 위쪽 margin을 조절합니다. */
-        margin-bottom: 1px; /* 아래쪽 margin을 조절합니다. */
+        margin-top: 65px; /* 위쪽 margin을 조절합니다. */
+        margin-bottom: 5px; /* 아래쪽 margin을 조절합니다. */
     	}
     	.alert-dismissible {
         margin: 10px; /* 모든 방향의 margin을 조절합니다. */
