@@ -148,7 +148,7 @@
 					                           	<td colspan="1" class="col-sm-1 comment">
 					                           		<span class=" font-white badge badge-secondary"  style="font-size: 14px;">${bean.category}</span>
 					                            </td>
-					                            <td colspan="11" class="col-sm-9 comment">
+					                            <td colspan="11" class="col-sm-11 comment">
 					                            	<a href="<%=notWithFormTag%>fdDetail&no=${bean.no}">
 					                            		<span class=" thumbnail-title text-primary thum_title">${bean.title}</span>
 					                            	</a>
