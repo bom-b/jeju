@@ -242,14 +242,15 @@ a {
 </head>
 <body>
 	<!-- 헤더 Start -->
-	<div class= "container-xxl py-5 bg-dark hero-header mb-5"
-	 style="background: linear-gradient(rgba(61, 64, 71, 0.7), rgba(0, 0, 0, 0.7)), url('<%=appName%>/assets/img/freeboardMain.jpg');">
+	<div class="container-xxl py-5 bg-dark hero-header mb-5"
+		style="background: linear-gradient(rgba(61, 64, 71, 0.7), rgba(0, 0, 0, 0.7)), url('<%=appName%>/assets/img/freeboardMain.jpg');">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
 					<h1 class="display-3 text-white" style="margin-bottom: 20px;">
 						자유게시판</h1>
-					  	<p  style="color: #888;" class="medium-paragraph">제주도의 관한 궁금한점!하고싶은 이야기! 모두해보세요!</p>
+					<p style="color: #888;" class="medium-paragraph">제주도의 관한
+						궁금한점!하고싶은 이야기! 모두해보세요!</p>
 					<p class="medium-paragraph"></p>
 				</div>
 			</div>
@@ -269,14 +270,18 @@ a {
 				<div class="contents">
 
 
-				<span class="sub-title"><strong>작성자: </strong></span> <c:choose>
+					<span class="sub-title"><strong>작성자: </strong></span>
+					<c:choose>
 						<c:when test="${empty requestScope.bean.id}">
 			                탈퇴한 회원
 			            </c:when>
 						<c:otherwise>
-							<img src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}" height="25px" width="25px"><a href="<%=notWithFormTag%>meView&id=${bean.id}">
-		                    	 <span class="">${requestScope.bean.id}</span>
-		                    </a>
+							<img
+								src="<%=appName%>/assets/img/${requestScope.bean2.ratingimg}"
+								height="25px" width="25px">
+							<a href="<%=notWithFormTag%>meView&id=${bean.id}"> <span
+								class="">${requestScope.bean.id}</span>
+							</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -296,40 +301,51 @@ a {
 				<!-- openForum 이미지 시작 -->
 				<div id="backButton" style="text-align: left;">
 					<!-- 이미지 1 -->
-					<a data-wow-delay="0.3s"
-						href="<%=appName%>/upload/${requestScope.bean.oimage1}"
-						data-lightbox="my-gallery"> <img
-						src="<%=appName%>/upload/${requestScope.bean.oimage1}"
-						width="100px" height="100px" alt="이미지 1">
-					</a>
+					<c:if test="${not empty requestScope.bean.oimage1}">
+						<a data-wow-delay="0.3s"
+							href="<%=appName%>/upload/${requestScope.bean.oimage1}"
+							data-lightbox="my-gallery"> <img
+							src="<%=appName%>/upload/${requestScope.bean.oimage1}"
+							width="100px" height="100px" alt="이미지 1">
+						</a>
+					</c:if>
 
 					<!-- 이미지 2 -->
-					<a href="<%=appName%>/upload/${requestScope.bean.oimage2}"
-						data-lightbox="my-gallery"> <img
-						src="<%=appName%>/upload/${requestScope.bean.oimage2}"
-						width="100px" height="100px" alt="이미지 2">
-					</a>
+					<c:if test="${not empty requestScope.bean.oimage2}">
+						<a href="<%=appName%>/upload/${requestScope.bean.oimage2}"
+							data-lightbox="my-gallery"> <img
+							src="<%=appName%>/upload/${requestScope.bean.oimage2}"
+							width="100px" height="100px" alt="이미지 2">
+						</a>
+					</c:if>
 
 					<!-- 이미지 3 -->
-					<a href="<%=appName%>/upload/${requestScope.bean.oimage3}"
-						data-lightbox="my-gallery"> <img
-						src="<%=appName%>/upload/${requestScope.bean.oimage3}"
-						width="100px" height="100px" alt="이미지 3">
-					</a>
+					<c:if test="${not empty requestScope.bean.oimage3}">
+						<a href="<%=appName%>/upload/${requestScope.bean.oimage3}"
+							data-lightbox="my-gallery"> <img
+							src="<%=appName%>/upload/${requestScope.bean.oimage3}"
+							width="100px" height="100px" alt="이미지 3">
+						</a>
+					</c:if>
 
 					<!-- 이미지 4 -->
-					<a href="<%=appName%>/upload/${requestScope.bean.oimage4}"
-						data-lightbox="my-gallery"> <img
-						src="<%=appName%>/upload/${requestScope.bean.oimage4}"
-						width="100px" height="100px" alt="이미지 4">
-					</a>
+					<c:if test="${not empty requestScope.bean.oimage4}">
+						<a href="<%=appName%>/upload/${requestScope.bean.oimage4}"
+							data-lightbox="my-gallery"> <img
+							src="<%=appName%>/upload/${requestScope.bean.oimage4}"
+							width="100px" height="100px" alt="이미지 4">
+						</a>
+					</c:if>
 
 					<!-- 이미지 5 -->
-					<a href="<%=appName%>/upload/${requestScope.bean.oimage5}"
-						data-lightbox="my-gallery"> <img
-						src="<%=appName%>/upload/${requestScope.bean.oimage5}"
-						width="100px" height="100px" alt="이미지 5">
-					</a>
+					<c:if test="${not empty requestScope.bean.oimage5}">
+						<a href="<%=appName%>/upload/${requestScope.bean.oimage5}"
+							data-lightbox="my-gallery"> <img
+							src="<%=appName%>/upload/${requestScope.bean.oimage5}"
+							width="100px" height="100px" alt="이미지 5">
+						</a>
+					</c:if>
+
 				</div>
 			</div>
 
