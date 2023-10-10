@@ -25,7 +25,8 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9690708443890b865a0c886aadfeff8&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript">
-	function openContent() {
+	function openContent(event) {
+		event.preventDefault();
 		document.getElementById("detailContent").style.display = "block";
 	}
 	$(function() {
@@ -84,58 +85,36 @@
 						<p class="u-large-text u-text u-text-variant u-text-2">${fn:substring(data.econtent,0,100)}......</p>
 						<a href="#"
 							class="u-btn u-button-style u-custom-color-11 u-text-white u-btn-1"
-							onclick="openContent()">자세히 보기</a>
+							onclick="openContent(event)">자세히 보기</a>
 					</c:if>
 					<c:if test="${fn:length(data.econtent)<100 }">
 						<p class="u-large-text u-text u-text-variant u-text-2">${requestScope.eventDetail.econtent}</p>
-						<a href=""
-							class="u-btn u-button-style u-custom-color-11 u-text-white u-btn-1"
-							style="display: none;">자세히 보기</a>
+						<a href="javascript:;" 
+							class="u-btn u-button-style u-custom-color-11 u-text-white u-btn-1" onclick="openContent();"
+							>자세히 보기</a>
 					</c:if>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!--     자세한 설명 start -->
-	<section class="u-clearfix u-section-2" id="detailContent">
+	 <div class="row" style="margin-bottom: -350px;">
+    <div class="col-sm-5">
+    <section class="u-clearfix u-section-2" id="detailContent" style="display: none;">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<div
 				class="u-custom-color-4 u-shape u-shape-rectangle u-text-custom-color-4 u-shape-1"></div>
 			<div
 				class="u-align-left u-container-style u-expanded-width-xs u-group u-group-1">
 				<div class="u-container-layout u-container-layout-1">
-					<div
-						class="u-align-left u-border-2 u-border-palette-3-base u-line u-line-vertical u-line-1"></div>
 					<p class="u-large-text u-text u-text-variant u-text-2">${requestScope.eventDetail.econtent}</p>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!--     자세한 설명 end -->
-	<section class="u-clearfix u-grey-90 u-section-1" id="sec-8486">
-      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-sheet-1">
-        <div class="u-expanded-width u-list u-list-1">
-          <div class="u-repeater u-repeater-1">
-            <div class="u-container-align-center u-container-style u-image u-image-round u-list-item u-radius-50 u-repeater-item u-shading u-image-1" data-image-width="1500" data-image-height="1000">
-              <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
-                <h6 class="u-align-center u-text u-text-default u-text-1"> Food Sourcing</h6>
-              </div>
-            </div>
-            <div class="u-container-align-center u-container-style u-image u-image-round u-list-item u-radius-50 u-repeater-item u-shading u-image-2" data-image-width="2250" data-image-height="1500">
-              <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
-                <h6 class="u-align-center u-text u-text-default u-text-2"> Menu Development</h6>
-              </div>
-            </div>
-            <div class="u-container-align-center u-container-style u-image u-image-round u-list-item u-radius-50 u-repeater-item u-shading u-image-3" data-image-width="1500" data-image-height="1000">
-              <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
-                <h6 class="u-align-center u-text u-text-default u-text-3"> Restaurant</h6>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-	<%-- <div class="container post" style="margin-top: -500px;">
+        <div class="col-sm-7">
+        <div class="container post" style="margin-top: -250px;">
 		<div>
 			<div class="carousel">
 				<ul class="slides" style="border-radius: 20px;">
@@ -143,7 +122,7 @@
 					<li class="slide-container">
 						<div class="slide-image">
 							<img
-								src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage1}">
+								src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage2}">
 						</div>
 						<div class="carousel-controls">
 							<label for="img-3" class="prev-slide"> <span>&lsaquo;</span>
@@ -155,7 +134,7 @@
 					<li class="slide-container">
 						<div class="slide-image">
 							<img
-								src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage2}">
+								src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage3}">
 						</div>
 						<div class="carousel-controls">
 							<label for="img-1" class="prev-slide"> <span>&lsaquo;</span>
@@ -167,7 +146,7 @@
 					<li class="slide-container">
 						<div class="slide-image">
 							<img
-								src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage3}">
+								src="<%=appName%>/assets/img/event_img/${requestScope.eventDetail.eimage4}">
 						</div>
 						<div class="carousel-controls">
 							<label for="img-2" class="prev-slide"> <span>&lsaquo;</span>
@@ -183,8 +162,11 @@
 				</ul>
 			</div>
 		</div>
-	</div> --%>
-
+	</div> 
+        </div>
+	</div>
+	<!--     자세한 설명 end -->
+<!-- 지도 -->
 	    <section class="u-clearfix mapCss" id="carousel_4cef">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="data-layout-selected u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">

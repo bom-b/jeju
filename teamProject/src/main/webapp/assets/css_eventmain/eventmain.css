@@ -88,6 +88,7 @@
 }
 
 .event-detail-header {
+	margin-top: -100px;
 	background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/ev-detail4.png);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -233,8 +234,8 @@ color: #435334;
 }
 
 .u-clearfix.mapCss {
-    margin-top: 100px;
-    margin-bottom: 200px;
+margin-top: 370px;
+    margin-bottom: 100px;
     background-color: #ffffff;
     border-radius: 14px;
     margin-left: 100px;
@@ -270,15 +271,26 @@ color: #435334;
 	vertical-align:middle;
 }
 .category-text {
-	margin-top: 0px;
+	margin-top: 10px;
 	font-size: 17px;
 	color: black;
 	padding: 0px;
 }
 
+.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
+	padding-left: 25px;
+    text-align: center;
+    width: 200px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 91.5938px;
+    left: 478.766px;
+    z-index: 1;
+    display: block;
+}
 
-.ui-datepicker {
-	font-size: 30px;
+/* .ui-datepicker {
+	font-size: 16px;
 }
 
 .ui-datepicker select.ui-datepicker-year {
@@ -289,7 +301,7 @@ color: #435334;
 
 .ui-datepicker td span,
 .ui-datepicker td a {
-	font-size: 40px;
+	font-size: 16px;
 }
 
 .ui-datepicker-week-end {
@@ -299,7 +311,7 @@ color: #435334;
 .ui-datepicker-week-end .ui-state-default {
 	color: red;
 }
-
+ */
 .contact_section {
 	width: 100%;
 	float: left;

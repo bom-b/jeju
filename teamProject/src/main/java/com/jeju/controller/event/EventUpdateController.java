@@ -57,9 +57,9 @@ public class EventUpdateController extends SuperClass {
 			} else {
 //				response.sendRedirect("jeju?command=evMain");
 				//메시지담을 str
-				String alerMsg = "수정이 완료되었습니다.";//이걸 아까 만든 jsp로 줘야되는디...그 리스트 넘겨줄때처럼 담아봐
+				String alerMsg = "수정이 완료되었습니다.";
 				request.setAttribute("alertMsg", alerMsg);
-				super.gotoPage("/event/eventPopup.jsp");
+				super.gotoPage("/event/eventUpPopup.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

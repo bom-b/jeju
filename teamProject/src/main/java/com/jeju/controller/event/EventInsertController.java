@@ -43,8 +43,9 @@ public class EventInsertController extends SuperClass {
 				super.gotoPage("event/evInsert.jsp");
 			} else {
 				//response.sendRedirect("jeju?command=evMain&confirmDate=allDate");
-				response.sendRedirect("jeju?command=evMain");
-//				 new EventMainController().doGet(request, response);
+				String alerUMsg = "등록이 완료되었습니다.";
+				request.setAttribute("alerUMsg", alerUMsg);
+				super.gotoPage("/event/eventInPopup.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
