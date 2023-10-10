@@ -95,7 +95,7 @@
 <!-- 등급 기준 안내 -->	
 
 <!-- 작성한 게시물 -->	
-	<div class="bo-box wow fadeInUp" data-wow-delay="0.1s">
+	<div class="bo-box wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 100px;">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-sm-10 free-bean"> 
