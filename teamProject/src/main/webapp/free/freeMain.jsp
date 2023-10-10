@@ -74,17 +74,25 @@
   	}
   	
  // 글쓰기
-  	function writeForm() {
-  		location.href = '<%=notWithFormTag%>frInsert';
+ function writeForm() {
+  location.href = '<%=notWithFormTag%>frInsert';
+}
+
+
+</script>
+<!-- 글 내용을 줄이는 JavaScript 함수 추가 -->
+<script type="text/javascript">
+	function shortenContent(content, length) {
+		if (content.length > length) {
+			return content.substring(0, length) + '...'; // 글 내용을 지정한 길이만큼 잘라서 '...'을 추가합니다.
+		} else {
+			return content; // 글 내용이 길이보다 짧다면 그대로 반환합니다.
+		}
 	}
 </script>
 <style type="text/css">
-
-
 .display-3 {
-	
 	color: white;
-
 }
 
 /* 검색 옵션 select에 스타일 적용 */
@@ -116,12 +124,14 @@
 .search-box button {
 	margin-left: 10px; /* 왼쪽 여백 설정 */
 }
+
 .freeBoard:hover {
 	/* 호버 시 적용될 스타일을 여기에 추가합니다. */
 	background-color: #ff9800; /* 예시: 배경색을 바꿉니다. */
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 	transition: background-color 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
 }
+
 .freeboardform {
 	position: relative;
 	min-height: 1px;
@@ -130,14 +140,14 @@
 </head>
 <body>
 	<!-- 헤더 Start -->
-	<div class= "container-xxl py-5 bg-dark hero-header mb-5"
-	 style="background: linear-gradient(rgba(61, 64, 71, 0.7), rgba(0, 0, 0, 0.7)), url('<%=appName%>/assets/img/freeboardMain.jpg');">
+	<div class="container-xxl py-5 bg-dark hero-header mb-5"
+		style="background: linear-gradient(rgba(61, 64, 71, 0.7), rgba(0, 0, 0, 0.7)), url('<%=appName%>/assets/img/freeboardMain.jpg');">
 		<div class="container my-5 py-5">
 			<div class="row align-items-center g-5">
 				<div class="col-lg-6 text-center text-lg-start">
 					<h1 class="display-3 text-white" style="margin-bottom: 20px;">
 						자유게시판</h1>
-					  	<p class="medium-paragraph">제주도의 관한 궁금한점!하고싶은 이야기! 모두해보세요!</p>
+					<p class="medium-paragraph">제주도의 관한 궁금한점!하고싶은 이야기! 모두해보세요!</p>
 					<p class="medium-paragraph"></p>
 				</div>
 			</div>
@@ -256,7 +266,15 @@
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
 												</a> <span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
-											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
+											<small class="thumbnail-content thum_contents"> <script>
+												var content = "${bean.ocontent}";
+												var shortenedContent = shortenContent(
+														content, 20); // 글 내용을 10글자로 줄입니다.
+												document
+														.write(shortenedContent); // 줄어든 글 내용을 출력합니다.
+											</script>
+											</small>
+
 											<div class="text-end"></div>
 										</div>
 									</div>
@@ -277,14 +295,21 @@
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
-											style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+											style="background-image: url('<%=appName%>/upload/${bean.oimage1}');"></div>
 										<div class="w-100 d-flex flex-column text-start ps-4">
 											<h5 class="d-flex justify-content-between border-bottom pb-2">
 												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}"> <span
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
 												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
-											<small class="thumbnail-content  thum_contents">${bean.ocontent}</small>
+												<small class="thumbnail-content thum_contents"> <script>
+												var content = "${bean.ocontent}";
+												var shortenedContent = shortenContent(
+														content, 20); // 글 내용을 10글자로 줄입니다.
+												document
+														.write(shortenedContent); // 줄어든 글 내용을 출력합니다.
+											</script>
+											</small>
 											<div class="text-end"></div>
 										</div>
 									</div>
@@ -301,18 +326,25 @@
 							<c:if test="${empty requestScope.qu_datalist}">
 								<p>'질문' 카테고리의 검색결과가 존재하지 않습니다.</p>
 							</c:if>
-							<c:forEach var="bean" items="${requestScope.qu_datalist }">
+							<c:forEach var="bean" items="${requestScope.qu_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
-											style="background-image: url('<%=appName%>/upload/${bean.oimage1 }');"></div>
+											style="background-image: url('<%=appName%>/upload/${bean.oimage1}');"></div>
 										<div class="w-100 d-flex flex-column text-start ps-4">
 											<h5 class="d-flex justify-content-between border-bottom pb-2">
 												<a href="<%=notWithFormTag%>frDetail&ono=${bean.ono}"> <span
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
-												</a><span class="badge badge-secondary">${bean.pcategory }</span>
+												</a><span class="badge badge-secondary">${bean.pcategory}</span>
 											</h5>
-											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
+												<small class="thumbnail-content thum_contents"> <script>
+												var content = "${bean.ocontent}";
+												var shortenedContent = shortenContent(
+														content, 20); // 글 내용을 10글자로 줄입니다.
+												document
+														.write(shortenedContent); // 줄어든 글 내용을 출력합니다.
+											</script>
+											</small>
 											<div class="text-end"></div>
 										</div>
 									</div>
@@ -329,7 +361,7 @@
 							<c:if test="${empty requestScope.infor_datalist}">
 								<p>'정보' 카테고리의 검색결과가 존재하지 않습니다.</p>
 							</c:if>
-							<c:forEach var="bean" items="${requestScope.infor_datalist }">
+							<c:forEach var="bean" items="${requestScope.infor_datalist}">
 								<div class="col-lg-12">
 									<div class="d-flex align-items-center">
 										<div class="thumnail_img flex-shrink-0 img-fluid rounded"
@@ -340,7 +372,14 @@
 													class="thumbnail-title text-primary  thum_title">${bean.oname }</span>
 												</a><span class="badge badge-secondary">${bean.pcategory }</span>
 											</h5>
-											<small class="thumbnail-content  thum_contents">${bean.ocontent }</small>
+											<small class="thumbnail-content thum_contents"> <script>
+												var content = "${bean.ocontent}";
+												var shortenedContent = shortenContent(
+														content, 20); // 글 내용을 10글자로 줄입니다.
+												document
+														.write(shortenedContent); // 줄어든 글 내용을 출력합니다.
+											</script>
+											</small>
 											<div class="text-end"></div>
 										</div>
 									</div>
