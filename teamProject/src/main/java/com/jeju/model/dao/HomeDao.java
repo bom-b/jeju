@@ -20,8 +20,11 @@ public class HomeDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = " SELECT * FROM (SELECT * FROM event ORDER BY regdate) WHERE ROWNUM <= 3 ";
-		//String sql = " SELECT * FROM (SELECT * FROM event ORDER BY regdate DESC) WHERE ROWNUM <= 3 ";
+		// 최신 등록순
+		String sql = " SELECT * FROM (SELECT * FROM event ORDER BY regdate DESC) WHERE ROWNUM <= 3 ";
+		
+		// 시작일자 최신순
+		// String sql = " SELECT * FROM (SELECT * FROM event ORDER BY startdate DESC) WHERE ROWNUM <= 3 ";
 		
 		conn = super.getConnection();
 		pstmt = conn.prepareStatement(sql);
