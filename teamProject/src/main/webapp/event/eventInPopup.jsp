@@ -6,7 +6,6 @@
 	String mappingName = "/jeju" ;  // in FrontController.java file
 	// form 태그가 아닌 영역에서 사용할 변수
 	String notWithFormTag = appName + mappingName + "?command=";
-	set
 %>	
 <!DOCTYPE html>
 <html>
@@ -15,13 +14,10 @@
  <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 </head>
 <script>
-$(document).ready(function(){
-
+setTimeout(function(){
 	alert('${requestScope.alerUMsg}');
-	
-	<%-- location.href="<%=notWithFormTag%>evMain"; --%>
-}); 
-
+	 location.href="<%=notWithFormTag%>evMain";
+}, 2000);
 </script>
 <body>
 <div style="text-align: center;">

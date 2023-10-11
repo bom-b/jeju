@@ -14,11 +14,10 @@
  <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 </head>
 <script>
-$(document).ready(function(){
+setTimeout(function(){
 	alert('${requestScope.alertMsg}');
-	location.href="<%=notWithFormTag%>evMain";
-
-});
+	 location.href="<%=notWithFormTag%>evMain";
+}, 2000);
 </script>
 <body>
 <div style="text-align: center;">

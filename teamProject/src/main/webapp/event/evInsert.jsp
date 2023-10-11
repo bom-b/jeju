@@ -226,8 +226,8 @@ border: 3px solid #84c0a0 !important;
 								
 						
 								<div class="order_bt">
-								<input type="submit" value="등록" >
-								     <!-- <input type="submit" value="등록" onclick="return validCheck();"> -->
+						
+								    <input type="submit" value="등록" onclick="return validCheck();"> 
 								<!-- 	<button type="submit" >등록</button> -->
 								</div>
 							</div>

@@ -47,7 +47,7 @@ public class EventMainController extends SuperClass {
 			Paging pageInfoFu = new Paging(pageNumber, pageSize, totalCountFu, url, mode, keyword, isGrid);
 
 			// 전체
-			List<Event> eventAllList = dao.selectEventAll("전체", pageInfoPr);
+			List<Event> eventAllList = dao.selectEventAll("전체", pageInfoAll);
 			request.setAttribute("eventAllList", eventAllList);
 
 			// 진행중

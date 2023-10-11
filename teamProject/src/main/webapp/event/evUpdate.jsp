@@ -18,7 +18,6 @@
 <script type="text/javascript" src="<%=appName%>/assets/css_eventmain/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ 
-	
 	/* 이전에 선택했던 카테고리 정보가 자동으로 선택되어 있도록 합니다. */
 	var category = '${requestScope.bean.evsection}';
 	var engName = '';
@@ -195,7 +194,7 @@ input[type="submit"]:focus, input[type="submit"]:active {
 								<input type="text" class="mail_text" name="eplace" id="eplace" value="${requestScope.bean.eplace}">
 								<br />
 								
-								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent"></textarea>
+								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent" >${requestScope.bean.econtent}</textarea>
 								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin: 20px auto 0px auto">
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
