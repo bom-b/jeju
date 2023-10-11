@@ -18,9 +18,18 @@ private String eimage3;
 private String eimage4;
 private String eimage5;
 private String regdate;
+private String evsection;
 
 public Event() {
 	// TODO Auto-generated constructor stub
+}
+
+public String getEvsection() {
+	return evsection;
+}
+
+public void setEvsection(String evsection) {
+	this.evsection = evsection;
 }
 
 public String getStartdate() {
@@ -123,8 +132,16 @@ public String toString() {
 	return "Event [eno=" + eno + ", id=" + id + ", ename=" + ename + ", ephoneno=" + ephoneno + ", startdate="
 			+ startdate + ", enddate=" + enddate + ", econtent=" + econtent + ", eplace=" + eplace + ", emap=" + emap
 			+ ", eimage1=" + eimage1 + ", eimage2=" + eimage2 + ", eimage3=" + eimage3 + ", eimage4=" + eimage4
-			+ ", eimage5=" + eimage5 + ", regdate=" + regdate + "]";
+			+ ", eimage5=" + eimage5 + ", regdate=" + regdate + ", evsection=" + evsection + ", getEvsection()="
+			+ getEvsection() + ", getStartdate()=" + getStartdate() + ", getEnddate()=" + getEnddate() + ", getEno()="
+			+ getEno() + ", getId()=" + getId() + ", getEname()=" + getEname() + ", getEphoneno()=" + getEphoneno()
+			+ ", getEcontent()=" + getEcontent() + ", getEplace()=" + getEplace() + ", getEmap()=" + getEmap()
+			+ ", getEimage1()=" + getEimage1() + ", getEimage2()=" + getEimage2() + ", getEimage3()=" + getEimage3()
+			+ ", getEimage4()=" + getEimage4() + ", getEimage5()=" + getEimage5() + ", getRegdate()=" + getRegdate()
+			+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 }
+
+
 
 
 

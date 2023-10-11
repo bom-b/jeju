@@ -17,6 +17,27 @@
 <!-- 달력 -->
 <script type="text/javascript" src="<%=appName%>/assets/css_eventmain/jquery-ui.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){ 
+	/* 이전에 선택했던 카테고리 정보가 자동으로 선택되어 있도록 합니다. */
+	var category = '${requestScope.bean.evsection}';
+	var engName = '';
+	if (category === "진행중") {
+	    engName = "진행중";
+	} else if (category === "종료") {
+	    engName = "종료";
+	} else if (category === "예정중") {
+	    engName = "예정중";
+	} 
+	
+	var optionList = $('#category option');
+
+	$('#category option').each(function(){
+        if($(this).val() == engName){
+            $(this).prop('selected', true);
+        }
+    });
+	
+});
 	$(function() {
 		$('#startdate').datepicker({
 			changeMonth : true,
@@ -83,30 +104,30 @@
 		}
 		/* 이미지는 필수 입력 사항입니다. */
 		var selectedFile = $('#eimage1').prop('files')[0];
-		if(!selectedFile){
+		if (!selectedFile) {
 			swal('이미지는 최소 3장 이상 등록해주세요.');
 			$('#eimage1').focus();
-			return false; 
+			return false;
 		}
-		
+
 		/* 이미지는 필수 입력 사항입니다. */
 		var selectedFile = $('#eimage2').prop('files')[0];
-		if(!selectedFile){
+		if (!selectedFile) {
 			swal('이미지는 최소 3장 이상 등록해주세요.');
 			$('#eimage2').focus();
-			return false; 
+			return false;
 		}
-		
+
 		/* 이미지는 필수 입력 사항입니다. */
 		var selectedFile = $('#eimage3').prop('files')[0];
-		if(!selectedFile){
+		if (!selectedFile) {
 			swal('이미지는 최소 3장 이상 등록해주세요.');
 			$('#eimage3').focus();
-			return false; 
+			return false;
 		}
 
 		var isCheck = false; /* 확장자 체크에 충족하면 true가 됩니다. */
-		
+
 		const imgCheck = [ '.png', '.jpg' ]; /* 확장자 체크용 배열 */
 		for (var i = 0; i < imgCheck.length; i++) {
 			if (eimage + i[i].endsWith(imgCheck[i])) {
@@ -114,96 +135,70 @@
 				break;
 			}
 		}
-		
-		//이미지 체크
-/* 	      var cnt = 0;
-	      for (var i = 0; i < 5; i++) {
-	         if($("input[type=file]")[i].id !=""){//eimage1~eimage5를 가져옴
-	        	 alert("여기 와랄라ㅏㄹ라: ");
-	            cnt++;
-	         }
-	      }
-	      if (cnt <= 3 || cnt == 0) {
-	         swal('이미지는 3개 이상 추가해야 등록 가능해요.');
-	         return false;
-	      } */
-	      
-	    /*   var cnt = 0;
-	      for (var i = 0; i < 5; i++) {
-	         if($("input[type=file]")[i].id !=""){//eimage1~eimage5를 가져옴
-	            cnt++;
-	         }
-	      }
-	      if (cnt <= 3 || cnt == 0) {
-	         swal('이미지는 3개 이상 추가해야 등록 가능해요.');
-	         return false;
-	      } */
-	}
-	
-	
-	/* function addElement() {
-	 base++
-	 var element = document.createElement("input");
-	 element.type="file";
-	 element.id = 'eimage1'+base;
-	 document.body.appendChild(element)
-	 } */
 </script>
 <style type="text/css">
-*{
-font-family: 'TheJamsil400';
+* {
+	font-family: 'TheJamsil400';
 }
 
 input[type="submit"] {
-font-family: 'TheJamsil400';
-color: #757575;
-        width: 100px;
-        padding: 5px;
-        font-size: 20px;
-        cursor: pointer;
-border: 3px solid #84c0a0 !important;
-        background: #ffffff;
-        border-radius: 4px;
-        box-shadow: 2px 2px 15px #ccc;
-        transition: 150ms linear all;
-      }
+	font-family: 'TheJamsil400';
+	color: #757575;
+	width: 100px;
+	padding: 5px;
+	font-size: 20px;
+	cursor: pointer;
+	border: 3px solid #84c0a0 !important;
+	background: #ffffff;
+	border-radius: 4px;
+	box-shadow: 2px 2px 15px #ccc;
+	transition: 150ms linear all;
+}
 
-      input[type="submit"]:hover {
-        background: #9eb384;
-      }
+input[type="submit"]:hover {
+	background: #9eb384;
+}
 
-      input[type="submit"]:focus, input[type="submit"]:active {
-        outline: none;
-      }
+input[type="submit"]:focus, input[type="submit"]:active {
+	outline: none;
+}
 
-      .justwrap {
-        margin-bottom: 50px;
-      }
+.justwrap {
+	margin-bottom: 50px;
+}
 </style>
 </head>
 <body>
 	<!-- contact section start -->
-	<div class="contact_section" style="margin-top:130px;">
+	<div class="contact_section" style="margin-top: 130px;">
 		<div class="container">
 			<div class="contact_section_2">
 				<div class="row">
 					<div class="col-md-12">
-						<h1 class="contact_taital">행사 등록</h1>
+						<h1 class="contact_taital">행사 수정</h1>
 						<form action="<%=withFormTag%>" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="command" value="evInsert">
-							<!-- <input type="hidden" name="confirmDate" id="confirmDate" value="allDate"> -->
+							<input type="hidden" name="command" value="evUpdate">
+							<%-- 	<input type="text" name="evsection" value="${requestScope.bean.evsection}">  --%>
+							<input type="hidden" name="pageNumber" value="<%=request.getParameter("pageNumber")%>">
+							<input type="hidden" name="pageSize" value="<%=request.getParameter("pageSize")%>">
+							<input type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
+							<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
+
+
+							<input type="hidden" name="eno" value="<%=request.getParameter("eno")%>">
 							<div class="mail_section_1">
-								<input type="text" class="mail_text_date" placeholder="시작 날짜" name="startdate" id="startdate">
-								<input type="text" class="mail_text_date" placeholder="종료 날짜" name="enddate" id="enddate">
-								<input type="text" class="mail_text" placeholder="행사명" name="ename" id="ename">
-								<input type="text" class="mail_text" placeholder="주최측 번호가 없으면 넣지 않으셔도 됩니다." name="ephoneno" id="ephoneno">
-								<input type="text" class="mail_text" placeholder="행사 위치" name="eplace" id="eplace">
+								<input type="text" class="mail_text_date" name="startdate" id="startdate" value="${requestScope.bean.startdate }">
+								<input type="text" class="mail_text_date" name="enddate" id="enddate" value="${requestScope.bean.enddate}">
+								<input type="text" class="mail_text" name="ename" id="ename" value="${requestScope.bean.ename}">
+								<input type="text" class="mail_text" name="ephoneno" id="ephoneno" value="${requestScope.bean.ephoneno }">
+								<input type="text" class="mail_text" name="eplace" id="eplace" value="${requestScope.bean.eplace}">
 								<br />
-								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent"></textarea>
+								
+								<textarea class="massage-bt" placeholder="행사내용" rows="5" id="econtent" name="econtent" >${requestScope.bean.econtent}</textarea>
 								<input class="mail_text" type="file" id="eimage1" name="eimage1" onchange="readURL(this);" style="margin: 20px auto 0px auto">
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
-								 <input class="mail_text" type="file" id="eimage2" name="eimage2" onchange="readURL(this);" style="margin: 0 auto">
+								<input class="mail_text" type="file" id="eimage2" name="eimage2" onchange="readURL(this);" style="margin: 0 auto">
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
 								<input class="mail_text" type="file" id="eimage3" name="eimage3" onchange="readURL(this);" style="margin: 0 auto">
@@ -216,19 +211,18 @@ border: 3px solid #84c0a0 !important;
 								<img id="image_section" class="image_preview" style="display: none; margin: 0 auto" />
 								<br />
 								<div>
-							<!-- 	<label for="evsection" class="insertGu">구분</label> -->
+									<!-- 	<label for="evsection" class="insertGu">구분</label> -->
 									<select name="evsection" id="evsection" class="justselect">
-										  <option value="진행중">진행중</option>
-										  <option value="종료">종료</option>
-										  <option value="예정중">예정중</option>
+										<option value="진행중">진행중</option>
+										<option value="종료">종료</option>
+										<option value="예정중">예정중</option>
 									</select>
 								</div>
-								
-						
+
+
 								<div class="order_bt">
-						
-								    <input type="submit" value="등록" onclick="return validCheck();"> 
-								<!-- 	<button type="submit" >등록</button> -->
+									<input type="submit" value="수정" onclick="return validCheck();">
+									<!-- 	<button type="submit" >등록</button> -->
 								</div>
 							</div>
 						</form>

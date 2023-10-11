@@ -6,44 +6,81 @@
 /* .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
 	background-color: green;
 } */
+/* 더잠실체 */
 @font-face {
-    font-family: 'Gmarket-s';
+    font-family: 'TheJamsil100';
+    font-weight: 100;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.ttf') format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TheJamsil300';
     font-weight: 300;
     font-style: normal;
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix') format('embedded-opentype'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2') format('woff2'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff') format('woff'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.ttf') format("truetype");
     font-display: swap;
-} 
+}
 @font-face {
-    font-family: 'Gmarket-m';
+    font-family: 'TheJamsil400';
+    font-weight: 400;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'TheJamsil500';
     font-weight: 500;
     font-style: normal;
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix') format('embedded-opentype'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2') format('woff2'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff') format('woff'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Medium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Medium.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Medium.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Medium.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Medium.ttf') format("truetype");
     font-display: swap;
-} 
+}
 @font-face {
-    font-family: 'Gmarket-l';
+    font-family: 'TheJamsil700';
     font-weight: 700;
     font-style: normal;
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix') format('embedded-opentype'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2') format('woff2'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff') format('woff'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Bold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Bold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Bold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Bold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Bold.ttf') format("truetype");
     font-display: swap;
-} 
+}
+@font-face {
+    font-family: 'TheJamsil800';
+    font-weight: 800;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-ExtraBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-ExtraBold.ttf') format("truetype");
+    font-display: swap;
+}
+
 .event-header {
 	background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/bg_event.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 430px;
 }
 
 .event-header img {
@@ -51,6 +88,7 @@
 }
 
 .event-detail-header {
+	margin-top: -100px;
 	background: linear-gradient(rgb(61 64 71 / 70%), rgb(0 0 0 / 70%)), url(../img/event_img/ev-detail4.png);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -77,44 +115,37 @@
 }
 
 .contest-waiting .waiting-item img {
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	object-fit: cover;
 
 }
 
-/*.fa {
-	color:inherit;
-	color:#84c0a0;
-	font-size: 2em;
-}*/
 .contest-waiting .waiting-item .down-content {
 	background-color: #f7f7f7;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
-
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	padding: 20px;
 }
 
 .nav-pills .nav-item .active {
 	border-bottom: inherit;
-	border-bottom: #b3d1ab 4px solid;
+	border-bottom: #9eb384 7px solid;
 }
 
 .contest-waiting .waiting-item .down-content h4 {
-	font-size: 20px;
+	font-size: 22px;
 /*	color: #84c0a0;*/
 color: #435334;
-	margin-bottom: 18px;
+	margin-bottom: 5px;
 	width: 100%;
 	text-align: center;
-	   font-family: 'Gmarket-m';
-	font-size: 2rem;
+	   font-family: 'TheJamsil400';
 	letter-spacing: -1px;
 }
 
 .contest-waiting .waiting-item .down-content p {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	font-weight: 600;
 }
 
@@ -144,10 +175,10 @@ color: #435334;
 .contest-waiting .waiting-item .down-content span.deadline em {
 	text-align: inherit;
 	font-style: normal;
-	font-size: 1.8rem;
+	font-size: 17px;
 	text-align: center;
 	letter-spacing: -1px;
-	    font-family: 'Gmarket-s';
+	    font-family: 'TheJamsil300';
 }
 
 .contest-waiting ul.pagination {
@@ -187,7 +218,7 @@ color: #435334;
 	font-size: inherit;
  font-family: 'Gmarket-s';
 	/*글꼴*/
-	font-size: 2rem;
+	font-size: 1.2rem;
 }
 
 .u-body {
@@ -202,6 +233,18 @@ color: #435334;
 	margin-bottom: -200px;
 }
 
+.u-clearfix.mapCss {
+margin-top: 370px;
+    margin-bottom: 100px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 550px;
+    padding-top: 20px;
+    padding-left: 50px;
+	}
+
 .contest-waiting .col-lg-4 {
 	margin-right: 3px;
 	margin-bottom: 28px;
@@ -212,21 +255,42 @@ color: #435334;
 
 .fa-calendar-check {
 /*	color: #84c0a0;*/
+    font-size: 30px;
 	color: #9eb384;
+	vertical-align:middle;
 }
 
 .fa-calendar-times {
+	    font-size: 30px;
 	color: #9eb384;
+	vertical-align:middle;
 }
-
+.fa-calendar-plus{
+	    font-size: 30px;
+	color: #9eb384;
+	vertical-align:middle;
+}
 .category-text {
-	font-size: 1.8rem;
+	margin-top: 10px;
+	font-size: 17px;
 	color: black;
+	padding: 0px;
 }
 
+.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
+	padding-left: 25px;
+    text-align: center;
+    width: 200px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 91.5938px;
+    left: 478.766px;
+    z-index: 1;
+    display: block;
+}
 
-.ui-datepicker {
-	font-size: 30px;
+/* .ui-datepicker {
+	font-size: 16px;
 }
 
 .ui-datepicker select.ui-datepicker-year {
@@ -237,7 +301,7 @@ color: #435334;
 
 .ui-datepicker td span,
 .ui-datepicker td a {
-	font-size: 40px;
+	font-size: 16px;
 }
 
 .ui-datepicker-week-end {
@@ -247,9 +311,8 @@ color: #435334;
 .ui-datepicker-week-end .ui-state-default {
 	color: red;
 }
-
+ */
 .contact_section {
-
 	width: 100%;
 	float: left;
 }
@@ -272,7 +335,7 @@ color: #435334;
 
 .mail_text {
 	width: 60%;
-	font-size: 25px;
+	font-size: 17px;
 	color: #757575;
 	border: 0px;
 	border: 3px solid #84c0a0 !important;
@@ -280,35 +343,32 @@ color: #435334;
 	padding: 10px 15px 10px 15px;
 	margin-top: 20px;
 	border-radius: 4px;
-	font-family: 'SDMiSaeng';
-		font-weight: 600;
+font-family: 'TheJamsil400';
 }
 .mail_text_date {
 	width: 30%;
-	font-size: 25px;
+	font-size: 17px;
 	color: #757575;
 	border: 0px;
 	border: 3px solid #84c0a0 !important;
 	background-color: #ffffff !important;
 	padding: 10px 15px 10px 15px;
-	margin-top: 20px;
 	border-radius: 4px;
-	font-family: 'SDMiSaeng';
-		font-weight: 600;
+	margin-top: 20px;
+	 font-family: 'TheJamsil400';
 }
 
 .massage-bt {
 	color: #757575;
 	width: 60%;
 	height: 110px;
-	font-size: 25px;
+	font-size: 17px;
 	border: 3px solid #84c0a0 !important;
 	background-color: #ffffff !important;
 	padding: 10px 15px 10px 15px;
 	border-radius: 4px;
-	font-family: 'SDMiSaeng';
+	font-family: 'TheJamsil400';
 	margin-top: 20px;
-		font-weight: 600;
 }
 
 .contact_taital {
@@ -317,8 +377,8 @@ color: #435334;
 	color: #757575;
 	text-align: center;
 	font-weight: bold;
-	font-size: 50px;
-	font-family: 'SDMiSaeng'
+	font-size: 38px;
+	 font-family: 'TheJamsil500';
 }
 
 .send_bt a {
@@ -404,7 +464,7 @@ color: #435334;
 ul.slides {
     display: block;
     position: relative;
-    height: 600px;
+    height: 500px;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -438,6 +498,16 @@ ul.slides input {
     opacity: 0;
     transition: all .7s ease-in-out;
 }   
+.insertGu{
+	font-size: 17px;
+	border: 3px solid #84c0a0 !important;
+	background-color: #ffffff;
+	color: #757575;
+	width: 60%;
+	padding: 10px 15px 10px 15px;
+	text-align: left;
+	width: 20%;
+}
 
 .slide-image img {
     width: auto;
@@ -496,8 +566,8 @@ ul.slides input {
 
 .carousel-dots .carousel-dot {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: #fff;
     opacity: 0.5;

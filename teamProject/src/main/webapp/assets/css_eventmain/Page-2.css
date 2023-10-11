@@ -15,16 +15,16 @@
 }
 
 .u-section-1 .u-image-2 {
-	border-radius:20px;
-  width: 471px;
-  height: 609px;
-  margin: -697px auto 0 56px;
+    border-radius: 14px;
+    width: 471px;
+    height: 450px;
+    margin: -750px auto 0 20px;
 }
 
 .u-section-1 .u-image-3 {
-  width: 180px;
-  height: 180px;
-  margin: -740px auto 0 -20px;
+    width: 150px;
+    height: 150px;
+    margin: -550px auto 0 -20px;
 }
 
 .u-section-1 .u-group-1 {
@@ -41,20 +41,21 @@
 .u-section-1 .u-text-1 {
   letter-spacing: -2px;
   line-height: 1;
-  font-size: 2.5rem;
+  font-size: 25px;
   font-weight: 600;
   margin: 30px 0 0;
 }
 
 .u-section-1 .u-text-2 {
-  margin: 38px 104px 0 0;
+  margin: 20px 104px 0 0;
 }
 
 .u-section-1 .u-btn-1 {
 	border-radius:20px;
   font-weight: 500;
   background-image: none;
-  padding: 12px 15px 2px 15px;
+  padding: 12px 15px 12px 15px;
+ font-family: 'TheJamsil300';
 }
 
 .u-section-1 .u-group-2 {
@@ -339,8 +340,8 @@
 
 .u-section-2 .u-group-1 {
   min-height: 253px;
-  width: 978px;
-  margin: -355px auto 40px 60px;
+  width: 600px;
+  margin: -400px auto 40px 60px;
 }
 
 .u-section-2 .u-container-layout-1 {
@@ -349,18 +350,19 @@
 }
 
 .u-section-2 .u-line-1 {
-  height: 247px;
+  height: 350px;
   transform-origin: center bottom 0;
-  width: 2px;
-  margin: 0 auto 0 -60px;
+  width: 20px;
+  margin: -100px auto 0 -60px
 }
 
 .u-section-2 .u-text-1 {
   margin: -181px 0 0;
 }
-
+/*여기 고침  detail 자세한 내용*/
 .u-section-2 .u-text-2 {
-  margin: -280px -170px -600px -20px;
+	width:500px;
+  margin: -240px -170px -60px -20px;
 }
 
 @media (max-width: 1199px) {
@@ -423,7 +425,7 @@
   }
 
   .u-section-2 .u-line-1 {
-    width: 1px;
+    width: 10px;
     margin-left: -38px;
   }
 }
@@ -483,11 +485,18 @@
   }
 
   .u-section-2 .u-line-1 {
-    height: 440px;
-    width: 2px;
+    height: 300px;
+    width: 20px;
     margin-left: -18px;
   }
-
+.u-border-2{
+	margin:inherit;
+	height:inherit;
+	border-width:inherit;
+	    margin: -90px 0 0 0;
+    height: 350px;
+    border-width: 7px;
+}
   .u-section-2 .u-text-1 {
     margin-top: -415px;
   }
