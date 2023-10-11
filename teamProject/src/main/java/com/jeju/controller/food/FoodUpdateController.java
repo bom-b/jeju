@@ -83,7 +83,10 @@ public class FoodUpdateController extends SuperClass{
 				
 			} else {
 				// 수정 성공
-				new FoodMainController().doGet(request, response); 
+				//new FoodMainController().doGet(request, response); 
+				String alerMsg = "수정이 완료되었습니다.";
+				request.setAttribute("alerMsg", alerMsg);
+				super.gotoPage("/food/foodUpPopup.jsp");
 				
 			}
 			

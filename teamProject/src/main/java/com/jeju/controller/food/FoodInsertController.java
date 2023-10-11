@@ -95,7 +95,10 @@ public class FoodInsertController extends SuperClass {
 				
 			}else {
 				
-				new FoodMainController().doGet(request, response); 
+//				new FoodMainController().doGet(request, response); 
+				String alerUMsg = "등록이 완료되었습니다.";
+				request.setAttribute("alerUMsg", alerUMsg);
+				super.gotoPage("/food/foodInPopup.jsp");
 				
 			}
 			
