@@ -234,7 +234,7 @@ public class HomeDao extends SuperDao {
 
 		String sql = " SELECT RANK() OVER (ORDER BY MRATING DESC, ID) AS rank, M.* "
 				+ " FROM members M "
-				+ " WHERE ROWNUM <= 10 "
+				+ " WHERE ROWNUM <= 10 AND M.ID NOT LIKE 'admin' "
 				+ " ORDER BY MRATING DESC, ID ";
 		
 		conn = super.getConnection();
