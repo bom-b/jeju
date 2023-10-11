@@ -165,7 +165,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">비밀 번호</span>
-                    <input class="form-control" type="password" id="password" name="password">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="@,#,% 중 1개 포함 필수">
                 </div>
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">이름</span>
@@ -196,11 +196,11 @@
                 </div>	
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">핸드폰 번호</span>
-                    <input class="form-control" type="text" id="mphoneno" name="mphoneno">				
+                    <input class="form-control" type="text" id="mphoneno" name="mphoneno" placeholder="XXX-XXXX-XXXX">				
                 </div>
                 <div class="input-group">
                     <span class="input-group-text sdms-font" style="font-size: 30px">생일</span>
-                    <input class="form-control" type="datetime" id="birth" name="birth">
+                    <input class="form-control" type="datetime" id="birth" name="birth" placeholder="YYYY/MM/DD">
                 </div>
             </div>
         </div>
