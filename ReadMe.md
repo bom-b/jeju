@@ -1,21 +1,8 @@
 # jeju
 3조 팀프로젝트
 
-# 작업 규칙
-작업은 master branch가 아닌 각자의 branch에서 진행합니다.
+# 설치순서
+부탁드립니다.
 
-먼저 반드시 각자의 branch에 master의 branch를 pull하여 최신화 시킵니다.
-
-원하는 사항을 수정 한 후에,
-각자의 branch에 먼저 push를 하고
-
-각자의 bracnh를 master의 baranch에 compare&pull request를 합니다.
-
-충돌 사항이 없을 경우 바로 merge 하시면 됩니다.
-
-충돌 사항이 있을 경우 최신의 master branch를 불러와 자신의 코드가 충돌하지 않게 수정하거나,
-조원과 상의하여 코드를 정리합니다.
-
-# 로컬 브랜치와 서버 브랜치는 다릅니다.
-로컬 브랜치는 본인의 작업에서 분기처리가 필요할때 쓰면 되며,
-서버 브랜치는 master 브랜치로 바로 push 하는 것이 아닌 개별의 branch에 먼저 push 하여 안정성을 높힐 수 있습니다.
+# 주요특징 
+감사합니다.
